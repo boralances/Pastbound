@@ -23,7 +23,7 @@ public final class RelikItem extends Item implements ICurioItem {
 
     public RelikItem(Properties ozellikler, RelikTanimi tanim) {
         super(ozellikler);
-        this.tanim = tanim;
+        this.tanim = tanim == null ? RelikTanimi.ROSSETTA_TASI : tanim;
     }
 
     public RelikTanimi tanim() {

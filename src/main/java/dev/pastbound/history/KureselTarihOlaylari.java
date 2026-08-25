@@ -147,7 +147,6 @@ public final class KureselTarihOlaylari {
     }
 
     private static void mozaikBarisi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 100, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.HAPPY_VILLAGER, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 3, 0.3D, 0.4D, 0.3D, 0.01D);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.MOZAIK_BARISI);
     }

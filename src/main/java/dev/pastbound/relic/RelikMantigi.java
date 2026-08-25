@@ -442,7 +442,8 @@ public final class RelikMantigi {
             case HIZ -> efekt(oyuncu, MobEffects.SPEED, 70, 0);
             case GORUS -> efekt(oyuncu, MobEffects.NIGHT_VISION, 70, 0);
             case SU, DENIZ -> efekt(oyuncu, MobEffects.WATER_BREATHING, 70, 0);
-            case DIRENC, SAVUNMA, ZIRH -> efekt(oyuncu, MobEffects.RESISTANCE, 70, 0);
+            case DIRENC, SAVUNMA, ZIRH -> {
+            }
             case KALP -> efekt(oyuncu, MobEffects.REGENERATION, 70, 0);
             default -> {
             }

@@ -62,7 +62,7 @@
   "message.pastbound.echo.wrong": "Dizi dağıldı. İpucu: %s",
   "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s",
   "message.pastbound.echo.stirs": "Bir tarihî yankı uyandı: %s",
-  "message.pastbound.echo.open_journal": "Tarihî sınavı denemek için günlüğü aç.",
+  "message.pastbound.echo.open_journal": "Tarihî sınava girmek için R’ye basıp Relik Günlüğü’nü aç.",
   "message.pastbound.echo.locked": "%s için tarihî sınav henüz uyanmadı. Önce ilgili aksiyonu gerçekleştir.",
   "message.pastbound.global.yazi_devrimi": "Yazı Devrimi sunucuda yankılanıyor.",
   "message.pastbound.global.nil_kanallari": "Nil Kanalları tarihte yeni bir yol açıyor.",

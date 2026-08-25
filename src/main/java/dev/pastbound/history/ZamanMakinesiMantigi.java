@@ -101,7 +101,6 @@ public final class ZamanMakinesiMantigi {
             }
             case TERMOPIL_SAVASI -> {
                 efekt(oyuncu, MobEffects.STRENGTH, 200, 0);
-                efekt(oyuncu, MobEffects.RESISTANCE, 200, 0);
                 yankipar(oyuncu, seviye, ParticleTypes.CRIT);
             }
             case ISKENDERIYE_KUTUPHANESI -> {
