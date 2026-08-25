@@ -40,7 +40,7 @@ public final class ZamanMakinesiEkrani extends Screen {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor cizim, int fareX, int fareY, float kismi) {
-        extractBackground(cizim, fareX, fareY, kismi);
+        cizim.fill(0, 0, cizim.guiWidth(), cizim.guiHeight(), 0xB5101118);
         int genislik = Math.min(700, cizim.guiWidth() - 24);
         int yukseklik = Math.min(450, cizim.guiHeight() - 24);
         int sol = (cizim.guiWidth() - genislik) / 2;

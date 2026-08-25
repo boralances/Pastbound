@@ -43,7 +43,7 @@ public final class RelikDefteriEkrani extends Screen {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor cizim, int fareX, int fareY, float kismi) {
-        extractBackground(cizim, fareX, fareY, kismi);
+        cizim.fill(0, 0, cizim.guiWidth(), cizim.guiHeight(), 0xB5101118);
         if (seciliRelik >= 0) {
             modalCiz(cizim);
         } else {
