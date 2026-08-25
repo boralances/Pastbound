@@ -41,5 +41,10 @@ public final class RelikClientOyun {
         if (RelikClient.TARIH_KONTROL_KISAYOLU.consumeClick()) {
             oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.kontroluAl()));
         }
+        for (int i = 0; i < RelikClient.RELIK_YUVA_KISAYOLLARI.length; i++) {
+            if (RelikClient.RELIK_YUVA_KISAYOLLARI[i].consumeClick()) {
+                oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.yuvaEtkinlestir(i)));
+            }
+        }
     }
 }

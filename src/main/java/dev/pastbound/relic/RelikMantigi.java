@@ -33,6 +33,7 @@ public final class RelikMantigi {
     private static final String BILINEN_RELIKLER = "pastbound_bilinen_relikler";
     private static final String TAMAMLANAN_YANKILAR = "pastbound_tamamlanan_tarih_yankilari";
     private static final String HAZIR_YANKILAR = "pastbound_hazir_tarih_yankilari";
+    private static final String GUNLUK_IPUCU_GONDERILDI = "pastbound_gunluk_ipucu_gonderildi";
     private static final String ACIK_RELIK_YUVALARI = "pastbound_acik_relik_yuvalari";
     private static final int BASLANGIC_RELIK_YUVASI = 8;
     private static final int AZAMI_RELIK_YUVASI = 10;
@@ -129,7 +130,10 @@ public final class RelikMantigi {
         String eski = veri.getStringOr(HAZIR_YANKILAR, "");
         veri.putString(HAZIR_YANKILAR, eski.isEmpty() ? yanki.kimlik() : eski + AYRAC + yanki.kimlik());
         oyuncu.sendOverlayMessage(Component.translatable("message.pastbound.echo.stirs", yanki.baslik()));
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.open_journal"));
+        if (!veri.getBooleanOr(GUNLUK_IPUCU_GONDERILDI, false)) {
+            veri.putBoolean(GUNLUK_IPUCU_GONDERILDI, true);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.open_journal"));
+        }
     }
 
     public static int tamamlananYankiSayisi(Player oyuncu) {
@@ -275,6 +279,25 @@ public final class RelikMantigi {
             return false;
         }
         Optional<SlotResult> bulunan = envanter.findCurios(yigin -> yigin.getItem() instanceof RelikItem && biliyorMu(oyuncu, ((RelikItem) yigin.getItem()).tanim())).stream().findFirst();
+        if (bulunan.isEmpty()) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.no_known"));
+            return false;
+        }
+        SlotResult sonuc = bulunan.get();
+        RelikItem item = (RelikItem) sonuc.stack().getItem();
+        return etkinlestir(oyuncu, item.tanim(), sonuc.stack());
+    }
+
+    public static boolean etkinlestirYuva(Player oyuncu, int yuva) {
+        if (yuva < 0 || yuva >= 10) {
+            return false;
+        }
+        ICuriosItemHandler envanter = CuriosApi.getCuriosInventoryOrNull(oyuncu);
+        if (envanter == null) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.no_curios"));
+            return false;
+        }
+        Optional<SlotResult> bulunan = envanter.findCurios(yigin -> yigin.getItem() instanceof RelikItem && biliyorMu(oyuncu, ((RelikItem) yigin.getItem()).tanim())).stream().filter(sonuc -> sonuc.slotContext().identifier().equals("relic") && sonuc.slotContext().index() == yuva).findFirst();
         if (bulunan.isEmpty()) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.no_known"));
             return false;

@@ -57,9 +57,14 @@ public final class ZamanMakinesiMantigi {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.cooldown"));
             return;
         }
+        if (!zamanTasiVarMi(oyuncu)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.time_stone_needed"));
+            return;
+        }
         if (!TarihiKesifDunyasi.baslat(oyuncu, donem)) {
             return;
         }
+        zamanTasiTuket(oyuncu);
         boolean yeniKesif = kaydet(oyuncu, donem);
         tarihEtki(oyuncu, donem);
         yankiyiHazirla(oyuncu, donem);
@@ -69,6 +74,25 @@ public final class ZamanMakinesiMantigi {
         }
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.arrived", donem.ad(), donem.odak()));
         oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 0.8F, 1.25F);
+    }
+
+    private static boolean zamanTasiVarMi(ServerPlayer oyuncu) {
+        for (int i = 0; i < oyuncu.getInventory().getContainerSize(); i++) {
+            if (oyuncu.getInventory().getItem(i).is(ModItems.TIME_STONE.get())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void zamanTasiTuket(ServerPlayer oyuncu) {
+        for (int i = 0; i < oyuncu.getInventory().getContainerSize(); i++) {
+            ItemStack yigin = oyuncu.getInventory().getItem(i);
+            if (yigin.is(ModItems.TIME_STONE.get())) {
+                yigin.shrink(1);
+                return;
+            }
+        }
     }
 
     private static boolean kaydet(ServerPlayer oyuncu, TarihDonemi donem) {

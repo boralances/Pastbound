@@ -2,16 +2,23 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "RTR",
-    "CEC",
-    "RDR"
+    "DSD",
+    "SGT",
+    "SSS"
   ],
   "key": {
-    "R": {"item": "minecraft:redstone"},
-    "T": {"item": "pastbound:time_stone"},
-    "C": {"item": "minecraft:copper_ingot"},
-    "E": {"item": "pastbound:echo_seal"},
-    "D": {"item": "minecraft:diamond"}
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "T": {
+      "item": "pastbound:time_stone"
+    }
   },
   "result": {
     "id": "pastbound:zaman_makinesi",

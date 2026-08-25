@@ -11,10 +11,8 @@ import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
-import net.minecraft.resources.Identifier;
 
 public final class ZamanMakinesiEkrani extends Screen {
-    private static final Identifier DOKU = Identifier.parse("pastbound:textures/gui/time_machine.png");
     private int seciliDonem = -1;
     private int mesajSayaci;
 
@@ -40,12 +38,11 @@ public final class ZamanMakinesiEkrani extends Screen {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor cizim, int fareX, int fareY, float kismi) {
-        cizim.fill(0, 0, cizim.guiWidth(), cizim.guiHeight(), 0xB5101118);
-        int genislik = Math.min(700, cizim.guiWidth() - 24);
-        int yukseklik = Math.min(450, cizim.guiHeight() - 24);
-        int sol = (cizim.guiWidth() - genislik) / 2;
-        int ust = (cizim.guiHeight() - yukseklik) / 2;
-        cizim.blit(DOKU, sol, ust, genislik, yukseklik, 0.0F, 0.0F, 1.0F, 1.0F);
+        int genislik = panelGenislik();
+        int yukseklik = panelYukseklik();
+        int sol = (width - genislik) / 2;
+        int ust = (height - yukseklik) / 2;
+        cizim.fill(0, 0, width, height, 0xB5101118);
         cizim.fill(sol - 4, ust - 4, sol + genislik + 4, ust + yukseklik + 4, 0xB8111118);
         cizim.fill(sol, ust, sol + genislik, ust + yukseklik, 0xE51E242D);
         cizim.outline(sol, ust, genislik, yukseklik, 0xFFD1A55E);
@@ -53,27 +50,32 @@ public final class ZamanMakinesiEkrani extends Screen {
         cizim.centeredText(font, title, sol + genislik / 2, ust + 18, 0xFFF4D6A3);
         cizim.textWithWordWrap(font, Component.translatable("screen.pastbound.time_machine.subtitle"), sol + 18, ust + 52, genislik - 36, 0xFFC7D4D9);
 
-        int kartGenislik = 215;
-        int kartYukseklik = 70;
+        int kartGenislik = kartGenislik();
+        int kartYukseklik = kartYukseklik();
+        int sutunSayisi = sutunSayisi();
         int baslangicX = sol + 16;
-        int baslangicY = ust + 82;
+        int baslangicY = ust + 86;
         for (int i = 0; i < TarihDonemi.values().length; i++) {
             TarihDonemi donem = TarihDonemi.values()[i];
-            int sutun = i % 3;
-            int satir = i / 3;
+            int sutun = i % sutunSayisi;
+            int satir = i / sutunSayisi;
             int x = baslangicX + sutun * (kartGenislik + 8);
             int y = baslangicY + satir * (kartYukseklik + 8);
             boolean secili = i == seciliDonem;
             cizim.fill(x, y, x + kartGenislik, y + kartYukseklik, secili ? 0xD64C5C5E : 0xB52A343C);
             cizim.outline(x, y, kartGenislik, kartYukseklik, secili ? 0xFFE6C37A : 0xFF68747A);
-            cizim.text(font, Component.literal((i + 1) + ". " + donem.ad()), x + 10, y + 9, 0xFFF4E5C4);
-            cizim.text(font, Component.literal(donem.odak()), x + 10, y + 27, 0xFFE1B56C);
-            cizim.textWithWordWrap(font, Component.literal(donem.aciklama()), x + 10, y + 43, kartGenislik - 20, 0xFFB9C8C9);
+            cizim.text(font, Component.literal((i + 1) + ". " + donem.ad()), x + 8, y + 7, 0xFFF4E5C4);
+            if (kartYukseklik >= 44) {
+                cizim.textWithWordWrap(font, Component.literal(donem.odak()), x + 8, y + 23, kartGenislik - 16, 0xFFE1B56C);
+            }
+            if (kartYukseklik >= 64) {
+                cizim.textWithWordWrap(font, Component.literal(donem.aciklama()), x + 8, y + 40, kartGenislik - 16, 0xFFB9C8C9);
+            }
         }
         if (mesajSayaci > 0) {
             cizim.centeredText(font, Component.translatable("screen.pastbound.time_machine.sent"), sol + genislik / 2, ust + yukseklik - 32, 0xFF7ED0A8);
         } else {
-            cizim.centeredText(font, Component.translatable("screen.pastbound.time_machine.hint"), sol + genislik / 2, ust + yukseklik - 32, 0xFFE0B26B);
+            cizim.centeredText(font, Component.translatable("screen.pastbound.time_machine.cost"), sol + genislik / 2, ust + yukseklik - 32, 0xFFE0B26B);
         }
         cizim.centeredText(font, Component.translatable("screen.pastbound.close"), sol + genislik / 2, ust + yukseklik - 16, 0xFF7D8A92);
     }
@@ -83,24 +85,21 @@ public final class ZamanMakinesiEkrani extends Screen {
         if (olay.button() != 0) {
             return true;
         }
-        int genislik = Math.min(700, width - 24);
-        int yukseklik = Math.min(450, height - 24);
+        int genislik = panelGenislik();
+        int yukseklik = panelYukseklik();
         int sol = (width - genislik) / 2;
         int ust = (height - yukseklik) / 2;
-        int kartGenislik = 215;
-        int kartYukseklik = 70;
+        int kartGenislik = kartGenislik();
+        int kartYukseklik = kartYukseklik();
+        int sutunSayisi = sutunSayisi();
         int baslangicX = sol + 16;
-        int baslangicY = ust + 82;
+        int baslangicY = ust + 86;
         for (int i = 0; i < TarihDonemi.values().length; i++) {
-            int x = baslangicX + i % 3 * (kartGenislik + 8);
-            int y = baslangicY + i / 3 * (kartYukseklik + 8);
+            int x = baslangicX + i % sutunSayisi * (kartGenislik + 8);
+            int y = baslangicY + i / sutunSayisi * (kartYukseklik + 8);
             if (olay.x() >= x && olay.x() <= x + kartGenislik && olay.y() >= y && olay.y() <= y + kartYukseklik) {
                 seciliDonem = i;
-                Minecraft minecraft = Minecraft.getInstance();
-                if (minecraft.player != null) {
-                    minecraft.player.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.zaman(TarihDonemi.values()[i].kimlik())));
-                    mesajSayaci = 50;
-                }
+                yolculukBaslat(i);
                 return true;
             }
         }
@@ -117,14 +116,46 @@ public final class ZamanMakinesiEkrani extends Screen {
             int index = olay.key() - GLFW.GLFW_KEY_1;
             if (index < TarihDonemi.values().length) {
                 seciliDonem = index;
-                Minecraft minecraft = Minecraft.getInstance();
-                if (minecraft.player != null) {
-                    minecraft.player.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.zaman(TarihDonemi.values()[index].kimlik())));
-                    mesajSayaci = 50;
-                }
+                yolculukBaslat(index);
                 return true;
             }
         }
         return super.keyPressed(olay);
+    }
+
+    private void yolculukBaslat(int index) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (minecraft.player != null) {
+            minecraft.player.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.zaman(TarihDonemi.values()[index].kimlik())));
+            mesajSayaci = 50;
+        }
+    }
+
+    private int panelGenislik() {
+        return Math.min(700, Math.max(260, width - 16));
+    }
+
+    private int panelYukseklik() {
+        return Math.min(450, Math.max(220, height - 16));
+    }
+
+    private int sutunSayisi() {
+        int genislik = panelGenislik();
+        if (genislik >= 560) {
+            return 3;
+        }
+        if (genislik >= 360) {
+            return 2;
+        }
+        return 1;
+    }
+
+    private int kartGenislik() {
+        return (panelGenislik() - 32 - (sutunSayisi() - 1) * 8) / sutunSayisi();
+    }
+
+    private int kartYukseklik() {
+        int satir = (TarihDonemi.values().length + sutunSayisi() - 1) / sutunSayisi();
+        return Math.max(30, Math.min(70, (panelYukseklik() - 132 - (satir - 1) * 8) / satir));
     }
 }

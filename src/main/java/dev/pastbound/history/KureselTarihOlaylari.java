@@ -15,6 +15,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -51,6 +52,14 @@ public final class KureselTarihOlaylari {
             boolean altinla = elindeVar(oyuncu, Items.GOLD_INGOT) || elindeVar(oyuncu, Items.GOLD_NUGGET);
             boolean iplikle = elindeVar(oyuncu, Items.STRING);
             boolean saatle = elindeVar(oyuncu, Items.CLOCK);
+            boolean tarimla = elindeVar(oyuncu, Items.WHEAT) || elindeVar(oyuncu, Items.BREAD);
+            boolean denizle = elindeVar(oyuncu, Items.OAK_BOAT) || elindeVar(oyuncu, Items.COMPASS);
+            boolean matbaayla = elindeVar(oyuncu, Items.PAPER) || elindeVar(oyuncu, Items.WRITABLE_BOOK);
+            boolean tipMalzemesiyle = elindeVar(oyuncu, Items.GLASS_BOTTLE) || elindeVar(oyuncu, Items.BOWL);
+            boolean camla = elindeVar(oyuncu, Items.GLASS) || elindeVar(oyuncu, Items.GLASS_PANE);
+            boolean gozlemle = elindeVar(oyuncu, Items.SPYGLASS) || elindeVar(oyuncu, Items.CLOCK);
+            boolean hukukla = elindeVar(oyuncu, Items.WRITABLE_BOOK) || seviye.getBlockState(oyuncu.blockPosition()).is(Blocks.LECTERN);
+            boolean arkeolojiyle = elindeVar(oyuncu, Items.BRUSH);
 
             if (yaziyla && tik % YAZI_BONUS_ARALIGI == 0) {
                 yaziHafizasi(oyuncu);
@@ -87,6 +96,30 @@ public final class KureselTarihOlaylari {
             }
             if (haritayla && tik % 260 == 0) {
                 astrolabGogu(oyuncu, seviye);
+            }
+            if (tarimla && tik % 280 == 0) {
+                tarimDevrimi(oyuncu, seviye);
+            }
+            if (denizle && suda && tik % 300 == 0) {
+                akdenizGemiciligi(oyuncu, seviye);
+            }
+            if (matbaayla && tik % 320 == 0) {
+                matbaaYankisi(oyuncu, seviye);
+            }
+            if (tipMalzemesiyle && tik % 340 == 0) {
+                tipBahcesi(oyuncu, seviye);
+            }
+            if (camla && tik % 360 == 0) {
+                camYolu(oyuncu, seviye);
+            }
+            if (gozlemle && yuksekte && tik % 380 == 0) {
+                gozlemEvi(oyuncu, seviye);
+            }
+            if (hukukla && tik % 400 == 0) {
+                hukukMeclisi(oyuncu, seviye);
+            }
+            if (arkeolojiyle && tik % 420 == 0) {
+                arkeolojiKesfi(oyuncu, seviye);
             }
         }
     }
@@ -167,6 +200,60 @@ public final class KureselTarihOlaylari {
         yankiyiHazirla(oyuncu, KureselTarihOlayi.ASTROLAB_GOGU);
     }
 
+    private static void tarimDevrimi(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.giveExperiencePoints(2);
+        seviye.sendParticles(ParticleTypes.HAPPY_VILLAGER, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 6, 0.4D, 0.5D, 0.4D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.TARIM_DEVRIMI);
+    }
+
+    private static void akdenizGemiciligi(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 140, 0, false, false, true));
+        oyuncu.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 140, 0, false, false, true));
+        seviye.sendParticles(ParticleTypes.BUBBLE, oyuncu.getX(), oyuncu.getY(), oyuncu.getZ(), 8, 0.5D, 0.5D, 0.5D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.AKDENIZ_GEMICILIGI);
+    }
+
+    private static void matbaaYankisi(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.giveExperiencePoints(2);
+        oyuncu.addEffect(new MobEffectInstance(MobEffects.HASTE, 120, 0, false, false, true));
+        seviye.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 7, 0.4D, 0.5D, 0.4D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.MATBAA_YANKISI);
+    }
+
+    private static void tipBahcesi(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0, false, false, true));
+        seviye.sendParticles(ParticleTypes.HAPPY_VILLAGER, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 5, 0.3D, 0.4D, 0.3D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.TIP_BAHCESI);
+    }
+
+    private static void camYolu(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.giveExperiencePoints(1);
+        seviye.sendParticles(ParticleTypes.END_ROD, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 5, 0.3D, 0.5D, 0.3D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.CAM_YOLU);
+    }
+
+    private static void gozlemEvi(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 160, 0, false, false, true));
+        seviye.sendParticles(ParticleTypes.END_ROD, oyuncu.getX(), oyuncu.getY() + 1.5D, oyuncu.getZ(), 8, 0.5D, 0.4D, 0.5D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.GOZLEM_EVI);
+    }
+
+    private static void hukukMeclisi(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 140, 0, false, false, true));
+        seviye.sendParticles(ParticleTypes.HAPPY_VILLAGER, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 5, 0.3D, 0.4D, 0.3D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.HUKUK_MECLISI);
+    }
+
+    private static void arkeolojiKesfi(ServerPlayer oyuncu, ServerLevel seviye) {
+        oyuncu.addEffect(new MobEffectInstance(MobEffects.HASTE, 120, 0, false, false, true));
+        seviye.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 8, 0.4D, 0.5D, 0.4D, 0.02D);
+        olayAnlat(oyuncu, KureselTarihOlayi.ARKEOLOJI_KESFI);
+    }
+
+    private static void olayAnlat(ServerPlayer oyuncu, KureselTarihOlayi olay) {
+        oyuncu.sendSystemMessage(Component.translatable(olay.mesajAnahtari()));
+    }
+
     private static void yankiyiHazirla(ServerPlayer oyuncu, KureselTarihOlayi donem) {
         String kimlik = switch (donem) {
             case YAZI_DEVRIMI -> "papirus_sifresi";
@@ -181,6 +268,7 @@ public final class KureselTarihOlaylari {
             case ASTROLAB_GOGU -> "ronesans_atolyesi";
             case RUNE_NOBETI -> "rune_tasi";
             case AY_MISYONU -> "apollo_ay_yuruyusu";
+            default -> null;
         };
         TarihYankisi yanki = TarihYankilari.yankiBul(kimlik);
         if (yanki != null) {

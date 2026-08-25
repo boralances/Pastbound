@@ -12,7 +12,15 @@ public enum KureselTarihOlayi {
     QUIPU_SAYIMI("message.pastbound.global.quipu_sayimi"),
     ASTROLAB_GOGU("message.pastbound.global.astrolab_gogu"),
     RUNE_NOBETI("message.pastbound.global.rune_nobeti"),
-    AY_MISYONU("message.pastbound.global.ay_misyonu");
+    AY_MISYONU("message.pastbound.global.ay_misyonu"),
+    TARIM_DEVRIMI("message.pastbound.global.tarim_devrimi"),
+    AKDENIZ_GEMICILIGI("message.pastbound.global.akdeniz_gemiciligi"),
+    MATBAA_YANKISI("message.pastbound.global.matbaa_yankisi"),
+    TIP_BAHCESI("message.pastbound.global.tip_bahcesi"),
+    CAM_YOLU("message.pastbound.global.cam_yolu"),
+    GOZLEM_EVI("message.pastbound.global.gozlem_evi"),
+    HUKUK_MECLISI("message.pastbound.global.hukuk_meclisi"),
+    ARKEOLOJI_KESFI("message.pastbound.global.arkeoloji_kesfi");
 
     private final String mesajAnahtari;
 

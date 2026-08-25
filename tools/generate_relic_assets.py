@@ -8,9 +8,10 @@ item_dizini = varlik / "textures/item/relics"
 slot_dizini = varlik / "textures/slot"
 blok_dizini = varlik / "textures/block"
 gui_dizini = varlik / "textures/gui"
+mob_effect_dizini = varlik / "textures/mob_effect"
 model_dizini = varlik / "models/item"
 item_tanim_dizini = varlik / "items"
-for dizin in (item_dizini, slot_dizini, blok_dizini, gui_dizini, model_dizini, item_tanim_dizini):
+for dizin in (item_dizini, slot_dizini, blok_dizini, gui_dizini, mob_effect_dizini, model_dizini, item_tanim_dizini):
     dizin.mkdir(parents=True, exist_ok=True)
 
 
@@ -203,6 +204,17 @@ def firin_cubugu():
     return goruntu
 
 
+def tarih_yankisi_efekti():
+    goruntu = Image.new("RGBA", (18, 18), (0, 0, 0, 0))
+    ciz = ImageDraw.Draw(goruntu)
+    ciz.ellipse((2, 2, 15, 15), fill=(34, 67, 79, 255), outline=(112, 218, 192, 255), width=1)
+    ciz.polygon([(9, 3), (12, 7), (11, 9), (15, 10), (11, 12), (10, 15), (7, 12), (4, 13), (6, 9), (3, 7), (7, 7)], fill=(99, 198, 179, 255))
+    ciz.point((8, 6), fill=(237, 244, 186, 255))
+    ciz.point((10, 8), fill=(237, 244, 186, 255))
+    ciz.point((8, 10), fill=(237, 244, 186, 255))
+    return goruntu
+
+
 def zaman_gui():
     goruntu = Image.new("RGBA", (256, 192), (22, 28, 35, 255))
     ciz = ImageDraw.Draw(goruntu)
@@ -264,6 +276,7 @@ history_modal().save(gui_dizini / "history_modal.png")
 zaman_makinesi().save(varlik / "textures/item/zaman_makinesi.png")
 firin_cubugu().save(varlik / "textures/item/firin_cubugu.png")
 zaman_gui().save(gui_dizini / "time_machine.png")
+tarih_yankisi_efekti().save(mob_effect_dizini / "tarih_yankisi.png")
 yeni_esyalar = {
     "chronicle_scrap": ((181, 148, 91), 0),
     "history_ink": ((62, 66, 104), 1),

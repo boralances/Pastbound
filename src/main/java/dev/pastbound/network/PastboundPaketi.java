@@ -54,6 +54,10 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
         return new PastboundPaketi(8, "", "");
     }
 
+    public static PastboundPaketi yuvaEtkinlestir(int yuva) {
+        return new PastboundPaketi(9, Integer.toString(yuva), "");
+    }
+
     @Override
     public Type<? extends CustomPacketPayload> type() {
         return TIP;
@@ -72,9 +76,19 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                 case 5 -> RelikMantigi.yankiyiCoz(oyuncu, paket.birinci(), paket.ikinci());
                 case 6 -> TarihiKesifDunyasi.kontroluAl(oyuncu);
                 case 8 -> TarihiKesifDunyasi.don(oyuncu);
+                case 9 -> yuvaIsteğiniAl(oyuncu, paket.birinci());
                 default -> oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
             }
         });
+    }
+
+    private static void yuvaIsteğiniAl(ServerPlayer oyuncu, String yuvaMetni) {
+        try {
+            int yuva = Integer.parseInt(yuvaMetni);
+            RelikMantigi.etkinlestirYuva(oyuncu, yuva);
+        } catch (NumberFormatException hata) {
+            oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
+        }
     }
 
     public static void istemciyeAl(PastboundPaketi paket, IPayloadContext baglam) {

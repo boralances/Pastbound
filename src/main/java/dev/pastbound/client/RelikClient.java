@@ -18,6 +18,18 @@ public final class RelikClient {
     public static final KeyMapping DEFTER_KISAYOLU = new KeyMapping("key.pastbound.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, PASTBOUND_KATEGORI);
     public static final KeyMapping AKTIFLESTIRME_KISAYOLU = new KeyMapping("key.pastbound.activate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, PASTBOUND_KATEGORI);
     public static final KeyMapping TARIH_KONTROL_KISAYOLU = new KeyMapping("key.pastbound.take_control", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_D, PASTBOUND_KATEGORI);
+    public static final KeyMapping[] RELIK_YUVA_KISAYOLLARI = {
+            new KeyMapping("key.pastbound.relic_slot_1", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F1, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_2", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F2, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_3", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F3, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_4", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F4, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_5", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F5, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_6", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F6, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_7", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F7, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_8", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F8, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_9", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F9, PASTBOUND_KATEGORI),
+            new KeyMapping("key.pastbound.relic_slot_10", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_F10, PASTBOUND_KATEGORI)
+    };
 
     private RelikClient() {
     }
@@ -27,5 +39,8 @@ public final class RelikClient {
         olay.register(DEFTER_KISAYOLU);
         olay.register(AKTIFLESTIRME_KISAYOLU);
         olay.register(TARIH_KONTROL_KISAYOLU);
+        for (KeyMapping kisayol : RELIK_YUVA_KISAYOLLARI) {
+            olay.register(kisayol);
+        }
     }
 }
