@@ -58,6 +58,14 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
         return new PastboundPaketi(9, Integer.toString(yuva), "");
     }
 
+    public static PastboundPaketi konusma(String donem, int konusmaci) {
+        return new PastboundPaketi(10, donem, Integer.toString(konusmaci));
+    }
+
+    public static PastboundPaketi konusmaSecimi(String donem, int konusmaci, int secim) {
+        return new PastboundPaketi(11, donem, konusmaci + ":" + secim);
+    }
+
     @Override
     public Type<? extends CustomPacketPayload> type() {
         return TIP;
@@ -77,9 +85,25 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                 case 6 -> TarihiKesifDunyasi.kontroluAl(oyuncu);
                 case 8 -> TarihiKesifDunyasi.don(oyuncu);
                 case 9 -> yuvaIsteğiniAl(oyuncu, paket.birinci());
+                case 11 -> konusmaSeciminiAl(oyuncu, paket.birinci(), paket.ikinci());
                 default -> oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
             }
         });
+    }
+
+    private static void konusmaSeciminiAl(ServerPlayer oyuncu, String donemKimligi, String secimMetni) {
+        try {
+            String[] parcalar = secimMetni.split(":", 2);
+            if (parcalar.length != 2) {
+                oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
+                return;
+            }
+            int konusmaci = Integer.parseInt(parcalar[0]);
+            int secim = Integer.parseInt(parcalar[1]);
+            TarihiKesifDunyasi.konusmaCevapla(oyuncu, donemKimligi, konusmaci, secim);
+        } catch (NumberFormatException hata) {
+            oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
+        }
     }
 
     private static void yuvaIsteğiniAl(ServerPlayer oyuncu, String yuvaMetni) {
@@ -95,6 +119,12 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
         baglam.enqueueWork(() -> {
             if (paket.islem() == 7) {
                 RelikClientOyun.canlandirmaPaketiniIsle(paket.birinci(), paket.ikinci());
+            } else if (paket.islem() == 10) {
+                try {
+                    RelikClientOyun.konusmaPaketiniIsle(paket.birinci(), Integer.parseInt(paket.ikinci()));
+                } catch (NumberFormatException hata) {
+                    RelikClientOyun.konusmaPaketiniIsle(paket.birinci(), 0);
+                }
             }
         });
     }

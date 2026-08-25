@@ -8,6 +8,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
+import dev.pastbound.network.PastboundPaketi;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -50,6 +55,10 @@ public final class TarihYankilari {
         if (oyuncu.level().isClientSide()) {
             return;
         }
+        if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            olay.setCanceled(true);
+            return;
+        }
         if (olay.getState().is(ModBlocks.ECHO_ARCHIVE.get())) {
             yankiyiBaslat(oyuncu, TarihYankisi.CATALHOYUK_EVLERI);
         } else if (olay.getState().is(net.minecraft.world.level.block.Blocks.CLAY)) {
@@ -66,9 +75,20 @@ public final class TarihYankilari {
     }
 
     @SubscribeEvent
+    public static void blokKoyuldu(BlockEvent.EntityPlaceEvent olay) {
+        if (olay.getEntity() instanceof ServerPlayer oyuncu && TarihiKesifDunyasi.boyuttaMi(oyuncu)) {
+            olay.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
     public static void blokEtkilesildi(PlayerInteractEvent.RightClickBlock olay) {
         Player oyuncu = olay.getEntity();
         if (oyuncu.level().isClientSide()) {
+            return;
+        }
+        if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            olay.setCanceled(true);
             return;
         }
         if (olay.getLevel().getBlockState(olay.getPos()).is(ModBlocks.ECHO_ARCHIVE.get())) {
@@ -87,9 +107,25 @@ public final class TarihYankilari {
     @SubscribeEvent
     public static void varlikEtkilesildi(PlayerInteractEvent.EntityInteract olay) {
         Player oyuncu = olay.getEntity();
-        if (!oyuncu.level().isClientSide() && olay.getTarget() instanceof Villager) {
-            yankiyiBaslat(oyuncu, TarihYankisi.ILHANLI_MENZIL);
+        if (oyuncu.level().isClientSide() || !(olay.getTarget() instanceof Villager villager)) {
+            return;
         }
+        if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            int konusmaci = 0;
+            for (int i = 0; i < 4; i++) {
+                if (villager.entityTags().contains("pastbound_sahne_" + i)) {
+                    konusmaci = i;
+                    break;
+                }
+            }
+            String donem = ((net.neoforged.neoforge.common.extensions.IEntityExtension) sunucu).getPersistentData().getStringOr("pastbound_sahne_cagi", "");
+            if (!donem.isEmpty()) {
+                olay.setCanceled(true);
+                PacketDistributor.sendToPlayer(sunucu, PastboundPaketi.konusma(donem, konusmaci));
+            }
+            return;
+        }
+        yankiyiBaslat(oyuncu, TarihYankisi.ILHANLI_MENZIL);
     }
 
     @SubscribeEvent

@@ -122,6 +122,29 @@ public final class TarihiKesifDunyasi {
         }
     }
 
+    public static void konusmaCevapla(ServerPlayer oyuncu, String donemKimligi, int konusmaci, int secim) {
+        if (!boyuttaMi(oyuncu) || konusmaci < 0 || konusmaci > 3 || secim < 1 || secim > 3) {
+            return;
+        }
+        TarihDonemi donem = donemBul(donemKimligi);
+        if (donem == null) {
+            return;
+        }
+        boolean yakin = false;
+        for (Entity varlik : oyuncu.level().getEntitiesOfClass(Entity.class, oyuncu.getBoundingBox().inflate(5.0D))) {
+            if (varlik.entityTags().contains("pastbound_sahne_" + konusmaci)) {
+                yakin = true;
+                break;
+            }
+        }
+        if (!yakin) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.dialogue.too_far"));
+            return;
+        }
+        oyuncu.sendSystemMessage(Component.translatable("history.pastbound.period." + donem.kimlik() + ".dialogue_" + secim));
+        oyuncu.level().playSound(null, oyuncu.blockPosition(), net.minecraft.sounds.SoundEvents.VILLAGER_TRADE, net.minecraft.sounds.SoundSource.NEUTRAL, 0.8F, 1.0F + secim * 0.08F);
+    }
+
     public static void don(ServerPlayer oyuncu) {
         if (!boyuttaMi(oyuncu)) {
             return;

@@ -4,6 +4,7 @@ import dev.pastbound.ModId;
 import dev.pastbound.network.PastboundPaketi;
 import dev.pastbound.client.ui.RelikDefteriEkrani;
 import dev.pastbound.client.ui.TarihCanlandirmaEkrani;
+import dev.pastbound.client.ui.TarihKoyluKonusmaEkrani;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
@@ -15,6 +16,10 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 @EventBusSubscriber(modid = ModId.MOD_ID, value = Dist.CLIENT)
 public final class RelikClientOyun {
     private RelikClientOyun() {
+    }
+
+    public static void konusmaPaketiniIsle(String donem, int konusmaci) {
+        TarihKoyluKonusmaEkrani.ac(donem, konusmaci);
     }
 
     public static void canlandirmaPaketiniIsle(String donem, String sayac) {
