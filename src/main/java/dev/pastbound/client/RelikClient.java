@@ -14,8 +14,9 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 
 @EventBusSubscriber(modid = ModId.MOD_ID, value = Dist.CLIENT)
 public final class RelikClient {
-    public static final KeyMapping DEFTER_KISAYOLU = new KeyMapping("key.pastbound.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, KeyMapping.Category.register(Identifier.parse("pastbound:relics")));
-    public static final KeyMapping AKTIFLESTIRME_KISAYOLU = new KeyMapping("key.pastbound.activate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, KeyMapping.Category.register(Identifier.parse("pastbound:relics")));
+    private static final KeyMapping.Category PASTBOUND_KATEGORI = KeyMapping.Category.register(Identifier.parse("pastbound:relics"));
+    public static final KeyMapping DEFTER_KISAYOLU = new KeyMapping("key.pastbound.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, PASTBOUND_KATEGORI);
+    public static final KeyMapping AKTIFLESTIRME_KISAYOLU = new KeyMapping("key.pastbound.activate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, PASTBOUND_KATEGORI);
 
     private RelikClient() {
     }
