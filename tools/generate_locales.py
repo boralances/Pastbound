@@ -59,6 +59,60 @@ ingilizce_relikler = {
     "iskandinav_runetasi": "Scandinavian Rune Stone"
 }
 
+ingilizce_bilmeceler = {
+    "rossetta_tasi": "Three languages fall silent; which stone remembers one voice?",
+    "gilgamesh_tableti": "A king searched for immortality and found a friend; which story still lives?",
+    "anubis_ankhi": "Death waits at the gate; which sign carries life onward?",
+    "minos_labirent_muhru": "Walls turn and the center remains; what finds the way?",
+    "roma_aureusu": "An empire falls, yet gold remains; whom does fortune choose?",
+    "viking_gunes_pusulasi": "Behind the clouds, what can still reveal the direction?",
+    "samuray_kabzasi": "Before the sword is drawn, where is the battle already won?",
+    "maya_gunes_carki": "The day ends and the wheel turns; which light defeats the shadow?",
+    "inka_quipusu": "A thousand knots hang on one cord; who remembers the number?",
+    "harappa_muhru": "If the sign cannot be read, what does the city still tell us?",
+    "song_porseleni": "Born in a kiln and carried across the sea; what does it preserve?",
+    "benin_bronzu": "Born from fire, which face reveals the kingdom?",
+    "aztek_gunes_tasi": "Four ages pass; which stone holds the fifth sky?",
+    "abbasid_murekkebi": "Ink dries; in which night does an idea begin to shine?",
+    "ronesans_astrolabi": "The stars are distant; where does the measuring hand rise?",
+    "antikithera_duzenegi": "How can small gears remember the movement of the great sky?",
+    "catalhoyuk_boncugu": "Homes join together; in which color does a community live?",
+    "bizans_mozaigi": "A thousand fragments form one image; what does not break?",
+    "timbuktu_kalemi": "The sands erase paths; which writing calls the road back?",
+    "apollo17_armasi": "Earth is far away; in which silence does the first footprint remain?",
+    "ilhanli_madalyonu": "Caravans pass; who seals trust along the road?",
+    "polinezya_yildiz_haritasi": "With no horizon line, which star draws the island’s route?",
+    "mali_tuz_muhru": "Protected like salt, along which road does fortune multiply?",
+    "iskandinav_runetasi": "Words remain in stone; how do you step away from noise?"
+}
+
+turkce_bilmeceler = {
+    "rossetta_tasi": "Üç dil susar; hangi taş tek bir sesi hatırlar?",
+    "gilgamesh_tableti": "Bir kral ölümsüzlüğü aradı ve dost buldu; hangi hikâye hâlâ yaşar?",
+    "anubis_ankhi": "Ölüm kapıda bekler; yaşamı hangi işaret taşır?",
+    "minos_labirent_muhru": "Duvarlar döner, merkez kaybolmaz; yolu ne bulur?",
+    "roma_aureusu": "Bir imparatorluk çöker, altın kalır; talih kimi seçer?",
+    "viking_gunes_pusulasi": "Bulutların ardında yönü hâlâ ne gösterebilir?",
+    "samuray_kabzasi": "Kılıç çekilmeden önce savaş nerede kazanılır?",
+    "maya_gunes_carki": "Gün biter, çark döner; gölgeyi hangi ışık yener?",
+    "inka_quipusu": "Bir ipte bin düğüm vardır; sayıyı kim hatırlar?",
+    "harappa_muhru": "İşaret okunmazsa şehir bize ne anlatır?",
+    "song_porseleni": "Fırında doğar, denizi geçer; neyi korur?",
+    "benin_bronzu": "Ateşten çıkar; krallığı hangi yüz gösterir?",
+    "aztek_gunes_tasi": "Dört çağ geçer; beşinci göğü hangi taş tutar?",
+    "abbasid_murekkebi": "Mürekkep kurur; fikir hangi gecede parlar?",
+    "ronesans_astrolabi": "Yıldızlar uzaktır; ölçüm yapan el nereye yükselir?",
+    "antikithera_duzenegi": "Küçük dişliler büyük göğün hareketini nasıl hatırlar?",
+    "catalhoyuk_boncugu": "Evler birleşir; topluluk hangi renkte yaşar?",
+    "bizans_mozaigi": "Bin parça tek resim olur; kırılmayan neyi saklar?",
+    "timbuktu_kalemi": "Kumlar yolları siler; yazı hangi yolu geri çağırır?",
+    "apollo17_armasi": "Dünya uzaktadır; ilk ayak izi hangi sessizlikte kalır?",
+    "ilhanli_madalyonu": "Kervan geçer; yol güvenini kim mühürler?",
+    "polinezya_yildiz_haritasi": "Ufuk çizgisizdir; ada yolunu hangi yıldız çizer?",
+    "mali_tuz_muhru": "Tuz gibi korunur; servet hangi yoldan çoğalır?",
+    "iskandinav_runetasi": "Söz taşta kalır; gürültüden nasıl uzaklaşılır?"
+}
+
 yankilar = {
     "papirus_sifresi": "Papirüs Şifresi",
     "uruk_muhru": "Uruk Mührü",
@@ -86,19 +140,61 @@ yankilar = {
     "rune_tasi": "Rune Taşı"
 }
 
+ingilizce_yankilar = {
+    "papirus_sifresi": "Papyrus Cipher",
+    "uruk_muhru": "Uruk Seal",
+    "nil_toreni": "Nile Ceremony",
+    "girit_ipi": "Cretan Thread",
+    "roma_forumu": "Roman Forum",
+    "kuzey_gunesi": "Northern Sun",
+    "bushido_yemini": "Bushido Oath",
+    "maya_takvimi": "Maya Calendar",
+    "inka_dugumleri": "Inca Knots",
+    "harappa_drenaji": "Harappan Drainage",
+    "song_firini": "Song Kiln",
+    "benin_dokumu": "Benin Casting",
+    "aztek_bes_cag": "Aztec Five Suns",
+    "abbasi_bilgi_evi": "House of Wisdom",
+    "ronesans_atolyesi": "Renaissance Workshop",
+    "antikithera_gok": "Antikythera Sky Calculation",
+    "catalhoyuk_evleri": "Catalhoyuk Homes",
+    "bizans_parca": "Byzantine Fragment",
+    "timbuktu_kervani": "Timbuktu Caravan",
+    "apollo_ay_yuruyusu": "Apollo Moon Walk",
+    "ilhanli_menzil": "Ilkhanid Relay Network",
+    "polinezya_yildiz": "Polynesian Star Route",
+    "mali_sahra_tuzu": "Mali Sahara Salt",
+    "rune_tasi": "Rune Stone"
+}
+
 time_duraklari = {
-    "uruk_yazi_evi": ("Uruk Yazı Evi", "Yazının doğuşunu keşfet."),
-    "termopil_savasi": ("Termopil Savaş Geçidi", "Savaş ve strateji hafızasını keşfet."),
-    "iskenderiye_kutuphanesi": ("İskenderiye Kütüphanesi", "Kayıp tomarların bilgi mirasını keşfet."),
-    "bagdat_pili_atolyesi": ("Bağdat Pili Atölyesi", "Erken elektrik fikrinin izlerini keşfet."),
-    "antikithera_limani": ("Antikythera Limanı", "Mekanik gök hesabını keşfet."),
-    "bagdat_bilgi_evi": ("Bağdat Bilgi Evi", "Çeviri ve bilim hafızasını keşfet."),
-    "timbuktu_el_yazmalari": ("Timbuktu El Yazmaları", "Sahra kervanlarının eğitim mirasını keşfet."),
-    "tenochtitlan_gecidi": ("Tenochtitlan Geçidi", "Göl şehri ve takvim hafızasını keşfet."),
-    "polinezya_yildiz_yolu": ("Polinezya Yıldız Yolu", "Okyanus navigasyonunun yıldız rotasını keşfet."),
-    "catalhoyuk_yerleskesi": ("Çatalhöyük Yerleşkesi", "İlk ortak yaşamın hafızasını keşfet."),
-    "apollo_ay_istigi": ("Apollo Ay İstasyonu", "Ay yüzeyindeki yakın tarih izlerini keşfet."),
-    "ipek_yolu_kervansarayi": ("İpek Yolu Kervansarayı", "Kültürler arası ticaretin avlusunu keşfet.")
+    "uruk_yazi_evi": ("Uruk Writing House", "The birth of writing", "Walk among the first clay records, where a mark for grain becomes a memory shared by an entire city."),
+    "termopil_savasi": ("Thermopylae Pass", "War and strategy", "Stand in a narrow pass and listen to how discipline, terrain and courage turn a few moments into a story remembered for centuries."),
+    "iskenderiye_kutuphanesi": ("Library of Alexandria", "The gathering of knowledge", "Follow scribes, sailors and translators as fragile scrolls gather into a living library that reaches beyond one language and one coast."),
+    "bagdat_pili_atolyesi": ("Baghdad Battery Workshop", "Early electrical ideas", "Observe metal, liquid and careful curiosity in a workshop where an uncertain experiment becomes a question for future scientists."),
+    "antikithera_limani": ("Antikythera Harbor", "Mechanical sky calculation", "Watch craftsmen align bronze gears with the sun and moon, making the movement of the heavens speak through a machine."),
+    "bagdat_bilgi_evi": ("House of Wisdom", "Translation and science", "Enter a room where languages meet mathematics, medicine and astronomy, and a translated page becomes a new discovery."),
+    "timbuktu_el_yazmalari": ("Timbuktu Manuscripts", "Caravans and education", "Protect pages carried across the Sahara and hear how schools, merchants and scholars keep knowledge alive at the edge of the desert."),
+    "tenochtitlan_gecidi": ("Tenochtitlan Causeway", "The lake city and calendar", "Cross canals and markets while astronomers, farmers and builders connect the city’s daily rhythm to a turning calendar."),
+    "polinezya_yildiz_yolu": ("Polynesian Star Route", "Ocean navigation", "Read stars, swells, winds and birds with navigators who cross an open ocean without drawing a conventional map."),
+    "catalhoyuk_yerleskesi": ("Catalhoyuk Settlement", "The first shared homes", "Move through connected homes and shared spaces where food, craft, burial and memory shape one of humanity’s earliest communities."),
+    "apollo_ay_istigi": ("Apollo Lunar Station", "The recent road to space", "Follow the quiet preparations behind a lunar journey and see how instruments, teamwork and a single footprint extend history beyond Earth."),
+    "ipek_yolu_kervansarayi": ("Silk Road Caravanserai", "Exchange between cultures", "Listen to languages, fabrics, recipes and ideas meet in one courtyard as travelers transform trade into a network of shared memory.")
+}
+
+turkce_time_duraklari = {
+    "uruk_yazi_evi": ("Uruk Yazı Evi", "Yazının doğuşu", "Kil tabletlerin ilk kayıtları arasında dolaş; bir tahıl işaretinin nasıl bütün şehrin ortak hafızasına dönüştüğünü gör."),
+    "termopil_savasi": ("Termopil Savaş Geçidi", "Savaş ve strateji", "Dar geçitte disiplinin, arazinin ve cesaretin birkaç anı yüzyıllarca anlatılan bir hikâyeye nasıl çevirdiğini izle."),
+    "iskenderiye_kutuphanesi": ("İskenderiye Kütüphanesi", "Bilginin toplanması", "Kâtipleri, denizcileri ve çevirmenleri izleyerek kırılgan tomarların tek bir kıyıyı aşan yaşayan bir kütüphaneye dönüşmesine tanık ol."),
+    "bagdat_pili_atolyesi": ("Bağdat Pili Atölyesi", "Erken elektrik fikirleri", "Metal, sıvı ve dikkatli merakla yapılan belirsiz bir deneyin gelecek bilim insanlarına nasıl soru bıraktığını gör."),
+    "antikithera_limani": ("Antikythera Limanı", "Mekanik gök hesabı", "Ustaların bronz dişlileri Güneş ve Ay’a hizalamasını, göğün hareketini bir makinenin diliyle anlatmasını izle."),
+    "bagdat_bilgi_evi": ("Bağdat Bilgi Evi", "Çeviri ve bilim", "Dillerin matematik, tıp ve gökbilimle buluştuğu odaya gir; çevrilen bir sayfanın yeni bir keşfe dönüşmesini dinle."),
+    "timbuktu_el_yazmalari": ("Timbuktu El Yazmaları", "Kervan ve eğitim", "Sahra’yı aşan sayfaları koru; okulların, tüccarların ve bilginlerin çölün kıyısında hafızayı nasıl yaşattığını dinle."),
+    "tenochtitlan_gecidi": ("Tenochtitlan Geçidi", "Göl şehri ve takvim", "Kanallar ve pazarlar arasında ilerle; gökbilimcilerin, çiftçilerin ve ustaların şehrin ritmini takvime bağlayışını gör."),
+    "polinezya_yildiz_yolu": ("Polinezya Yıldız Yolu", "Okyanus navigasyonu", "Geleneksel bir harita çizmeden açık okyanusu geçen denizcilerle yıldızları, dalgaları, rüzgârı ve kuşları oku."),
+    "catalhoyuk_yerleskesi": ("Çatalhöyük Yerleşkesi", "İlk ortak yaşam", "Birbirine bağlanan evlerde dolaş; yiyecek, zanaat, gömü ve hatıranın ilk topluluklardan birini nasıl şekillendirdiğini izle."),
+    "apollo_ay_istigi": ("Apollo Ay İstasyonu", "Uzaya giden yakın tarih yolu", "Ay yolculuğunun sessiz hazırlıklarını izle; araçların, ekip çalışmasının ve tek bir ayak izinin Dünya tarihini nasıl genişlettiğini gör."),
+    "ipek_yolu_kervansarayi": ("İpek Yolu Kervansarayı", "Kültürler arası değişim", "Tek bir avluda dillerin, kumaşların, tariflerin ve fikirlerin buluşmasını dinle; ticaretin ortak hafızaya dönüşmesine tanık ol.")
 }
 
 ortak = {
@@ -134,6 +230,8 @@ ortak = {
     "screen.pastbound.unknown": "UNKNOWN",
     "screen.pastbound.riddle_hint": "Solve the riddle",
     "screen.pastbound.close": "Esc to close",
+    "screen.pastbound.page": "Page %s/%s",
+    "screen.pastbound.page_hint": "Left/Right: change page   Click: inspect relic",
     "key.pastbound.journal": "Open Relic Journal",
     "key.pastbound.activate": "Awaken equipped relic",
     "key.pastbound.take_control": "Take control of the historical scene",
@@ -211,6 +309,9 @@ ortak = {
     "message.pastbound.time_machine.dimension_unavailable": "The historical dimension is not available in this world.",
     "message.pastbound.scene.enter": "Entering the living history of %s.",
     "message.pastbound.scene.press_d": "Press D when you want to take control.",
+    "message.pastbound.scene.narration_intro": "%s begins: %s",
+    "message.pastbound.scene.narration_focus": "Historical focus: %s",
+    "message.pastbound.scene.narration_detail": "The living scene reveals more: %s",
     "message.pastbound.scene.focus": "Historical focus: %s",
     "message.pastbound.scene.observe": "The reconstruction reveals scene %s.",
     "message.pastbound.scene.ready": "The scene is ready. Press D to become part of it.",
@@ -221,12 +322,16 @@ ortak = {
     "screen.pastbound.scene.phase_two": "Voices and movement return to the past...",
     "screen.pastbound.scene.phase_three": "The scene is waiting for your choice...",
     "screen.pastbound.scene.press_d": "D: take control of the scene",
-    "screen.pastbound.scene.escape_hint": "Esc: close the narration window"
+    "screen.pastbound.scene.escape_hint": "Esc: close the narration window",
+    "entity.pastbound.scene.narrator": "Historical Narrator",
+    "entity.pastbound.scene.craftsman": "Craftsperson",
+    "entity.pastbound.scene.witness": "Witness",
+    "entity.pastbound.scene.scribe": "Scribe",
 }
 
 metinler = {
     "en_us": {"itemGroup.pastbound": "Pastbound: Echoes of History", "screen.pastbound.journal": "Relic Journal"},
-    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "key.pastbound.take_control": "Tarihî sahnenin kontrolünü al", "key.pastbound.relic_slot_1": "Relic yuvası 1’i etkinleştir", "key.pastbound.relic_slot_2": "Relic yuvası 2’yi etkinleştir", "key.pastbound.relic_slot_3": "Relic yuvası 3’ü etkinleştir", "key.pastbound.relic_slot_4": "Relic yuvası 4’ü etkinleştir", "key.pastbound.relic_slot_5": "Relic yuvası 5’i etkinleştir", "key.pastbound.relic_slot_6": "Relic yuvası 6’yı etkinleştir", "key.pastbound.relic_slot_7": "Relic yuvası 7’yi etkinleştir", "key.pastbound.relic_slot_8": "Relic yuvası 8’i etkinleştir", "key.pastbound.relic_slot_9": "Relic yuvası 9’u etkinleştir", "key.pastbound.relic_slot_10": "Relic yuvası 10’u etkinleştir", "block.pastbound.echo_archive": "Yankı Arşivi", "block.pastbound.resonance_pillar": "Rezonans Sütunu", "item.pastbound.echo_shard": "Yankı Parçası", "item.pastbound.memory_lens": "Hafıza Merceği", "item.pastbound.chronicle_scrap": "Kronik Parçası", "item.pastbound.history_ink": "Tarih Mürekkebi", "item.pastbound.time_stone": "Zaman Taşı", "item.pastbound.echo_seal": "Yankı Mührü", "item.pastbound.zaman_makinesi": "Zaman Makinesi", "item.pastbound.firin_cubugu": "Çubukta Fırın", "effect.pastbound.tarih_yankisi": "Tarih Yankısı", "screen.pastbound.riddle_input": "Bilmece cevabı: %s", "screen.pastbound.solve_gui_hint": "Cevabı yaz veya 1-2-3 seç, sonra Enter’a bas", "screen.pastbound.slot_hint": "U: 10 Netherite Block karşılığında 2 relic yuvası aç", "screen.pastbound.time_machine": "Zaman Makinesi", "screen.pastbound.time_machine.subtitle": "Yaşayan yankısını keşfetmek için tarihî bir durak seç.", "screen.pastbound.time_machine.hint": "Bir durağa tıkla veya 1-9’a bas", "screen.pastbound.time_machine.sent": "Zamansal rota hazırlandı", "screen.pastbound.time_machine.cost": "Yolculuk için 1 Zaman Taşı gerekir", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.riddle": "Bilmece: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.xp": "Tanımak için Shift ile sağ tıkla ve %s XP seviyesi harca", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.riddle_wrong": "Geçmiş susuyor. Bu cevap uymuyor.", "message.pastbound.relic.riddle_right": "Bilmece %s anısını açtı.", "message.pastbound.relic.identified": "XP harcanarak tanındı: %s.", "message.pastbound.relic.xp_hint": "%s XP seviyesine ihtiyacın var.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.riddle_hint": "Bilmeceyi çöz", "screen.pastbound.close": "Kapatmak için Esc", "screen.pastbound.echo_progress": "Yankılar: %s/%s", "screen.pastbound.echo_found": "YANKI BULUNDU", "screen.pastbound.click_hint": "Tarihî sınavı açmak için bir relic’e tıkla", "screen.pastbound.modal_title": "Tarihî Yankı Sınavı", "screen.pastbound.sequence": "Dizi: %s", "screen.pastbound.choose": "1, 2 veya 3 seç", "screen.pastbound.solve_hint": "Göndermek için Enter   Geri dönmek için Esc", "message.pastbound.echo.discovered": "Tarihî yankı bulundu: %s", "message.pastbound.echo.trace": "İz kaydedildi: %s", "message.pastbound.echo.bad_name": "Bu yankı kronikte yok.", "message.pastbound.echo.already": "%s yankısı zaten kaydedildi.", "message.pastbound.echo.wrong": "Dizi dağıldı. İpucu: %s", "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s", "message.pastbound.echo.stirs": "Bir tarihî yankı uyandı: %s", "message.pastbound.echo.open_journal": "Tarihî sınava girmek için R’ye basıp Relik Günlüğü’nü aç.", "message.pastbound.echo.locked": "%s için tarihî sınav henüz uyanmadı. Önce ilgili aksiyonu gerçekleştir.", "message.pastbound.global.yazi_devrimi": "Yazı Devrimi sunucuda yankılanıyor: kil üzerindeki işaretler hafızaya, hafıza da kuşaklar arasında bir köprüye dönüşüyor.", "message.pastbound.global.nil_kanallari": "Nil Kanalları tarihte yeni bir yol açıyor: taşkın, tahıl ve dikkatli ölçüm nehri ortak bir takvime dönüştürüyor.", "message.pastbound.global.yildiz_seferi": "Yıldız Seferi her ufku işaretliyor: denizciler yıldızları, dalgaları ve kuşları okuyarak belirsizliği eve dönüş yoluna çeviriyor.", "message.pastbound.global.kervan_yolu": "Kervan Yolu uzak anıları bağlıyor: tuz, ipek, hikâyeler ve aletler çölleri aşarken bilgi de insanlarla birlikte yol alıyor.", "message.pastbound.global.takvim_meclisi": "Takvim Meclisi yaşayan dünyayı hizalıyor: ekim, hasat, tören ve yolculuk ortak bir zaman ölçüsüne bağlanıyor.", "message.pastbound.global.demirci_hafizasi": "Demircilerin Hafızası yerin altında çınlıyor: cevher alete, alet şehre dönüşüyor ve her çekiç darbesi insan izini koruyor.", "message.pastbound.global.mozaik_baris": "Mozaik Barışı dağınık parçaları topluyor: farklı renkler ve gelenekler kendi biçimini kaybetmeden tek bir görüntü oluşturuyor.", "message.pastbound.global.ipek_degisimi": "İpek Değişimi kıyılar arasında bilgi taşıyor: diller, boyalar, ilaçlar ve matematik fikirleri tek bir tüccardan çok daha uzağa ulaşıyor.", "message.pastbound.global.quipu_sayimi": "Quipu Sayımı dünyanın ritmini kaydediyor: düğümler, mürekkep bulunmadığında miktarları, sözleri ve yolculukları koruyor.", "message.pastbound.global.astrolab_gogu": "Astrolab Göğü ölçülü bir yol gösteriyor: küçük bir alet matematiği, gökbilimi ve açık denizin tehlikeli özgürlüğünü birleştiriyor.", "message.pastbound.global.rune_nobeti": "Rune Nöbeti kuzey gecesini koruyor: taşa kazınmış işaret bir adı, uyarıyı ve onu işleyen elin hatırasını taşıyor.", "message.pastbound.global.ay_misyonu": "Ay Misyonu dünyanın ötesine yeni bir yankı bırakıyor: ayak izleri, araçlar ve merakın ufku değiştirebileceğine dair sessiz bir söz.", "message.pastbound.global.tarim_devrimi": "Tarım Devrimi insan yaşamının ritmini değiştiriyor: tohum, sulama ve depolanan tahıl mevsimlik kampı kalıcı yerleşime dönüştürüyor.", "message.pastbound.global.akdeniz_gemiciligi": "Akdeniz denizciliği limanları ve kültürleri bağlıyor: rüzgâr, akıntı ve tanıdık bir takımyıldız hikâyeyi denizin ötesine taşıyor.", "message.pastbound.global.matbaa_yankisi": "Matbaa Yankısı hafızayı çoğaltıyor: tek bir sayfa birçok elden geçerek fikre yazarından daha uzun bir hayat veriyor.", "message.pastbound.global.tip_bahcesi": "Şifa Bahçesi sabırlı gözlemi koruyor: kökler, yapraklar ve dikkatli notlar deneyimi bakım geleneğine dönüştürüyor.", "message.pastbound.global.cam_yolu": "Cam Yolu zanaatla parlıyor: kum, ısı ve sabır kırılgan malzemeyi ışığı ve günlük yaşamı koruyan kaplara çeviriyor.", "message.pastbound.global.gozlem_evi": "Gözlem Evi gece göğünü bir araya getiriyor: tekrar edilen gözlemler yukarı bakan herkesin paylaşabileceği örüntüler açığa çıkarıyor.", "message.pastbound.global.hukuk_meclisi": "Hukuk Meclisi hafızaya kamusal bir ses veriyor: kurallar topluluk onları birlikte açıkladığında, kaydettiğinde ve sorguladığında anlam kazanıyor.", "message.pastbound.global.arkeoloji_kesfi": "Arkeoloji Keşfi tozun altında başlıyor: kırık bir parça bir krallıktan uzun yaşayarak sıradan insanların nasıl yaşadığını anlatabiliyor.", "message.pastbound.packet.invalid": "Arşiv bu isteği reddetti.", "message.pastbound.slot.max": "On relic yuvasının tamamı zaten açık.", "message.pastbound.slot.cost": "İki relic yuvası açmak için %s Netherite Block gerekiyor.", "message.pastbound.slot.unlocked": "İki relic yuvası açıldı. Toplam kapasite: %s.", "message.pastbound.time_machine.unknown": "Bu tarihî durak makinede yok.", "message.pastbound.time_machine.cooldown": "Zaman makinesi hâlâ dengeleniyor.", "message.pastbound.time_machine.time_stone_needed": "Zamanda yolculuk için 1 Zaman Taşı gerekir.", "message.pastbound.time_machine.arrived": "%s durağına ulaşıldı: %s", "message.pastbound.time_machine.dimension_unavailable": "Tarihî keşif boyutu bu dünyada kullanılamıyor.", "message.pastbound.scene.enter": "%s tarihinin yaşayan sahnesine giriyorsun.", "message.pastbound.scene.press_d": "Kontrolü almak istediğinde D’ye bas.", "message.pastbound.scene.focus": "Tarihî odak: %s", "message.pastbound.scene.observe": "Canlandırma %s. sahneyi gösteriyor.", "message.pastbound.scene.ready": "Sahne hazır. İçine girmek için D’ye bas.", "message.pastbound.scene.control": "Artık tarihî sahnenin bir parçasısın.", "message.pastbound.scene.returned": "Tarihî canlandırmadan geri döndün.", "screen.pastbound.scene.title": "Yaşayan Tarih", "screen.pastbound.scene.phase_one": "İlk anı şekilleniyor...", "screen.pastbound.scene.phase_two": "Sesler ve hareket geçmişe dönüyor...", "screen.pastbound.scene.phase_three": "Sahne seçimini bekliyor...", "screen.pastbound.scene.press_d": "D: sahnenin kontrolünü al", "screen.pastbound.scene.escape_hint": "Esc: anlatım penceresini kapat", "tooltip.pastbound.relic.echo": "Keşif yankısı: %s"},
+    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "key.pastbound.take_control": "Tarihî sahnenin kontrolünü al", "key.pastbound.relic_slot_1": "Relic yuvası 1’i etkinleştir", "key.pastbound.relic_slot_2": "Relic yuvası 2’yi etkinleştir", "key.pastbound.relic_slot_3": "Relic yuvası 3’ü etkinleştir", "key.pastbound.relic_slot_4": "Relic yuvası 4’ü etkinleştir", "key.pastbound.relic_slot_5": "Relic yuvası 5’i etkinleştir", "key.pastbound.relic_slot_6": "Relic yuvası 6’yı etkinleştir", "key.pastbound.relic_slot_7": "Relic yuvası 7’yi etkinleştir", "key.pastbound.relic_slot_8": "Relic yuvası 8’i etkinleştir", "key.pastbound.relic_slot_9": "Relic yuvası 9’u etkinleştir", "key.pastbound.relic_slot_10": "Relic yuvası 10’u etkinleştir", "block.pastbound.echo_archive": "Yankı Arşivi", "block.pastbound.resonance_pillar": "Rezonans Sütunu", "item.pastbound.echo_shard": "Yankı Parçası", "item.pastbound.memory_lens": "Hafıza Merceği", "item.pastbound.chronicle_scrap": "Kronik Parçası", "item.pastbound.history_ink": "Tarih Mürekkebi", "item.pastbound.time_stone": "Zaman Taşı", "item.pastbound.echo_seal": "Yankı Mührü", "item.pastbound.zaman_makinesi": "Zaman Makinesi", "item.pastbound.firin_cubugu": "Çubukta Fırın", "effect.pastbound.tarih_yankisi": "Tarih Yankısı", "screen.pastbound.riddle_input": "Bilmece cevabı: %s", "screen.pastbound.solve_gui_hint": "Cevabı yaz veya 1-2-3 seç, sonra Enter’a bas", "screen.pastbound.slot_hint": "U: 10 Netherite Block karşılığında 2 relic yuvası aç", "screen.pastbound.time_machine": "Zaman Makinesi", "screen.pastbound.time_machine.subtitle": "Yaşayan yankısını keşfetmek için tarihî bir durak seç.", "screen.pastbound.time_machine.hint": "Bir durağa tıkla veya 1-9’a bas", "screen.pastbound.time_machine.sent": "Zamansal rota hazırlandı", "screen.pastbound.time_machine.cost": "Yolculuk için 1 Zaman Taşı gerekir", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.riddle": "Bilmece: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.xp": "Tanımak için Shift ile sağ tıkla ve %s XP seviyesi harca", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.riddle_wrong": "Geçmiş susuyor. Bu cevap uymuyor.", "message.pastbound.relic.riddle_right": "Bilmece %s anısını açtı.", "message.pastbound.relic.identified": "XP harcanarak tanındı: %s.", "message.pastbound.relic.xp_hint": "%s XP seviyesine ihtiyacın var.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.riddle_hint": "Bilmeceyi çöz", "screen.pastbound.close": "Kapatmak için Esc", "screen.pastbound.page": "Sayfa %s/%s", "screen.pastbound.page_hint": "Sol/Sağ: sayfa değiştir   Tıkla: relic’i incele", "screen.pastbound.echo_progress": "Yankılar: %s/%s", "screen.pastbound.echo_found": "YANKI BULUNDU", "screen.pastbound.click_hint": "Tarihî sınavı açmak için bir relic’e tıkla", "screen.pastbound.modal_title": "Tarihî Yankı Sınavı", "screen.pastbound.sequence": "Dizi: %s", "screen.pastbound.choose": "1, 2 veya 3 seç", "screen.pastbound.solve_hint": "Göndermek için Enter   Geri dönmek için Esc", "message.pastbound.echo.discovered": "Tarihî yankı bulundu: %s", "message.pastbound.echo.trace": "İz kaydedildi: %s", "message.pastbound.echo.bad_name": "Bu yankı kronikte yok.", "message.pastbound.echo.already": "%s yankısı zaten kaydedildi.", "message.pastbound.echo.wrong": "Dizi dağıldı. İpucu: %s", "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s", "message.pastbound.echo.stirs": "Bir tarihî yankı uyandı: %s", "message.pastbound.echo.open_journal": "Tarihî sınava girmek için R’ye basıp Relik Günlüğü’nü aç.", "message.pastbound.echo.locked": "%s için tarihî sınav henüz uyanmadı. Önce ilgili aksiyonu gerçekleştir.", "message.pastbound.global.yazi_devrimi": "Yazı Devrimi sunucuda yankılanıyor: kil üzerindeki işaretler hafızaya, hafıza da kuşaklar arasında bir köprüye dönüşüyor.", "message.pastbound.global.nil_kanallari": "Nil Kanalları tarihte yeni bir yol açıyor: taşkın, tahıl ve dikkatli ölçüm nehri ortak bir takvime dönüştürüyor.", "message.pastbound.global.yildiz_seferi": "Yıldız Seferi her ufku işaretliyor: denizciler yıldızları, dalgaları ve kuşları okuyarak belirsizliği eve dönüş yoluna çeviriyor.", "message.pastbound.global.kervan_yolu": "Kervan Yolu uzak anıları bağlıyor: tuz, ipek, hikâyeler ve aletler çölleri aşarken bilgi de insanlarla birlikte yol alıyor.", "message.pastbound.global.takvim_meclisi": "Takvim Meclisi yaşayan dünyayı hizalıyor: ekim, hasat, tören ve yolculuk ortak bir zaman ölçüsüne bağlanıyor.", "message.pastbound.global.demirci_hafizasi": "Demircilerin Hafızası yerin altında çınlıyor: cevher alete, alet şehre dönüşüyor ve her çekiç darbesi insan izini koruyor.", "message.pastbound.global.mozaik_baris": "Mozaik Barışı dağınık parçaları topluyor: farklı renkler ve gelenekler kendi biçimini kaybetmeden tek bir görüntü oluşturuyor.", "message.pastbound.global.ipek_degisimi": "İpek Değişimi kıyılar arasında bilgi taşıyor: diller, boyalar, ilaçlar ve matematik fikirleri tek bir tüccardan çok daha uzağa ulaşıyor.", "message.pastbound.global.quipu_sayimi": "Quipu Sayımı dünyanın ritmini kaydediyor: düğümler, mürekkep bulunmadığında miktarları, sözleri ve yolculukları koruyor.", "message.pastbound.global.astrolab_gogu": "Astrolab Göğü ölçülü bir yol gösteriyor: küçük bir alet matematiği, gökbilimi ve açık denizin tehlikeli özgürlüğünü birleştiriyor.", "message.pastbound.global.rune_nobeti": "Rune Nöbeti kuzey gecesini koruyor: taşa kazınmış işaret bir adı, uyarıyı ve onu işleyen elin hatırasını taşıyor.", "message.pastbound.global.ay_misyonu": "Ay Misyonu dünyanın ötesine yeni bir yankı bırakıyor: ayak izleri, araçlar ve merakın ufku değiştirebileceğine dair sessiz bir söz.", "message.pastbound.global.tarim_devrimi": "Tarım Devrimi insan yaşamının ritmini değiştiriyor: tohum, sulama ve depolanan tahıl mevsimlik kampı kalıcı yerleşime dönüştürüyor.", "message.pastbound.global.akdeniz_gemiciligi": "Akdeniz denizciliği limanları ve kültürleri bağlıyor: rüzgâr, akıntı ve tanıdık bir takımyıldız hikâyeyi denizin ötesine taşıyor.", "message.pastbound.global.matbaa_yankisi": "Matbaa Yankısı hafızayı çoğaltıyor: tek bir sayfa birçok elden geçerek fikre yazarından daha uzun bir hayat veriyor.", "message.pastbound.global.tip_bahcesi": "Şifa Bahçesi sabırlı gözlemi koruyor: kökler, yapraklar ve dikkatli notlar deneyimi bakım geleneğine dönüştürüyor.", "message.pastbound.global.cam_yolu": "Cam Yolu zanaatla parlıyor: kum, ısı ve sabır kırılgan malzemeyi ışığı ve günlük yaşamı koruyan kaplara çeviriyor.", "message.pastbound.global.gozlem_evi": "Gözlem Evi gece göğünü bir araya getiriyor: tekrar edilen gözlemler yukarı bakan herkesin paylaşabileceği örüntüler açığa çıkarıyor.", "message.pastbound.global.hukuk_meclisi": "Hukuk Meclisi hafızaya kamusal bir ses veriyor: kurallar topluluk onları birlikte açıkladığında, kaydettiğinde ve sorguladığında anlam kazanıyor.", "message.pastbound.global.arkeoloji_kesfi": "Arkeoloji Keşfi tozun altında başlıyor: kırık bir parça bir krallıktan uzun yaşayarak sıradan insanların nasıl yaşadığını anlatabiliyor.", "message.pastbound.packet.invalid": "Arşiv bu isteği reddetti.", "message.pastbound.slot.max": "On relic yuvasının tamamı zaten açık.", "message.pastbound.slot.cost": "İki relic yuvası açmak için %s Netherite Block gerekiyor.", "message.pastbound.slot.unlocked": "İki relic yuvası açıldı. Toplam kapasite: %s.", "message.pastbound.time_machine.unknown": "Bu tarihî durak makinede yok.", "message.pastbound.time_machine.cooldown": "Zaman makinesi hâlâ dengeleniyor.", "message.pastbound.time_machine.time_stone_needed": "Zamanda yolculuk için 1 Zaman Taşı gerekir.", "message.pastbound.time_machine.arrived": "%s durağına ulaşıldı: %s", "message.pastbound.time_machine.dimension_unavailable": "Tarihî keşif boyutu bu dünyada kullanılamıyor.", "message.pastbound.scene.enter": "%s tarihinin yaşayan sahnesine giriyorsun.", "message.pastbound.scene.press_d": "Kontrolü almak istediğinde D’ye bas.", "message.pastbound.scene.narration_intro": "%s başlıyor: %s", "message.pastbound.scene.narration_focus": "Tarihî odak: %s", "message.pastbound.scene.narration_detail": "Yaşayan sahne daha fazlasını gösteriyor: %s", "message.pastbound.scene.focus": "Tarihî odak: %s", "message.pastbound.scene.observe": "Canlandırma %s. sahneyi gösteriyor.", "message.pastbound.scene.ready": "Sahne hazır. İçine girmek için D’ye bas.", "message.pastbound.scene.control": "Artık tarihî sahnenin bir parçasısın.", "message.pastbound.scene.returned": "Tarihî canlandırmadan geri döndün.", "screen.pastbound.scene.title": "Yaşayan Tarih", "screen.pastbound.scene.phase_one": "İlk anı şekilleniyor...", "screen.pastbound.scene.phase_two": "Sesler ve hareket geçmişe dönüyor...", "screen.pastbound.scene.phase_three": "Sahne seçimini bekliyor...", "screen.pastbound.scene.press_d": "D: sahnenin kontrolünü al", "screen.pastbound.scene.escape_hint": "Esc: anlatım penceresini kapat", "entity.pastbound.scene.narrator": "Tarih Anlatıcısı", "entity.pastbound.scene.craftsman": "Zanaatkâr", "entity.pastbound.scene.witness": "Tanık", "entity.pastbound.scene.scribe": "Kâtip", "tooltip.pastbound.relic.echo": "Keşif yankısı: %s"},
     "de_de": {"itemGroup.pastbound": "Pastbound: Echos der Geschichte", "screen.pastbound.journal": "Relikt-Tagebuch", "screen.pastbound.progress": "Geborgene Erinnerungen: %s/%s", "screen.pastbound.help": "R Tagebuch   V erwecken", "screen.pastbound.ready": "BEKANNT", "screen.pastbound.unknown": "UNBEKANNT", "screen.pastbound.riddle_hint": "Rätsel lösen", "screen.pastbound.close": "Esc zum Schließen"},
     "fr_fr": {"itemGroup.pastbound": "Pastbound : Échos de l’histoire", "screen.pastbound.journal": "Journal des reliques", "screen.pastbound.progress": "Souvenirs retrouvés : %s/%s", "screen.pastbound.help": "R journal   V éveiller", "screen.pastbound.ready": "CONNU", "screen.pastbound.unknown": "INCONNU", "screen.pastbound.riddle_hint": "Résoudre l’énigme", "screen.pastbound.close": "Esc pour fermer"},
     "es_es": {"itemGroup.pastbound": "Pastbound: Ecos de la historia", "screen.pastbound.journal": "Diario de reliquias", "screen.pastbound.progress": "Memorias recuperadas: %s/%s", "screen.pastbound.help": "R diario   V despertar", "screen.pastbound.ready": "CONOCIDA", "screen.pastbound.unknown": "DESCONOCIDA", "screen.pastbound.riddle_hint": "Resuelve el acertijo", "screen.pastbound.close": "Esc para cerrar"},
@@ -270,10 +375,29 @@ for locale, add in metinler.items():
     for kimlik, ad in ad_kaynagi.items():
         veri[f"item.pastbound.{kimlik}"] = ad
         veri[f"tooltip.pastbound.{kimlik}"] = ad
+        veri[f"history.pastbound.relic.{kimlik}.title"] = ad
+        veri[f"history.pastbound.relic.{kimlik}.riddle"] = ingilizce_bilmeceler[kimlik]
+        if locale == "tr_tr":
+            veri[f"history.pastbound.relic.{kimlik}.title"] = relicler[kimlik]
+            veri[f"history.pastbound.relic.{kimlik}.riddle"] = turkce_bilmeceler[kimlik]
     for kimlik, ad in yankilar.items():
-        veri[f"advancement.pastbound.{kimlik}.title"] = ad
+        yankı_adı = ingilizce_yankilar[kimlik]
+        if locale == "tr_tr":
+            yankı_adı = ad
+        veri[f"history.pastbound.echo.{kimlik}.name"] = yankı_adı
+        veri[f"history.pastbound.echo.{kimlik}.hint"] = yankı_adı
+        veri[f"history.pastbound.relic.{kimlik}.riddle"] = ad
+        veri[f"advancement.pastbound.{kimlik}.title"] = yankı_adı
         veri[f"advancement.pastbound.{kimlik}.description"] = "Solve the historical echo trial to recover its memory."
-    for kimlik, (ad, aciklama) in time_duraklari.items():
+    for kimlik, (ad, odak, aciklama) in time_duraklari.items():
+        veri[f"history.pastbound.period.{kimlik}.name"] = ad
+        veri[f"history.pastbound.period.{kimlik}.focus"] = odak
+        veri[f"history.pastbound.period.{kimlik}.description"] = aciklama
+        if locale == "tr_tr":
+            turkce_ad, turkce_odak, turkce_aciklama = turkce_time_duraklari[kimlik]
+            veri[f"history.pastbound.period.{kimlik}.name"] = turkce_ad
+            veri[f"history.pastbound.period.{kimlik}.focus"] = turkce_odak
+            veri[f"history.pastbound.period.{kimlik}.description"] = turkce_aciklama
         veri[f"advancement.pastbound.time_machine.{kimlik}.title"] = ad
         veri[f"advancement.pastbound.time_machine.{kimlik}.description"] = aciklama
     veri["advancement.pastbound.time_machine.complete_expedition.title"] = "Time Cartographer"

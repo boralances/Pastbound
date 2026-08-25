@@ -14,7 +14,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Relative;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -27,7 +26,6 @@ import net.neoforged.neoforge.common.extensions.IEntityExtension;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 public final class TarihiKesifDunyasi {
-    public static final ResourceKey<Level> BOYUT = ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "tarih_kesfi"));
     private static final String DONUS_BOYUTU = "pastbound_donus_boyutu";
     private static final String DONUS_X = "pastbound_donus_x";
     private static final String DONUS_Y = "pastbound_donus_y";
@@ -37,12 +35,21 @@ public final class TarihiKesifDunyasi {
     private static final String SAHNE_CAGI = "pastbound_sahne_cagi";
     private static final String SAHNE_AKTIF = "pastbound_sahne_aktif";
     private static final String SAHNE_SAYACI = "pastbound_sahne_sayaci";
+    private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
 
     private TarihiKesifDunyasi() {
     }
 
+    public static ResourceKey<Level> boyut(TarihDonemi donem) {
+        return ResourceKey.create(Registries.DIMENSION, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "tarih_" + donem.kimlik()));
+    }
+
+    public static boolean tarihBoyutuMu(ResourceKey<Level> kimlik) {
+        return donemBulBoyuttan(kimlik) != null;
+    }
+
     public static boolean boyuttaMi(ServerPlayer oyuncu) {
-        return oyuncu.level().dimension().equals(BOYUT);
+        return donemBulBoyuttan(oyuncu.level().dimension()) != null;
     }
 
     public static boolean canlandirmaAktifMi(ServerPlayer oyuncu) {
@@ -51,7 +58,7 @@ public final class TarihiKesifDunyasi {
 
     public static boolean baslat(ServerPlayer oyuncu, TarihDonemi donem) {
         MinecraftServer sunucu = oyuncu.level().getServer();
-        ServerLevel hedef = sunucu.getLevel(BOYUT);
+        ServerLevel hedef = sunucu.getLevel(boyut(donem));
         if (hedef == null) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.dimension_unavailable"));
             return false;
@@ -68,10 +75,9 @@ public final class TarihiKesifDunyasi {
         veri.putString(SAHNE_CAGI, donem.kimlik());
         veri.putBoolean(SAHNE_AKTIF, true);
         veri.putInt(SAHNE_SAYACI, 0);
-        BlockPos merkez = new BlockPos(0, 64, 0);
-        sahneyiKur(hedef, merkez, donem);
-        oyuncu.teleportTo(hedef, merkez.getX() + 0.5D, merkez.getY() + 1.0D, merkez.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.ad()));
+        sahneyiKur(hedef, SAHNE_MERKEZI, donem);
+        oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
         PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(donem.kimlik(), 0));
         return true;
@@ -97,18 +103,20 @@ public final class TarihiKesifDunyasi {
         int sayac = veri.getIntOr(SAHNE_SAYACI, 0) + 1;
         veri.putInt(SAHNE_SAYACI, sayac);
         oyuncu.setDeltaMovement(0.0D, 0.0D, 0.0D);
+        TarihDonemi donem = donemBul(veri.getStringOr(SAHNE_CAGI, ""));
+        if (donem == null) {
+            return;
+        }
+        sahneAktorleriniHareketEttir(oyuncu.level(), SAHNE_MERKEZI, sayac);
         if (sayac % 20 == 0) {
-            PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(veri.getStringOr(SAHNE_CAGI, ""), sayac));
+            PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(donem.kimlik(), sayac));
         }
         if (sayac == 1) {
-            TarihDonemi donem = donemBul(veri.getStringOr(SAHNE_CAGI, ""));
-            if (donem != null) {
-                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.focus", donem.odak()));
-            }
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.narration_intro", donem.adBileseni(), donem.aciklamaBileseni()));
         } else if (sayac == 80) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.observe", "1"));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.narration_focus", donem.odakBileseni()));
         } else if (sayac == 160) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.observe", "2"));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.narration_detail", donem.aciklamaBileseni()));
         } else if (sayac == 220) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.ready"));
         }
@@ -154,6 +162,19 @@ public final class TarihiKesifDunyasi {
         return null;
     }
 
+    private static TarihDonemi donemBulBoyuttan(ResourceKey<Level> kimlik) {
+        if (kimlik == null || !kimlik.identifier().getNamespace().equals(ModId.MOD_ID)) {
+            return null;
+        }
+        String yol = kimlik.identifier().getPath();
+        for (TarihDonemi donem : TarihDonemi.values()) {
+            if (("tarih_" + donem.kimlik()).equals(yol)) {
+                return donem;
+            }
+        }
+        return null;
+    }
+
     private static void sahneyiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
         Block dekor = dekorBlogu(donem);
         BlockState zemin = Blocks.GRASS_BLOCK.defaultBlockState();
@@ -173,30 +194,47 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(merkez.south(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.east(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(3), dekor.defaultBlockState(), 3);
-        sahneAktörleriniKur(seviye, merkez, donem);
+        sahneAktorleriniKur(seviye, merkez, donem);
     }
 
-    private static void sahneAktörleriniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
+    private static void sahneAktorleriniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
         for (Entity varlik : seviye.getEntitiesOfClass(Entity.class, new net.minecraft.world.phys.AABB(merkez).inflate(12.0D))) {
             if (varlik.entityTags().contains("pastbound_sahne")) {
                 varlik.discard();
             }
         }
-        String[] roller = {"Tarih Anlatıcısı", "Zanaatkâr", "Tanık", "Kâtip"};
+        String[] roller = {"entity.pastbound.scene.narrator", "entity.pastbound.scene.craftsman", "entity.pastbound.scene.witness", "entity.pastbound.scene.scribe"};
         int[][] konumlar = {{-5, -3}, {5, -3}, {-5, 4}, {5, 4}};
+        EntityType<?> tip = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse("minecraft:villager"));
+        if (tip == null) {
+            return;
+        }
         for (int i = 0; i < roller.length; i++) {
-            EntityType<?> tip = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse("minecraft:villager"));
             Entity varlik = tip.create(seviye, EntitySpawnReason.COMMAND);
             if (varlik instanceof Villager aktor) {
                 aktor.setPos(merkez.getX() + konumlar[i][0] + 0.5D, merkez.getY() + 1.0D, merkez.getZ() + konumlar[i][1] + 0.5D);
                 aktor.setYRot(i * 90.0F);
                 aktor.setNoAi(true);
                 aktor.setInvulnerable(true);
-                aktor.setSilent(true);
+                aktor.setSilent(false);
                 aktor.addTag("pastbound_sahne");
-                aktor.setCustomName(Component.literal(roller[i] + " — " + donem.ad()));
+                aktor.addTag("pastbound_sahne_" + i);
+                aktor.setCustomName(Component.translatable(roller[i]).append(" — ").append(donem.adBileseni()));
                 aktor.setCustomNameVisible(true);
                 seviye.addFreshEntity(aktor);
+            }
+        }
+    }
+
+    private static void sahneAktorleriniHareketEttir(Level seviye, BlockPos merkez, int sayac) {
+        for (int i = 0; i < 4; i++) {
+            for (Entity varlik : seviye.getEntitiesOfClass(Entity.class, new net.minecraft.world.phys.AABB(merkez).inflate(12.0D))) {
+                if (varlik.entityTags().contains("pastbound_sahne_" + i)) {
+                    double aci = sayac * 0.035D + i * 1.57D;
+                    double yaricap = 3.2D + (i % 2) * 0.8D;
+                    varlik.setPos(merkez.getX() + Math.cos(aci) * yaricap, merkez.getY() + 1.0D, merkez.getZ() + Math.sin(aci) * yaricap);
+                    varlik.setYRot((float) Math.toDegrees(aci) + 90.0F);
+                }
             }
         }
     }

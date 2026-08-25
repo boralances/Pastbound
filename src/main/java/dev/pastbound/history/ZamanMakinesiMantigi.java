@@ -72,7 +72,7 @@ public final class ZamanMakinesiMantigi {
         if (yeniKesif) {
             zamanIlerlemesi(oyuncu, donem);
         }
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.arrived", donem.ad(), donem.odak()));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.arrived", donem.adBileseni(), donem.odakBileseni()));
         oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 0.8F, 1.25F);
     }
 

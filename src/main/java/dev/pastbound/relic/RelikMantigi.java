@@ -309,7 +309,7 @@ public final class RelikMantigi {
 
     public static boolean etkinlestir(Player oyuncu, RelikTanimi tanim, ItemStack yigin) {
         if (!biliyorMu(oyuncu, tanim)) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.unknown", tanim.bilmece()));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.unknown", tanim.bilmeceBileseni()));
             return false;
         }
         ItemCooldowns beklemeler = oyuncu.getCooldowns();

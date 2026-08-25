@@ -1,5 +1,7 @@
 package dev.pastbound.history;
 
+import net.minecraft.network.chat.Component;
+
 public enum TarihDonemi {
     URUK_YAZI_EVI("uruk_yazi_evi", "Uruk Yazı Evi", "Yazının doğuşu", "Kil tabletlerin ilk kayıtları arasında dolaş."),
     TERMOPIL_SAVASI("termopil_savasi", "Termopil Savaş Geçidi", "Savaş ve strateji", "Bir dar geçidin disiplin ve cesaret hikâyesini izle."),
@@ -40,5 +42,17 @@ public enum TarihDonemi {
 
     public String aciklama() {
         return aciklama;
+    }
+
+    public Component adBileseni() {
+        return Component.translatable("history.pastbound.period." + kimlik + ".name");
+    }
+
+    public Component odakBileseni() {
+        return Component.translatable("history.pastbound.period." + kimlik + ".focus");
+    }
+
+    public Component aciklamaBileseni() {
+        return Component.translatable("history.pastbound.period." + kimlik + ".description");
     }
 }

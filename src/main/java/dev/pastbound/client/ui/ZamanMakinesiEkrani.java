@@ -64,12 +64,12 @@ public final class ZamanMakinesiEkrani extends Screen {
             boolean secili = i == seciliDonem;
             cizim.fill(x, y, x + kartGenislik, y + kartYukseklik, secili ? 0xD64C5C5E : 0xB52A343C);
             cizim.outline(x, y, kartGenislik, kartYukseklik, secili ? 0xFFE6C37A : 0xFF68747A);
-            cizim.text(font, Component.literal((i + 1) + ". " + donem.ad()), x + 8, y + 7, 0xFFF4E5C4);
+            cizim.text(font, Component.literal((i + 1) + ". ").append(donem.adBileseni()), x + 8, y + 7, 0xFFF4E5C4);
             if (kartYukseklik >= 44) {
-                cizim.textWithWordWrap(font, Component.literal(donem.odak()), x + 8, y + 23, kartGenislik - 16, 0xFFE1B56C);
+                cizim.textWithWordWrap(font, donem.odakBileseni(), x + 8, y + 23, kartGenislik - 16, 0xFFE1B56C);
             }
             if (kartYukseklik >= 64) {
-                cizim.textWithWordWrap(font, Component.literal(donem.aciklama()), x + 8, y + 40, kartGenislik - 16, 0xFFB9C8C9);
+                cizim.textWithWordWrap(font, donem.aciklamaBileseni(), x + 8, y + 40, kartGenislik - 16, 0xFFB9C8C9);
             }
         }
         if (mesajSayaci > 0) {

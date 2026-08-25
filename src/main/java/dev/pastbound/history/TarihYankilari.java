@@ -140,7 +140,7 @@ public final class TarihYankilari {
         if (oyuncu.level().isClientSide()) {
             return;
         }
-        if (olay.getFrom().equals(TarihiKesifDunyasi.BOYUT) || olay.getTo().equals(TarihiKesifDunyasi.BOYUT)) {
+        if (TarihiKesifDunyasi.tarihBoyutuMu(olay.getFrom()) || TarihiKesifDunyasi.tarihBoyutuMu(olay.getTo())) {
             return;
         }
         if (olay.getTo().equals(Level.NETHER)) {

@@ -17,7 +17,7 @@ public final class ZamanMakinesiItem extends Item {
     @Override
     public InteractionResult use(Level seviye, Player oyuncu, InteractionHand el) {
         if (seviye.isClientSide()) {
-            if (seviye.dimension().equals(TarihiKesifDunyasi.BOYUT)) {
+            if (TarihiKesifDunyasi.tarihBoyutuMu(seviye.dimension())) {
                 if (oyuncu instanceof net.minecraft.client.player.LocalPlayer yerel) {
                     yerel.connection.send(new ServerboundCustomPayloadPacket(dev.pastbound.network.PastboundPaketi.don()));
                 }

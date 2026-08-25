@@ -64,8 +64,8 @@ public final class TarihCanlandirmaEkrani extends Screen {
     @Override
     public void extractRenderState(GuiGraphicsExtractor cizim, int fareX, int fareY, float kismi) {
         cizim.fill(0, 0, cizim.guiWidth(), cizim.guiHeight(), 0xC6111722);
-        int genislik = Math.min(640, cizim.guiWidth() - 32);
-        int yukseklik = Math.min(300, cizim.guiHeight() - 32);
+        int genislik = Math.min(560, Math.max(240, cizim.guiWidth() - 24));
+        int yukseklik = Math.min(340, Math.max(220, cizim.guiHeight() - 24));
         int sol = (cizim.guiWidth() - genislik) / 2;
         int ust = (cizim.guiHeight() - yukseklik) / 2;
         cizim.fill(sol - 5, ust - 5, sol + genislik + 5, ust + yukseklik + 5, 0xB815111F);
@@ -74,13 +74,15 @@ public final class TarihCanlandirmaEkrani extends Screen {
         cizim.fill(sol + 12, ust + 12, sol + genislik - 12, ust + 48, 0xC93D3041);
         cizim.centeredText(font, title, sol + genislik / 2, ust + 22, 0xFFF3D59D);
         if (donem != null) {
-            cizim.centeredText(font, Component.literal(donem.ad()), sol + genislik / 2, ust + 64, 0xFFF4E5C4);
-            cizim.centeredText(font, Component.literal(donem.odak()), sol + genislik / 2, ust + 83, 0xFFE4B870);
-            cizim.textWithWordWrap(font, Component.literal(donem.aciklama()), sol + 34, ust + 110, genislik - 68, 0xFFC7D4D9);
+            cizim.centeredText(font, donem.adBileseni(), sol + genislik / 2, ust + 64, 0xFFF4E5C4);
+            cizim.centeredText(font, donem.odakBileseni(), sol + genislik / 2, ust + 83, 0xFFE4B870);
+            cizim.textWithWordWrap(font, donem.aciklamaBileseni(), sol + 34, ust + 110, genislik - 68, 0xFFC7D4D9);
         }
         String asama = sayac < 80 ? "screen.pastbound.scene.phase_one" : sayac < 160 ? "screen.pastbound.scene.phase_two" : "screen.pastbound.scene.phase_three";
         cizim.centeredText(font, Component.translatable(asama), sol + genislik / 2, ust + 180, 0xFF9FC6BE);
-        cizim.centeredText(font, Component.translatable("screen.pastbound.scene.press_d"), sol + genislik / 2, ust + yukseklik - 44, 0xFFE0B26B);
+        if (!kontrolAcik) {
+            cizim.centeredText(font, Component.translatable("screen.pastbound.scene.press_d"), sol + genislik / 2, ust + yukseklik - 44, 0xFFE0B26B);
+        }
         cizim.centeredText(font, Component.translatable("screen.pastbound.scene.escape_hint"), sol + genislik / 2, ust + yukseklik - 24, 0xFF7D8A92);
     }
 

@@ -69,6 +69,10 @@ public enum RelikTanimi {
         return tarihBasligi;
     }
 
+    public Component tarihBasligiBileseni() {
+        return Component.translatable("history.pastbound.relic." + kimlik + ".title");
+    }
+
     public int bilmeSeviyesi() {
         return bilmeSeviyesi;
     }
@@ -87,5 +91,9 @@ public enum RelikTanimi {
 
     public String bilmece() {
         return bilmece;
+    }
+
+    public Component bilmeceBileseni() {
+        return Component.translatable("history.pastbound.relic." + kimlik + ".riddle");
     }
 }
