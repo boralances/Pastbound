@@ -28,6 +28,7 @@ import net.neoforged.neoforge.common.extensions.IEntityExtension;
 public final class RelikMantigi {
     private static final String BILINEN_RELIKLER = "pastbound_bilinen_relikler";
     private static final String TAMAMLANAN_YANKILAR = "pastbound_tamamlanan_tarih_yankilari";
+    private static final String HAZIR_YANKILAR = "pastbound_hazir_tarih_yankilari";
     private static final String AYRAC = "|";
 
     private RelikMantigi() {
@@ -72,6 +73,22 @@ public final class RelikMantigi {
         return Arrays.asList(kayit.split("\\|", -1)).contains(yanki.kimlik());
     }
 
+    public static boolean yankiHazirMi(Player oyuncu, TarihYankisi yanki) {
+        String kayit = ((IEntityExtension) oyuncu).getPersistentData().getStringOr(HAZIR_YANKILAR, "");
+        return Arrays.asList(kayit.split("\\|", -1)).contains(yanki.kimlik());
+    }
+
+    public static void yankiyiHazirla(Player oyuncu, TarihYankisi yanki) {
+        if (yankiTamamlandiMi(oyuncu, yanki) || yankiHazirMi(oyuncu, yanki)) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        String eski = veri.getStringOr(HAZIR_YANKILAR, "");
+        veri.putString(HAZIR_YANKILAR, eski.isEmpty() ? yanki.kimlik() : eski + AYRAC + yanki.kimlik());
+        oyuncu.sendOverlayMessage(Component.translatable("message.pastbound.echo.stirs", yanki.baslik()));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.open_journal"));
+    }
+
     public static int tamamlananYankiSayisi(Player oyuncu) {
         int sayi = 0;
         for (TarihYankisi yanki : TarihYankisi.values()) {
@@ -105,6 +122,10 @@ public final class RelikMantigi {
         if (yankiTamamlandiMi(oyuncu, yanki)) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.already", yanki.baslik()));
             return true;
+        }
+        if (!yankiHazirMi(oyuncu, yanki)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.locked", yanki.baslik()));
+            return false;
         }
         String temiz = hamle.replaceAll("[^1-3]", "");
         if (!temiz.equals(yanki.kod())) {

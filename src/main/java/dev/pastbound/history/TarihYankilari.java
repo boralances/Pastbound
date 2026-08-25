@@ -40,7 +40,7 @@ public final class TarihYankilari {
 
     private static void yankiyiBaslat(Player oyuncu, TarihYankisi yanki) {
         if (!oyuncu.level().isClientSide()) {
-            RelikMantigi.yankiyiTamamla(oyuncu, yanki);
+            RelikMantigi.yankiyiHazirla(oyuncu, yanki);
         }
     }
 
