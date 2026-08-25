@@ -50,9 +50,23 @@ This layered design keeps the result readable in a modpack while ensuring that a
 
 ## Curios equipment
 
-Pastbound defines a data-driven Curios slot named `relic`. It provides five positions and accepts the `curios:relic` item tag. Each relic implements `ICurioItem`, validates placement into relic-like slots, applies passive effects from equipped known relics, and exposes active actions to the common gameplay layer.
+Pastbound defines a data-driven Curios slot named `relic`. It provides ten physical positions and accepts the `curios:relic` item tag. Each relic implements `ICurioItem`, validates placement into relic-like slots, applies passive effects from equipped known relics, and exposes active actions to the common gameplay layer.
 
-The V shortcut searches Curios inventory for the first known relic and activates it. Five slots support themed loadouts such as navigation, scholarship, defence, ceremony, and exploration without removing the clarity of one-button activation.
+The V shortcut searches Curios inventory for the first known relic and activates it. Ten physical positions support themed loadouts such as navigation, scholarship, defence, ceremony, and exploration. Eight positions accept relics from the start; the final two positions are gated by a server-validated exchange of ten Netherite Blocks through the journal’s U action.
+
+## GUI-only discovery
+
+Unknown relics never require a chat command. Right-clicking an unknown relic opens the Relik Journal directly. The modal presents the historical riddle as a typed answer field and also offers a visual three-step 1-2-3 trial. Enter submits a custom server payload; the server validates the answer or sequence, records the relic memory, gives the reward, and closes the discovery loop without registering riddle or echo commands.
+
+## Time machine and historical places
+
+The Zaman Makinesi is a craftable historical observatory item that opens a non-pausing GUI. It contains twelve destinations: Uruk Yazı Evi for writing, Termopil Savaş Geçidi for war and strategy, İskenderiye Kütüphanesi for knowledge preservation, Bağdat Pili Atölyesi for early electricity experiments, Antikythera Limanı for mechanical astronomy, Bağdat Bilgi Evi for translation and science, Timbuktu El Yazmaları for caravan scholarship, Tenochtitlan Geçidi for canals and calendars, Polinezya Yıldız Yolu for ocean navigation, Çatalhöyük Yerleşkesi for early community life, Apollo Ay İstasyonu for recent exploration, and İpek Yolu Kervansarayı for cultural exchange.
+
+Selecting a destination sends a common custom payload rather than a command. The server applies a restrained contextual effect and particle vignette, unlocks the associated historical echo, stores the destination in persistent player data, and awards its time-machine advancement. Twelve destination advancements culminate in `complete_expedition`.
+
+## Chest-only relic acquisition and field tools
+
+Relics are not craftable. `TarihSandikGanimeti` observes Village, Trial Chamber, and Ancient City chest openings and adds at most one random relic with low location-sensitive probability, using a persistent chest marker to prevent duplicates. The Time Machine and Furnace on a Stick remain craftable tools because they are expedition equipment rather than historical relics. Furnace on a Stick opens the native furnace menu without placing a block, making it useful for travelling historians.
 
 ## Global historical events
 
@@ -81,9 +95,9 @@ Resonance Pillars within the archive’s five-by-three-by-five volume are charge
 
 ## Relic Journal UI
 
-The journal is a non-pausing Minecraft screen with a dark parchment and oxidised-metal palette. It presents a four-column card grid, recovered-memory and echo counters, known and unknown states, historical traces, activation status, and the controls needed to continue the expedition. Clicking a card opens a custom texture-backed modal with a three-step trial; unknown cards remain useful instead of becoming empty placeholders.
+The journal is a non-pausing Minecraft screen with a dark parchment and oxidised-metal palette. It presents a four-column card grid, recovered-memory and echo counters, known and unknown states, historical traces, activation status, slot progression, and the controls needed to continue the expedition. Clicking a card opens a custom texture-backed modal with a typed riddle field and three-step trial; unknown cards remain useful instead of becoming empty placeholders. The separate Time Machine screen uses a twelve-card historical route map and custom time-machine texture.
 
-The R and V keys use a dedicated Pastbound key category. V sends a server-authoritative `pastbound activate` command, so single-player and dedicated-server behavior remain consistent.
+The R and V keys use a dedicated Pastbound key category. V sends a server-authoritative common custom payload, so single-player and dedicated-server behavior remain consistent without a chat command.
 
 ## Art direction
 
@@ -93,7 +107,7 @@ No new biome or stone family is introduced in this version. The project conseque
 
 ## Packaging
 
-The project includes 36 locale files, 24 relic recipes, 4 research-material recipes, 25 advancement definitions, block loot tables, blockstates, block models, item models, five-position Curios slot data, a Curios item tag, source-controlled texture, locale, and historical-data generators, a global event engine, custom ability layer, complete README, and an MIT license.
+The project includes 36 locale files, 26 non-relic recipes including the Time Machine and Furnace on a Stick, 4 research-material recipes, 25 historical echo advancement definitions, 13 time-machine advancement definitions, chest relic distribution logic, block loot tables, blockstates, block models, item models, ten-position Curios slot data with eight-starting/two-upgrade gating, a Curios item tag, source-controlled texture, locale, historical-data, and time-machine generators, a global event engine, custom ability layer, complete README, and an MIT license.
 
 ## Acceptance criteria
 
@@ -105,15 +119,15 @@ The project includes 36 locale files, 24 relic recipes, 4 research-material reci
 | Historical events | `TarihYankisi` contains twenty-four event/action trials and `TarihYankilari` binds them to NeoForge actions. |
 | Custom relic abilities | `ozelYankiUygula` adds relic-specific movement, healing, reveal, trade, resource, air, fire, and aura behavior on top of classic effects. |
 | Global historical events | `KureselTarihOlaylari` rotates twelve server-wide periods and prepares shared trials for connected players. |
-| Mini games | The journal modal accepts three symbol choices and server-validates the sequence through `/pastbound echo`. |
+| Mini games | The journal modal accepts typed riddle answers or three symbol choices and server-validates them through a common custom payload. |
 | Advancement progression | Each historical echo has an advancement and all twenty-four combine into `complete_collection`. |
-| Curios capacity | The data-driven `relic` slot has five positions and uses the `curios:relic` validator tag. |
+| Curios capacity | The data-driven `relic` slot has ten positions, eight available by default, and two unlocked for ten Netherite Blocks through the GUI. |
 | Knowledge paths | Each relic supports an XP route and a riddle route. |
-| Server authority | V sends a server command and active effects execute in common logic. |
-| UI | R opens the Relik Journal with recovery progress and relic cards. |
+| Server authority | V, riddle answers, sequence trials, time-machine destinations, and slot upgrades use common custom payloads; active effects execute in common logic. |
+| UI | R opens the Relik Journal, unknown relics open its riddle modal, and the Time Machine opens a twelve-destination historical GUI. |
 | Localization | At least thirty-two locale files exist with the complete item and UI key set. |
 | Texture quality | Every relic is a standalone 16×16 PNG generated from a deterministic palette script. |
-| Build output | The Gradle jar task creates `build/libs/Pastbound-1.1.0.jar`. |
+| Build output | The Gradle jar task creates `build/libs/Pastbound-1.1.0.jar` with the current GUI, time-machine, loot, and slot systems. |
 | Comments | Source code contains no line-style or Javadoc comment lines. |
 
 ## References

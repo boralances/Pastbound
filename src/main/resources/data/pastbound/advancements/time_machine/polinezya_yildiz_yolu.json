@@ -1,0 +1,23 @@
+{
+  "parent": "pastbound:time_machine/tenochtitlan_gecidi",
+  "display": {
+    "icon": {
+      "id": "pastbound:zaman_makinesi"
+    },
+    "title": {
+      "translate": "advancement.pastbound.time_machine.polinezya_yildiz_yolu.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.time_machine.polinezya_yildiz_yolu.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

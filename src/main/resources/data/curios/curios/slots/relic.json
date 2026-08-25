@@ -1,6 +1,6 @@
 {
   "order": 120,
-  "size": 5,
+  "size": 10,
   "use_native_gui": true,
   "add_cosmetic": true,
   "icon": "pastbound:slot/empty_relic_slot",

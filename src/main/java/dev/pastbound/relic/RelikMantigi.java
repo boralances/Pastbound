@@ -20,6 +20,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
+import dev.pastbound.registry.ModEffects;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
@@ -32,6 +33,9 @@ public final class RelikMantigi {
     private static final String BILINEN_RELIKLER = "pastbound_bilinen_relikler";
     private static final String TAMAMLANAN_YANKILAR = "pastbound_tamamlanan_tarih_yankilari";
     private static final String HAZIR_YANKILAR = "pastbound_hazir_tarih_yankilari";
+    private static final String ACIK_RELIK_YUVALARI = "pastbound_acik_relik_yuvalari";
+    private static final int BASLANGIC_RELIK_YUVASI = 8;
+    private static final int AZAMI_RELIK_YUVASI = 10;
     private static final String AYRAC = "|";
 
     private RelikMantigi() {
@@ -50,6 +54,42 @@ public final class RelikMantigi {
         String eski = veri.getStringOr(BILINEN_RELIKLER, "");
         veri.putString(BILINEN_RELIKLER, eski.isEmpty() ? tanim.kimlik() : eski + AYRAC + tanim.kimlik());
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.knowledge", tanim.ad()));
+    }
+
+    public static int acikRelikYuvasi(Player oyuncu) {
+        return ((IEntityExtension) oyuncu).getPersistentData().getIntOr(ACIK_RELIK_YUVALARI, BASLANGIC_RELIK_YUVASI);
+    }
+
+    public static boolean slotYukselt(Player oyuncu) {
+        int acik = acikRelikYuvasi(oyuncu);
+        if (acik >= AZAMI_RELIK_YUVASI) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.slot.max"));
+            return false;
+        }
+        int blok = 0;
+        for (int i = 0; i < oyuncu.getInventory().getContainerSize(); i++) {
+            ItemStack yigin = oyuncu.getInventory().getItem(i);
+            if (yigin.is(Items.NETHERITE_BLOCK)) {
+                blok += yigin.getCount();
+            }
+        }
+        if (blok < 10) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.slot.cost", 10));
+            return false;
+        }
+        int kalan = 10;
+        for (int i = 0; i < oyuncu.getInventory().getContainerSize() && kalan > 0; i++) {
+            ItemStack yigin = oyuncu.getInventory().getItem(i);
+            if (yigin.is(Items.NETHERITE_BLOCK)) {
+                int alinacak = Math.min(kalan, yigin.getCount());
+                oyuncu.getInventory().removeItem(i, alinacak);
+                kalan -= alinacak;
+            }
+        }
+        ((IEntityExtension) oyuncu).getPersistentData().putInt(ACIK_RELIK_YUVALARI, AZAMI_RELIK_YUVASI);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.slot.unlocked", AZAMI_RELIK_YUVASI));
+        oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.NETHERITE_BLOCK_PLACE, SoundSource.PLAYERS, 0.8F, 0.8F);
+        return true;
     }
 
     public static int bilinenSayi(Player oyuncu) {
@@ -277,6 +317,9 @@ public final class RelikMantigi {
     }
 
     private static void ozelYankiUygula(Player oyuncu, RelikTanimi tanim) {
+        if (tanim.ordinal() < 16) {
+            oyuncu.addEffect(new MobEffectInstance(ModEffects.TARIH_YANKISI, 220, tanim.ordinal() % 3, false, true, true));
+        }
         switch (tanim) {
             case ROSSETTA_TASI -> {
                 oyuncu.giveExperiencePoints(6);

@@ -1,5 +1,5 @@
-from pathlib import Path
 import json
+from pathlib import Path
 from PIL import Image, ImageDraw
 
 kok = Path(__file__).resolve().parents[1]
@@ -171,6 +171,48 @@ def history_modal():
     return goruntu
 
 
+def zaman_makinesi():
+    goruntu = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    ciz = ImageDraw.Draw(goruntu)
+    ciz.rectangle((2, 3, 13, 12), fill=(47, 38, 46, 255))
+    ciz.rectangle((4, 2, 11, 13), fill=(137, 91, 60, 255))
+    ciz.rectangle((5, 4, 10, 11), fill=(65, 116, 122, 255))
+    ciz.ellipse((5, 5, 10, 10), outline=(226, 185, 92, 255), width=1)
+    ciz.line([(8, 6), (8, 9), (10, 10)], fill=(242, 218, 153, 255), width=1)
+    ciz.point((6, 5), fill=(181, 237, 205, 255))
+    ciz.point((11, 11), fill=(181, 237, 205, 255))
+    return goruntu
+
+
+def firin_cubugu():
+    goruntu = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    ciz = ImageDraw.Draw(goruntu)
+    ciz.line([(3, 13), (12, 3)], fill=(75, 45, 34, 255), width=3)
+    ciz.point((3, 13), fill=(194, 137, 77, 255))
+    ciz.rectangle((8, 2, 13, 7), fill=(42, 36, 40, 255))
+    ciz.rectangle((9, 3, 12, 6), fill=(104, 67, 55, 255))
+    ciz.rectangle((10, 4, 11, 5), fill=(237, 117, 48, 255))
+    ciz.point((12, 3), fill=(214, 184, 118, 255))
+    return goruntu
+
+
+def zaman_gui():
+    goruntu = Image.new("RGBA", (256, 192), (22, 28, 35, 255))
+    ciz = ImageDraw.Draw(goruntu)
+    for y in range(192):
+        ton = int(25 + y * 0.14)
+        ciz.line((0, y, 255, y), fill=(ton + 8, ton + 11, ton + 16, 255))
+    ciz.rectangle((5, 5, 250, 186), outline=(209, 160, 85, 255), width=2)
+    ciz.rectangle((11, 11, 244, 180), outline=(86, 147, 143, 180), width=1)
+    ciz.ellipse((103, 47, 153, 97), outline=(199, 145, 75, 220), width=3)
+    ciz.ellipse((111, 55, 145, 89), outline=(93, 179, 170, 240), width=2)
+    ciz.line([(128, 35), (128, 109)], fill=(228, 196, 120, 220), width=2)
+    ciz.line([(92, 72), (164, 72)], fill=(228, 196, 120, 220), width=2)
+    ciz.polygon([(128, 25), (134, 39), (122, 39)], fill=(226, 191, 112, 255))
+    ciz.rectangle((20, 127, 236, 129), fill=(179, 130, 74, 170))
+    return goruntu
+
+
 def tarih_esyasi(renk, sira):
     koyu = karistir(renk, -70)
     acik = karistir(renk, 55)
@@ -209,6 +251,9 @@ duz_kare((72, 119, 111), True).save(varlik / "textures/block/resonance_pillar_ch
 relic_slot().save(slot_dizini / "empty_relic_slot.png")
 journal_texture().save(gui_dizini / "relic_journal.png")
 history_modal().save(gui_dizini / "history_modal.png")
+zaman_makinesi().save(varlik / "textures/item/zaman_makinesi.png")
+firin_cubugu().save(varlik / "textures/item/firin_cubugu.png")
+zaman_gui().save(gui_dizini / "time_machine.png")
 yeni_esyalar = {
     "chronicle_scrap": ((181, 148, 91), 0),
     "history_ink": ((62, 66, 104), 1),
@@ -218,4 +263,8 @@ yeni_esyalar = {
 for kimlik, (renk, sira) in yeni_esyalar.items():
     tarih_esyasi(renk, sira).save(varlik / "textures/item" / f"{kimlik}.png")
     model = {"parent": "item/generated", "textures": {"layer0": f"pastbound:item/{kimlik}"}}
+    (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+for kimlik, kok_model in (("zaman_makinesi", "item/generated"), ("firin_cubugu", "item/handheld")):
+    model = {"parent": kok_model, "textures": {"layer0": f"pastbound:item/{kimlik}"}}
     (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

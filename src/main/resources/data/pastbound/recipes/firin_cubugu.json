@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " I ",
+    "IFI",
+    " S "
+  ],
+  "key": {
+    "I": {"item": "minecraft:iron_ingot"},
+    "F": {"item": "minecraft:furnace"},
+    "S": {"item": "minecraft:stick"}
+  },
+  "result": {
+    "id": "pastbound:firin_cubugu",
+    "count": 1
+  }
+}

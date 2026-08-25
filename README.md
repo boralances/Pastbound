@@ -28,6 +28,10 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 | Riddle knowledge | A playful interpretation layer | Makes identification possible without XP when the player solves the relic’s clue. |
 | Historical Echo Trials | A sequence of playable archival moments | Adds twenty-four event-linked historical mini games with server-validated 1-2-3 sequences, XP rewards, and advancement unlocks. |
 | Chronicle research materials | Reconstructed scholarship supplies | Adds Chronicle Scrap, History Ink, Time Stone, and Echo Seal as a four-step crafting chain. |
+| Time Machine | A reconstructed historical observatory | Opens a GUI with twelve destinations covering writing, war, libraries, early electricity, mechanical astronomy, scholarship, trade, navigation, settlement, and lunar exploration. |
+| Furnace on a Stick | Portable field equipment | Opens the native furnace GUI without placing a block. |
+| Chest relic rewards | Museum-grade discoveries | Relics are never craftable and appear only as rare additions to Village, Trial Chamber, and Ancient City chest openings. |
+| Relic slot progression | A Netherite-backed museum case | Eight relic slots begin open; ten Netherite Blocks exchanged through the journal open two more slots. |
 | Global history pulse | A server-wide historical era | Rotates twelve historical periods and opens their echo trial for every connected player. |
 
 ## Relic catalogue
@@ -59,13 +63,13 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 | Mali Tuz Mührü | Saharan trade | Luck |
 | İskandinav Rune Taşı | Northern inscription tradition | Invisibility |
 
-Each relic has its own 16×16 PNG, item model, item name, historical trace, riddle, knowledge cost, activation cooldown, active effect, passive pulse behavior, and shapeless recipe using an Echo Shard plus a related vanilla material. Each relic is also paired with a historical echo trial, from the Papyrus Cipher and Uruk Seal to the Timbuktu Caravan, Apollo Moon Walk, and Rune Stone.
+Each relic has its own 16×16 PNG, item model, item name, historical trace, riddle, knowledge cost, activation cooldown, active effect, passive pulse behavior, and chest-only acquisition rule. Relics intentionally have no crafting recipe; they are rare rewards added to Village, Trial Chamber, and Ancient City chest openings. Each relic is also paired with a historical echo trial, from the Papyrus Cipher and Uruk Seal to the Timbuktu Caravan, Apollo Moon Walk, and Rune Stone.
 
 ## Relic-specific abilities
 
 The base RelikYetisi effect remains recognizable in Minecraft terms, while `ozelYankiUygula` adds a relic-specific historical action. At least ten relics now combine the classic effect with behavior that cannot be reduced to a potion icon: Rosetta reveals nearby living entities with a knowledge glow; Gilgamesh grants a heroic lift; Anubis heals and extinguishes fire; Minos gives a vaulting leap; Roma produces a trade nugget; Viking combines haste and night vision; Samurai creates a defensive buffer; Maya clears fire and invokes solar protection; Inka accelerates the player while awarding knowledge; Harappa returns clay research material; Song restores air; Benin shares a discovery glow; Renaissance and Apollo provide measured vertical movement; Timbuktu produces paper research; Ilhanlı grants a trade emerald; and Polynesia combines water travel with directional momentum.
 
-These custom actions are applied after the classic effect and are encoded with Turkish method and variable names in the common gameplay layer. They work from both right-click and the V shortcut, so Curios loadouts stay useful without introducing a second activation system.
+These custom actions are applied after the classic effect and are encoded with Turkish method and variable names in the common gameplay layer. The first sixteen relics also apply the registered `tarih_yankisi` MobEffect, which periodically returns a small experience pulse and an enchantment-particle memory shimmer. They work from both right-click and the V shortcut, so Curios loadouts stay useful without introducing a second activation system.
 
 ## Global historical events
 
@@ -73,17 +77,17 @@ These custom actions are applied after the classic effect and are encoded with T
 
 The player-facing world actions include writing with books, reading routes with maps and compasses, carrying metal underground, trading with gold, travelling over high ground, entering water, surviving the End, walking at night, and following the server-wide era rotation. These are global history signals rather than arbitrary fantasy triggers, keeping the mod centered on historical technologies, travel, records, craft, and exchange.
 
-## Controls and commands
+## Controls and GUI actions
 
-The **R** key opens the Relic Journal. Clicking a relic card opens a custom historical trial modal with a visual sequence puzzle; choose three symbols with **1**, **2**, or **3**, then press **Enter** to submit. The **V** key sends a server-authoritative `pastbound activate` command. Right-clicking an unknown relic displays its riddle and XP cost; holding Shift while using it pays the cost and identifies it. The commands `/pastbound journal`, `/pastbound codex`, `/pastbound activate`, `/pastbound echo <echo> <sequence>`, and `/pastbound riddle <relic> <answer>` expose the full discovery loop.
+The **R** key opens the Relic Journal. Clicking a relic card opens a custom historical trial modal with both a typed riddle answer field and a visual sequence puzzle; choose three symbols with **1**, **2**, or **3**, or type the answer, then press **Enter** to submit. The **V** key sends a server-authoritative custom payload rather than a chat command. The first sixteen relics also apply the custom `tarih_yankisi` effect, while every relic keeps its own historical ability branch. Right-clicking an unknown relic opens the same GUI riddle modal. The **U** key in the journal offers the server-validated Netherite slot exchange. The final gameplay loop uses GUI screens and common custom payloads for riddle answers, echo trials, activation, time travel, and slot upgrades; no chat command is required for discovery.
 
 ## Curios integration
 
-Curios is a required runtime dependency. The project declares the Curios Maven repository, compiles against the `curios-neoforge:16.0.0+26.2:api` classifier, includes the full Curios runtime in `localRuntime`, and provides the data-driven slot file at `data/curios/curios/slots/relic.json`. The slot has five positions, native Curios GUI behavior, a cosmetic companion slot, a custom empty-slot icon, and an item validator based on `data/curios/tags/items/relic.json`.
+Curios is a required runtime dependency. The project declares the Curios Maven repository, compiles against the `curios-neoforge:16.0.0+26.2:api` classifier, includes the full Curios runtime in `localRuntime`, and provides the data-driven slot file at `data/curios/curios/slots/relic.json`. The slot exposes ten physical positions with native Curios GUI behavior, a cosmetic companion slot, a custom empty-slot icon, and an item validator based on `data/curios/tags/items/relic.json`. Eight positions are usable by every player from the start; the final two are unlocked together by exchanging ten Netherite Blocks through the journal’s U action.
 
 ## Localization
 
-The project includes **36 locale JSON files**, exceeding the requested 32-language target. Every locale contains the Pastbound UI strings, keybind labels, archive feedback, relic activation messages, the complete relic catalogue, historical trial labels, modal instructions, event progress, and advancement keys. The generated set includes English, Turkish, German, French, Spanish variants, Italian, Portuguese variants, Russian, Ukrainian, Polish, Dutch, Nordic locales, Central European locales, Chinese variants, Japanese, Korean, Vietnamese, Thai, Indonesian, Arabic, Hebrew, Afrikaans, Esperanto, Irish, and Welsh.
+The project includes **36 locale JSON files**, exceeding the requested 32-language target. Every locale contains the Pastbound UI strings, keybind labels, archive feedback, relic activation messages, the complete relic catalogue, historical trial labels, modal instructions, time machine labels, slot progression text, chest-loot feedback, event progress, and advancement keys. The generated set includes English, Turkish, German, French, Spanish variants, Italian, Portuguese variants, Russian, Ukrainian, Polish, Dutch, Nordic locales, Central European locales, Chinese variants, Japanese, Korean, Vietnamese, Thai, Indonesian, Arabic, Hebrew, Afrikaans, Esperanto, Irish, and Welsh.
 
 The locale generator is deterministic and can be rerun with:
 
@@ -100,7 +104,7 @@ All relic sprites and supporting assets are deterministic 16×16 pixel art gener
 python3 tools/generate_relic_assets.py
 ```
 
-The original compact texture generator remains available for the core five assets:
+The generator also produces the Time Machine item, Furnace on a Stick item, and the dedicated time-machine GUI texture. The original compact texture generator remains available for the core five assets:
 
 ```bash
 python3 tools/generate_textures.py
@@ -124,24 +128,35 @@ Pastbound/
 │   ├── generate_relic_assets.py
 │   ├── generate_relic_recipes.py
 │   ├── generate_history_data.py
+│   ├── generate_time_machine_data.py
 │   └── generate_textures.py
 └── src/main/
     ├── java/dev/pastbound/
     │   ├── ModId.java
     │   ├── PastboundMemory.java
+    │   ├── effect/TarihYankisiEtkisi.java
     │   ├── block/
     │   ├── block/entity/
     │   ├── history/
     │   │   ├── KureselTarihOlayi.java
     │   │   ├── KureselTarihOlaylari.java
+    │   │   ├── TarihDonemi.java
+    │   │   ├── TarihSandikGanimeti.java
     │   │   ├── TarihYankisi.java
-    │   │   └── TarihYankilari.java
+    │   │   ├── TarihYankilari.java
+    │   │   └── ZamanMakinesiMantigi.java
     │   ├── client/
     │   │   ├── RelikClient.java
     │   │   ├── RelikClientOyun.java
-    │   │   └── ui/RelikDefteriEkrani.java
-    │   ├── command/PastboundKomutlari.java
+    │   │   └── ui/
+    │   │       ├── RelikDefteriEkrani.java
+    │   │       └── ZamanMakinesiEkrani.java
     │   ├── item/
+    │   │   ├── FirinCubuguItem.java
+    │   │   └── ZamanMakinesiItem.java
+    │   ├── network/
+    │   │   ├── PastboundAg.java
+    │   │   └── PastboundPaketi.java
     │   ├── relic/
     │   │   ├── RelikItem.java
     │   │   ├── RelikMantigi.java
@@ -161,6 +176,7 @@ Pastbound/
         │   └── tags/items/relic.json
         └── data/pastbound/
             ├── advancements/history/
+            ├── advancements/time_machine/
             ├── loot_table/
             ├── recipes/
             └── tags/
@@ -168,12 +184,16 @@ Pastbound/
 
 ## Build instructions
 
-Install a **64-bit Java 25 JDK** and verify that Gradle sees it. From the project root, run:
+Install a **64-bit Java 25 JDK** and verify that Gradle sees it. From the project root, regenerate source-controlled assets and run:
 
 ```bash
 cd Pastbound
 java -version
 ./gradlew --version
+python3 tools/generate_relic_assets.py
+python3 tools/generate_relic_recipes.py
+python3 tools/generate_time_machine_data.py
+python3 tools/generate_locales.py
 ./gradlew clean build
 ```
 

@@ -59,6 +59,21 @@ yankilar = {
     "rune_tasi": "Rune Taşı"
 }
 
+time_duraklari = {
+    "uruk_yazi_evi": ("Uruk Yazı Evi", "Yazının doğuşunu keşfet."),
+    "termopil_savasi": ("Termopil Savaş Geçidi", "Savaş ve strateji hafızasını keşfet."),
+    "iskenderiye_kutuphanesi": ("İskenderiye Kütüphanesi", "Kayıp tomarların bilgi mirasını keşfet."),
+    "bagdat_pili_atolyesi": ("Bağdat Pili Atölyesi", "Erken elektrik fikrinin izlerini keşfet."),
+    "antikithera_limani": ("Antikythera Limanı", "Mekanik gök hesabını keşfet."),
+    "bagdat_bilgi_evi": ("Bağdat Bilgi Evi", "Çeviri ve bilim hafızasını keşfet."),
+    "timbuktu_el_yazmalari": ("Timbuktu El Yazmaları", "Sahra kervanlarının eğitim mirasını keşfet."),
+    "tenochtitlan_gecidi": ("Tenochtitlan Geçidi", "Göl şehri ve takvim hafızasını keşfet."),
+    "polinezya_yildiz_yolu": ("Polinezya Yıldız Yolu", "Okyanus navigasyonunun yıldız rotasını keşfet."),
+    "catalhoyuk_yerleskesi": ("Çatalhöyük Yerleşkesi", "İlk ortak yaşamın hafızasını keşfet."),
+    "apollo_ay_istigi": ("Apollo Ay İstasyonu", "Ay yüzeyindeki yakın tarih izlerini keşfet."),
+    "ipek_yolu_kervansarayi": ("İpek Yolu Kervansarayı", "Kültürler arası ticaretin avlusunu keşfet.")
+}
+
 ortak = {
     "block.pastbound.echo_archive": "Echo Archive",
     "block.pastbound.resonance_pillar": "Resonance Pillar",
@@ -99,6 +114,9 @@ ortak = {
     "item.pastbound.history_ink": "History Ink",
     "item.pastbound.time_stone": "Time Stone",
     "item.pastbound.echo_seal": "Echo Seal",
+    "item.pastbound.zaman_makinesi": "Time Machine",
+    "item.pastbound.firin_cubugu": "Furnace on a Stick",
+    "effect.pastbound.tarih_yankisi": "Historical Echo",
     "screen.pastbound.echo_progress": "Echoes: %s/%s",
     "screen.pastbound.echo_found": "ECHO FOUND",
     "screen.pastbound.click_hint": "Click a relic to open its historical trial",
@@ -106,6 +124,13 @@ ortak = {
     "screen.pastbound.sequence": "Sequence: %s",
     "screen.pastbound.choose": "Choose 1, 2, or 3",
     "screen.pastbound.solve_hint": "Enter to submit   Esc to return",
+    "screen.pastbound.riddle_input": "Riddle answer: %s",
+    "screen.pastbound.solve_gui_hint": "Type the answer or choose 1-2-3, then press Enter",
+    "screen.pastbound.slot_hint": "U: exchange 10 Netherite Blocks for 2 relic slots",
+    "screen.pastbound.time_machine": "Time Machine",
+    "screen.pastbound.time_machine.subtitle": "Choose a historical place to explore its living echo.",
+    "screen.pastbound.time_machine.hint": "Click a destination or press 1-9",
+    "screen.pastbound.time_machine.sent": "Temporal route prepared",
     "message.pastbound.echo.discovered": "Historical echo recovered: %s",
     "message.pastbound.echo.trace": "Trace recorded: %s",
     "message.pastbound.echo.bad_name": "That echo is not in the chronicle.",
@@ -126,12 +151,19 @@ ortak = {
     "message.pastbound.global.quipu_sayimi": "The Quipu Count records the world’s rhythm.",
     "message.pastbound.global.astrolab_gogu": "The Astrolabe Sky reveals a measured path.",
     "message.pastbound.global.rune_nobeti": "The Rune Watch keeps the northern night.",
-    "message.pastbound.global.ay_misyonu": "The Moon Mission leaves a new echo beyond the world."
+    "message.pastbound.global.ay_misyonu": "The Moon Mission leaves a new echo beyond the world.",
+    "message.pastbound.packet.invalid": "The archive rejected that request.",
+    "message.pastbound.slot.max": "All ten relic slots are already open.",
+    "message.pastbound.slot.cost": "You need %s Netherite Blocks to open two relic slots.",
+    "message.pastbound.slot.unlocked": "Two relic slots opened. Total capacity: %s.",
+    "message.pastbound.time_machine.unknown": "That historical destination is not in the machine.",
+    "message.pastbound.time_machine.cooldown": "The time machine is still stabilising.",
+    "message.pastbound.time_machine.arrived": "Arrived at %s: %s"
 }
 
 metinler = {
     "en_us": {"itemGroup.pastbound": "Pastbound: Echoes of History", "screen.pastbound.journal": "Relic Journal"},
-    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.riddle": "Bilmece: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.riddle_wrong": "Geçmiş susuyor. Bu cevap uymuyor.", "message.pastbound.relic.riddle_right": "Bilmece %s anısını açtı.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.riddle_hint": "Bilmeceyi çöz", "screen.pastbound.close": "Kapatmak için Esc", "screen.pastbound.echo_progress": "Yankılar: %s/%s", "screen.pastbound.echo_found": "YANKI BULUNDU", "screen.pastbound.click_hint": "Tarihî sınavı açmak için bir relic’e tıkla", "screen.pastbound.modal_title": "Tarihî Yankı Sınavı", "screen.pastbound.sequence": "Dizi: %s", "screen.pastbound.choose": "1, 2 veya 3 seç", "screen.pastbound.solve_hint": "Göndermek için Enter   Geri dönmek için Esc", "message.pastbound.echo.discovered": "Tarihî yankı bulundu: %s", "message.pastbound.echo.trace": "İz kaydedildi: %s", "message.pastbound.echo.bad_name": "Bu yankı kronikte yok.", "message.pastbound.echo.already": "%s yankısı zaten kaydedildi.", "message.pastbound.echo.wrong": "Dizi dağıldı. İpucu: %s", "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s", "message.pastbound.echo.stirs": "Bir tarihî yankı uyandı: %s", "message.pastbound.echo.open_journal": "Tarihî sınavı denemek için günlüğü aç.", "message.pastbound.echo.locked": "%s için tarihî sınav henüz uyanmadı. Önce ilgili aksiyonu gerçekleştir.", "message.pastbound.global.yazi_devrimi": "Yazı Devrimi sunucuda yankılanıyor.", "message.pastbound.global.nil_kanallari": "Nil Kanalları tarihte yeni bir yol açıyor.", "message.pastbound.global.yildiz_seferi": "Yıldız Seferi her ufku işaretliyor.", "message.pastbound.global.kervan_yolu": "Kervan Yolu uzak anıları bağlıyor.", "message.pastbound.global.takvim_meclisi": "Takvim Meclisi yaşayan dünyayı hizalıyor.", "message.pastbound.global.demirci_hafizasi": "Demircilerin Hafızası yerin altında çınlıyor.", "message.pastbound.global.mozaik_baris": "Mozaik Barışı dağınık parçaları topluyor.", "message.pastbound.global.ipek_degisimi": "İpek Değişimi kıyılar arasında bilgi taşıyor.", "message.pastbound.global.quipu_sayimi": "Quipu Sayımı dünyanın ritmini kaydediyor.", "message.pastbound.global.astrolab_gogu": "Astrolab Göğü ölçülü bir yol gösteriyor.", "message.pastbound.global.rune_nobeti": "Rune Nöbeti kuzey gecesini koruyor.", "message.pastbound.global.ay_misyonu": "Ay Misyonu dünyanın ötesine yeni bir yankı bırakıyor.", "tooltip.pastbound.relic.echo": "Keşif yankısı: %s"},
+    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "item.pastbound.zaman_makinesi": "Zaman Makinesi", "item.pastbound.firin_cubugu": "Çubukta Fırın", "effect.pastbound.tarih_yankisi": "Tarih Yankısı", "screen.pastbound.riddle_input": "Bilmece cevabı: %s", "screen.pastbound.solve_gui_hint": "Cevabı yaz veya 1-2-3 seç, sonra Enter’a bas", "screen.pastbound.slot_hint": "U: 10 Netherite Block karşılığında 2 relic yuvası aç", "screen.pastbound.time_machine": "Zaman Makinesi", "screen.pastbound.time_machine.subtitle": "Yaşayan yankısını keşfetmek için tarihî bir durak seç.", "screen.pastbound.time_machine.hint": "Bir durağa tıkla veya 1-9’a bas", "screen.pastbound.time_machine.sent": "Zamansal rota hazırlandı", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.riddle": "Bilmece: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.riddle_wrong": "Geçmiş susuyor. Bu cevap uymuyor.", "message.pastbound.relic.riddle_right": "Bilmece %s anısını açtı.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.riddle_hint": "Bilmeceyi çöz", "screen.pastbound.close": "Kapatmak için Esc", "screen.pastbound.echo_progress": "Yankılar: %s/%s", "screen.pastbound.echo_found": "YANKI BULUNDU", "screen.pastbound.click_hint": "Tarihî sınavı açmak için bir relic’e tıkla", "screen.pastbound.modal_title": "Tarihî Yankı Sınavı", "screen.pastbound.sequence": "Dizi: %s", "screen.pastbound.choose": "1, 2 veya 3 seç", "screen.pastbound.solve_hint": "Göndermek için Enter   Geri dönmek için Esc", "message.pastbound.echo.discovered": "Tarihî yankı bulundu: %s", "message.pastbound.echo.trace": "İz kaydedildi: %s", "message.pastbound.echo.bad_name": "Bu yankı kronikte yok.", "message.pastbound.echo.already": "%s yankısı zaten kaydedildi.", "message.pastbound.echo.wrong": "Dizi dağıldı. İpucu: %s", "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s", "message.pastbound.echo.stirs": "Bir tarihî yankı uyandı: %s", "message.pastbound.echo.open_journal": "Tarihî sınavı denemek için günlüğü aç.", "message.pastbound.echo.locked": "%s için tarihî sınav henüz uyanmadı. Önce ilgili aksiyonu gerçekleştir.", "message.pastbound.global.yazi_devrimi": "Yazı Devrimi sunucuda yankılanıyor.", "message.pastbound.global.nil_kanallari": "Nil Kanalları tarihte yeni bir yol açıyor.", "message.pastbound.global.yildiz_seferi": "Yıldız Seferi her ufku işaretliyor.", "message.pastbound.global.kervan_yolu": "Kervan Yolu uzak anıları bağlıyor.", "message.pastbound.global.takvim_meclisi": "Takvim Meclisi yaşayan dünyayı hizalıyor.", "message.pastbound.global.demirci_hafizasi": "Demircilerin Hafızası yerin altında çınlıyor.", "message.pastbound.global.mozaik_baris": "Mozaik Barışı dağınık parçaları topluyor.", "message.pastbound.global.ipek_degisimi": "İpek Değişimi kıyılar arasında bilgi taşıyor.", "message.pastbound.global.quipu_sayimi": "Quipu Sayımı dünyanın ritmini kaydediyor.", "message.pastbound.global.astrolab_gogu": "Astrolab Göğü ölçülü bir yol gösteriyor.", "message.pastbound.global.rune_nobeti": "Rune Nöbeti kuzey gecesini koruyor.", "message.pastbound.global.ay_misyonu": "Ay Misyonu dünyanın ötesine yeni bir yankı bırakıyor.", "message.pastbound.packet.invalid": "Arşiv bu isteği reddetti.", "message.pastbound.slot.max": "On relic yuvasının tamamı zaten açık.", "message.pastbound.slot.cost": "İki relic yuvası açmak için %s Netherite Block gerekiyor.", "message.pastbound.slot.unlocked": "İki relic yuvası açıldı. Toplam kapasite: %s.", "message.pastbound.time_machine.unknown": "Bu tarihî durak makinede yok.", "message.pastbound.time_machine.cooldown": "Zaman makinesi hâlâ dengeleniyor.", "message.pastbound.time_machine.arrived": "%s durağına ulaşıldı: %s", "tooltip.pastbound.relic.echo": "Keşif yankısı: %s"},
     "de_de": {"itemGroup.pastbound": "Pastbound: Echos der Geschichte", "screen.pastbound.journal": "Relikt-Tagebuch", "screen.pastbound.progress": "Geborgene Erinnerungen: %s/%s", "screen.pastbound.help": "R Tagebuch   V erwecken", "screen.pastbound.ready": "BEKANNT", "screen.pastbound.unknown": "UNBEKANNT", "screen.pastbound.riddle_hint": "Rätsel lösen", "screen.pastbound.close": "Esc zum Schließen"},
     "fr_fr": {"itemGroup.pastbound": "Pastbound : Échos de l’histoire", "screen.pastbound.journal": "Journal des reliques", "screen.pastbound.progress": "Souvenirs retrouvés : %s/%s", "screen.pastbound.help": "R journal   V éveiller", "screen.pastbound.ready": "CONNU", "screen.pastbound.unknown": "INCONNU", "screen.pastbound.riddle_hint": "Résoudre l’énigme", "screen.pastbound.close": "Esc pour fermer"},
     "es_es": {"itemGroup.pastbound": "Pastbound: Ecos de la historia", "screen.pastbound.journal": "Diario de reliquias", "screen.pastbound.progress": "Memorias recuperadas: %s/%s", "screen.pastbound.help": "R diario   V despertar", "screen.pastbound.ready": "CONOCIDA", "screen.pastbound.unknown": "DESCONOCIDA", "screen.pastbound.riddle_hint": "Resuelve el acertijo", "screen.pastbound.close": "Esc para cerrar"},
@@ -177,4 +209,9 @@ for locale, add in metinler.items():
     for kimlik, ad in yankilar.items():
         veri[f"advancement.pastbound.{kimlik}.title"] = ad
         veri[f"advancement.pastbound.{kimlik}.description"] = "Solve the historical echo trial to recover its memory."
+    for kimlik, (ad, aciklama) in time_duraklari.items():
+        veri[f"advancement.pastbound.time_machine.{kimlik}.title"] = ad
+        veri[f"advancement.pastbound.time_machine.{kimlik}.description"] = aciklama
+    veri["advancement.pastbound.time_machine.complete_expedition.title"] = "Time Cartographer"
+    veri["advancement.pastbound.time_machine.complete_expedition.description"] = "Explore every historical destination in the time machine."
     (lang / f"{locale}.json").write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

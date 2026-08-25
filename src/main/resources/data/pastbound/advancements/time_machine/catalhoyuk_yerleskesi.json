@@ -1,0 +1,23 @@
+{
+  "parent": "pastbound:time_machine/polinezya_yildiz_yolu",
+  "display": {
+    "icon": {
+      "id": "pastbound:zaman_makinesi"
+    },
+    "title": {
+      "translate": "advancement.pastbound.time_machine.catalhoyuk_yerleskesi.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.time_machine.catalhoyuk_yerleskesi.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

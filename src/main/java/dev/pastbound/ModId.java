@@ -4,16 +4,16 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import dev.pastbound.command.PastboundKomutlari;
+import dev.pastbound.network.PastboundAg;
 import dev.pastbound.registry.ModBlockEntities;
 import dev.pastbound.registry.ModBlocks;
 import dev.pastbound.registry.ModCreativeTabs;
+import dev.pastbound.registry.ModEffects;
 import dev.pastbound.registry.ModItems;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(ModId.MOD_ID)
 public final class ModId {
@@ -26,9 +26,10 @@ public final class ModId {
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+        ModEffects.EFFECTS.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(PastboundAg::kaydet);
         modEventBus.addListener(ModCreativeTabs::addCreativeItems);
-        NeoForge.EVENT_BUS.addListener(PastboundKomutlari::kaydet);
         LOGGER.info("{} is binding the present to the past.", MOD_NAME);
     }
 

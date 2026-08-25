@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "RTR",
+    "CEC",
+    "RDR"
+  ],
+  "key": {
+    "R": {"item": "minecraft:redstone"},
+    "T": {"item": "pastbound:time_stone"},
+    "C": {"item": "minecraft:copper_ingot"},
+    "E": {"item": "pastbound:echo_seal"},
+    "D": {"item": "minecraft:diamond"}
+  },
+  "result": {
+    "id": "pastbound:zaman_makinesi",
+    "count": 1
+  }
+}

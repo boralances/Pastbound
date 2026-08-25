@@ -2,6 +2,7 @@ package dev.pastbound.relic;
 
 import java.util.function.Consumer;
 
+import dev.pastbound.client.ui.RelikDefteriEkrani;
 import dev.pastbound.history.TarihYankisi;
 import dev.pastbound.history.TarihYankilari;
 import net.minecraft.network.chat.Component;
@@ -32,21 +33,16 @@ public final class RelikItem extends Item implements ICurioItem {
     @Override
     public InteractionResult use(Level seviye, Player oyuncu, InteractionHand el) {
         ItemStack yigin = oyuncu.getItemInHand(el);
-        if (!seviye.isClientSide()) {
+        if (seviye.isClientSide()) {
             if (!RelikMantigi.biliyorMu(oyuncu, tanim)) {
-                if (oyuncu.isShiftKeyDown() && oyuncu.experienceLevel >= tanim.bilmeSeviyesi()) {
-                    oyuncu.giveExperienceLevels(-tanim.bilmeSeviyesi());
-                    RelikMantigi.bilgiyeEkle(oyuncu, tanim);
-                    oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.identified", tanim.ad()));
-                } else {
-                    oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.riddle", tanim.bilmece()));
-                    oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.xp_hint", tanim.bilmeSeviyesi()));
-                }
-            } else {
-                RelikMantigi.etkinlestir(oyuncu, tanim, yigin);
+                RelikDefteriEkrani.bilmeceAc(tanim);
             }
+            return InteractionResult.SUCCESS;
         }
-        return seviye.isClientSide() ? InteractionResult.SUCCESS : InteractionResult.SUCCESS_SERVER;
+        if (RelikMantigi.biliyorMu(oyuncu, tanim)) {
+            RelikMantigi.etkinlestir(oyuncu, tanim, yigin);
+        }
+        return InteractionResult.SUCCESS_SERVER;
     }
 
     @Override
@@ -59,7 +55,10 @@ public final class RelikItem extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(SlotContext yuva, ItemStack yigin) {
-        return yuva.identifier().equals("relic") || yuva.identifier().equals("charm") || yuva.identifier().equals("curio");
+        if (yuva.identifier().equals("relic") && yuva.entity() instanceof Player oyuncu) {
+            return yuva.index() < RelikMantigi.acikRelikYuvasi(oyuncu);
+        }
+        return yuva.identifier().equals("charm") || yuva.identifier().equals("curio");
     }
 
     @Override

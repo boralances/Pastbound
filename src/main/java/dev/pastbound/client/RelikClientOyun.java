@@ -1,10 +1,11 @@
 package dev.pastbound.client;
 
 import dev.pastbound.ModId;
+import dev.pastbound.network.PastboundPaketi;
 import dev.pastbound.client.ui.RelikDefteriEkrani;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.protocol.game.ServerboundChatCommandPacket;
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -26,7 +27,7 @@ public final class RelikClientOyun {
             minecraft.setScreenAndShow(new RelikDefteriEkrani());
         }
         if (RelikClient.AKTIFLESTIRME_KISAYOLU.consumeClick()) {
-            oyuncu.connection.send(new ServerboundChatCommandPacket("pastbound activate"));
+            oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.etkinlestir()));
         }
     }
 }

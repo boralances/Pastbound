@@ -1,0 +1,23 @@
+{
+  "parent": "pastbound:time_machine/catalhoyuk_yerleskesi",
+  "display": {
+    "icon": {
+      "id": "pastbound:zaman_makinesi"
+    },
+    "title": {
+      "translate": "advancement.pastbound.time_machine.apollo_ay_istigi.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.time_machine.apollo_ay_istigi.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

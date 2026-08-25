@@ -4,16 +4,18 @@ import org.lwjgl.glfw.GLFW;
 
 import dev.pastbound.history.TarihYankisi;
 import dev.pastbound.history.TarihYankilari;
+import dev.pastbound.network.PastboundPaketi;
 import dev.pastbound.relic.RelikMantigi;
 import dev.pastbound.relic.RelikTanimi;
 import dev.pastbound.registry.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.CharacterEvent;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ServerboundChatCommandPacket;
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
@@ -22,9 +24,16 @@ public final class RelikDefteriEkrani extends Screen {
     private static final Identifier MODAL_DOKU = Identifier.parse("pastbound:textures/gui/history_modal.png");
     private int seciliRelik = -1;
     private String hamleler = "";
+    private String bilmeceCevabi = "";
 
     public RelikDefteriEkrani() {
         super(Component.translatable("screen.pastbound.journal"));
+    }
+
+    public static void bilmeceAc(RelikTanimi tanim) {
+        RelikDefteriEkrani ekran = new RelikDefteriEkrani();
+        ekran.seciliRelik = tanim.ordinal();
+        Minecraft.getInstance().setScreenAndShow(ekran);
     }
 
     @Override
@@ -84,7 +93,8 @@ public final class RelikDefteriEkrani extends Screen {
                 cizim.text(font, Component.translatable("screen.pastbound.riddle_hint"), x + 31, y + 32, 0xFF8E6C66);
             }
         }
-        cizim.text(font, Component.translatable("screen.pastbound.click_hint"), sol + 18, ust + panelYukseklik - 16, 0xFF7D8A92);
+        cizim.text(font, Component.translatable("screen.pastbound.click_hint"), sol + 18, ust + panelYukseklik - 28, 0xFF7D8A92);
+        cizim.text(font, Component.translatable("screen.pastbound.slot_hint"), sol + 18, ust + panelYukseklik - 16, 0xFFE0B26B);
     }
 
     private boolean yankiTamamlandi(net.minecraft.world.entity.player.Player oyuncu, RelikTanimi tanim) {
@@ -93,16 +103,15 @@ public final class RelikDefteriEkrani extends Screen {
     }
 
     private void modalCiz(GuiGraphicsExtractor cizim) {
-        Minecraft minecraft = Minecraft.getInstance();
         RelikTanimi tanim = RelikTanimi.values()[seciliRelik];
         TarihYankisi yanki = TarihYankilari.yankiBulRelik(tanim);
-        int genislik = Math.min(460, cizim.guiWidth() - 24);
-        int yukseklik = Math.min(290, cizim.guiHeight() - 24);
+        int genislik = Math.min(500, cizim.guiWidth() - 24);
+        int yukseklik = Math.min(350, cizim.guiHeight() - 24);
         int sol = (cizim.guiWidth() - genislik) / 2;
         int ust = (cizim.guiHeight() - yukseklik) / 2;
         cizim.fill(0, 0, cizim.guiWidth(), cizim.guiHeight(), 0xA6111118);
         cizim.blit(MODAL_DOKU, sol, ust, genislik, yukseklik, 0.0F, 0.0F, 1.0F, 1.0F);
-        cizim.fill(sol, ust, sol + genislik, ust + yukseklik, 0xF021202A);
+        cizim.fill(sol, ust, sol + genislik, ust + yukseklik, 0xE621202A);
         cizim.outline(sol, ust, genislik, yukseklik, 0xFFC49B5C);
         cizim.fill(sol + 10, ust + 10, sol + genislik - 10, ust + 42, 0xC63B2D3B);
         cizim.centeredText(font, Component.translatable("screen.pastbound.modal_title"), sol + genislik / 2, ust + 18, 0xFFF4D6A3);
@@ -110,17 +119,19 @@ public final class RelikDefteriEkrani extends Screen {
         cizim.text(font, Component.literal(tanim.ad()), sol + 52, ust + 60, 0xFFF4E5C4);
         if (yanki != null) {
             cizim.text(font, Component.literal(yanki.baslik()), sol + 52, ust + 76, 0xFFADC8C7);
-            cizim.textWithWordWrap(font, Component.literal(yanki.tarihIzi()), sol + 24, ust + 102, genislik - 48, 0xFFC7D4D9);
-            cizim.textWithWordWrap(font, Component.literal(yanki.hamle()), sol + 24, ust + 125, genislik - 48, 0xFFE4B870);
-            cizim.text(font, Component.translatable("screen.pastbound.sequence", hamleler), sol + 24, ust + 165, 0xFFF4E5C4);
-            cizim.text(font, Component.translatable("screen.pastbound.choose"), sol + 24, ust + 187, 0xFF9FC6BE);
+            cizim.textWithWordWrap(font, Component.literal(tanim.bilmece()), sol + 24, ust + 100, genislik - 48, 0xFFC7D4D9);
+            cizim.textWithWordWrap(font, Component.literal(yanki.hamle()), sol + 24, ust + 124, genislik - 48, 0xFFE4B870);
+            cizim.text(font, Component.translatable("screen.pastbound.riddle_input", bilmeceCevabi), sol + 24, ust + 166, 0xFFF4E5C4);
+            cizim.text(font, Component.translatable("screen.pastbound.sequence", hamleler), sol + 24, ust + 190, 0xFF9FC6BE);
+            cizim.text(font, Component.translatable("screen.pastbound.choose"), sol + 24, ust + 210, 0xFF9FC6BE);
             for (int i = 0; i < 3; i++) {
                 int x = sol + 24 + i * 62;
-                cizim.fill(x, ust + 212, x + 48, ust + 244, 0xB53C4B55);
-                cizim.outline(x, ust + 212, 48, 32, 0xFFB98B52);
-                cizim.centeredText(font, Integer.toString(i + 1), x + 24, ust + 223, 0xFFF4E5C4);
+                cizim.fill(x, ust + 232, x + 48, ust + 264, 0xB53C4B55);
+                cizim.outline(x, ust + 232, 48, 32, 0xFFB98B52);
+                cizim.centeredText(font, Integer.toString(i + 1), x + 24, ust + 243, 0xFFF4E5C4);
             }
-            cizim.text(font, Component.translatable("screen.pastbound.solve_hint"), sol + 24, ust + 257, 0xFF7D8A92);
+            cizim.text(font, Component.translatable("screen.pastbound.solve_gui_hint"), sol + 24, ust + 282, 0xFF7D8A92);
+            cizim.text(font, Component.translatable("screen.pastbound.close"), sol + 24, ust + 300, 0xFF7D8A92);
         }
     }
 
@@ -132,6 +143,19 @@ public final class RelikDefteriEkrani extends Screen {
             return true;
         }
         if (seciliRelik >= 0) {
+            int genislik = Math.min(500, width - 24);
+            int yukseklik = Math.min(350, height - 24);
+            int sol = (width - genislik) / 2;
+            int ust = (height - yukseklik) / 2;
+            for (int i = 0; i < 3; i++) {
+                int x = sol + 24 + i * 62;
+                if (fareX >= x && fareX <= x + 48 && fareY >= ust + 232 && fareY <= ust + 264) {
+                    if (hamleler.length() < 3) {
+                        hamleler += Integer.toString(i + 1);
+                    }
+                    return true;
+                }
+            }
             return true;
         }
         int panelGenislik = Math.min(680, width - 24);
@@ -148,6 +172,7 @@ public final class RelikDefteriEkrani extends Screen {
             if (fareX >= x && fareX <= x + kartGenislik && fareY >= y && fareY <= y + kartYukseklik) {
                 seciliRelik = i;
                 hamleler = "";
+                bilmeceCevabi = "";
                 return true;
             }
         }
@@ -161,6 +186,11 @@ public final class RelikDefteriEkrani extends Screen {
             if (kod == GLFW.GLFW_KEY_ESCAPE) {
                 seciliRelik = -1;
                 hamleler = "";
+                bilmeceCevabi = "";
+                return true;
+            }
+            if (kod == GLFW.GLFW_KEY_BACKSPACE && !bilmeceCevabi.isEmpty()) {
+                bilmeceCevabi = bilmeceCevabi.substring(0, bilmeceCevabi.length() - 1);
                 return true;
             }
             if (kod == GLFW.GLFW_KEY_1 || kod == GLFW.GLFW_KEY_2 || kod == GLFW.GLFW_KEY_3) {
@@ -169,20 +199,41 @@ public final class RelikDefteriEkrani extends Screen {
                 }
                 return true;
             }
-            if (kod == GLFW.GLFW_KEY_ENTER && hamleler.length() == 3) {
+            if (kod == GLFW.GLFW_KEY_ENTER) {
                 Minecraft minecraft = Minecraft.getInstance();
                 if (minecraft.player != null) {
-                    TarihYankisi yanki = TarihYankilari.yankiBulRelik(RelikTanimi.values()[seciliRelik]);
-                    if (yanki != null) {
-                        minecraft.player.connection.send(new ServerboundChatCommandPacket("pastbound echo " + yanki.kimlik() + " " + hamleler));
+                    if (!bilmeceCevabi.isBlank()) {
+                        minecraft.player.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.bilmece(RelikTanimi.values()[seciliRelik].kimlik(), bilmeceCevabi)));
+                    } else if (hamleler.length() == 3) {
+                        TarihYankisi yanki = TarihYankilari.yankiBulRelik(RelikTanimi.values()[seciliRelik]);
+                        if (yanki != null) {
+                            minecraft.player.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.yanki(yanki.kimlik(), hamleler)));
+                        }
                     }
                 }
                 seciliRelik = -1;
                 hamleler = "";
+                bilmeceCevabi = "";
                 return true;
             }
             return true;
         }
+        if (kod == GLFW.GLFW_KEY_U) {
+            Minecraft minecraft = Minecraft.getInstance();
+            if (minecraft.player != null) {
+                minecraft.player.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.slotYukselt()));
+            }
+            return true;
+        }
         return super.keyPressed(olay);
+    }
+
+    @Override
+    public boolean charTyped(CharacterEvent olay) {
+        if (seciliRelik >= 0 && olay.isAllowedChatCharacter() && bilmeceCevabi.length() < 48) {
+            bilmeceCevabi += olay.codepointAsString();
+            return true;
+        }
+        return super.charTyped(olay);
     }
 }

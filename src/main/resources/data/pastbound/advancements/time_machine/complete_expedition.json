@@ -1,0 +1,23 @@
+{
+  "parent": "pastbound:time_machine/ipek_yolu_kervansarayi",
+  "display": {
+    "icon": {
+      "id": "pastbound:time_stone"
+    },
+    "title": {
+      "translate": "advancement.pastbound.time_machine.complete_expedition.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.time_machine.complete_expedition.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
