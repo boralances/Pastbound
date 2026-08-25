@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:harappa_muhru"
+    },
+    "title": {
+      "translate": "advancement.pastbound.harappa_drenaji.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.harappa_drenaji.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

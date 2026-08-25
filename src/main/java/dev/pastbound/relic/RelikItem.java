@@ -2,7 +2,8 @@ package dev.pastbound.relic;
 
 import java.util.function.Consumer;
 
-import dev.pastbound.ModId;
+import dev.pastbound.history.TarihYankisi;
+import dev.pastbound.history.TarihYankilari;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
@@ -68,5 +69,9 @@ public final class RelikItem extends Item implements ICurioItem {
         satir.accept(Component.translatable("tooltip.pastbound.relic.riddle", tanim.bilmece()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.identify", tanim.bilmeSeviyesi()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.shortcut"));
+        TarihYankisi yanki = TarihYankilari.yankiBulRelik(tanim);
+        if (yanki != null) {
+            satir.accept(Component.translatable("tooltip.pastbound.relic.echo", yanki.baslik()));
+        }
     }
 }

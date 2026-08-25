@@ -1,0 +1,23 @@
+{
+  "parent": "pastbound:history/papirus_sifresi",
+  "display": {
+    "icon": {
+      "id": "pastbound:echo_seal"
+    },
+    "title": {
+      "translate": "advancement.pastbound.complete_collection.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.complete_collection.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -32,6 +32,33 @@ relicler = {
     "iskandinav_runetasi": "İskandinav Rune Taşı"
 }
 
+yankilar = {
+    "papirus_sifresi": "Papirüs Şifresi",
+    "uruk_muhru": "Uruk Mührü",
+    "nil_toreni": "Nil Töreni",
+    "girit_ipi": "Girit İpi",
+    "roma_forumu": "Roma Forumu",
+    "kuzey_gunesi": "Kuzey Güneşi",
+    "bushido_yemini": "Bushido Yemini",
+    "maya_takvimi": "Maya Takvimi",
+    "inka_dugumleri": "İnka Düğümleri",
+    "harappa_drenaji": "Harappa Drenajı",
+    "song_firini": "Song Fırını",
+    "benin_dokumu": "Benin Dökümü",
+    "aztek_bes_cag": "Aztek Beş Çağ",
+    "abbasi_bilgi_evi": "Abbasi Bilgi Evi",
+    "ronesans_atolyesi": "Rönesans Atölyesi",
+    "antikithera_gok": "Antikythera Gök Hesabı",
+    "catalhoyuk_evleri": "Çatalhöyük Evleri",
+    "bizans_parca": "Bizans Parçası",
+    "timbuktu_kervani": "Timbuktu Kervanı",
+    "apollo_ay_yuruyusu": "Apollo Ay Yürüyüşü",
+    "ilhanli_menzil": "İlhanlı Menzil Ağı",
+    "polinezya_yildiz": "Polinezya Yıldız Rotası",
+    "mali_sahra_tuzu": "Mali Sahra Tuzu",
+    "rune_tasi": "Rune Taşı"
+}
+
 ortak = {
     "block.pastbound.echo_archive": "Echo Archive",
     "block.pastbound.resonance_pillar": "Resonance Pillar",
@@ -66,12 +93,30 @@ ortak = {
     "screen.pastbound.close": "Esc to close",
     "key.pastbound.journal": "Open Relic Journal",
     "key.pastbound.activate": "Awaken equipped relic",
-    "tooltip.pastbound.relic.era": "Historical trace: %s"
+    "tooltip.pastbound.relic.era": "Historical trace: %s",
+    "tooltip.pastbound.relic.echo": "Discovery echo: %s",
+    "item.pastbound.chronicle_scrap": "Chronicle Scrap",
+    "item.pastbound.history_ink": "History Ink",
+    "item.pastbound.time_stone": "Time Stone",
+    "item.pastbound.echo_seal": "Echo Seal",
+    "screen.pastbound.echo_progress": "Echoes: %s/%s",
+    "screen.pastbound.echo_found": "ECHO FOUND",
+    "screen.pastbound.click_hint": "Click a relic to open its historical trial",
+    "screen.pastbound.modal_title": "Historical Echo Trial",
+    "screen.pastbound.sequence": "Sequence: %s",
+    "screen.pastbound.choose": "Choose 1, 2, or 3",
+    "screen.pastbound.solve_hint": "Enter to submit   Esc to return",
+    "message.pastbound.echo.discovered": "Historical echo recovered: %s",
+    "message.pastbound.echo.trace": "Trace recorded: %s",
+    "message.pastbound.echo.bad_name": "That echo is not in the chronicle.",
+    "message.pastbound.echo.already": "The echo of %s is already recorded.",
+    "message.pastbound.echo.wrong": "The sequence fades. Hint: %s",
+    "message.pastbound.echo_count": "Historical echoes recovered: %s/%s"
 }
 
 metinler = {
     "en_us": {"itemGroup.pastbound": "Pastbound: Echoes of History", "screen.pastbound.journal": "Relic Journal"},
-    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.riddle": "Bilmece: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.riddle_wrong": "Geçmiş susuyor. Bu cevap uymuyor.", "message.pastbound.relic.riddle_right": "Bilmece %s anısını açtı.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.riddle_hint": "Bilmeceyi çöz", "screen.pastbound.close": "Kapatmak için Esc"},
+    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.riddle": "Bilmece: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.riddle_wrong": "Geçmiş susuyor. Bu cevap uymuyor.", "message.pastbound.relic.riddle_right": "Bilmece %s anısını açtı.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.riddle_hint": "Bilmeceyi çöz", "screen.pastbound.close": "Kapatmak için Esc", "screen.pastbound.echo_progress": "Yankılar: %s/%s", "screen.pastbound.echo_found": "YANKI BULUNDU", "screen.pastbound.click_hint": "Tarihî sınavı açmak için bir relic’e tıkla", "screen.pastbound.modal_title": "Tarihî Yankı Sınavı", "screen.pastbound.sequence": "Dizi: %s", "screen.pastbound.choose": "1, 2 veya 3 seç", "screen.pastbound.solve_hint": "Göndermek için Enter   Geri dönmek için Esc", "message.pastbound.echo.discovered": "Tarihî yankı bulundu: %s", "message.pastbound.echo.trace": "İz kaydedildi: %s", "message.pastbound.echo.bad_name": "Bu yankı kronikte yok.", "message.pastbound.echo.already": "%s yankısı zaten kaydedildi.", "message.pastbound.echo.wrong": "Dizi dağıldı. İpucu: %s", "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s", "tooltip.pastbound.relic.echo": "Keşif yankısı: %s"},
     "de_de": {"itemGroup.pastbound": "Pastbound: Echos der Geschichte", "screen.pastbound.journal": "Relikt-Tagebuch", "screen.pastbound.progress": "Geborgene Erinnerungen: %s/%s", "screen.pastbound.help": "R Tagebuch   V erwecken", "screen.pastbound.ready": "BEKANNT", "screen.pastbound.unknown": "UNBEKANNT", "screen.pastbound.riddle_hint": "Rätsel lösen", "screen.pastbound.close": "Esc zum Schließen"},
     "fr_fr": {"itemGroup.pastbound": "Pastbound : Échos de l’histoire", "screen.pastbound.journal": "Journal des reliques", "screen.pastbound.progress": "Souvenirs retrouvés : %s/%s", "screen.pastbound.help": "R journal   V éveiller", "screen.pastbound.ready": "CONNU", "screen.pastbound.unknown": "INCONNU", "screen.pastbound.riddle_hint": "Résoudre l’énigme", "screen.pastbound.close": "Esc pour fermer"},
     "es_es": {"itemGroup.pastbound": "Pastbound: Ecos de la historia", "screen.pastbound.journal": "Diario de reliquias", "screen.pastbound.progress": "Memorias recuperadas: %s/%s", "screen.pastbound.help": "R diario   V despertar", "screen.pastbound.ready": "CONOCIDA", "screen.pastbound.unknown": "DESCONOCIDA", "screen.pastbound.riddle_hint": "Resuelve el acertijo", "screen.pastbound.close": "Esc para cerrar"},
@@ -114,4 +159,7 @@ for locale, add in metinler.items():
     for kimlik, ad in relicler.items():
         veri[f"item.pastbound.{kimlik}"] = ad
         veri[f"tooltip.pastbound.{kimlik}"] = ad
+    for kimlik, ad in yankilar.items():
+        veri[f"advancement.pastbound.{kimlik}.title"] = ad
+        veri[f"advancement.pastbound.{kimlik}.description"] = "Solve the historical echo trial to recover its memory."
     (lang / f"{locale}.json").write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

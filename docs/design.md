@@ -23,10 +23,14 @@ The player is a field historian rather than a conventional treasure hunter. Ever
 | 7 | Equip the known relic in a Curios relic slot | History becomes a persistent loadout choice. |
 | 8 | Press V or right-click to awaken it | The player deliberately invokes one historical capability. |
 | 9 | Open the journal with R | The expedition becomes legible and collectible. |
+| 10 | Trigger an ordinary historical action | Mining clay, reading an archive, crafting a clock, entering a dimension, meeting a villager, smelting metal, navigating by night, or descending into water wakes a themed echo. |
+| 11 | Open a relic card | A custom modal turns the echo into a short visual 1-2-3 sequence trial. |
+| 12 | Submit the sequence | The server validates the trial, records the echo, grants XP, and awards its advancement. |
+| 13 | Complete the codex | Twenty-four echo advancements culminate in the Complete Collection challenge. |
 
 ## Relic system
 
-Pastbound contains twenty-four relics. Every relic has a stable registry ID, a standalone 16×16 texture, a model, a historical trace, a knowledge cost, a riddle, an activation cooldown, an active ability, and an optional passive pulse. The knowledge record is stored in NeoForge entity persistent data and survives ordinary world saves.
+Pastbound contains twenty-four relics. Every relic has a stable registry ID, a standalone 16×16 texture, a model, a historical trace, a knowledge cost, a riddle, an activation cooldown, an active ability, an optional passive pulse, and a paired historical echo trial. Trial data includes its historical action, narrative clue, three-step solution sequence, XP reward, and advancement key. The knowledge record is stored in NeoForge entity persistent data and survives ordinary world saves.
 
 The riddles accept several thematic keywords so that the feature feels like a playful museum interpretation challenge rather than a brittle trivia exam. The XP path remains available for players who want a direct progression route or are playing inside a larger modpack.
 
@@ -40,9 +44,9 @@ The riddles accept several thematic keywords so that the feature feels like a pl
 
 ## Curios equipment
 
-Pastbound defines a data-driven Curios slot named `relic`. It provides two positions and accepts the `curios:relic` item tag. Each relic implements `ICurioItem`, validates placement into relic-like slots, applies passive effects from equipped known relics, and exposes active actions to the common gameplay layer.
+Pastbound defines a data-driven Curios slot named `relic`. It provides five positions and accepts the `curios:relic` item tag. Each relic implements `ICurioItem`, validates placement into relic-like slots, applies passive effects from equipped known relics, and exposes active actions to the common gameplay layer.
 
-The V shortcut searches Curios inventory for the first known relic and activates it. This is simple enough for immediate play while keeping two slots meaningful for experimenting with different historical powers.
+The V shortcut searches Curios inventory for the first known relic and activates it. Five slots support themed loadouts such as navigation, scholarship, defence, ceremony, and exploration without removing the clarity of one-button activation.
 
 ## Knowledge and balance
 
@@ -65,7 +69,7 @@ Resonance Pillars within the archive’s five-by-three-by-five volume are charge
 
 ## Relic Journal UI
 
-The journal is a non-pausing Minecraft screen with a dark parchment and oxidised-metal palette. It presents a four-column card grid, a recovered-memory counter, known and unknown states, historical traces, activation status, and the controls needed to continue the expedition. Unknown cards expose the riddle path instead of becoming empty placeholders.
+The journal is a non-pausing Minecraft screen with a dark parchment and oxidised-metal palette. It presents a four-column card grid, recovered-memory and echo counters, known and unknown states, historical traces, activation status, and the controls needed to continue the expedition. Clicking a card opens a custom texture-backed modal with a three-step trial; unknown cards remain useful instead of becoming empty placeholders.
 
 The R and V keys use a dedicated Pastbound key category. V sends a server-authoritative `pastbound activate` command, so single-player and dedicated-server behavior remain consistent.
 
@@ -77,7 +81,7 @@ No new biome or stone family is introduced in this version. The project conseque
 
 ## Packaging
 
-The project includes 36 locale files, 24 relic recipes, block loot tables, blockstates, block models, item models, Curios slot data, a Curios item tag, source-controlled texture and locale generators, a complete README, and an MIT license.
+The project includes 36 locale files, 24 relic recipes, 4 research-material recipes, 25 advancement definitions, block loot tables, blockstates, block models, item models, five-position Curios slot data, a Curios item tag, source-controlled texture, locale, and historical-data generators, a complete README, and an MIT license.
 
 ## Acceptance criteria
 
@@ -86,12 +90,16 @@ The project includes 36 locale files, 24 relic recipes, block loot tables, block
 | NeoForge target | `gradle.properties` uses Minecraft 26.2 and NeoForge 26.2.0.66. |
 | Curios support | Gradle dependency, metadata dependency, slot JSON, item tag, and `ICurioItem` implementation exist. |
 | Relic count | `RelikTanimi` contains twenty-four entries and the registry generates twenty-four items. |
+| Historical events | `TarihYankisi` contains twenty-four event/action trials and `TarihYankilari` binds them to NeoForge actions. |
+| Mini games | The journal modal accepts three symbol choices and server-validates the sequence through `/pastbound echo`. |
+| Advancement progression | Each historical echo has an advancement and all twenty-four combine into `complete_collection`. |
+| Curios capacity | The data-driven `relic` slot has five positions and uses the `curios:relic` validator tag. |
 | Knowledge paths | Each relic supports an XP route and a riddle route. |
 | Server authority | V sends a server command and active effects execute in common logic. |
 | UI | R opens the Relik Journal with recovery progress and relic cards. |
 | Localization | At least thirty-two locale files exist with the complete item and UI key set. |
 | Texture quality | Every relic is a standalone 16×16 PNG generated from a deterministic palette script. |
-| Build output | The Gradle jar task creates `build/libs/Pastbound-1.0.0.jar`. |
+| Build output | The Gradle jar task creates `build/libs/Pastbound-1.1.0.jar`. |
 | Comments | Source code contains no line-style or Javadoc comment lines. |
 
 ## References

@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:roma_aureusu"
+    },
+    "title": {
+      "translate": "advancement.pastbound.roma_forumu.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.roma_forumu.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

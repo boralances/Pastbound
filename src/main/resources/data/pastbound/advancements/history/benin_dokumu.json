@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:benin_bronzu"
+    },
+    "title": {
+      "translate": "advancement.pastbound.benin_dokumu.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.benin_dokumu.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

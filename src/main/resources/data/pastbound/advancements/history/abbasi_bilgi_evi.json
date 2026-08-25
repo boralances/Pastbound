@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:abbasid_murekkebi"
+    },
+    "title": {
+      "translate": "advancement.pastbound.abbasi_bilgi_evi.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.abbasi_bilgi_evi.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

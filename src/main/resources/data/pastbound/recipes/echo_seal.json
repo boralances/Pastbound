@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "pastbound:history_ink"
+    },
+    {
+      "item": "pastbound:time_stone"
+    },
+    {
+      "item": "minecraft:gold_nugget"
+    }
+  ],
+  "result": {
+    "id": "pastbound:echo_seal",
+    "count": 1
+  }
+}

@@ -4,9 +4,15 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
+import dev.pastbound.history.TarihYankisi;
+import dev.pastbound.history.TarihYankilari;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -14,7 +20,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.server.level.ServerLevel;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
@@ -22,6 +27,7 @@ import net.neoforged.neoforge.common.extensions.IEntityExtension;
 
 public final class RelikMantigi {
     private static final String BILINEN_RELIKLER = "pastbound_bilinen_relikler";
+    private static final String TAMAMLANAN_YANKILAR = "pastbound_tamamlanan_tarih_yankilari";
     private static final String AYRAC = "|";
 
     private RelikMantigi() {
@@ -61,6 +67,68 @@ public final class RelikMantigi {
         return null;
     }
 
+    public static boolean yankiTamamlandiMi(Player oyuncu, TarihYankisi yanki) {
+        String kayit = ((IEntityExtension) oyuncu).getPersistentData().getStringOr(TAMAMLANAN_YANKILAR, "");
+        return Arrays.asList(kayit.split("\\|", -1)).contains(yanki.kimlik());
+    }
+
+    public static int tamamlananYankiSayisi(Player oyuncu) {
+        int sayi = 0;
+        for (TarihYankisi yanki : TarihYankisi.values()) {
+            if (yankiTamamlandiMi(oyuncu, yanki)) {
+                sayi++;
+            }
+        }
+        return sayi;
+    }
+
+    public static void yankiyiTamamla(Player oyuncu, TarihYankisi yanki) {
+        if (yankiTamamlandiMi(oyuncu, yanki)) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        String eski = veri.getStringOr(TAMAMLANAN_YANKILAR, "");
+        veri.putString(TAMAMLANAN_YANKILAR, eski.isEmpty() ? yanki.kimlik() : eski + AYRAC + yanki.kimlik());
+        bilgiyeEkle(oyuncu, yanki.relik());
+        oyuncu.giveExperiencePoints(yanki.deneyim());
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.discovered", yanki.baslik()));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.trace", yanki.tarihIzi()));
+        ilerlemeyiVer(oyuncu, yanki);
+    }
+
+    public static boolean yankiyiCoz(Player oyuncu, String kimlik, String hamle) {
+        TarihYankisi yanki = TarihYankilari.yankiBul(kimlik);
+        if (yanki == null) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.bad_name"));
+            return false;
+        }
+        if (yankiTamamlandiMi(oyuncu, yanki)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.already", yanki.baslik()));
+            return true;
+        }
+        String temiz = hamle.replaceAll("[^1-3]", "");
+        if (!temiz.equals(yanki.kod())) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.wrong", yanki.hamle()));
+            return false;
+        }
+        yankiyiTamamla(oyuncu, yanki);
+        oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.5F);
+        return true;
+    }
+
+    private static void ilerlemeyiVer(Player oyuncu, TarihYankisi yanki) {
+        if (oyuncu instanceof ServerPlayer sunucu) {
+            AdvancementHolder basari = sunucu.level().getServer().getAdvancements().get(Identifier.fromNamespaceAndPath("pastbound", "history/" + yanki.kimlik()));
+            if (basari != null) {
+                sunucu.getAdvancements().award(basari, "kesif");
+            }
+            AdvancementHolder koleksiyon = sunucu.level().getServer().getAdvancements().get(Identifier.fromNamespaceAndPath("pastbound", "history/complete_collection"));
+            if (koleksiyon != null && tamamlananYankiSayisi(oyuncu) >= TarihYankisi.values().length) {
+                sunucu.getAdvancements().award(koleksiyon, "kesif");
+            }
+        }
+    }
+
     public static boolean bilmeceCevapla(Player oyuncu, String kimlik, String cevap) {
         RelikTanimi tanim = tanimBul(kimlik);
         if (tanim == null) {
@@ -77,6 +145,10 @@ public final class RelikMantigi {
             return false;
         }
         bilgiyeEkle(oyuncu, tanim);
+        TarihYankisi yanki = TarihYankilari.yankiBulRelik(tanim);
+        if (yanki != null) {
+            yankiyiTamamla(oyuncu, yanki);
+        }
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.riddle_right", tanim.ad()));
         oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
         return true;
@@ -176,6 +248,36 @@ public final class RelikMantigi {
             case DENIZ -> efekt(oyuncu, MobEffects.DOLPHINS_GRACE, 360, 1);
             case BEREKET -> efekt(oyuncu, MobEffects.LUCK, 400, 2);
             case SESSIZLIK -> efekt(oyuncu, MobEffects.INVISIBILITY, 180, 0);
+        }
+        ozelYankiUygula(oyuncu, tanim);
+    }
+
+    private static void ozelYankiUygula(Player oyuncu, RelikTanimi tanim) {
+        switch (tanim) {
+            case ROSSETTA_TASI -> oyuncu.giveExperiencePoints(6);
+            case GILGAMESH_TABLETI -> efekt(oyuncu, MobEffects.ABSORPTION, 160, 1);
+            case ANUBIS_ANKHI -> efekt(oyuncu, MobEffects.REGENERATION, 100, 0);
+            case MINOS_LABIRENT_MUHRU -> efekt(oyuncu, MobEffects.SPEED, 100, 0);
+            case ROMA_AUREUSU -> oyuncu.giveExperiencePoints(8);
+            case VIKING_GUNES_PUSULASI -> efekt(oyuncu, MobEffects.HASTE, 120, 0);
+            case SAMURAY_KABZASI -> efekt(oyuncu, MobEffects.RESISTANCE, 120, 0);
+            case MAYA_GUNES_CARKI -> oyuncu.setRemainingFireTicks(0);
+            case INKA_QUIPUSU -> oyuncu.giveExperiencePoints(5);
+            case HARAPPA_MUHRU -> efekt(oyuncu, MobEffects.HASTE, 120, 1);
+            case SONG_PORSELENI -> efekt(oyuncu, MobEffects.WATER_BREATHING, 120, 0);
+            case BENIN_BRONZU -> efekt(oyuncu, MobEffects.ABSORPTION, 120, 0);
+            case AZTEK_GUNES_TASI -> oyuncu.setRemainingFireTicks(0);
+            case ABBASID_MUREKKEBI -> oyuncu.giveExperiencePoints(10);
+            case RONESANS_ASTROLABI -> efekt(oyuncu, MobEffects.SLOW_FALLING, 160, 0);
+            case ANTIKITHERA_DUZENEĞI -> oyuncu.getCooldowns().addCooldown(oyuncu.getMainHandItem(), 20);
+            case CATALHOYUK_BONCUGU -> efekt(oyuncu, MobEffects.REGENERATION, 80, 0);
+            case BIZANS_MOZAIGI -> efekt(oyuncu, MobEffects.RESISTANCE, 100, 0);
+            case TIMBUKTU_KALEMI -> oyuncu.giveExperiencePoints(9);
+            case APOLLO17_ARMASI -> efekt(oyuncu, MobEffects.SLOW_FALLING, 220, 1);
+            case ILHANLI_MADALYONU -> efekt(oyuncu, MobEffects.HERO_OF_THE_VILLAGE, 120, 0);
+            case POLINEZYA_YILDIZ_HARITASI -> efekt(oyuncu, MobEffects.WATER_BREATHING, 160, 0);
+            case MALI_TUZ_MUHRU -> oyuncu.giveExperiencePoints(7);
+            case ISKANDINAV_RUNETASI -> efekt(oyuncu, MobEffects.INVISIBILITY, 80, 0);
         }
     }
 

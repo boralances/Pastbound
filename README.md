@@ -2,7 +2,7 @@
 
 **Pastbound** is a CurseForge ModJam 2026 entry for **“Echoes of the Past.”** The mod treats history as a playable force rather than a decorative background. Forgotten civilizations leave behind physical relics; players recover their stories, solve the riddles attached to them, place them in a Curios relic slot, and bring a historical ability into the present.
 
-Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The final archive is named **`Pastbound-1.0.0.jar`**.
+Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The final archive is named **`Pastbound-1.1.0.jar`**.
 
 ## Design pitch
 
@@ -22,10 +22,12 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 | Resonance Pillar | A relay for a recovered historical signal | Activates across a 5×3×5 shrine volume and fades after 120 ticks. |
 | Echo Shard | A crystallized instant | Feeds the archive and is the shared catalyst for relic crafting. |
 | Memory Lens | An interpretive optical instrument | Reads complete memories, consumes durability, and awakens the shrine. |
-| Curios relic slot | A wearable museum case | Adds two `relic` slots accepting the `curios:relic` item tag. |
+| Curios relic slot | A wearable museum case | Adds five `relic` slots accepting the `curios:relic` item tag. |
 | Relic Journal | A field notebook for the expedition | Opens with **R** and shows progression in a Minecraft-native dark parchment style. |
 | Relic awakening | History made active | Uses **V** or right-click to trigger the learned relic’s ability. |
 | Riddle knowledge | A playful interpretation layer | Makes identification possible without XP when the player solves the relic’s clue. |
+| Historical Echo Trials | A sequence of playable archival moments | Adds twenty-four event-linked historical mini games with server-validated 1-2-3 sequences, XP rewards, and advancement unlocks. |
+| Chronicle research materials | Reconstructed scholarship supplies | Adds Chronicle Scrap, History Ink, Time Stone, and Echo Seal as a four-step crafting chain. |
 
 ## Relic catalogue
 
@@ -56,29 +58,30 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 | Mali Tuz Mührü | Saharan trade | Luck |
 | İskandinav Rune Taşı | Northern inscription tradition | Invisibility |
 
-Each relic has its own 16×16 PNG, item model, item name, historical trace, riddle, knowledge cost, activation cooldown, active effect, passive pulse behavior, and shapeless recipe using an Echo Shard plus a related vanilla material.
+Each relic has its own 16×16 PNG, item model, item name, historical trace, riddle, knowledge cost, activation cooldown, active effect, passive pulse behavior, and shapeless recipe using an Echo Shard plus a related vanilla material. Each relic is also paired with a historical echo trial, from the Papyrus Cipher and Uruk Seal to the Timbuktu Caravan, Apollo Moon Walk, and Rune Stone.
 
 ## Controls and commands
 
-The **R** key opens the Relic Journal. The **V** key sends a server-authoritative `pastbound activate` command that awakens the first known relic currently worn through Curios. Right-clicking an unknown relic displays its riddle and XP cost; holding Shift while using it pays the cost and identifies it. The command `/pastbound journal` reports progress, `/pastbound activate` activates the first known worn relic, and `/pastbound riddle <relic> <answer>` provides the alternate riddle path.
+The **R** key opens the Relic Journal. Clicking a relic card opens a custom historical trial modal with a visual sequence puzzle; choose three symbols with **1**, **2**, or **3**, then press **Enter** to submit. The **V** key sends a server-authoritative `pastbound activate` command. Right-clicking an unknown relic displays its riddle and XP cost; holding Shift while using it pays the cost and identifies it. The commands `/pastbound journal`, `/pastbound codex`, `/pastbound activate`, `/pastbound echo <echo> <sequence>`, and `/pastbound riddle <relic> <answer>` expose the full discovery loop.
 
 ## Curios integration
 
-Curios is a required runtime dependency. The project declares the Curios Maven repository, compiles against the `curios-neoforge:16.0.0+26.2:api` classifier, includes the full Curios runtime in `localRuntime`, and provides the data-driven slot file at `data/curios/curios/slots/relic.json`. The slot has two positions, native Curios GUI behavior, a cosmetic companion slot, a custom empty-slot icon, and an item validator based on `data/curios/tags/items/relic.json`.
+Curios is a required runtime dependency. The project declares the Curios Maven repository, compiles against the `curios-neoforge:16.0.0+26.2:api` classifier, includes the full Curios runtime in `localRuntime`, and provides the data-driven slot file at `data/curios/curios/slots/relic.json`. The slot has five positions, native Curios GUI behavior, a cosmetic companion slot, a custom empty-slot icon, and an item validator based on `data/curios/tags/items/relic.json`.
 
 ## Localization
 
-The project includes **36 locale JSON files**, exceeding the requested 32-language target. Every locale contains the Pastbound UI strings, keybind labels, archive feedback, relic activation messages, and the complete relic catalogue. The generated set includes English, Turkish, German, French, Spanish variants, Italian, Portuguese variants, Russian, Ukrainian, Polish, Dutch, Nordic locales, Central European locales, Chinese variants, Japanese, Korean, Vietnamese, Thai, Indonesian, Arabic, Hebrew, Afrikaans, Esperanto, Irish, and Welsh.
+The project includes **36 locale JSON files**, exceeding the requested 32-language target. Every locale contains the Pastbound UI strings, keybind labels, archive feedback, relic activation messages, the complete relic catalogue, historical trial labels, modal instructions, event progress, and advancement keys. The generated set includes English, Turkish, German, French, Spanish variants, Italian, Portuguese variants, Russian, Ukrainian, Polish, Dutch, Nordic locales, Central European locales, Chinese variants, Japanese, Korean, Vietnamese, Thai, Indonesian, Arabic, Hebrew, Afrikaans, Esperanto, Irish, and Welsh.
 
 The locale generator is deterministic and can be rerun with:
 
 ```bash
 python3 tools/generate_locales.py
+python3 tools/generate_history_data.py
 ```
 
 ## Texture production
 
-All relic sprites and supporting assets are deterministic 16×16 pixel art generated from explicit RGB palette data. The blueprint intentionally uses uneven highlights, dark edge pixels, small asymmetries, material-specific palettes, and distinct hand-drawn glyph patterns instead of a single recoloured placeholder. The archive, pillar, charged pillar, Curios slot icon, and 256×256 journal texture are generated by the same source-controlled script.
+All relic sprites and supporting assets are deterministic 16×16 pixel art generated from explicit RGB palette data. The blueprint intentionally uses uneven highlights, dark edge pixels, small asymmetries, material-specific palettes, and distinct hand-drawn glyph patterns instead of a single recoloured placeholder. The archive, pillar, charged pillar, Curios slot icon, 256×256 journal texture, 256×192 historical trial modal texture, and four research-material sprites are generated by the same source-controlled script.
 
 ```bash
 python3 tools/generate_relic_assets.py
@@ -107,6 +110,7 @@ Pastbound/
 │   ├── generate_locales.py
 │   ├── generate_relic_assets.py
 │   ├── generate_relic_recipes.py
+│   ├── generate_history_data.py
 │   └── generate_textures.py
 └── src/main/
     ├── java/dev/pastbound/
@@ -114,6 +118,9 @@ Pastbound/
     │   ├── PastboundMemory.java
     │   ├── block/
     │   ├── block/entity/
+    │   ├── history/
+    │   │   ├── TarihYankisi.java
+    │   │   └── TarihYankilari.java
     │   ├── client/
     │   │   ├── RelikClient.java
     │   │   ├── RelikClientOyun.java
@@ -138,6 +145,7 @@ Pastbound/
         │   ├── curios/slots/relic.json
         │   └── tags/items/relic.json
         └── data/pastbound/
+            ├── advancements/history/
             ├── loot_table/
             ├── recipes/
             └── tags/
@@ -157,7 +165,7 @@ java -version
 The final file is created at:
 
 ```text
-Pastbound/build/libs/Pastbound-1.0.0.jar
+Pastbound/build/libs/Pastbound-1.1.0.jar
 ```
 
 For Windows PowerShell, use:
@@ -181,7 +189,7 @@ If a local Gradle cache is incomplete, use:
 ./gradlew --refresh-dependencies clean build
 ```
 
-The repository also contains a sandbox-validated JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above.
+The repository also contains a sandbox-validated 1.1.0 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above.
 
 ## License
 

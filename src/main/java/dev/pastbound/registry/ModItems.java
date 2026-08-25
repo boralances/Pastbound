@@ -23,6 +23,10 @@ public final class ModItems {
 
     public static final DeferredItem<EchoShardItem> ECHO_SHARD = ITEMS.register("echo_shard", registryName -> new EchoShardItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
     public static final DeferredItem<MemoryLensItem> MEMORY_LENS = ITEMS.register("memory_lens", registryName -> new MemoryLensItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).durability(128)));
+    public static final DeferredItem<Item> CHRONICLE_SCRAP = ITEMS.register("chronicle_scrap", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(32)));
+    public static final DeferredItem<Item> HISTORY_INK = ITEMS.register("history_ink", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
+    public static final DeferredItem<Item> TIME_STONE = ITEMS.register("time_stone", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
+    public static final DeferredItem<Item> ECHO_SEAL = ITEMS.register("echo_seal", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
 
     public static final List<DeferredItem<RelikItem>> RELIKLER = new ArrayList<>();
 

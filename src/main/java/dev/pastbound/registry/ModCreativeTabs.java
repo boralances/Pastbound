@@ -22,6 +22,10 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.MEMORY_LENS.get());
             olay.accept(ModItems.ECHO_ARCHIVE.get());
             olay.accept(ModItems.RESONANCE_PILLAR.get());
+            olay.accept(ModItems.CHRONICLE_SCRAP.get());
+            olay.accept(ModItems.HISTORY_INK.get());
+            olay.accept(ModItems.TIME_STONE.get());
+            olay.accept(ModItems.ECHO_SEAL.get());
             ModItems.RELIKLER.forEach(relik -> olay.accept(relik.get()));
         }
     }

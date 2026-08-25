@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:aztek_gunes_tasi"
+    },
+    "title": {
+      "translate": "advancement.pastbound.aztek_bes_cag.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.aztek_bes_cag.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

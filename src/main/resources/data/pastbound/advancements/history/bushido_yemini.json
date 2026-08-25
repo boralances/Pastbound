@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:samuray_kabzasi"
+    },
+    "title": {
+      "translate": "advancement.pastbound.bushido_yemini.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.bushido_yemini.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

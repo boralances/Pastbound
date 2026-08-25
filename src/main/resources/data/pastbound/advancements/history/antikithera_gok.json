@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:antikithera_duzenegi"
+    },
+    "title": {
+      "translate": "advancement.pastbound.antikithera_gok.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.antikithera_gok.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

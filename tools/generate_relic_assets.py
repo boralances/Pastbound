@@ -153,6 +153,49 @@ def journal_texture():
     ciz.rectangle((12, 12, 243, 243), outline=(83, 137, 134, 90), width=1)
     return goruntu
 
+
+def history_modal():
+    goruntu = Image.new("RGBA", (256, 192), (25, 24, 32, 255))
+    ciz = ImageDraw.Draw(goruntu)
+    for y in range(192):
+        ton = int(26 + y * 0.12)
+        ciz.line((0, y, 255, y), fill=(ton + 12, ton + 8, ton + 16, 255))
+    ciz.rectangle((5, 5, 250, 186), outline=(196, 153, 87, 255), width=2)
+    ciz.rectangle((10, 10, 245, 181), outline=(79, 133, 128, 180), width=1)
+    ciz.rectangle((18, 32, 238, 34), fill=(177, 128, 75, 160))
+    ciz.rectangle((18, 158, 238, 160), fill=(177, 128, 75, 160))
+    ciz.polygon([(128, 52), (151, 76), (142, 109), (114, 109), (105, 76)], fill=(75, 137, 132, 210))
+    ciz.line([(128, 52), (128, 109)], fill=(238, 208, 135, 255), width=2)
+    ciz.line([(105, 76), (151, 76)], fill=(238, 208, 135, 255), width=2)
+    ciz.point((128, 76), fill=(255, 242, 185, 255))
+    return goruntu
+
+
+def tarih_esyasi(renk, sira):
+    koyu = karistir(renk, -70)
+    acik = karistir(renk, 55)
+    goruntu = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    ciz = ImageDraw.Draw(goruntu)
+    if sira == 0:
+        ciz.rectangle((3, 3, 12, 12), fill=koyu + (255,))
+        ciz.rectangle((4, 4, 11, 11), fill=renk + (255,))
+        ciz.line([(6, 6), (10, 6), (6, 8), (10, 8), (6, 10), (10, 10)], fill=acik + (255,))
+    elif sira == 1:
+        ciz.rectangle((4, 2, 11, 13), fill=koyu + (255,))
+        ciz.rectangle((5, 3, 10, 12), fill=renk + (255,))
+        ciz.point((7, 5), fill=acik + (255,))
+        ciz.point((8, 7), fill=acik + (255,))
+        ciz.point((7, 9), fill=acik + (255,))
+    elif sira == 2:
+        ciz.ellipse((3, 3, 12, 12), fill=koyu + (255,))
+        ciz.ellipse((4, 4, 11, 11), outline=renk + (255,), width=2)
+        ciz.line([(8, 5), (8, 8), (10, 10)], fill=acik + (255,), width=1)
+    else:
+        ciz.polygon([(8, 2), (13, 7), (8, 14), (3, 7)], fill=koyu + (255,))
+        ciz.polygon([(8, 4), (11, 7), (8, 12), (5, 7)], fill=renk + (255,))
+        ciz.point((8, 7), fill=acik + (255,))
+    return goruntu
+
 for sira, (kimlik, renk) in enumerate(renkler.items()):
     kare_cizimi(renk, sira).save(item_dizini / f"{kimlik}.png")
     model = {"parent": "item/generated", "textures": {"layer0": f"pastbound:item/relics/{kimlik}"}}
@@ -165,3 +208,14 @@ duz_kare((91, 72, 75)).save(varlik / "textures/block/resonance_pillar.png")
 duz_kare((72, 119, 111), True).save(varlik / "textures/block/resonance_pillar_charged.png")
 relic_slot().save(slot_dizini / "empty_relic_slot.png")
 journal_texture().save(gui_dizini / "relic_journal.png")
+history_modal().save(gui_dizini / "history_modal.png")
+yeni_esyalar = {
+    "chronicle_scrap": ((181, 148, 91), 0),
+    "history_ink": ((62, 66, 104), 1),
+    "time_stone": ((76, 156, 151), 2),
+    "echo_seal": ((201, 142, 64), 3)
+}
+for kimlik, (renk, sira) in yeni_esyalar.items():
+    tarih_esyasi(renk, sira).save(varlik / "textures/item" / f"{kimlik}.png")
+    model = {"parent": "item/generated", "textures": {"layer0": f"pastbound:item/{kimlik}"}}
+    (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
