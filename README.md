@@ -28,6 +28,7 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 | Riddle knowledge | A playful interpretation layer | Makes identification possible without XP when the player solves the relic’s clue. |
 | Historical Echo Trials | A sequence of playable archival moments | Adds twenty-four event-linked historical mini games with server-validated 1-2-3 sequences, XP rewards, and advancement unlocks. |
 | Chronicle research materials | Reconstructed scholarship supplies | Adds Chronicle Scrap, History Ink, Time Stone, and Echo Seal as a four-step crafting chain. |
+| Global history pulse | A server-wide historical era | Rotates twelve historical periods and opens their echo trial for every connected player. |
 
 ## Relic catalogue
 
@@ -59,6 +60,18 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 | İskandinav Rune Taşı | Northern inscription tradition | Invisibility |
 
 Each relic has its own 16×16 PNG, item model, item name, historical trace, riddle, knowledge cost, activation cooldown, active effect, passive pulse behavior, and shapeless recipe using an Echo Shard plus a related vanilla material. Each relic is also paired with a historical echo trial, from the Papyrus Cipher and Uruk Seal to the Timbuktu Caravan, Apollo Moon Walk, and Rune Stone.
+
+## Relic-specific abilities
+
+The base RelikYetisi effect remains recognizable in Minecraft terms, while `ozelYankiUygula` adds a relic-specific historical action. At least ten relics now combine the classic effect with behavior that cannot be reduced to a potion icon: Rosetta reveals nearby living entities with a knowledge glow; Gilgamesh grants a heroic lift; Anubis heals and extinguishes fire; Minos gives a vaulting leap; Roma produces a trade nugget; Viking combines haste and night vision; Samurai creates a defensive buffer; Maya clears fire and invokes solar protection; Inka accelerates the player while awarding knowledge; Harappa returns clay research material; Song restores air; Benin shares a discovery glow; Renaissance and Apollo provide measured vertical movement; Timbuktu produces paper research; Ilhanlı grants a trade emerald; and Polynesia combines water travel with directional momentum.
+
+These custom actions are applied after the classic effect and are encoded with Turkish method and variable names in the common gameplay layer. They work from both right-click and the V shortcut, so Curios loadouts stay useful without introducing a second activation system.
+
+## Global historical events
+
+`KureselTarihOlaylari` listens to the global server tick and rotates twelve server-wide historical periods: Writing Revolution, Nile Canals, Star Voyage, Caravan Road, Calendar Council, Smiths’ Memory, Mosaic Peace, Silk Exchange, Quipu Count, Astrolabe Sky, Rune Watch, and Moon Mission. Each period broadcasts a world-level message, unlocks its related echo trial for every connected player, and can add context-aware effects or particles when the player carries a relevant vanilla object such as a book, map, ingot, string, or clock.
+
+The player-facing world actions include writing with books, reading routes with maps and compasses, carrying metal underground, trading with gold, travelling over high ground, entering water, surviving the End, walking at night, and following the server-wide era rotation. These are global history signals rather than arbitrary fantasy triggers, keeping the mod centered on historical technologies, travel, records, craft, and exchange.
 
 ## Controls and commands
 
@@ -119,6 +132,8 @@ Pastbound/
     │   ├── block/
     │   ├── block/entity/
     │   ├── history/
+    │   │   ├── KureselTarihOlayi.java
+    │   │   ├── KureselTarihOlaylari.java
     │   │   ├── TarihYankisi.java
     │   │   └── TarihYankilari.java
     │   ├── client/

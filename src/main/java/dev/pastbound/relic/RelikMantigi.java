@@ -17,8 +17,11 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.item.ItemCooldowns;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
@@ -275,30 +278,117 @@ public final class RelikMantigi {
 
     private static void ozelYankiUygula(Player oyuncu, RelikTanimi tanim) {
         switch (tanim) {
-            case ROSSETTA_TASI -> oyuncu.giveExperiencePoints(6);
-            case GILGAMESH_TABLETI -> efekt(oyuncu, MobEffects.ABSORPTION, 160, 1);
-            case ANUBIS_ANKHI -> efekt(oyuncu, MobEffects.REGENERATION, 100, 0);
-            case MINOS_LABIRENT_MUHRU -> efekt(oyuncu, MobEffects.SPEED, 100, 0);
-            case ROMA_AUREUSU -> oyuncu.giveExperiencePoints(8);
-            case VIKING_GUNES_PUSULASI -> efekt(oyuncu, MobEffects.HASTE, 120, 0);
-            case SAMURAY_KABZASI -> efekt(oyuncu, MobEffects.RESISTANCE, 120, 0);
-            case MAYA_GUNES_CARKI -> oyuncu.setRemainingFireTicks(0);
-            case INKA_QUIPUSU -> oyuncu.giveExperiencePoints(5);
-            case HARAPPA_MUHRU -> efekt(oyuncu, MobEffects.HASTE, 120, 1);
-            case SONG_PORSELENI -> efekt(oyuncu, MobEffects.WATER_BREATHING, 120, 0);
-            case BENIN_BRONZU -> efekt(oyuncu, MobEffects.ABSORPTION, 120, 0);
-            case AZTEK_GUNES_TASI -> oyuncu.setRemainingFireTicks(0);
-            case ABBASID_MUREKKEBI -> oyuncu.giveExperiencePoints(10);
-            case RONESANS_ASTROLABI -> efekt(oyuncu, MobEffects.SLOW_FALLING, 160, 0);
-            case ANTIKITHERA_DUZENEĞI -> oyuncu.getCooldowns().addCooldown(oyuncu.getMainHandItem(), 20);
-            case CATALHOYUK_BONCUGU -> efekt(oyuncu, MobEffects.REGENERATION, 80, 0);
-            case BIZANS_MOZAIGI -> efekt(oyuncu, MobEffects.RESISTANCE, 100, 0);
-            case TIMBUKTU_KALEMI -> oyuncu.giveExperiencePoints(9);
-            case APOLLO17_ARMASI -> efekt(oyuncu, MobEffects.SLOW_FALLING, 220, 1);
-            case ILHANLI_MADALYONU -> efekt(oyuncu, MobEffects.HERO_OF_THE_VILLAGE, 120, 0);
-            case POLINEZYA_YILDIZ_HARITASI -> efekt(oyuncu, MobEffects.WATER_BREATHING, 160, 0);
-            case MALI_TUZ_MUHRU -> oyuncu.giveExperiencePoints(7);
-            case ISKANDINAV_RUNETASI -> efekt(oyuncu, MobEffects.INVISIBILITY, 80, 0);
+            case ROSSETTA_TASI -> {
+                oyuncu.giveExperiencePoints(6);
+                yakinCanlilariAydinlat(oyuncu, 8.0D);
+            }
+            case GILGAMESH_TABLETI -> {
+                efekt(oyuncu, MobEffects.ABSORPTION, 160, 1);
+                oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.18D, 0.0D));
+            }
+            case ANUBIS_ANKHI -> {
+                efekt(oyuncu, MobEffects.REGENERATION, 100, 0);
+                oyuncu.heal(4.0F);
+                oyuncu.setRemainingFireTicks(0);
+            }
+            case MINOS_LABIRENT_MUHRU -> {
+                efekt(oyuncu, MobEffects.SPEED, 100, 0);
+                oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.28D, 0.0D));
+            }
+            case ROMA_AUREUSU -> {
+                oyuncu.giveExperiencePoints(8);
+                oyuncu.addItem(new ItemStack(Items.GOLD_NUGGET));
+            }
+            case VIKING_GUNES_PUSULASI -> {
+                efekt(oyuncu, MobEffects.HASTE, 120, 0);
+                efekt(oyuncu, MobEffects.NIGHT_VISION, 120, 0);
+            }
+            case SAMURAY_KABZASI -> {
+                efekt(oyuncu, MobEffects.RESISTANCE, 120, 0);
+                oyuncu.setAbsorptionAmount(Math.max(2.0F, oyuncu.getAbsorptionAmount()));
+            }
+            case MAYA_GUNES_CARKI -> {
+                oyuncu.setRemainingFireTicks(0);
+                efekt(oyuncu, MobEffects.FIRE_RESISTANCE, 120, 0);
+            }
+            case INKA_QUIPUSU -> {
+                oyuncu.giveExperiencePoints(5);
+                efekt(oyuncu, MobEffects.SPEED, 100, 1);
+            }
+            case HARAPPA_MUHRU -> {
+                efekt(oyuncu, MobEffects.HASTE, 120, 1);
+                oyuncu.addItem(new ItemStack(Items.CLAY_BALL, 2));
+            }
+            case SONG_PORSELENI -> {
+                efekt(oyuncu, MobEffects.WATER_BREATHING, 120, 0);
+                oyuncu.setAirSupply(Math.min(oyuncu.getMaxAirSupply(), oyuncu.getAirSupply() + 80));
+            }
+            case BENIN_BRONZU -> {
+                efekt(oyuncu, MobEffects.ABSORPTION, 120, 0);
+                yakinCanlilariAydinlat(oyuncu, 5.0D);
+            }
+            case AZTEK_GUNES_TASI -> {
+                oyuncu.setRemainingFireTicks(0);
+                efekt(oyuncu, MobEffects.FIRE_RESISTANCE, 160, 0);
+                oyuncu.giveExperiencePoints(3);
+            }
+            case ABBASID_MUREKKEBI -> {
+                oyuncu.giveExperiencePoints(10);
+                efekt(oyuncu, MobEffects.HASTE, 100, 0);
+            }
+            case RONESANS_ASTROLABI -> {
+                efekt(oyuncu, MobEffects.SLOW_FALLING, 160, 0);
+                oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.22D, 0.0D));
+            }
+            case ANTIKITHERA_DUZENEĞI -> {
+                oyuncu.getCooldowns().addCooldown(oyuncu.getMainHandItem(), 20);
+                oyuncu.addEffect(new MobEffectInstance(MobEffects.HASTE, 80, 1, false, false, true));
+                oyuncu.giveExperiencePoints(4);
+            }
+            case CATALHOYUK_BONCUGU -> {
+                efekt(oyuncu, MobEffects.REGENERATION, 80, 0);
+                oyuncu.heal(2.0F);
+            }
+            case BIZANS_MOZAIGI -> {
+                efekt(oyuncu, MobEffects.RESISTANCE, 100, 0);
+                yakinCanlilariAydinlat(oyuncu, 6.0D);
+            }
+            case TIMBUKTU_KALEMI -> {
+                oyuncu.giveExperiencePoints(9);
+            }
+            case APOLLO17_ARMASI -> {
+                efekt(oyuncu, MobEffects.SLOW_FALLING, 220, 1);
+                efekt(oyuncu, MobEffects.NIGHT_VISION, 220, 0);
+                oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.16D, 0.0D));
+            }
+            case ILHANLI_MADALYONU -> {
+                efekt(oyuncu, MobEffects.HERO_OF_THE_VILLAGE, 120, 0);
+                oyuncu.addItem(new ItemStack(Items.EMERALD));
+            }
+            case POLINEZYA_YILDIZ_HARITASI -> {
+                efekt(oyuncu, MobEffects.WATER_BREATHING, 160, 0);
+                efekt(oyuncu, MobEffects.DOLPHINS_GRACE, 160, 0);
+                oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().multiply(1.15D, 1.0D, 1.15D));
+            }
+            case MALI_TUZ_MUHRU -> {
+                oyuncu.giveExperiencePoints(7);
+                efekt(oyuncu, MobEffects.LUCK, 160, 1);
+            }
+            case ISKANDINAV_RUNETASI -> {
+                efekt(oyuncu, MobEffects.INVISIBILITY, 80, 0);
+                efekt(oyuncu, MobEffects.SPEED, 80, 0);
+            }
+        }
+    }
+
+    private static void yakinCanlilariAydinlat(Player oyuncu, double mesafe) {
+        if (oyuncu.level() instanceof ServerLevel seviye) {
+            AABB alan = oyuncu.getBoundingBox().inflate(mesafe);
+            for (LivingEntity varlik : seviye.getEntitiesOfClass(LivingEntity.class, alan)) {
+                if (varlik != oyuncu) {
+                    varlik.addEffect(new MobEffectInstance(MobEffects.GLOWING, 100, 0, false, false, true));
+                }
+            }
         }
     }
 

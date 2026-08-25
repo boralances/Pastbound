@@ -34,6 +34,12 @@ Pastbound contains twenty-four relics. Every relic has a stable registry ID, a s
 
 The riddles accept several thematic keywords so that the feature feels like a playful museum interpretation challenge rather than a brittle trivia exam. The XP path remains available for players who want a direct progression route or are playing inside a larger modpack.
 
+## Relic-specific historical abilities
+
+The standard `RelikYetisi` layer uses familiar Minecraft effects such as strength, regeneration, haste, resistance, night vision, water breathing, luck, slow falling, and speed. A second Turkish-named `ozelYankiUygula` layer turns those effects into relic-specific actions. Rosetta reveals nearby living beings with a knowledge glow; Gilgamesh grants an upward heroic lift; Anubis heals and clears fire; Minos performs a vaulting leap; Roma returns a trade nugget; Viking combines navigation vision with haste; Samurai establishes an absorption guard; Maya resets fire and invokes solar protection; Inka accelerates and rewards experience; Harappa returns clay research; Song restores air; Benin shares a discovery glow; Renaissance and Apollo add measured vertical movement; Timbuktu returns manuscript paper; Ilhanlı produces an emerald trade token; and Polynesia combines water travel with directional momentum.
+
+This layered design keeps the result readable in a modpack while ensuring that at least ten relics do something more memorable than applying a generic potion. Every custom action is executed in common logic and remains compatible with both right-click activation and the V shortcut.
+
 | Relic family | Examples | Gameplay language |
 |---|---|---|
 | Writing and scholarship | Rosetta Taşı, Abbasi Mürekkebi, Timbuktu Kalemi | Knowledge, experience, haste |
@@ -47,6 +53,12 @@ The riddles accept several thematic keywords so that the feature feels like a pl
 Pastbound defines a data-driven Curios slot named `relic`. It provides five positions and accepts the `curios:relic` item tag. Each relic implements `ICurioItem`, validates placement into relic-like slots, applies passive effects from equipped known relics, and exposes active actions to the common gameplay layer.
 
 The V shortcut searches Curios inventory for the first known relic and activates it. Five slots support themed loadouts such as navigation, scholarship, defence, ceremony, and exploration without removing the clarity of one-button activation.
+
+## Global historical events
+
+`KureselTarihOlaylari` subscribes to the global NeoForge server tick. Every twenty seconds the server rotates one of twelve shared historical periods: Writing Revolution, Nile Canals, Star Voyage, Caravan Road, Calendar Council, Smiths’ Memory, Mosaic Peace, Silk Exchange, Quipu Count, Astrolabe Sky, Rune Watch, and Moon Mission. The event is global rather than local: it broadcasts a server-wide message and prepares the matching historical echo trial for every connected player.
+
+Contextual world signals enrich the period without changing the theme. Books and writable books evoke records, maps and compasses evoke navigation, metal underground evokes metallurgy, gold evokes trade, string evokes textile exchange and knotted accounting, clocks evoke calendars, high ground evokes star observation, water evokes river civilisation, night evokes rune watch, and the End provides a restrained Apollo-era frontier. These event actions provide effects, particles, experience, and trial unlocks without adding unrelated fantasy systems.
 
 ## Knowledge and balance
 
@@ -81,7 +93,7 @@ No new biome or stone family is introduced in this version. The project conseque
 
 ## Packaging
 
-The project includes 36 locale files, 24 relic recipes, 4 research-material recipes, 25 advancement definitions, block loot tables, blockstates, block models, item models, five-position Curios slot data, a Curios item tag, source-controlled texture, locale, and historical-data generators, a complete README, and an MIT license.
+The project includes 36 locale files, 24 relic recipes, 4 research-material recipes, 25 advancement definitions, block loot tables, blockstates, block models, item models, five-position Curios slot data, a Curios item tag, source-controlled texture, locale, and historical-data generators, a global event engine, custom ability layer, complete README, and an MIT license.
 
 ## Acceptance criteria
 
@@ -91,6 +103,8 @@ The project includes 36 locale files, 24 relic recipes, 4 research-material reci
 | Curios support | Gradle dependency, metadata dependency, slot JSON, item tag, and `ICurioItem` implementation exist. |
 | Relic count | `RelikTanimi` contains twenty-four entries and the registry generates twenty-four items. |
 | Historical events | `TarihYankisi` contains twenty-four event/action trials and `TarihYankilari` binds them to NeoForge actions. |
+| Custom relic abilities | `ozelYankiUygula` adds relic-specific movement, healing, reveal, trade, resource, air, fire, and aura behavior on top of classic effects. |
+| Global historical events | `KureselTarihOlaylari` rotates twelve server-wide periods and prepares shared trials for connected players. |
 | Mini games | The journal modal accepts three symbol choices and server-validates the sequence through `/pastbound echo`. |
 | Advancement progression | Each historical echo has an advancement and all twenty-four combine into `complete_collection`. |
 | Curios capacity | The data-driven `relic` slot has five positions and uses the `curios:relic` validator tag. |
