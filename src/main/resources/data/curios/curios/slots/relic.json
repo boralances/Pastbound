@@ -1,0 +1,9 @@
+{
+  "order": 120,
+  "size": 2,
+  "use_native_gui": true,
+  "add_cosmetic": true,
+  "icon": "pastbound:slot/empty_relic_slot",
+  "validators": ["curios:tag"],
+  "entities": ["#curios:player_like"]
+}

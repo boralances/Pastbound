@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "charged=false": {
+      "model": "pastbound:block/resonance_pillar"
+    },
+    "charged=true": {
+      "model": "pastbound:block/resonance_pillar_charged"
+    }
+  }
+}

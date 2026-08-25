@@ -1,0 +1,30 @@
+license="${mod_license}"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+credits="Created for CurseForge ModJam 2026"
+authors="Pastbound Team"
+description='''Pastbound turns history into a playable archaeology loop. Recover relics from lost civilizations, solve the riddles behind them, and let Curios relics bring the past back into the present.'''
+
+[[dependencies.${mod_id}]]
+modId="neoforge"
+type="required"
+versionRange="[${neo_version},)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="curios"
+type="required"
+versionRange="[16.0.0,17.0.0)"
+ordering="AFTER"
+side="BOTH"

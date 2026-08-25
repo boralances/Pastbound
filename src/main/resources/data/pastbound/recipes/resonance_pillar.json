@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    " Q ",
+    "QEQ",
+    " Q "
+  ],
+  "key": {
+    "Q": "minecraft:quartz_block",
+    "E": "pastbound:echo_shard"
+  },
+  "result": {
+    "id": "pastbound:resonance_pillar",
+    "count": 1
+  }
+}

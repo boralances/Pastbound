@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "pastbound:block/echo_archive"
+    }
+  }
+}

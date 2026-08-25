@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "OEO",
+    "EAE",
+    "OEO"
+  ],
+  "key": {
+    "O": "minecraft:crying_obsidian",
+    "E": "pastbound:echo_shard",
+    "A": "minecraft:amethyst_block"
+  },
+  "result": {
+    "id": "pastbound:echo_archive",
+    "count": 1
+  }
+}
