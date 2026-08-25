@@ -1,6 +1,8 @@
 package dev.pastbound.network;
 
 import dev.pastbound.PastboundMemory;
+import dev.pastbound.client.RelikClientOyun;
+import dev.pastbound.history.TarihiKesifDunyasi;
 import dev.pastbound.history.ZamanMakinesiMantigi;
 import dev.pastbound.relic.RelikMantigi;
 import net.minecraft.network.FriendlyByteBuf;
@@ -40,6 +42,18 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
         return new PastboundPaketi(4, "", "");
     }
 
+    public static PastboundPaketi kontroluAl() {
+        return new PastboundPaketi(6, "", "");
+    }
+
+    public static PastboundPaketi sahne(String donem, int sayac) {
+        return new PastboundPaketi(7, donem, Integer.toString(sayac));
+    }
+
+    public static PastboundPaketi don() {
+        return new PastboundPaketi(8, "", "");
+    }
+
     @Override
     public Type<? extends CustomPacketPayload> type() {
         return TIP;
@@ -56,7 +70,17 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                 case 3 -> RelikMantigi.etkinlestirIlk(oyuncu);
                 case 4 -> RelikMantigi.slotYukselt(oyuncu);
                 case 5 -> RelikMantigi.yankiyiCoz(oyuncu, paket.birinci(), paket.ikinci());
+                case 6 -> TarihiKesifDunyasi.kontroluAl(oyuncu);
+                case 8 -> TarihiKesifDunyasi.don(oyuncu);
                 default -> oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
+            }
+        });
+    }
+
+    public static void istemciyeAl(PastboundPaketi paket, IPayloadContext baglam) {
+        baglam.enqueueWork(() -> {
+            if (paket.islem() == 7) {
+                RelikClientOyun.canlandirmaPaketiniIsle(paket.birinci(), paket.ikinci());
             }
         });
     }

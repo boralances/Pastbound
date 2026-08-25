@@ -17,6 +17,7 @@ public final class RelikClient {
     private static final KeyMapping.Category PASTBOUND_KATEGORI = KeyMapping.Category.register(Identifier.parse("pastbound:relics"));
     public static final KeyMapping DEFTER_KISAYOLU = new KeyMapping("key.pastbound.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, PASTBOUND_KATEGORI);
     public static final KeyMapping AKTIFLESTIRME_KISAYOLU = new KeyMapping("key.pastbound.activate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, PASTBOUND_KATEGORI);
+    public static final KeyMapping TARIH_KONTROL_KISAYOLU = new KeyMapping("key.pastbound.take_control", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_D, PASTBOUND_KATEGORI);
 
     private RelikClient() {
     }
@@ -25,5 +26,6 @@ public final class RelikClient {
     public static void tuslariKaydet(RegisterKeyMappingsEvent olay) {
         olay.register(DEFTER_KISAYOLU);
         olay.register(AKTIFLESTIRME_KISAYOLU);
+        olay.register(TARIH_KONTROL_KISAYOLU);
     }
 }

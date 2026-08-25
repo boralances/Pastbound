@@ -57,6 +57,9 @@ public final class ZamanMakinesiMantigi {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.cooldown"));
             return;
         }
+        if (!TarihiKesifDunyasi.baslat(oyuncu, donem)) {
+            return;
+        }
         boolean yeniKesif = kaydet(oyuncu, donem);
         tarihEtki(oyuncu, donem);
         yankiyiHazirla(oyuncu, donem);

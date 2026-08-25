@@ -140,6 +140,9 @@ public final class TarihYankilari {
         if (oyuncu.level().isClientSide()) {
             return;
         }
+        if (olay.getFrom().equals(TarihiKesifDunyasi.BOYUT) || olay.getTo().equals(TarihiKesifDunyasi.BOYUT)) {
+            return;
+        }
         if (olay.getTo().equals(Level.NETHER)) {
             yankiyiBaslat(oyuncu, TarihYankisi.AZTEK_BES_CAG);
         } else if (olay.getTo().equals(Level.END)) {
@@ -158,7 +161,14 @@ public final class TarihYankilari {
     @SubscribeEvent
     public static void oyuncuTiklandi(PlayerTickEvent.Post olay) {
         Player oyuncu = olay.getEntity();
-        if (oyuncu.level().isClientSide() || oyuncu.tickCount % 40 != 0) {
+        if (oyuncu.level().isClientSide()) {
+            return;
+        }
+        if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu && TarihiKesifDunyasi.canlandirmaAktifMi(sunucu)) {
+            TarihiKesifDunyasi.tik(sunucu);
+            return;
+        }
+        if (oyuncu.tickCount % 40 != 0) {
             return;
         }
         long gunSaati = oyuncu.level().getOverworldClockTime() % 24000L;

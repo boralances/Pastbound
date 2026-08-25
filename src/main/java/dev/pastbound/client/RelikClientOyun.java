@@ -3,6 +3,7 @@ package dev.pastbound.client;
 import dev.pastbound.ModId;
 import dev.pastbound.network.PastboundPaketi;
 import dev.pastbound.client.ui.RelikDefteriEkrani;
+import dev.pastbound.client.ui.TarihCanlandirmaEkrani;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
@@ -14,6 +15,14 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 @EventBusSubscriber(modid = ModId.MOD_ID, value = Dist.CLIENT)
 public final class RelikClientOyun {
     private RelikClientOyun() {
+    }
+
+    public static void canlandirmaPaketiniIsle(String donem, String sayac) {
+        try {
+            TarihCanlandirmaEkrani.guncelle(donem, Integer.parseInt(sayac));
+        } catch (NumberFormatException hata) {
+            TarihCanlandirmaEkrani.guncelle(donem, 0);
+        }
     }
 
     @SubscribeEvent
@@ -28,6 +37,9 @@ public final class RelikClientOyun {
         }
         if (RelikClient.AKTIFLESTIRME_KISAYOLU.consumeClick()) {
             oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.etkinlestir()));
+        }
+        if (RelikClient.TARIH_KONTROL_KISAYOLU.consumeClick()) {
+            oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.kontroluAl()));
         }
     }
 }
