@@ -9,8 +9,15 @@ slot_dizini = varlik / "textures/slot"
 blok_dizini = varlik / "textures/block"
 gui_dizini = varlik / "textures/gui"
 model_dizini = varlik / "models/item"
-for dizin in (item_dizini, slot_dizini, blok_dizini, gui_dizini, model_dizini):
+item_tanim_dizini = varlik / "items"
+for dizin in (item_dizini, slot_dizini, blok_dizini, gui_dizini, model_dizini, item_tanim_dizini):
     dizin.mkdir(parents=True, exist_ok=True)
+
+
+def item_tanimi_yaz(kimlik, model):
+    tanim = {"model": {"type": "minecraft:model", "model": model}}
+    (item_tanim_dizini / f"{kimlik}.json").write_text(json.dumps(tanim, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
 
 renkler = {
     "rossetta_tasi": (231, 214, 164),
@@ -240,11 +247,14 @@ def tarih_esyasi(renk, sira):
 
 for sira, (kimlik, renk) in enumerate(renkler.items()):
     kare_cizimi(renk, sira).save(item_dizini / f"{kimlik}.png")
-    model = {"parent": "item/generated", "textures": {"layer0": f"pastbound:item/relics/{kimlik}"}}
+    model = {"parent": "minecraft:item/generated", "textures": {"layer0": f"pastbound:item/relics/{kimlik}"}}
     (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    item_tanimi_yaz(kimlik, f"pastbound:item/{kimlik}")
 
 echo_shard().save(varlik / "textures/item/echo_shard.png")
 memory_lens().save(varlik / "textures/item/memory_lens.png")
+item_tanimi_yaz("echo_shard", "pastbound:item/echo_shard")
+item_tanimi_yaz("memory_lens", "pastbound:item/memory_lens")
 echo_archive().save(varlik / "textures/block/echo_archive.png")
 duz_kare((91, 72, 75)).save(varlik / "textures/block/resonance_pillar.png")
 duz_kare((72, 119, 111), True).save(varlik / "textures/block/resonance_pillar_charged.png")
@@ -262,9 +272,14 @@ yeni_esyalar = {
 }
 for kimlik, (renk, sira) in yeni_esyalar.items():
     tarih_esyasi(renk, sira).save(varlik / "textures/item" / f"{kimlik}.png")
-    model = {"parent": "item/generated", "textures": {"layer0": f"pastbound:item/{kimlik}"}}
+    model = {"parent": "minecraft:item/generated", "textures": {"layer0": f"pastbound:item/{kimlik}"}}
     (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    item_tanimi_yaz(kimlik, f"pastbound:item/{kimlik}")
 
-for kimlik, kok_model in (("zaman_makinesi", "item/generated"), ("firin_cubugu", "item/handheld")):
+for kimlik, kok_model in (("zaman_makinesi", "minecraft:item/generated"), ("firin_cubugu", "minecraft:item/handheld")):
     model = {"parent": kok_model, "textures": {"layer0": f"pastbound:item/{kimlik}"}}
     (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    item_tanimi_yaz(kimlik, f"pastbound:item/{kimlik}")
+
+for kimlik in ("echo_archive", "resonance_pillar"):
+    item_tanimi_yaz(kimlik, f"pastbound:item/{kimlik}")

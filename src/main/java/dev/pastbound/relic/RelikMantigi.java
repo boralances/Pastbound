@@ -53,7 +53,7 @@ public final class RelikMantigi {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         String eski = veri.getStringOr(BILINEN_RELIKLER, "");
         veri.putString(BILINEN_RELIKLER, eski.isEmpty() ? tanim.kimlik() : eski + AYRAC + tanim.kimlik());
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.knowledge", tanim.ad()));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.knowledge", tanim.adBileseni()));
     }
 
     public static int acikRelikYuvasi(Player oyuncu) {
@@ -193,6 +193,27 @@ public final class RelikMantigi {
         }
     }
 
+    public static boolean deneyimleTani(Player oyuncu, RelikTanimi tanim) {
+        if (biliyorMu(oyuncu, tanim)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.already_known", tanim.adBileseni()));
+            return true;
+        }
+        int bedel = tanim.bilmeSeviyesi();
+        if (oyuncu.experienceLevel < bedel) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.xp_hint", bedel));
+            return false;
+        }
+        oyuncu.giveExperienceLevels(-bedel);
+        bilgiyeEkle(oyuncu, tanim);
+        TarihYankisi yanki = TarihYankilari.yankiBulRelik(tanim);
+        if (yanki != null) {
+            yankiyiTamamla(oyuncu, yanki);
+        }
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.identified", tanim.adBileseni()));
+        oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
+        return true;
+    }
+
     public static boolean bilmeceCevapla(Player oyuncu, String kimlik, String cevap) {
         RelikTanimi tanim = tanimBul(kimlik);
         if (tanim == null) {
@@ -200,7 +221,7 @@ public final class RelikMantigi {
             return false;
         }
         if (biliyorMu(oyuncu, tanim)) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.already_known", tanim.ad()));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.already_known", tanim.adBileseni()));
             return true;
         }
         String temiz = cevap.toLowerCase(Locale.ROOT).replace('ı', 'i').replace('ş', 's').replace('ğ', 'g').replace('ü', 'u').replace('ö', 'o').replace('ç', 'c');
@@ -213,7 +234,7 @@ public final class RelikMantigi {
         if (yanki != null) {
             yankiyiTamamla(oyuncu, yanki);
         }
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.riddle_right", tanim.ad()));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.riddle_right", tanim.adBileseni()));
         oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
         return true;
     }
@@ -275,7 +296,7 @@ public final class RelikMantigi {
         }
         aktifUygula(oyuncu, tanim);
         beklemeler.addCooldown(yigin, tanim.beklemeSuresi());
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.activated", tanim.ad()));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.activated", tanim.adBileseni()));
         oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 0.8F, 0.7F + tanim.ordinal() % 6 * 0.1F);
         if (oyuncu.level() instanceof ServerLevel sunucu) {
             sunucu.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 18, 0.45D, 0.65D, 0.45D, 0.08D);

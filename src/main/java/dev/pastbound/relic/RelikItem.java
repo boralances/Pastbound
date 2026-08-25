@@ -34,12 +34,14 @@ public final class RelikItem extends Item implements ICurioItem {
     public InteractionResult use(Level seviye, Player oyuncu, InteractionHand el) {
         ItemStack yigin = oyuncu.getItemInHand(el);
         if (seviye.isClientSide()) {
-            if (!RelikMantigi.biliyorMu(oyuncu, tanim)) {
+            if (!oyuncu.isShiftKeyDown() && !RelikMantigi.biliyorMu(oyuncu, tanim)) {
                 RelikDefteriEkrani.bilmeceAc(tanim);
             }
             return InteractionResult.SUCCESS;
         }
-        if (RelikMantigi.biliyorMu(oyuncu, tanim)) {
+        if (oyuncu.isShiftKeyDown()) {
+            RelikMantigi.deneyimleTani(oyuncu, tanim);
+        } else if (RelikMantigi.biliyorMu(oyuncu, tanim)) {
             RelikMantigi.etkinlestir(oyuncu, tanim, yigin);
         }
         return InteractionResult.SUCCESS_SERVER;
@@ -67,6 +69,7 @@ public final class RelikItem extends Item implements ICurioItem {
         satir.accept(Component.translatable("tooltip.pastbound.relic.power", tanim.yeti().name()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.riddle", tanim.bilmece()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.identify", tanim.bilmeSeviyesi()));
+        satir.accept(Component.translatable("tooltip.pastbound.relic.xp", tanim.bilmeSeviyesi()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.shortcut"));
         TarihYankisi yanki = TarihYankilari.yankiBulRelik(tanim);
         if (yanki != null) {

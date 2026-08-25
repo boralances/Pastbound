@@ -1,5 +1,7 @@
 package dev.pastbound.relic;
 
+import net.minecraft.network.chat.Component;
+
 public enum RelikTanimi {
     ROSSETTA_TASI("rossetta_tasi", "Rosetta Taşı", "Antik dillerin anahtarı", 2, 120, 0xE7D6A4, RelikYetisi.BILGI, "Üç dil susar, taş tek bir sesi hatırlar."),
     GILGAMESH_TABLETI("gilgamesh_tableti", "Gılgamış Tableti", "Ölümlülüğe meydan okuyan destan", 4, 180, 0xB47A4D, RelikYetisi.GUC, "Kral aradı, dost buldu; hangi hikâye hâlâ yaşar?"),
@@ -53,6 +55,14 @@ public enum RelikTanimi {
 
     public String ad() {
         return ad;
+    }
+
+    public String adAnahtari() {
+        return "item.pastbound." + kimlik;
+    }
+
+    public Component adBileseni() {
+        return Component.translatable(adAnahtari());
     }
 
     public String tarihBasligi() {

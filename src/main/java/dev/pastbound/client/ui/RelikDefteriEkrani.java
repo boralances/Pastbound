@@ -84,7 +84,7 @@ public final class RelikDefteriEkrani extends Screen {
             cizim.outline(x, y, kartGenislik, kartYukseklik, biliniyor ? 0xFFB98B52 : 0xFF4A4F58);
             if (biliniyor) {
                 cizim.item(new ItemStack(ModItems.RELIKLER.get(i).get()), x + 7, y + 12);
-                cizim.text(font, Component.literal(tanim.ad()), x + 31, y + 10, 0xFFF4E5C4);
+                cizim.text(font, tanim.adBileseni(), x + 31, y + 10, 0xFFF4E5C4);
                 cizim.text(font, Component.literal(tanim.tarihBasligi()), x + 31, y + 25, 0xFFAFC6CA);
                 cizim.text(font, Component.translatable(yankisi ? "screen.pastbound.echo_found" : "screen.pastbound.ready"), x + 31, y + 40, yankisi ? 0xFF79C6A2 : 0xFFE0B26B);
             } else {
@@ -116,7 +116,7 @@ public final class RelikDefteriEkrani extends Screen {
         cizim.fill(sol + 10, ust + 10, sol + genislik - 10, ust + 42, 0xC63B2D3B);
         cizim.centeredText(font, Component.translatable("screen.pastbound.modal_title"), sol + genislik / 2, ust + 18, 0xFFF4D6A3);
         cizim.item(new ItemStack(ModItems.RELIKLER.get(seciliRelik).get()), sol + 24, ust + 62);
-        cizim.text(font, Component.literal(tanim.ad()), sol + 52, ust + 60, 0xFFF4E5C4);
+        cizim.text(font, tanim.adBileseni(), sol + 52, ust + 60, 0xFFF4E5C4);
         if (yanki != null) {
             cizim.text(font, Component.literal(yanki.baslik()), sol + 52, ust + 76, 0xFFADC8C7);
             cizim.textWithWordWrap(font, Component.literal(tanim.bilmece()), sol + 24, ust + 100, genislik - 48, 0xFFC7D4D9);
