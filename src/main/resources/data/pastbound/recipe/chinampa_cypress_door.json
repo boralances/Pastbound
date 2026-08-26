@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "historical_wood_door",
+  "key": {
+    "#": "pastbound:chinampa_cypress_planks"
+  },
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "pastbound:chinampa_cypress_door"
+  }
+}

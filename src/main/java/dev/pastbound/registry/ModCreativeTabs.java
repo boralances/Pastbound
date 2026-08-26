@@ -29,6 +29,7 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.ZAMAN_MAKINESI.get());
             olay.accept(ModItems.FIRIN_CUBUGU.get());
             ModItems.RELIKLER.forEach(relik -> olay.accept(relik.get()));
+            ModItems.TARIHI_AHSAP_ITEMLERI.forEach(item -> olay.accept(item.get()));
         }
     }
 }

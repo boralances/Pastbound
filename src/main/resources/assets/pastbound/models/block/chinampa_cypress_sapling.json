@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "pastbound:block/chinampa_cypress_sapling"
+  }
+}

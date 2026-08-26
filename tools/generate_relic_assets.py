@@ -296,3 +296,229 @@ for kimlik, kok_model in (("zaman_makinesi", "minecraft:item/generated"), ("firi
 
 for kimlik in ("echo_archive", "resonance_pillar"):
     item_tanimi_yaz(kimlik, f"pastbound:item/{kimlik}")
+
+blockstate_dizini = varlik / "blockstates"
+blockstate_dizini.mkdir(parents=True, exist_ok=True)
+
+
+def ahsap_doku(renk, vurgu, yatay=False, yaprak=False):
+    goruntu = Image.new("RGBA", (16, 16), (0, 0, 0, 0) if yaprak else renk + (255,))
+    ciz = ImageDraw.Draw(goruntu)
+    koyu = karistir(renk, -45)
+    orta = karistir(renk, -15)
+    acik = karistir(renk, 42)
+    if yaprak:
+        for y in range(16):
+            for x in range(16):
+                if (x * 5 + y * 3) % 7 not in (0, 1):
+                    ton = orta if (x + y) % 4 else acik
+                    ciz.point((x, y), fill=ton + (235,))
+        ciz.point((4, 3), fill=vurgu + (255,))
+        ciz.point((11, 8), fill=acik + (255,))
+        ciz.point((7, 13), fill=koyu + (230,))
+        return goruntu
+    for i in range(4):
+        if yatay:
+            y = 2 + i * 4
+            ciz.line((0, y, 15, y), fill=koyu + (255,), width=1)
+            ciz.line((0, y + 1, 15, y + 1), fill=acik + (120,), width=1)
+        else:
+            x = 2 + i * 4
+            ciz.line((x, 0, x, 15), fill=koyu + (255,), width=1)
+            ciz.line((x + 1, 0, x + 1, 15), fill=acik + (120,), width=1)
+    ciz.point((3, 5), fill=vurgu + (255,))
+    ciz.point((12, 11), fill=vurgu + (210,))
+    return goruntu
+
+
+def ahsap_ust_doku(renk, vurgu):
+    goruntu = Image.new("RGBA", (16, 16), renk + (255,))
+    ciz = ImageDraw.Draw(goruntu)
+    koyu = karistir(renk, -48)
+    acik = karistir(renk, 38)
+    ciz.rectangle((1, 1, 14, 14), outline=koyu + (255,), width=1)
+    for yaricap in (3, 5, 7):
+        ciz.ellipse((8 - yaricap, 8 - yaricap, 8 + yaricap, 8 + yaricap), outline=koyu + (210,), width=1)
+    ciz.point((8, 8), fill=vurgu + (255,))
+    ciz.point((5, 5), fill=acik + (220,))
+    return goruntu
+
+
+def blok_modeli_yaz(kimlik, parent, dokular):
+    model = {"parent": parent, "textures": dokular}
+    (varlik / "models/block" / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def blok_durumu_yaz(kimlik, veri):
+    (blockstate_dizini / f"{kimlik}.json").write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def item_blok_modeli_yaz(kimlik):
+    item_tanimi_yaz(kimlik, f"pastbound:block/{kimlik}")
+    model = {"parent": f"pastbound:block/{kimlik}"}
+    (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def ahsap_familiasi_uret(prefix, renk, vurgu):
+    log = f"{prefix}_log"
+    stripped_log = f"{prefix}_stripped_log"
+    wood = f"{prefix}_wood"
+    stripped_wood = f"{prefix}_stripped_wood"
+    leaves = f"{prefix}_leaves"
+    sapling = f"{prefix}_sapling"
+    planks = f"{prefix}_planks"
+    slab = f"{prefix}_slab"
+    stairs = f"{prefix}_stairs"
+    door = f"{prefix}_door"
+    trapdoor = f"{prefix}_trapdoor"
+    fence = f"{prefix}_fence"
+    gate = f"{prefix}_fence_gate"
+    plate = f"{prefix}_pressure_plate"
+    button = f"{prefix}_button"
+    ahsap_doku(renk, vurgu).save(blok_dizini / f"{log}.png")
+    ahsap_ust_doku(renk, vurgu).save(blok_dizini / f"{log}_top.png")
+    ahsap_doku(karistir(renk, 18), vurgu).save(blok_dizini / f"{stripped_log}.png")
+    ahsap_ust_doku(karistir(renk, 18), vurgu).save(blok_dizini / f"{stripped_log}_top.png")
+    ahsap_doku(renk, vurgu).save(blok_dizini / f"{wood}.png")
+    ahsap_doku(karistir(renk, 18), vurgu).save(blok_dizini / f"{stripped_wood}.png")
+    ahsap_doku(karistir(renk, -8), vurgu, yaprak=True).save(blok_dizini / f"{leaves}.png")
+    fidan = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    ciz = ImageDraw.Draw(fidan)
+    ciz.line((8, 14, 8, 6), fill=karistir(renk, -40) + (255,), width=1)
+    ciz.line((8, 9, 4, 5), fill=vurgu + (255,), width=1)
+    ciz.line((8, 8, 12, 3), fill=vurgu + (230,), width=1)
+    ciz.rectangle((5, 4, 7, 7), fill=karistir(vurgu, 15) + (235,))
+    ciz.rectangle((10, 3, 12, 6), fill=vurgu + (235,))
+    fidan.save(blok_dizini / f"{sapling}.png")
+    ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{planks}.png")
+    ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{slab}.png")
+    ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{stairs}.png")
+    ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{door}.png")
+    ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{trapdoor}.png")
+    for kimlik in (fence, gate, plate, button):
+        ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{kimlik}.png")
+    blok_modeli_yaz(log, "minecraft:block/cube_column", {"end": f"pastbound:block/{log}_top", "side": f"pastbound:block/{log}"})
+    blok_modeli_yaz(stripped_log, "minecraft:block/cube_column", {"end": f"pastbound:block/{stripped_log}_top", "side": f"pastbound:block/{stripped_log}"})
+    for kimlik in (wood, stripped_wood, planks):
+        blok_modeli_yaz(kimlik, "minecraft:block/cube_all", {"all": f"pastbound:block/{kimlik}"})
+    blok_modeli_yaz(leaves, "minecraft:block/cube_all", {"all": f"pastbound:block/{leaves}"})
+    blok_modeli_yaz(sapling, "minecraft:block/cross", {"cross": f"pastbound:block/{sapling}"})
+    blok_modeli_yaz(slab, "minecraft:block/slab", {"bottom": f"pastbound:block/{planks}", "top": f"pastbound:block/{planks}", "side": f"pastbound:block/{planks}"})
+    blok_modeli_yaz(f"{slab}_top", "minecraft:block/slab_top", {"bottom": f"pastbound:block/{planks}", "top": f"pastbound:block/{planks}", "side": f"pastbound:block/{planks}"})
+    blok_modeli_yaz(f"{slab}_double", "minecraft:block/cube_all", {"all": f"pastbound:block/{planks}"})
+    blok_modeli_yaz(stairs, "minecraft:block/stairs", {"side": f"pastbound:block/{planks}", "bottom": f"pastbound:block/{planks}", "top": f"pastbound:block/{planks}"})
+    blok_modeli_yaz(f"{stairs}_inner", "minecraft:block/inner_stairs", {"side": f"pastbound:block/{planks}", "bottom": f"pastbound:block/{planks}", "top": f"pastbound:block/{planks}"})
+    blok_modeli_yaz(f"{stairs}_outer", "minecraft:block/outer_stairs", {"side": f"pastbound:block/{planks}", "bottom": f"pastbound:block/{planks}", "top": f"pastbound:block/{planks}"})
+    blok_modeli_yaz(f"{door}_bottom_left", "minecraft:block/door_bottom_left", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(f"{door}_bottom_left_open", "minecraft:block/door_bottom_left_open", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(f"{door}_bottom_right", "minecraft:block/door_bottom_right", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(f"{door}_bottom_right_open", "minecraft:block/door_bottom_right_open", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(f"{door}_top_left", "minecraft:block/door_top_left", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(f"{door}_top_left_open", "minecraft:block/door_top_left_open", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(f"{door}_top_right", "minecraft:block/door_top_right", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(f"{door}_top_right_open", "minecraft:block/door_top_right_open", {"bottom": f"pastbound:block/{door}", "top": f"pastbound:block/{door}"})
+    blok_modeli_yaz(trapdoor, "minecraft:block/template_trapdoor", {"texture": f"pastbound:block/{trapdoor}"})
+    blok_modeli_yaz(f"{trapdoor}_open", "minecraft:block/template_orientable_trapdoor_open", {"texture": f"pastbound:block/{trapdoor}"})
+    blok_modeli_yaz(f"{trapdoor}_top", "minecraft:block/template_trapdoor_top", {"texture": f"pastbound:block/{trapdoor}"})
+    blok_modeli_yaz(fence, "minecraft:block/fence_post", {"texture": f"pastbound:block/{fence}"})
+    blok_modeli_yaz(f"{fence}_side", "minecraft:block/fence_side", {"texture": f"pastbound:block/{fence}"})
+    blok_modeli_yaz(gate, "minecraft:block/template_fence_gate", {"texture": f"pastbound:block/{gate}"})
+    blok_modeli_yaz(f"{gate}_open", "minecraft:block/template_fence_gate_open", {"texture": f"pastbound:block/{gate}"})
+    blok_modeli_yaz(f"{gate}_wall", "minecraft:block/template_fence_gate_wall", {"texture": f"pastbound:block/{gate}"})
+    blok_modeli_yaz(f"{gate}_wall_open", "minecraft:block/template_fence_gate_wall_open", {"texture": f"pastbound:block/{gate}"})
+    blok_modeli_yaz(plate, "minecraft:block/pressure_plate_up", {"texture": f"pastbound:block/{plate}"})
+    blok_modeli_yaz(f"{plate}_down", "minecraft:block/pressure_plate_down", {"texture": f"pastbound:block/{plate}"})
+    blok_modeli_yaz(button, "minecraft:block/button", {"texture": f"pastbound:block/{button}"})
+    blok_modeli_yaz(f"{button}_pressed", "minecraft:block/button_pressed", {"texture": f"pastbound:block/{button}"})
+    blok_durumu_yaz(log, {"variants": {"axis=x": {"model": f"pastbound:block/{log}", "x": 90}, "axis=y": {"model": f"pastbound:block/{log}"}, "axis=z": {"model": f"pastbound:block/{log}", "x": 90, "y": 90}}})
+    blok_durumu_yaz(stripped_log, {"variants": {"axis=x": {"model": f"pastbound:block/{stripped_log}", "x": 90}, "axis=y": {"model": f"pastbound:block/{stripped_log}"}, "axis=z": {"model": f"pastbound:block/{stripped_log}", "x": 90, "y": 90}}})
+    blok_durumu_yaz(wood, {"variants": {"axis=x": {"model": f"pastbound:block/{wood}", "x": 90}, "axis=y": {"model": f"pastbound:block/{wood}"}, "axis=z": {"model": f"pastbound:block/{wood}", "x": 90, "y": 90}}})
+    blok_durumu_yaz(stripped_wood, {"variants": {"axis=x": {"model": f"pastbound:block/{stripped_wood}", "x": 90}, "axis=y": {"model": f"pastbound:block/{stripped_wood}"}, "axis=z": {"model": f"pastbound:block/{stripped_wood}", "x": 90, "y": 90}}})
+    blok_durumu_yaz(leaves, {"variants": {"": {"model": f"pastbound:block/{leaves}"}}})
+    blok_durumu_yaz(sapling, {"variants": {"": {"model": f"pastbound:block/{sapling}"}}})
+    blok_durumu_yaz(planks, {"variants": {"": {"model": f"pastbound:block/{planks}"}}})
+    blok_durumu_yaz(slab, {"variants": {"type=bottom": {"model": f"pastbound:block/{slab}"}, "type=top": {"model": f"pastbound:block/{slab}_top"}, "type=double": {"model": f"pastbound:block/{slab}_double"}}})
+    stairs_variants = {}
+    for facing, donus in (("east", 0), ("south", 90), ("west", 180), ("north", 270)):
+        for half, y in (("bottom", 0), ("top", 180)):
+            for shape in ("straight", "inner_left", "inner_right", "outer_left", "outer_right"):
+                model = stairs if shape == "straight" else f"{stairs}_{'inner' if shape.startswith('inner') else 'outer'}"
+                stairs_variants[f"facing={facing},half={half},shape={shape}"] = {"model": f"pastbound:block/{model}", "y": (donus + (90 if shape.endswith("right") else 270 if shape.endswith("left") else 0)) % 360, "x": y}
+    blok_durumu_yaz(stairs, {"variants": stairs_variants})
+    door_variants = {}
+    for facing, y in (("east", 90), ("south", 0), ("west", 270), ("north", 180)):
+        for half in ("lower", "upper"):
+            for hinge in ("left", "right"):
+                for open_state in ("false", "true"):
+                    suffix = "_open" if open_state == "true" else ""
+                    side = "left" if hinge == "left" else "right"
+                    model = f"{door}_{'bottom' if half == 'lower' else 'top'}_{side}{suffix}"
+                    door_variants[f"facing={facing},half={half},hinge={hinge},open={open_state}"] = {"model": f"pastbound:block/{model}", "y": y}
+    blok_durumu_yaz(door, {"variants": door_variants})
+    trapdoor_variants = {}
+    for facing, y in (("east", 90), ("south", 0), ("west", 270), ("north", 180)):
+        for half in ("bottom", "top"):
+            for open_state in ("false", "true"):
+                model = f"{trapdoor}_open" if open_state == "true" else (f"{trapdoor}_top" if half == "top" else trapdoor)
+                trapdoor_variants[f"facing={facing},half={half},open={open_state}"] = {"model": f"pastbound:block/{model}", "y": y}
+    blok_durumu_yaz(trapdoor, {"variants": trapdoor_variants})
+    blok_durumu_yaz(fence, {"multipart": [{"apply": {"model": f"pastbound:block/{fence}"}}, {"when": {"north": "true"}, "apply": {"model": f"pastbound:block/{fence}_side", "uvlock": True}}, {"when": {"east": "true"}, "apply": {"model": f"pastbound:block/{fence}_side", "uvlock": True, "y": 90}}, {"when": {"south": "true"}, "apply": {"model": f"pastbound:block/{fence}_side", "uvlock": True, "y": 180}}, {"when": {"west": "true"}, "apply": {"model": f"pastbound:block/{fence}_side", "uvlock": True, "y": 270}}]})
+    gate_variants = {}
+    for facing, y in (("east", 90), ("south", 0), ("west", 270), ("north", 180)):
+        for open_state in ("false", "true"):
+            for in_wall in ("false", "true"):
+                model = gate + ("_open" if open_state == "true" else "") + ("_wall" if in_wall == "true" else "")
+                gate_variants[f"facing={facing},in_wall={in_wall},open={open_state},powered=false"] = {"model": f"pastbound:block/{model}", "y": y}
+                gate_variants[f"facing={facing},in_wall={in_wall},open={open_state},powered=true"] = {"model": f"pastbound:block/{model}", "y": y}
+    blok_durumu_yaz(gate, {"variants": gate_variants})
+    blok_durumu_yaz(plate, {"variants": {"powered=false": {"model": f"pastbound:block/{plate}"}, "powered=true": {"model": f"pastbound:block/{plate}_down"}}})
+    blok_durumu_yaz(button, {"variants": {"face=floor,facing=east,powered=false": {"model": f"pastbound:block/{button}", "y": 90}, "face=floor,facing=south,powered=false": {"model": f"pastbound:block/{button}"}, "face=floor,facing=west,powered=false": {"model": f"pastbound:block/{button}", "y": 270}, "face=floor,facing=north,powered=false": {"model": f"pastbound:block/{button}", "y": 180}, "face=floor,facing=east,powered=true": {"model": f"pastbound:block/{button}_pressed", "y": 90}, "face=floor,facing=south,powered=true": {"model": f"pastbound:block/{button}_pressed"}, "face=floor,facing=west,powered=true": {"model": f"pastbound:block/{button}_pressed", "y": 270}, "face=floor,facing=north,powered=true": {"model": f"pastbound:block/{button}_pressed", "y": 180}}})
+    for kimlik in (log, stripped_log, wood, stripped_wood, leaves, sapling, planks, slab, stairs, door, trapdoor, fence, gate, plate, button):
+        item_blok_modeli_yaz(kimlik)
+
+
+ahsap_familiasi_uret("uruk_cedar", (132, 88, 54), (201, 166, 91))
+ahsap_familiasi_uret("chinampa_cypress", (83, 111, 78), (86, 183, 157))
+
+
+def veri_dosyasi_yaz(kok_yolu, kimlik, veri):
+    yol = kok_yolu / f"{kimlik}.json"
+    yol.parent.mkdir(parents=True, exist_ok=True)
+    yol.write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def agac_verileri_uret(prefix):
+    veri_koku = kok / "src/main/resources/data/pastbound"
+    log = f"pastbound:{prefix}_log"
+    stripped_log = f"pastbound:{prefix}_stripped_log"
+    wood = f"pastbound:{prefix}_wood"
+    stripped_wood = f"pastbound:{prefix}_stripped_wood"
+    leaves = f"pastbound:{prefix}_leaves"
+    sapling = f"pastbound:{prefix}_sapling"
+    planks = f"pastbound:{prefix}_planks"
+    slab = f"pastbound:{prefix}_slab"
+    stairs = f"pastbound:{prefix}_stairs"
+    door = f"pastbound:{prefix}_door"
+    trapdoor = f"pastbound:{prefix}_trapdoor"
+    fence = f"pastbound:{prefix}_fence"
+    gate = f"pastbound:{prefix}_fence_gate"
+    plate = f"pastbound:{prefix}_pressure_plate"
+    button = f"pastbound:{prefix}_button"
+    recipes = veri_koku / "recipe"
+    loot = veri_koku / "loot_table/blocks"
+    veri_dosyasi_yaz(recipes, f"{prefix}_planks", {"type": "minecraft:crafting_shaped", "category": "building", "group": "historical_wood_planks", "key": {"#": log}, "pattern": ["#"], "result": {"count": 4, "id": planks}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_stripped_planks", {"type": "minecraft:crafting_shaped", "category": "building", "group": "historical_wood_planks", "key": {"#": stripped_log}, "pattern": ["#"], "result": {"count": 4, "id": planks}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_slab", {"type": "minecraft:crafting_shaped", "category": "building", "group": "historical_wood_slab", "key": {"#": planks}, "pattern": ["###"], "result": {"count": 6, "id": slab}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_stairs", {"type": "minecraft:crafting_shaped", "category": "building", "group": "historical_wood_stairs", "key": {"#": planks}, "pattern": ["#  ", "## ", "###"], "result": {"count": 4, "id": stairs}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_door", {"type": "minecraft:crafting_shaped", "category": "redstone", "group": "historical_wood_door", "key": {"#": planks}, "pattern": ["##", "##", "##"], "result": {"count": 3, "id": door}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_trapdoor", {"type": "minecraft:crafting_shaped", "category": "redstone", "group": "historical_wood_trapdoor", "key": {"#": planks}, "pattern": ["###", "###"], "result": {"count": 2, "id": trapdoor}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_fence", {"type": "minecraft:crafting_shaped", "group": "historical_wood_fence", "key": {"#": "minecraft:stick", "W": planks}, "pattern": ["W#W", "W#W"], "result": {"count": 3, "id": fence}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_fence_gate", {"type": "minecraft:crafting_shaped", "category": "redstone", "group": "historical_wood_fence_gate", "key": {"#": "minecraft:stick", "W": planks}, "pattern": ["#W#", "#W#"], "result": {"id": gate}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_button", {"type": "minecraft:crafting_shapeless", "category": "redstone", "group": "historical_wood_button", "ingredients": [planks], "result": {"id": button}})
+    veri_dosyasi_yaz(recipes, f"{prefix}_pressure_plate", {"type": "minecraft:crafting_shaped", "category": "redstone", "group": "historical_wood_pressure_plate", "key": {"#": planks}, "pattern": ["##"], "result": {"id": plate}})
+    for kimlik in (f"{prefix}_log", f"{prefix}_stripped_log", f"{prefix}_wood", f"{prefix}_stripped_wood", f"{prefix}_leaves", f"{prefix}_sapling", f"{prefix}_planks", f"{prefix}_slab", f"{prefix}_stairs", f"{prefix}_door", f"{prefix}_trapdoor", f"{prefix}_fence", f"{prefix}_fence_gate", f"{prefix}_pressure_plate", f"{prefix}_button"):
+        veri_dosyasi_yaz(loot, kimlik, {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": f"pastbound:{kimlik}"}], "rolls": 1.0}], "random_sequence": f"pastbound:blocks/{kimlik}"})
+
+
+agac_verileri_uret("uruk_cedar")
+agac_verileri_uret("chinampa_cypress")

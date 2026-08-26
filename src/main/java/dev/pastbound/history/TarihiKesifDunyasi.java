@@ -4,6 +4,7 @@ import java.util.Set;
 
 import dev.pastbound.ModId;
 import dev.pastbound.network.PastboundPaketi;
+import dev.pastbound.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -35,6 +36,7 @@ public final class TarihiKesifDunyasi {
     private static final String SAHNE_CAGI = "pastbound_sahne_cagi";
     private static final String SAHNE_AKTIF = "pastbound_sahne_aktif";
     private static final String SAHNE_SAYACI = "pastbound_sahne_sayaci";
+    private static final String SAHNE_GOREV_MASKESI = "pastbound_sahne_gorev_maskesi";
     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
 
     private TarihiKesifDunyasi() {
@@ -75,10 +77,12 @@ public final class TarihiKesifDunyasi {
         veri.putString(SAHNE_CAGI, donem.kimlik());
         veri.putBoolean(SAHNE_AKTIF, true);
         veri.putInt(SAHNE_SAYACI, 0);
+        veri.putInt(SAHNE_GOREV_MASKESI, 0);
         sahneyiKur(hedef, SAHNE_MERKEZI, donem);
         oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest"));
         PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(donem.kimlik(), 0));
         return true;
     }
@@ -117,9 +121,11 @@ public final class TarihiKesifDunyasi {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.narration_focus", donem.odakBileseni()));
         } else if (sayac == 160) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.narration_detail", donem.aciklamaBileseni()));
-        } else if (sayac == 220) {
+        } else         if (sayac == 220) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.ready"));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_explore"));
         }
+
     }
 
     public static void konusmaCevapla(ServerPlayer oyuncu, String donemKimligi, int konusmaci, int secim) {
@@ -142,6 +148,11 @@ public final class TarihiKesifDunyasi {
             return;
         }
         oyuncu.sendSystemMessage(Component.translatable("history.pastbound.period." + donem.kimlik() + ".dialogue_" + secim));
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | (1 << konusmaci);
+        veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_talk", konusmaci + 1));
+        goreviKontrolEt(oyuncu);
         oyuncu.level().playSound(null, oyuncu.blockPosition(), net.minecraft.sounds.SoundEvents.VILLAGER_TRADE, net.minecraft.sounds.SoundSource.NEUTRAL, 0.8F, 1.0F + secim * 0.08F);
     }
 
@@ -173,7 +184,39 @@ public final class TarihiKesifDunyasi {
         veri.remove(SAHNE_CAGI);
         veri.remove(SAHNE_AKTIF);
         veri.remove(SAHNE_SAYACI);
+        veri.remove(SAHNE_GOREV_MASKESI);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.returned"));
+    }
+
+    public static void kontrolSonrasiTik(ServerPlayer oyuncu) {
+        if (!boyuttaMi(oyuncu) || oyuncu.tickCount % 10 != 0) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+        double uzaklik = oyuncu.distanceToSqr(SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D);
+        if (uzaklik >= 49.0D && (gorevMaskesi & 16) == 0) {
+            gorevMaskesi |= 16;
+            veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_perimeter"));
+        }
+        if (uzaklik <= 9.0D && (gorevMaskesi & 32) == 0) {
+            gorevMaskesi |= 32;
+            veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_return"));
+        }
+        goreviKontrolEt(oyuncu);
+    }
+
+    private static void goreviKontrolEt(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+        if ((gorevMaskesi & 63) == 63 && (gorevMaskesi & 64) == 0) {
+            veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi | 64);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_complete"));
+            oyuncu.getInventory().placeItemBackInInventory(new net.minecraft.world.item.ItemStack(dev.pastbound.registry.ModItems.CHRONICLE_SCRAP.get(), 2));
+            oyuncu.level().playSound(null, oyuncu.blockPosition(), net.minecraft.sounds.SoundEvents.PLAYER_LEVELUP, net.minecraft.sounds.SoundSource.PLAYERS, 0.8F, 1.15F);
+        }
     }
 
     private static TarihDonemi donemBul(String kimlik) {
@@ -200,7 +243,7 @@ public final class TarihiKesifDunyasi {
 
     private static void sahneyiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
         Block dekor = dekorBlogu(donem);
-        BlockState zemin = Blocks.GRASS_BLOCK.defaultBlockState();
+        BlockState zemin = zeminBlogu(donem).defaultBlockState();
         BlockState kenar = dekor.defaultBlockState();
         for (int x = -9; x <= 9; x++) {
             for (int z = -9; z <= 9; z++) {
@@ -211,13 +254,69 @@ public final class TarihiKesifDunyasi {
                 }
             }
         }
+        if (chinampaDonemiMi(donem)) {
+            for (int x = -7; x <= 7; x++) {
+                seviye.setBlock(merkez.offset(x, 0, -6), Blocks.WATER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(x, 0, 6), Blocks.WATER.defaultBlockState(), 3);
+            }
+        } else {
+            for (int x = -7; x <= 7; x++) {
+                seviye.setBlock(merkez.offset(x, 0, -6), Blocks.CLAY.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(x, 0, 6), Blocks.CLAY.defaultBlockState(), 3);
+            }
+        }
         seviye.setBlock(merkez, dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.above(), Blocks.BEACON.defaultBlockState(), 3);
         seviye.setBlock(merkez.north(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.south(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.east(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(3), dekor.defaultBlockState(), 3);
+        tarihiYapiKur(seviye, merkez, donem);
         sahneAktorleriniKur(seviye, merkez, donem);
+    }
+
+    private static void tarihiYapiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
+        Block tahta = ahsapPlanki(donem);
+        Block kütük = ahsapKütüğü(donem);
+        Block yaprak = ahsapYapragi(donem);
+        for (int x = -8; x <= 8; x++) {
+            seviye.setBlock(merkez.offset(x, 1, -8), tahta.defaultBlockState(), 3);
+            seviye.setBlock(merkez.offset(x, 1, 8), tahta.defaultBlockState(), 3);
+        }
+        for (int z = -8; z <= 8; z++) {
+            seviye.setBlock(merkez.offset(-8, 1, z), tahta.defaultBlockState(), 3);
+            seviye.setBlock(merkez.offset(8, 1, z), tahta.defaultBlockState(), 3);
+        }
+        for (int i = 0; i < 4; i++) {
+            int x = i < 2 ? -7 : 7;
+            int z = i % 2 == 0 ? -7 : 7;
+            for (int y = 1; y <= 4; y++) {
+                seviye.setBlock(merkez.offset(x, y, z), kütük.defaultBlockState(), 3);
+            }
+            for (int dx = -2; dx <= 2; dx++) {
+                for (int dz = -2; dz <= 2; dz++) {
+                    if (Math.abs(dx) + Math.abs(dz) <= 3) {
+                        seviye.setBlock(merkez.offset(x + dx, 5, z + dz), yaprak.defaultBlockState(), 3);
+                    }
+                }
+            }
+        }
+        for (int x = -3; x <= 3; x++) {
+            seviye.setBlock(merkez.offset(x, 1, -1), tahta.defaultBlockState(), 3);
+            seviye.setBlock(merkez.offset(x, 1, 1), tahta.defaultBlockState(), 3);
+        }
+    }
+
+    private static Block ahsapPlanki(TarihDonemi donem) {
+        return donem == TarihDonemi.TENOKTITLAN_GECIDI || donem == TarihDonemi.POLINEZYA_YILDIZ_YOLU || donem == TarihDonemi.ANTIKITHERA_LIMANI || donem == TarihDonemi.ISKENDERIYE_KUTUPHANESI || donem == TarihDonemi.TERMOPIL_SAVASI || donem == TarihDonemi.APOLLO_AY_ISTIGI ? ModBlocks.CHINAMPA_CYPRESS_PLANKS.get() : ModBlocks.URUK_CEDAR_PLANKS.get();
+    }
+
+    private static Block ahsapKütüğü(TarihDonemi donem) {
+        return donem == TarihDonemi.TENOKTITLAN_GECIDI || donem == TarihDonemi.POLINEZYA_YILDIZ_YOLU || donem == TarihDonemi.ANTIKITHERA_LIMANI || donem == TarihDonemi.ISKENDERIYE_KUTUPHANESI || donem == TarihDonemi.TERMOPIL_SAVASI || donem == TarihDonemi.APOLLO_AY_ISTIGI ? ModBlocks.CHINAMPA_CYPRESS_LOG.get() : ModBlocks.URUK_CEDAR_LOG.get();
+    }
+
+    private static Block ahsapYapragi(TarihDonemi donem) {
+        return donem == TarihDonemi.TENOKTITLAN_GECIDI || donem == TarihDonemi.POLINEZYA_YILDIZ_YOLU || donem == TarihDonemi.ANTIKITHERA_LIMANI || donem == TarihDonemi.ISKENDERIYE_KUTUPHANESI || donem == TarihDonemi.TERMOPIL_SAVASI || donem == TarihDonemi.APOLLO_AY_ISTIGI ? ModBlocks.CHINAMPA_CYPRESS_LEAVES.get() : ModBlocks.URUK_CEDAR_LEAVES.get();
     }
 
     private static void sahneAktorleriniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
@@ -260,6 +359,14 @@ public final class TarihiKesifDunyasi {
                 }
             }
         }
+    }
+
+    private static Block zeminBlogu(TarihDonemi donem) {
+        return chinampaDonemiMi(donem) ? Blocks.GRASS_BLOCK : Blocks.CLAY;
+    }
+
+    private static boolean chinampaDonemiMi(TarihDonemi donem) {
+        return donem == TarihDonemi.TENOKTITLAN_GECIDI || donem == TarihDonemi.POLINEZYA_YILDIZ_YOLU || donem == TarihDonemi.ANTIKITHERA_LIMANI || donem == TarihDonemi.ISKENDERIYE_KUTUPHANESI || donem == TarihDonemi.TERMOPIL_SAVASI || donem == TarihDonemi.APOLLO_AY_ISTIGI;
     }
 
     private static Block dekorBlogu(TarihDonemi donem) {

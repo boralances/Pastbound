@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "pastbound:block/chinampa_cypress_log_top",
+    "side": "pastbound:block/chinampa_cypress_log"
+  }
+}

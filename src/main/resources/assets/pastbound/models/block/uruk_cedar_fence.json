@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "pastbound:block/uruk_cedar_fence"
+  }
+}

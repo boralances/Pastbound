@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "pastbound:block/chinampa_cypress_planks",
+    "top": "pastbound:block/chinampa_cypress_planks",
+    "side": "pastbound:block/chinampa_cypress_planks"
+  }
+}

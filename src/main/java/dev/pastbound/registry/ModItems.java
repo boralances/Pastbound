@@ -32,6 +32,42 @@ public final class ModItems {
     public static final DeferredItem<ZamanMakinesiItem> ZAMAN_MAKINESI = ITEMS.register("zaman_makinesi", registryName -> new ZamanMakinesiItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
     public static final DeferredItem<FirinCubuguItem> FIRIN_CUBUGU = ITEMS.register("firin_cubugu", registryName -> new FirinCubuguItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
 
+    public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_stripped_log", ModBlocks.URUK_CEDAR_STRIPPED_LOG);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_WOOD = ITEMS.registerSimpleBlockItem("uruk_cedar_wood", ModBlocks.URUK_CEDAR_WOOD);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_STRIPPED_WOOD = ITEMS.registerSimpleBlockItem("uruk_cedar_stripped_wood", ModBlocks.URUK_CEDAR_STRIPPED_WOOD);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_LEAVES = ITEMS.registerSimpleBlockItem("uruk_cedar_leaves", ModBlocks.URUK_CEDAR_LEAVES);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_SAPLING = ITEMS.registerSimpleBlockItem("uruk_cedar_sapling", ModBlocks.URUK_CEDAR_SAPLING);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_PLANKS = ITEMS.registerSimpleBlockItem("uruk_cedar_planks", ModBlocks.URUK_CEDAR_PLANKS);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_SLAB = ITEMS.registerSimpleBlockItem("uruk_cedar_slab", ModBlocks.URUK_CEDAR_SLAB);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_STAIRS = ITEMS.registerSimpleBlockItem("uruk_cedar_stairs", ModBlocks.URUK_CEDAR_STAIRS);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_DOOR = ITEMS.registerSimpleBlockItem("uruk_cedar_door", ModBlocks.URUK_CEDAR_DOOR);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_TRAPDOOR = ITEMS.registerSimpleBlockItem("uruk_cedar_trapdoor", ModBlocks.URUK_CEDAR_TRAPDOOR);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_FENCE = ITEMS.registerSimpleBlockItem("uruk_cedar_fence", ModBlocks.URUK_CEDAR_FENCE);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_FENCE_GATE = ITEMS.registerSimpleBlockItem("uruk_cedar_fence_gate", ModBlocks.URUK_CEDAR_FENCE_GATE);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem("uruk_cedar_pressure_plate", ModBlocks.URUK_CEDAR_PRESSURE_PLATE);
+    public static final DeferredItem<BlockItem> URUK_CEDAR_BUTTON = ITEMS.registerSimpleBlockItem("uruk_cedar_button", ModBlocks.URUK_CEDAR_BUTTON);
+
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_LOG = ITEMS.registerSimpleBlockItem("chinampa_cypress_log", ModBlocks.CHINAMPA_CYPRESS_LOG);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("chinampa_cypress_stripped_log", ModBlocks.CHINAMPA_CYPRESS_STRIPPED_LOG);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_WOOD = ITEMS.registerSimpleBlockItem("chinampa_cypress_wood", ModBlocks.CHINAMPA_CYPRESS_WOOD);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_STRIPPED_WOOD = ITEMS.registerSimpleBlockItem("chinampa_cypress_stripped_wood", ModBlocks.CHINAMPA_CYPRESS_STRIPPED_WOOD);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_LEAVES = ITEMS.registerSimpleBlockItem("chinampa_cypress_leaves", ModBlocks.CHINAMPA_CYPRESS_LEAVES);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_SAPLING = ITEMS.registerSimpleBlockItem("chinampa_cypress_sapling", ModBlocks.CHINAMPA_CYPRESS_SAPLING);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_PLANKS = ITEMS.registerSimpleBlockItem("chinampa_cypress_planks", ModBlocks.CHINAMPA_CYPRESS_PLANKS);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_SLAB = ITEMS.registerSimpleBlockItem("chinampa_cypress_slab", ModBlocks.CHINAMPA_CYPRESS_SLAB);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_STAIRS = ITEMS.registerSimpleBlockItem("chinampa_cypress_stairs", ModBlocks.CHINAMPA_CYPRESS_STAIRS);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_DOOR = ITEMS.registerSimpleBlockItem("chinampa_cypress_door", ModBlocks.CHINAMPA_CYPRESS_DOOR);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_TRAPDOOR = ITEMS.registerSimpleBlockItem("chinampa_cypress_trapdoor", ModBlocks.CHINAMPA_CYPRESS_TRAPDOOR);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_FENCE = ITEMS.registerSimpleBlockItem("chinampa_cypress_fence", ModBlocks.CHINAMPA_CYPRESS_FENCE);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_FENCE_GATE = ITEMS.registerSimpleBlockItem("chinampa_cypress_fence_gate", ModBlocks.CHINAMPA_CYPRESS_FENCE_GATE);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem("chinampa_cypress_pressure_plate", ModBlocks.CHINAMPA_CYPRESS_PRESSURE_PLATE);
+    public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_BUTTON = ITEMS.registerSimpleBlockItem("chinampa_cypress_button", ModBlocks.CHINAMPA_CYPRESS_BUTTON);
+
+    public static final List<DeferredItem<BlockItem>> TARIHI_AHSAP_ITEMLERI = List.of(
+            URUK_CEDAR_LOG, URUK_CEDAR_STRIPPED_LOG, URUK_CEDAR_WOOD, URUK_CEDAR_STRIPPED_WOOD, URUK_CEDAR_LEAVES, URUK_CEDAR_SAPLING, URUK_CEDAR_PLANKS, URUK_CEDAR_SLAB, URUK_CEDAR_STAIRS, URUK_CEDAR_DOOR, URUK_CEDAR_TRAPDOOR, URUK_CEDAR_FENCE, URUK_CEDAR_FENCE_GATE, URUK_CEDAR_PRESSURE_PLATE, URUK_CEDAR_BUTTON,
+            CHINAMPA_CYPRESS_LOG, CHINAMPA_CYPRESS_STRIPPED_LOG, CHINAMPA_CYPRESS_WOOD, CHINAMPA_CYPRESS_STRIPPED_WOOD, CHINAMPA_CYPRESS_LEAVES, CHINAMPA_CYPRESS_SAPLING, CHINAMPA_CYPRESS_PLANKS, CHINAMPA_CYPRESS_SLAB, CHINAMPA_CYPRESS_STAIRS, CHINAMPA_CYPRESS_DOOR, CHINAMPA_CYPRESS_TRAPDOOR, CHINAMPA_CYPRESS_FENCE, CHINAMPA_CYPRESS_FENCE_GATE, CHINAMPA_CYPRESS_PRESSURE_PLATE, CHINAMPA_CYPRESS_BUTTON);
+
     public static final List<DeferredItem<RelikItem>> RELIKLER = new ArrayList<>();
 
     static {

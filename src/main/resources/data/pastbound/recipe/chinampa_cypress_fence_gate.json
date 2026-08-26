@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "historical_wood_fence_gate",
+  "key": {
+    "#": "minecraft:stick",
+    "W": "pastbound:chinampa_cypress_planks"
+  },
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
+  "result": {
+    "id": "pastbound:chinampa_cypress_fence_gate"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "pastbound:block/uruk_cedar_button"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pastbound:block/chinampa_cypress_slab"
+    },
+    "type=top": {
+      "model": "pastbound:block/chinampa_cypress_slab_top"
+    },
+    "type=double": {
+      "model": "pastbound:block/chinampa_cypress_slab_double"
+    }
+  }
+}

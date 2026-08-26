@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "pastbound:block/chinampa_cypress_button"
+  }
+}

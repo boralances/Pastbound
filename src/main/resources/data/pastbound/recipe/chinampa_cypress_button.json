@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "historical_wood_button",
+  "ingredients": [
+    "pastbound:chinampa_cypress_planks"
+  ],
+  "result": {
+    "id": "pastbound:chinampa_cypress_button"
+  }
+}

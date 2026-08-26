@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fence_gate",
+  "textures": {
+    "texture": "pastbound:block/uruk_cedar_fence_gate"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "pastbound:block/uruk_cedar_slab"
+    },
+    "type=top": {
+      "model": "pastbound:block/uruk_cedar_slab_top"
+    },
+    "type=double": {
+      "model": "pastbound:block/uruk_cedar_slab_double"
+    }
+  }
+}

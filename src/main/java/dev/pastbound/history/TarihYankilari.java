@@ -204,6 +204,9 @@ public final class TarihYankilari {
             TarihiKesifDunyasi.tik(sunucu);
             return;
         }
+        if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            TarihiKesifDunyasi.kontrolSonrasiTik(sunucu);
+        }
         if (oyuncu.tickCount % 40 != 0) {
             return;
         }

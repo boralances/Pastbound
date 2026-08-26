@@ -3,7 +3,7 @@
   "generator": {
     "type": "minecraft:flat",
     "settings": {
-      "biome": "minecraft:plains",
+      "biome": "pastbound:uruk_floodplain",
       "features": false,
       "lakes": false,
       "layers": [

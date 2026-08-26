@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "group": "historical_wood_trapdoor",
+  "key": {
+    "#": "pastbound:chinampa_cypress_planks"
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "pastbound:chinampa_cypress_trapdoor"
+  }
+}

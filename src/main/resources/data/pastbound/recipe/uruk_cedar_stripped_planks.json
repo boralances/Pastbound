@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "historical_wood_planks",
+  "key": {
+    "#": "pastbound:uruk_cedar_stripped_log"
+  },
+  "pattern": [
+    "#"
+  ],
+  "result": {
+    "count": 4,
+    "id": "pastbound:uruk_cedar_planks"
+  }
+}

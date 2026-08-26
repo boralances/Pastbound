@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "pastbound:block/uruk_cedar_stripped_wood",
+      "x": 90
+    },
+    "axis=y": {
+      "model": "pastbound:block/uruk_cedar_stripped_wood"
+    },
+    "axis=z": {
+      "model": "pastbound:block/uruk_cedar_stripped_wood",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
