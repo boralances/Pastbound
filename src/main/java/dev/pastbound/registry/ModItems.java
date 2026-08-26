@@ -31,6 +31,13 @@ public final class ModItems {
     public static final DeferredItem<Item> ECHO_SEAL = ITEMS.register("echo_seal", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
     public static final DeferredItem<ZamanMakinesiItem> ZAMAN_MAKINESI = ITEMS.register("zaman_makinesi", registryName -> new ZamanMakinesiItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
     public static final DeferredItem<FirinCubuguItem> FIRIN_CUBUGU = ITEMS.register("firin_cubugu", registryName -> new FirinCubuguItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
+    public static final DeferredItem<BlockItem> STEEL_ORE = ITEMS.registerSimpleBlockItem("steel_ore", ModBlocks.STEEL_ORE);
+    public static final DeferredItem<BlockItem> DEEPSLATE_STEEL_ORE = ITEMS.registerSimpleBlockItem("deepslate_steel_ore", ModBlocks.DEEPSLATE_STEEL_ORE);
+    public static final DeferredItem<BlockItem> STEEL_BLOCK = ITEMS.registerSimpleBlockItem("steel_block", ModBlocks.STEEL_BLOCK);
+    public static final DeferredItem<BlockItem> HISTORICAL_FORGE = ITEMS.registerSimpleBlockItem("historical_forge", ModBlocks.HISTORICAL_FORGE);
+    public static final DeferredItem<Item> RAW_STEEL = ITEMS.register("raw_steel", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64)));
+    public static final DeferredItem<Item> STEEL_INGOT = ITEMS.register("steel_ingot", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64)));
+    public static final DeferredItem<Item> STEEL_PLATE = ITEMS.register("steel_plate", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64)));
 
     public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);
     public static final DeferredItem<BlockItem> URUK_CEDAR_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_stripped_log", ModBlocks.URUK_CEDAR_STRIPPED_LOG);

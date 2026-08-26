@@ -1,7 +1,6 @@
 package dev.pastbound.relic;
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Optional;
 
 import dev.pastbound.history.TarihYankisi;
@@ -35,6 +34,7 @@ public final class RelikMantigi {
     private static final String HAZIR_YANKILAR = "pastbound_hazir_tarih_yankilari";
     private static final String GUNLUK_IPUCU_GONDERILDI = "pastbound_gunluk_ipucu_gonderildi";
     private static final String ACIK_RELIK_YUVALARI = "pastbound_acik_relik_yuvalari";
+    private static final String MINI_ETKINLIK_PARCALARI = "pastbound_relik_mini_etkinlik_parcalari";
     private static final int BASLANGIC_RELIK_YUVASI = 8;
     private static final int AZAMI_RELIK_YUVASI = 10;
     private static final String AYRAC = "|";
@@ -160,27 +160,41 @@ public final class RelikMantigi {
         ilerlemeyiVer(oyuncu, yanki);
     }
 
-    public static boolean yankiyiCoz(Player oyuncu, String kimlik, String hamle) {
-        TarihYankisi yanki = TarihYankilari.yankiBul(kimlik);
-        if (yanki == null) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.bad_name"));
+    public static boolean miniEtkinligiTamamla(Player oyuncu, String kimlik, int parca) {
+        RelikTanimi tanim = tanimBul(kimlik);
+        TarihYankisi yanki = tanim == null ? null : TarihYankilari.yankiBulRelik(tanim);
+        if (tanim == null || yanki == null) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.bad_name"));
             return false;
         }
-        if (yankiTamamlandiMi(oyuncu, yanki)) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.already", yanki.baslik()));
+        if (biliyorMu(oyuncu, tanim)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.already_known", tanim.adBileseni()));
             return true;
         }
         if (!yankiHazirMi(oyuncu, yanki)) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.locked", yanki.baslik()));
             return false;
         }
-        String temiz = hamle.replaceAll("[^1-3]", "");
-        if (!temiz.equals(yanki.kod())) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.echo.wrong", yanki.hamle()));
+        if (parca < 1 || parca > 5) {
             return false;
         }
-        yankiyiTamamla(oyuncu, yanki);
-        oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.5F);
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int mevcut = veri.getIntOr(MINI_ETKINLIK_PARCALARI + "." + tanim.kimlik(), 0);
+        int bit = 1 << (parca - 1);
+        if ((mevcut & bit) != 0) {
+            oyuncu.sendOverlayMessage(Component.translatable("message.pastbound.relic.fragment_already"));
+            return false;
+        }
+        int yeni = mevcut | bit;
+        veri.putInt(MINI_ETKINLIK_PARCALARI + "." + tanim.kimlik(), yeni);
+        int ilerleme = Integer.bitCount(yeni);
+        oyuncu.sendOverlayMessage(Component.translatable("message.pastbound.relic.fragment_progress", ilerleme, 5));
+        oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 0.7F, 0.8F + ilerleme * 0.08F);
+        if (ilerleme >= 5) {
+            yankiyiTamamla(oyuncu, yanki);
+            veri.remove(MINI_ETKINLIK_PARCALARI + "." + tanim.kimlik());
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.fragment_complete", tanim.adBileseni()));
+        }
         return true;
     }
 
@@ -216,60 +230,6 @@ public final class RelikMantigi {
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.identified", tanim.adBileseni()));
         oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
         return true;
-    }
-
-    public static boolean bilmeceCevapla(Player oyuncu, String kimlik, String cevap) {
-        RelikTanimi tanim = tanimBul(kimlik);
-        if (tanim == null) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.bad_name"));
-            return false;
-        }
-        if (biliyorMu(oyuncu, tanim)) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.already_known", tanim.adBileseni()));
-            return true;
-        }
-        String temiz = cevap.toLowerCase(Locale.ROOT).replace('ı', 'i').replace('ş', 's').replace('ğ', 'g').replace('ü', 'u').replace('ö', 'o').replace('ç', 'c');
-        if (!cevapDogruMu(tanim, temiz)) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.riddle_wrong"));
-            return false;
-        }
-        bilgiyeEkle(oyuncu, tanim);
-        TarihYankisi yanki = TarihYankilari.yankiBulRelik(tanim);
-        if (yanki != null) {
-            yankiyiTamamla(oyuncu, yanki);
-        }
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.riddle_right", tanim.adBileseni()));
-        oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
-        return true;
-    }
-
-    private static boolean cevapDogruMu(RelikTanimi tanim, String cevap) {
-        return switch (tanim) {
-            case ROSSETTA_TASI -> cevap.contains("dil") || cevap.contains("rosetta") || cevap.contains("tas");
-            case GILGAMESH_TABLETI -> cevap.contains("gilgamesh") || cevap.contains("destan") || cevap.contains("kral");
-            case ANUBIS_ANKHI -> cevap.contains("ankh") || cevap.contains("yasam") || cevap.contains("nil");
-            case MINOS_LABIRENT_MUHRU -> cevap.contains("labirent") || cevap.contains("minos") || cevap.contains("merkez");
-            case ROMA_AUREUSU -> cevap.contains("altin") || cevap.contains("roma") || cevap.contains("imparator");
-            case VIKING_GUNES_PUSULASI -> cevap.contains("pusula") || cevap.contains("gunes") || cevap.contains("kuzey");
-            case SAMURAY_KABZASI -> cevap.contains("onur") || cevap.contains("samuray") || cevap.contains("kilic");
-            case MAYA_GUNES_CARKI -> cevap.contains("takvim") || cevap.contains("maya") || cevap.contains("gunes");
-            case INKA_QUIPUSU -> cevap.contains("dugum") || cevap.contains("quipu") || cevap.contains("ip");
-            case HARAPPA_MUHRU -> cevap.contains("muhur") || cevap.contains("harappa") || cevap.contains("indus");
-            case SONG_PORSELENI -> cevap.contains("porselen") || cevap.contains("song") || cevap.contains("ipek");
-            case BENIN_BRONZU -> cevap.contains("bronz") || cevap.contains("benin") || cevap.contains("ates");
-            case AZTEK_GUNES_TASI -> cevap.contains("aztek") || cevap.contains("cag") || cevap.contains("gunes");
-            case ABBASID_MUREKKEBI -> cevap.contains("murekkep") || cevap.contains("abbasi") || cevap.contains("fikir");
-            case RONESANS_ASTROLABI -> cevap.contains("astrolab") || cevap.contains("yildiz") || cevap.contains("olcum");
-            case ANTIKITHERA_DUZENEĞI -> cevap.contains("disli") || cevap.contains("antikithera") || cevap.contains("gok");
-            case CATALHOYUK_BONCUGU -> cevap.contains("boncuk") || cevap.contains("catalhoyuk") || cevap.contains("renk");
-            case BIZANS_MOZAIGI -> cevap.contains("mozaik") || cevap.contains("bizans") || cevap.contains("parca");
-            case TIMBUKTU_KALEMI -> cevap.contains("kalem") || cevap.contains("timbuktu") || cevap.contains("yazi");
-            case APOLLO17_ARMASI -> cevap.contains("apollo") || cevap.contains("ay") || cevap.contains("astronot");
-            case ILHANLI_MADALYONU -> cevap.contains("madalyon") || cevap.contains("ilhanli") || cevap.contains("kervan");
-            case POLINEZYA_YILDIZ_HARITASI -> cevap.contains("yildiz") || cevap.contains("polinezya") || cevap.contains("ada");
-            case MALI_TUZ_MUHRU -> cevap.contains("tuz") || cevap.contains("mali") || cevap.contains("sahra");
-            case ISKANDINAV_RUNETASI -> cevap.contains("rune") || cevap.contains("iskandinav") || cevap.contains("tas");
-        };
     }
 
     public static boolean etkinlestirIlk(Player oyuncu) {
@@ -309,7 +269,7 @@ public final class RelikMantigi {
 
     public static boolean etkinlestir(Player oyuncu, RelikTanimi tanim, ItemStack yigin) {
         if (!biliyorMu(oyuncu, tanim)) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.unknown", tanim.bilmeceBileseni()));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.unknown", tanim.etkinlikBileseni()));
             return false;
         }
         ItemCooldowns beklemeler = oyuncu.getCooldowns();

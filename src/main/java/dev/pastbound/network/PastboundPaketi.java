@@ -22,12 +22,8 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
             },
             buf -> new PastboundPaketi(buf.readVarInt(), buf.readUtf(64), buf.readUtf(64)));
 
-    public static PastboundPaketi bilmece(String relik, String cevap) {
-        return new PastboundPaketi(1, relik, cevap);
-    }
-
-    public static PastboundPaketi yanki(String echo, String dizi) {
-        return new PastboundPaketi(5, echo, dizi);
+    public static PastboundPaketi miniEtkinlik(String relik, int parca) {
+        return new PastboundPaketi(5, relik, Integer.toString(parca));
     }
 
     public static PastboundPaketi zaman(String donem) {
@@ -77,11 +73,10 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                 return;
             }
             switch (paket.islem()) {
-                case 1 -> RelikMantigi.bilmeceCevapla(oyuncu, paket.birinci(), paket.ikinci());
                 case 2 -> ZamanMakinesiMantigi.donemeGit(oyuncu, paket.birinci());
                 case 3 -> RelikMantigi.etkinlestirIlk(oyuncu);
                 case 4 -> RelikMantigi.slotYukselt(oyuncu);
-                case 5 -> RelikMantigi.yankiyiCoz(oyuncu, paket.birinci(), paket.ikinci());
+                case 5 -> miniEtkinligiAl(oyuncu, paket.birinci(), paket.ikinci());
                 case 6 -> TarihiKesifDunyasi.kontroluAl(oyuncu);
                 case 8 -> TarihiKesifDunyasi.don(oyuncu);
                 case 9 -> yuvaIsteğiniAl(oyuncu, paket.birinci());
@@ -89,6 +84,19 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                 default -> oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
             }
         });
+    }
+
+    private static void miniEtkinligiAl(ServerPlayer oyuncu, String relikKimligi, String parcaMetni) {
+        try {
+            int parca = Integer.parseInt(parcaMetni);
+            if (parca < 1 || parca > 5) {
+                oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
+                return;
+            }
+            RelikMantigi.miniEtkinligiTamamla(oyuncu, relikKimligi, parca);
+        } catch (NumberFormatException hata) {
+            oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
+        }
     }
 
     private static void konusmaSeciminiAl(ServerPlayer oyuncu, String donemKimligi, String secimMetni) {

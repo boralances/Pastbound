@@ -32,6 +32,10 @@ public final class ModBlocks {
 
     public static final DeferredBlock<EchoArchiveBlock> ECHO_ARCHIVE = BLOCKS.register("echo_archive", kimlik -> new EchoArchiveBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_PURPLE).sound(SoundType.AMETHYST).destroyTime(2.5F).explosionResistance(6.0F).lightLevel(durum -> 5)));
     public static final DeferredBlock<ResonancePillarBlock> RESONANCE_PILLAR = BLOCKS.register("resonance_pillar", kimlik -> new ResonancePillarBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_BLUE).sound(SoundType.COPPER).destroyTime(3.0F).explosionResistance(7.0F).lightLevel(durum -> durum.getValue(ResonancePillarBlock.CHARGED) ? 15 : 4)));
+    public static final DeferredBlock<Block> STEEL_ORE = BLOCKS.register("steel_ore", kimlik -> new Block(ozellik(Blocks.IRON_ORE, kimlik)));
+    public static final DeferredBlock<Block> DEEPSLATE_STEEL_ORE = BLOCKS.register("deepslate_steel_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));
+    public static final DeferredBlock<Block> STEEL_BLOCK = BLOCKS.register("steel_block", kimlik -> new Block(ozellik(Blocks.IRON_BLOCK, kimlik)));
+    public static final DeferredBlock<Block> HISTORICAL_FORGE = BLOCKS.register("historical_forge", kimlik -> new Block(ozellik(Blocks.BLAST_FURNACE, kimlik)));
 
     public static final DeferredBlock<Block> URUK_CEDAR_LOG = BLOCKS.register("uruk_cedar_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.OAK_LOG, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_STRIPPED_LOG = BLOCKS.register("uruk_cedar_stripped_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.STRIPPED_OAK_LOG, kimlik)));

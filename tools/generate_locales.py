@@ -130,58 +130,71 @@ biome_adlari = {
     "tenochtitlan_chinampa": ("Tenochtitlan Chinampa Wetlands", "Tenochtitlan Chinampa Sulak Alanları")
 }
 
-ingilizce_bilmeceler = {
-    "rossetta_tasi": "Three languages fall silent; which stone remembers one voice?",
-    "gilgamesh_tableti": "A king searched for immortality and found a friend; which story still lives?",
-    "anubis_ankhi": "Death waits at the gate; which sign carries life onward?",
-    "minos_labirent_muhru": "Walls turn and the center remains; what finds the way?",
-    "roma_aureusu": "An empire falls, yet gold remains; whom does fortune choose?",
-    "viking_gunes_pusulasi": "Behind the clouds, what can still reveal the direction?",
-    "samuray_kabzasi": "Before the sword is drawn, where is the battle already won?",
-    "maya_gunes_carki": "The day ends and the wheel turns; which light defeats the shadow?",
-    "inka_quipusu": "A thousand knots hang on one cord; who remembers the number?",
-    "harappa_muhru": "If the sign cannot be read, what does the city still tell us?",
-    "song_porseleni": "Born in a kiln and carried across the sea; what does it preserve?",
-    "benin_bronzu": "Born from fire, which face reveals the kingdom?",
-    "aztek_gunes_tasi": "Four ages pass; which stone holds the fifth sky?",
-    "abbasid_murekkebi": "Ink dries; in which night does an idea begin to shine?",
-    "ronesans_astrolabi": "The stars are distant; where does the measuring hand rise?",
-    "antikithera_duzenegi": "How can small gears remember the movement of the great sky?",
-    "catalhoyuk_boncugu": "Homes join together; in which color does a community live?",
-    "bizans_mozaigi": "A thousand fragments form one image; what does not break?",
-    "timbuktu_kalemi": "The sands erase paths; which writing calls the road back?",
-    "apollo17_armasi": "Earth is far away; in which silence does the first footprint remain?",
-    "ilhanli_madalyonu": "Caravans pass; who seals trust along the road?",
-    "polinezya_yildiz_haritasi": "With no horizon line, which star draws the island’s route?",
-    "mali_tuz_muhru": "Protected like salt, along which road does fortune multiply?",
-    "iskandinav_runetasi": "Words remain in stone; how do you step away from noise?"
+celik_esyalari = {
+    "raw_steel": ("Raw Steel", "Ham Çelik"),
+    "steel_ingot": ("Steel Ingot", "Çelik Külçe"),
+    "steel_plate": ("Steel Plate", "Çelik Levha")
 }
 
-turkce_bilmeceler = {
-    "rossetta_tasi": "Üç dil susar; hangi taş tek bir sesi hatırlar?",
-    "gilgamesh_tableti": "Bir kral ölümsüzlüğü aradı ve dost buldu; hangi hikâye hâlâ yaşar?",
-    "anubis_ankhi": "Ölüm kapıda bekler; yaşamı hangi işaret taşır?",
-    "minos_labirent_muhru": "Duvarlar döner, merkez kaybolmaz; yolu ne bulur?",
-    "roma_aureusu": "Bir imparatorluk çöker, altın kalır; talih kimi seçer?",
-    "viking_gunes_pusulasi": "Bulutların ardında yönü hâlâ ne gösterebilir?",
-    "samuray_kabzasi": "Kılıç çekilmeden önce savaş nerede kazanılır?",
-    "maya_gunes_carki": "Gün biter, çark döner; gölgeyi hangi ışık yener?",
-    "inka_quipusu": "Bir ipte bin düğüm vardır; sayıyı kim hatırlar?",
-    "harappa_muhru": "İşaret okunmazsa şehir bize ne anlatır?",
-    "song_porseleni": "Fırında doğar, denizi geçer; neyi korur?",
-    "benin_bronzu": "Ateşten çıkar; krallığı hangi yüz gösterir?",
-    "aztek_gunes_tasi": "Dört çağ geçer; beşinci göğü hangi taş tutar?",
-    "abbasid_murekkebi": "Mürekkep kurur; fikir hangi gecede parlar?",
-    "ronesans_astrolabi": "Yıldızlar uzaktır; ölçüm yapan el nereye yükselir?",
-    "antikithera_duzenegi": "Küçük dişliler büyük göğün hareketini nasıl hatırlar?",
-    "catalhoyuk_boncugu": "Evler birleşir; topluluk hangi renkte yaşar?",
-    "bizans_mozaigi": "Bin parça tek resim olur; kırılmayan neyi saklar?",
-    "timbuktu_kalemi": "Kumlar yolları siler; yazı hangi yolu geri çağırır?",
-    "apollo17_armasi": "Dünya uzaktadır; ilk ayak izi hangi sessizlikte kalır?",
-    "ilhanli_madalyonu": "Kervan geçer; yol güvenini kim mühürler?",
-    "polinezya_yildiz_haritasi": "Ufuk çizgisizdir; ada yolunu hangi yıldız çizer?",
-    "mali_tuz_muhru": "Tuz gibi korunur; servet hangi yoldan çoğalır?",
-    "iskandinav_runetasi": "Söz taşta kalır; gürültüden nasıl uzaklaşılır?"
+celik_bloklari = {
+    "steel_ore": ("Steel Ore", "Çelik Cevheri"),
+    "deepslate_steel_ore": ("Deepslate Steel Ore", "Derin Kayrak Çelik Cevheri"),
+    "steel_block": ("Steel Block", "Çelik Bloğu"),
+    "historical_forge": ("Historical Forge", "Tarihî Ocak")
+}
+
+ingilizce_etkinlikler = {
+    "rossetta_tasi": "Recover five clay fragments and align the three language marks.",
+    "gilgamesh_tableti": "Rebuild the broken tablet and place the friend’s seal at its center.",
+    "anubis_ankhi": "Light five river lamps and return the life symbol to the gate.",
+    "minos_labirent_muhru": "Follow the changing corridor and restore the seal at the quiet center.",
+    "roma_aureusu": "Gather the forum tokens and repair the merchant’s worn coin die.",
+    "viking_gunes_pusulasi": "Track the sunlit stones and turn the compass toward the northern star.",
+    "samuray_kabzasi": "Collect the fallen crest pieces and set the hilt beside the training banner.",
+    "maya_gunes_carki": "Rotate the calendar stones until the four seasonal marks face the sun.",
+    "inka_quipusu": "Restore five colored cords and hang them on the quipu counting frame.",
+    "harappa_muhru": "Clear the drain markers and press the recovered seal into wet clay.",
+    "song_porseleni": "Collect kiln shards and fire the missing blue-white rim in the workshop.",
+    "benin_bronzu": "Recover five bronze faces and place them on the palace memory wall.",
+    "aztek_gunes_tasi": "Carry the four age markers to the sun stone and awaken its fifth ring.",
+    "abbasid_murekkebi": "Mix the ink, copy five lines and return the finished folio to the scribe.",
+    "ronesans_astrolabi": "Fit the brass rings and calibrate the astrolabe against the evening star.",
+    "antikithera_duzenegi": "Collect the loose gears and place the lunar wheel back in the mechanism.",
+    "catalhoyuk_boncugu": "Restore five colored beads and return them to the shared hearth alcove.",
+    "bizans_mozaigi": "Collect mosaic fragments and complete the border around the central figure.",
+    "timbuktu_kalemi": "Recover five manuscript leaves and bind them beside the caravan map.",
+    "apollo17_armasi": "Repair the mission patch display and mark the route beside the lunar module.",
+    "ilhanli_madalyonu": "Restore the relay seals and place the medallion on the caravan ledger.",
+    "polinezya_yildiz_haritasi": "Gather five star marks and set the island route on the canoe chart.",
+    "mali_tuz_muhru": "Carry salt sacks to the caravan store and stamp the recovered trade seal.",
+    "iskandinav_runetasi": "Brush the rune stone clean and restore the missing edge inscription.",
+}
+
+turkce_etkinlikler = {
+    "rossetta_tasi": "Beş kil parçasını bul ve üç dil işaretini hizala.",
+    "gilgamesh_tableti": "Kırık tableti onar ve dostun mührünü merkezine yerleştir.",
+    "anubis_ankhi": "Beş nehir kandilini yak ve yaşam işaretini kapıya geri götür.",
+    "minos_labirent_muhru": "Değişen koridoru izle ve sessiz merkezdeki mührü onar.",
+    "roma_aureusu": "Forum jetonlarını topla ve tüccarın yıpranmış sikke kalıbını onar.",
+    "viking_gunes_pusulasi": "Güneş taşlarını takip et ve pusulayı kuzey yıldızına çevir.",
+    "samuray_kabzasi": "Düşen arma parçalarını topla ve kabzayı talim sancağının yanına koy.",
+    "maya_gunes_carki": "Takvim taşlarını dört mevsim işareti Güneş’e bakana kadar döndür.",
+    "inka_quipusu": "Beş renkli ipi onar ve quipu sayım çerçevesine as.",
+    "harappa_muhru": "Drenaj işaretlerini temizle ve bulunan mührü yaş kile bastır.",
+    "song_porseleni": "Fırın parçalarını topla ve eksik mavi-beyaz kenarı atölyede pişir.",
+    "benin_bronzu": "Beş bronz yüzü bul ve saray hafıza duvarına yerleştir.",
+    "aztek_gunes_tasi": "Dört çağ işaretini Güneş taşına taşı ve beşinci halkayı uyandır.",
+    "abbasid_murekkebi": "Mürekkebi karıştır, beş satırı kopyala ve bitmiş sayfayı kâtibe götür.",
+    "ronesans_astrolabi": "Pirinç halkaları tak ve astrolabı akşam yıldızına göre ayarla.",
+    "antikithera_duzenegi": "Gevşek dişlileri topla ve Ay çarkını düzeneğe geri yerleştir.",
+    "catalhoyuk_boncugu": "Beş renkli boncuğu onar ve ortak ocak nişine geri koy.",
+    "bizans_mozaigi": "Mozaik parçalarını topla ve merkez figürün çevresindeki bordürü tamamla.",
+    "timbuktu_kalemi": "Beş el yazması yaprağını bul ve kervan haritasının yanında ciltle.",
+    "apollo17_armasi": "Görev arması sergisini onar ve Ay aracının yanındaki rotayı işaretle.",
+    "ilhanli_madalyonu": "Menzil mühürlerini onar ve madalyonu kervan defterine koy.",
+    "polinezya_yildiz_haritasi": "Beş yıldız işaretini topla ve ada rotasını kano haritasına yerleştir.",
+    "mali_tuz_muhru": "Tuz çuvallarını kervan ambarına taşı ve ticaret mührünü bas.",
+    "iskandinav_runetasi": "Rune taşını temizle ve eksik kenar yazısını onar."
 }
 
 yankilar = {
@@ -268,13 +281,43 @@ turkce_time_duraklari = {
     "ipek_yolu_kervansarayi": ("İpek Yolu Kervansarayı", "Kültürler arası değişim", "Tek bir avluda dillerin, kumaşların, tariflerin ve fikirlerin buluşmasını dinle; ticaretin ortak hafızaya dönüşmesine tanık ol.")
 }
 
+konusmalar_en = {
+    "uruk_yazi_evi": ("Why are the clay marks counted?", "A grain mark becomes a promise when a whole city can read it.", "What should the first scribes teach us?"),
+    "termopil_savasi": ("Why does the pass matter?", "A narrow road can make terrain part of a strategy.", "What remains after the battle is remembered?"),
+    "iskenderiye_kutuphanesi": ("Why gather so many scrolls?", "A harbor brings languages together before ideas can travel farther.", "How does a fragile page outlive a palace?"),
+    "bagdat_pili_atolyesi": ("What is inside the vessel?", "Copper, iron and an acidic liquid produce a small but intriguing experiment; the evidence deserves careful questions.", "Why repair a device whose purpose is uncertain?"),
+    "antikithera_limani": ("What do the gears follow?", "The makers turn observations of the sky into a compact mechanical calendar.", "What does patient craft add to astronomy?"),
+    "bagdat_bilgi_evi": ("Who is translating this page?", "Greek, Persian, Syriac and Arabic learning meet through patient translation and debate.", "How does a question become science?"),
+    "timbuktu_el_yazmalari": ("Why protect these manuscripts?", "A caravan can carry mathematics, law and poetry across a desert.", "What keeps a school alive when the road moves?"),
+    "tenochtitlan_gecidi": ("How do the chinampas feed the city?", "Raised fields, canals and careful calendars turn lake water into food and time.", "What do the causeways connect besides neighborhoods?"),
+    "polinezya_yildiz_yolu": ("How do you steer without a drawn map?", "Stars, swells, winds and birds form a living chart remembered by navigators.", "What makes a distant island recognizable?"),
+    "catalhoyuk_yerleskesi": ("Why are the homes joined together?", "Shared roofs, hearths and rituals make a settlement a network of memory.", "What does an ordinary room reveal about a community?"),
+    "apollo_ay_istigi": ("What was the first task on the surface?", "A checklist, a partner and a sample turned a short walk into lasting science.", "Why does one footprint matter to history?"),
+    "ipek_yolu_kervansarayi": ("Who can rest in this courtyard?", "Merchants exchange languages, goods and techniques as well as silver.", "How does a road become a shared memory?")
+}
+
+konusmalar_tr = {
+    "uruk_yazi_evi": ("Kil işaretleri neden sayılıyor?", "Bir tahıl işareti bütün şehir okuyabildiğinde söze ve vaade dönüşür.", "İlk kâtipler bize ne öğretmeli?"),
+    "termopil_savasi": ("Bu geçit neden önemli?", "Dar bir yol, araziyi stratejinin bir parçasına dönüştürebilir.", "Savaştan sonra geriye ne kalır?"),
+    "iskenderiye_kutuphanesi": ("Neden bu kadar tomar toplanıyor?", "Bir liman, fikirler daha uzağa gitmeden önce dilleri bir araya getirir.", "Kırılgan bir sayfa saraydan nasıl uzun yaşar?"),
+    "bagdat_pili_atolyesi": ("Kabın içinde ne var?", "Bakır, demir ve asitli bir sıvı küçük ama ilginç bir deney oluşturuyor; kanıt dikkatli soruları hak ediyor.", "Amacı belirsiz bir düzeneği neden onarmalıyız?"),
+    "antikithera_limani": ("Dişli çarklar neyi izliyor?", "Ustalar gök gözlemlerini küçük bir mekanik takvime dönüştürüyor.", "Sabırlı zanaat gökbilime ne katar?"),
+    "bagdat_bilgi_evi": ("Bu sayfayı kim çeviriyor?", "Yunanca, Farsça, Süryanice ve Arapça bilgi sabırlı çeviri ve tartışmayla buluşuyor.", "Bir soru nasıl bilime dönüşür?"),
+    "timbuktu_el_yazmalari": ("Bu el yazmaları neden korunuyor?", "Bir kervan matematiği, hukuku ve şiiri çölün ötesine taşıyabilir.", "Yol değişirken bir okul nasıl yaşar?"),
+    "tenochtitlan_gecidi": ("Chinampa tarlaları şehri nasıl besliyor?", "Yükseltilmiş tarlalar, kanallar ve dikkatli takvim göl suyunu yiyeceğe ve zamana çeviriyor.", "Geçitler mahallelerden başka neyi bağlıyor?"),
+    "polinezya_yildiz_yolu": ("Çizilmiş harita olmadan nasıl yön bulursun?", "Yıldızlar, dalgalar, rüzgârlar ve kuşlar denizcilerin hatırladığı canlı bir harita oluşturur.", "Uzak bir ada nasıl tanınır?"),
+    "catalhoyuk_yerleskesi": ("Evler neden birbirine bağlı?", "Ortak çatılar, ocaklar ve törenler yerleşimi bir hafıza ağına dönüştürür.", "Sıradan bir oda topluluk hakkında ne anlatır?"),
+    "apollo_ay_istigi": ("Yüzeydeki ilk görev neydi?", "Bir kontrol listesi, bir yol arkadaşı ve bir örnek kısa yürüyüşü kalıcı bilime dönüştürdü.", "Tek bir ayak izi tarih için neden önemli?"),
+    "ipek_yolu_kervansarayi": ("Bu avluda kim dinlenebilir?", "Tüccarlar gümüşün yanında dilleri, malları ve teknikleri de değiş tokuş eder.", "Bir yol nasıl ortak hafızaya dönüşür?")
+}
+
 ortak = {
     "block.pastbound.echo_archive": "Echo Archive",
     "block.pastbound.resonance_pillar": "Resonance Pillar",
     "item.pastbound.echo_shard": "Echo Shard",
     "item.pastbound.memory_lens": "Memory Lens",
     "tooltip.pastbound.relic.power": "Ability: %s",
-    "tooltip.pastbound.relic.riddle": "Riddle: %s",
+    "tooltip.pastbound.relic.activity": "Restoration activity: %s",
     "tooltip.pastbound.relic.identify": "Knowledge cost: %s XP levels",
     "tooltip.pastbound.relic.xp": "Shift-right-click to spend %s XP levels and identify",
     "tooltip.pastbound.relic.shortcut": "V: awaken while equipped",
@@ -287,9 +330,10 @@ ortak = {
     "message.pastbound.relic.cooldown": "The relic is still gathering an echo.",
     "message.pastbound.relic.no_curios": "Curios is not providing a relic inventory.",
     "message.pastbound.relic.no_known": "No known relic is equipped in a Curios relic slot.",
-    "message.pastbound.relic.unknown": "The relic remains unknown. Riddle: %s",
-    "message.pastbound.relic.riddle_wrong": "The past stays silent. That answer does not fit.",
-    "message.pastbound.relic.riddle_right": "The riddle opens the memory of %s.",
+    "message.pastbound.relic.unknown": "The relic remains unknown. Restoration activity: %s",
+    "message.pastbound.relic.fragment_already": "That echo fragment is already restored.",
+    "message.pastbound.relic.fragment_progress": "Echo restoration: %s/%s fragments recovered.",
+    "message.pastbound.relic.fragment_complete": "Relic fully restored: %s.",
     "message.pastbound.relic.knowledge": "Historical memory added: %s",
     "message.pastbound.relic.identified": "You spent experience and identified %s.",
     "message.pastbound.relic.xp_hint": "Hold Shift and use it with at least %s XP levels to identify it.",
@@ -299,13 +343,13 @@ ortak = {
     "screen.pastbound.help": "R journal   V awaken",
     "screen.pastbound.ready": "KNOWN",
     "screen.pastbound.unknown": "UNKNOWN",
-    "screen.pastbound.riddle_hint": "Solve the riddle",
     "screen.pastbound.close": "Esc to close",
     "screen.pastbound.page": "Page %s/%s",
     "screen.pastbound.page_hint": "Left/Right: change page   Click: inspect relic",
     "key.pastbound.journal": "Open Relic Journal",
     "key.pastbound.activate": "Awaken equipped relic",
     "key.pastbound.take_control": "Take control of the historical scene",
+    "key.pastbound.language": "Open Pastbound language menu",
     "key.pastbound.relic_slot_1": "Activate relic slot 1",
     "key.pastbound.relic_slot_2": "Activate relic slot 2",
     "key.pastbound.relic_slot_3": "Activate relic slot 3",
@@ -329,11 +373,6 @@ ortak = {
     "screen.pastbound.echo_found": "ECHO FOUND",
     "screen.pastbound.click_hint": "Click a relic to open its historical trial",
     "screen.pastbound.modal_title": "Historical Echo Trial",
-    "screen.pastbound.sequence": "Sequence: %s",
-    "screen.pastbound.choose": "Choose 1, 2, or 3",
-    "screen.pastbound.solve_hint": "Enter to submit   Esc to return",
-    "screen.pastbound.riddle_input": "Riddle answer: %s",
-    "screen.pastbound.solve_gui_hint": "Type the answer or choose 1-2-3, then press Enter",
     "screen.pastbound.slot_hint": "U: exchange 10 Netherite Blocks for 2 relic slots",
     "screen.pastbound.time_machine": "Time Machine",
     "screen.pastbound.time_machine.subtitle": "Choose a historical place to explore its living echo.",
@@ -344,7 +383,7 @@ ortak = {
     "message.pastbound.echo.trace": "Trace recorded: %s",
     "message.pastbound.echo.bad_name": "That echo is not in the chronicle.",
     "message.pastbound.echo.already": "The echo of %s is already recorded.",
-    "message.pastbound.echo.wrong": "The sequence fades. Hint: %s",
+    "message.pastbound.echo.wrong": "The echo drifts away. Hint: %s",
     "message.pastbound.echo_count": "Historical echoes recovered: %s/%s",
     "message.pastbound.echo.stirs": "A historical echo stirs: %s",
     "message.pastbound.echo.open_journal": "Press R to open the Relic Journal and attempt its historical trial.",
@@ -383,7 +422,27 @@ ortak = {
     "message.pastbound.scene.narration_intro": "%s begins: %s",
     "message.pastbound.scene.narration_focus": "Historical focus: %s",
     "message.pastbound.scene.narration_detail": "The living scene reveals more: %s",
+    "screen.pastbound.relic.activity": "Restore the echo: recover five fragments by exploring its historical memory.",
+    "screen.pastbound.relic.fragments": "Restored fragments: %s/%s",
+    "screen.pastbound.relic.fragment": "Fragment %s",
+    "screen.pastbound.relic.fragment_done": "Restored",
+    "screen.pastbound.relic.activity_hint": "Click fragments or press 1-5. Each fragment is independent.",
+    "screen.pastbound.language.title": "Pastbound Language",
+    "screen.pastbound.language.choose": "Choose the language for Pastbound interfaces",
+    "screen.pastbound.language.english": "English",
+    "screen.pastbound.language.turkish": "Türkçe",
+    "screen.pastbound.language.default": "Default language: English",
+    "screen.pastbound.language.close": "Esc: close",
     "message.pastbound.scene.quest": "Mini mission: talk to all four historical witnesses, then explore the marked perimeter and return to the beacon.",
+    "message.pastbound.mission.steel_start": "Workshop mission: mine the three steel veins, smelt raw steel into an ingot, craft a steel plate, then repair the historical forge.",
+    "message.pastbound.mission.steel_mined": "The three steel veins are open. Smelt the raw steel in a furnace inside this historical workshop.",
+    "message.pastbound.mission.steel_vein": "Steel vein %s/%s recovered. Keep mining the marked veins.",
+    "message.pastbound.mission.already_repaired": "This historical forge is already repaired.",
+    "message.pastbound.mission.steel_smelted": "The ingot holds. Craft a steel plate and bring it to the historical forge.",
+    "message.pastbound.mission.plate_ready": "The plate is ready. Use it on the orange-marked historical forge to restore the device.",
+    "message.pastbound.mission.forge_locked": "The forge is cold. Mine steel, smelt an ingot and craft a steel plate first.",
+    "message.pastbound.mission.plate_needed": "Bring one Steel Plate to repair this historical forge.",
+    "message.pastbound.mission.forge_repaired": "The Baghdad Battery workshop hums again. The repaired device records a new echo.",
     "message.pastbound.scene.quest_explore": "Mission active: speak with every witness, walk beyond the outer ring, and return to the central beacon.",
     "message.pastbound.scene.quest_talk": "Witness %s has shared a memory. Continue the conversation route.",
     "message.pastbound.scene.quest_perimeter": "Perimeter discovered. The landscape preserves another piece of the story.",
@@ -411,41 +470,41 @@ ortak = {
 
 metinler = {
     "en_us": {"itemGroup.pastbound": "Pastbound: Echoes of History", "screen.pastbound.journal": "Relic Journal"},
-    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "key.pastbound.take_control": "Tarihî sahnenin kontrolünü al", "key.pastbound.relic_slot_1": "Relic yuvası 1’i etkinleştir", "key.pastbound.relic_slot_2": "Relic yuvası 2’yi etkinleştir", "key.pastbound.relic_slot_3": "Relic yuvası 3’ü etkinleştir", "key.pastbound.relic_slot_4": "Relic yuvası 4’ü etkinleştir", "key.pastbound.relic_slot_5": "Relic yuvası 5’i etkinleştir", "key.pastbound.relic_slot_6": "Relic yuvası 6’yı etkinleştir", "key.pastbound.relic_slot_7": "Relic yuvası 7’yi etkinleştir", "key.pastbound.relic_slot_8": "Relic yuvası 8’i etkinleştir", "key.pastbound.relic_slot_9": "Relic yuvası 9’u etkinleştir", "key.pastbound.relic_slot_10": "Relic yuvası 10’u etkinleştir", "block.pastbound.echo_archive": "Yankı Arşivi", "block.pastbound.resonance_pillar": "Rezonans Sütunu", "item.pastbound.echo_shard": "Yankı Parçası", "item.pastbound.memory_lens": "Hafıza Merceği", "item.pastbound.chronicle_scrap": "Kronik Parçası", "item.pastbound.history_ink": "Tarih Mürekkebi", "item.pastbound.time_stone": "Zaman Taşı", "item.pastbound.echo_seal": "Yankı Mührü", "item.pastbound.zaman_makinesi": "Zaman Makinesi", "item.pastbound.firin_cubugu": "Çubukta Fırın", "effect.pastbound.tarih_yankisi": "Tarih Yankısı", "screen.pastbound.riddle_input": "Bilmece cevabı: %s", "screen.pastbound.solve_gui_hint": "Cevabı yaz veya 1-2-3 seç, sonra Enter’a bas", "screen.pastbound.slot_hint": "U: 10 Netherite Block karşılığında 2 relic yuvası aç", "screen.pastbound.time_machine": "Zaman Makinesi", "screen.pastbound.time_machine.subtitle": "Yaşayan yankısını keşfetmek için tarihî bir durak seç.", "screen.pastbound.time_machine.hint": "Bir durağa tıkla veya 1-9’a bas", "screen.pastbound.time_machine.sent": "Zamansal rota hazırlandı", "screen.pastbound.time_machine.cost": "Yolculuk için 1 Zaman Taşı gerekir", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.riddle": "Bilmece: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.xp": "Tanımak için Shift ile sağ tıkla ve %s XP seviyesi harca", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.riddle_wrong": "Geçmiş susuyor. Bu cevap uymuyor.", "message.pastbound.relic.riddle_right": "Bilmece %s anısını açtı.", "message.pastbound.relic.identified": "XP harcanarak tanındı: %s.", "message.pastbound.relic.xp_hint": "%s XP seviyesine ihtiyacın var.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.riddle_hint": "Bilmeceyi çöz", "screen.pastbound.close": "Kapatmak için Esc", "screen.pastbound.page": "Sayfa %s/%s", "screen.pastbound.page_hint": "Sol/Sağ: sayfa değiştir   Tıkla: relic’i incele", "screen.pastbound.echo_progress": "Yankılar: %s/%s", "screen.pastbound.echo_found": "YANKI BULUNDU", "screen.pastbound.click_hint": "Tarihî sınavı açmak için bir relic’e tıkla", "screen.pastbound.modal_title": "Tarihî Yankı Sınavı", "screen.pastbound.sequence": "Dizi: %s", "screen.pastbound.choose": "1, 2 veya 3 seç", "screen.pastbound.solve_hint": "Göndermek için Enter   Geri dönmek için Esc", "message.pastbound.echo.discovered": "Tarihî yankı bulundu: %s", "message.pastbound.echo.trace": "İz kaydedildi: %s", "message.pastbound.echo.bad_name": "Bu yankı kronikte yok.", "message.pastbound.echo.already": "%s yankısı zaten kaydedildi.", "message.pastbound.echo.wrong": "Dizi dağıldı. İpucu: %s", "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s", "message.pastbound.echo.stirs": "Bir tarihî yankı uyandı: %s", "message.pastbound.echo.open_journal": "Tarihî sınava girmek için R’ye basıp Relik Günlüğü’nü aç.", "message.pastbound.echo.locked": "%s için tarihî sınav henüz uyanmadı. Önce ilgili aksiyonu gerçekleştir.", "message.pastbound.global.yazi_devrimi": "Yazı Devrimi sunucuda yankılanıyor: kil üzerindeki işaretler hafızaya, hafıza da kuşaklar arasında bir köprüye dönüşüyor.", "message.pastbound.global.nil_kanallari": "Nil Kanalları tarihte yeni bir yol açıyor: taşkın, tahıl ve dikkatli ölçüm nehri ortak bir takvime dönüştürüyor.", "message.pastbound.global.yildiz_seferi": "Yıldız Seferi her ufku işaretliyor: denizciler yıldızları, dalgaları ve kuşları okuyarak belirsizliği eve dönüş yoluna çeviriyor.", "message.pastbound.global.kervan_yolu": "Kervan Yolu uzak anıları bağlıyor: tuz, ipek, hikâyeler ve aletler çölleri aşarken bilgi de insanlarla birlikte yol alıyor.", "message.pastbound.global.takvim_meclisi": "Takvim Meclisi yaşayan dünyayı hizalıyor: ekim, hasat, tören ve yolculuk ortak bir zaman ölçüsüne bağlanıyor.", "message.pastbound.global.demirci_hafizasi": "Demircilerin Hafızası yerin altında çınlıyor: cevher alete, alet şehre dönüşüyor ve her çekiç darbesi insan izini koruyor.", "message.pastbound.global.mozaik_baris": "Mozaik Barışı dağınık parçaları topluyor: farklı renkler ve gelenekler kendi biçimini kaybetmeden tek bir görüntü oluşturuyor.", "message.pastbound.global.ipek_degisimi": "İpek Değişimi kıyılar arasında bilgi taşıyor: diller, boyalar, ilaçlar ve matematik fikirleri tek bir tüccardan çok daha uzağa ulaşıyor.", "message.pastbound.global.quipu_sayimi": "Quipu Sayımı dünyanın ritmini kaydediyor: düğümler, mürekkep bulunmadığında miktarları, sözleri ve yolculukları koruyor.", "message.pastbound.global.astrolab_gogu": "Astrolab Göğü ölçülü bir yol gösteriyor: küçük bir alet matematiği, gökbilimi ve açık denizin tehlikeli özgürlüğünü birleştiriyor.", "message.pastbound.global.rune_nobeti": "Rune Nöbeti kuzey gecesini koruyor: taşa kazınmış işaret bir adı, uyarıyı ve onu işleyen elin hatırasını taşıyor.", "message.pastbound.global.ay_misyonu": "Ay Misyonu dünyanın ötesine yeni bir yankı bırakıyor: ayak izleri, araçlar ve merakın ufku değiştirebileceğine dair sessiz bir söz.", "message.pastbound.global.tarim_devrimi": "Tarım Devrimi insan yaşamının ritmini değiştiriyor: tohum, sulama ve depolanan tahıl mevsimlik kampı kalıcı yerleşime dönüştürüyor.", "message.pastbound.global.akdeniz_gemiciligi": "Akdeniz denizciliği limanları ve kültürleri bağlıyor: rüzgâr, akıntı ve tanıdık bir takımyıldız hikâyeyi denizin ötesine taşıyor.", "message.pastbound.global.matbaa_yankisi": "Matbaa Yankısı hafızayı çoğaltıyor: tek bir sayfa birçok elden geçerek fikre yazarından daha uzun bir hayat veriyor.", "message.pastbound.global.tip_bahcesi": "Şifa Bahçesi sabırlı gözlemi koruyor: kökler, yapraklar ve dikkatli notlar deneyimi bakım geleneğine dönüştürüyor.", "message.pastbound.global.cam_yolu": "Cam Yolu zanaatla parlıyor: kum, ısı ve sabır kırılgan malzemeyi ışığı ve günlük yaşamı koruyan kaplara çeviriyor.", "message.pastbound.global.gozlem_evi": "Gözlem Evi gece göğünü bir araya getiriyor: tekrar edilen gözlemler yukarı bakan herkesin paylaşabileceği örüntüler açığa çıkarıyor.", "message.pastbound.global.hukuk_meclisi": "Hukuk Meclisi hafızaya kamusal bir ses veriyor: kurallar topluluk onları birlikte açıkladığında, kaydettiğinde ve sorguladığında anlam kazanıyor.", "message.pastbound.global.arkeoloji_kesfi": "Arkeoloji Keşfi tozun altında başlıyor: kırık bir parça bir krallıktan uzun yaşayarak sıradan insanların nasıl yaşadığını anlatabiliyor.", "message.pastbound.packet.invalid": "Arşiv bu isteği reddetti.", "message.pastbound.slot.max": "On relic yuvasının tamamı zaten açık.", "message.pastbound.slot.cost": "İki relic yuvası açmak için %s Netherite Block gerekiyor.", "message.pastbound.slot.unlocked": "İki relic yuvası açıldı. Toplam kapasite: %s.", "message.pastbound.time_machine.unknown": "Bu tarihî durak makinede yok.", "message.pastbound.time_machine.cooldown": "Zaman makinesi hâlâ dengeleniyor.", "message.pastbound.time_machine.time_stone_needed": "Zamanda yolculuk için 1 Zaman Taşı gerekir.", "message.pastbound.time_machine.arrived": "%s durağına ulaşıldı: %s", "message.pastbound.time_machine.dimension_unavailable": "Tarihî keşif boyutu bu dünyada kullanılamıyor.", "message.pastbound.scene.enter": "%s tarihinin yaşayan sahnesine giriyorsun.", "message.pastbound.scene.press_d": "Kontrolü almak istediğinde D’ye bas.", "message.pastbound.scene.narration_intro": "%s başlıyor: %s", "message.pastbound.scene.narration_focus": "Tarihî odak: %s", "message.pastbound.scene.narration_detail": "Yaşayan sahne daha fazlasını gösteriyor: %s", "message.pastbound.scene.quest": "Mini görev: dört tarihî tanıkla konuş, dış çemberi keşfet ve işarete geri dön.", "message.pastbound.scene.quest_explore": "Görev başladı: her tanıkla konuş, dış halkayı aş ve merkezdeki işarete geri dön.", "message.pastbound.scene.quest_talk": "%s numaralı tanık bir anı paylaştı. Konuşma yoluna devam et.", "message.pastbound.scene.quest_perimeter": "Dış halka keşfedildi. Manzara hikâyenin başka bir parçasını saklıyor.", "message.pastbound.scene.quest_return": "İşarete geri döndün. Sahne son anısını göstermeye hazır.", "message.pastbound.scene.quest_complete": "Tarihî mini görev tamamlandı. Arşivine iki Kronik Parçası eklendi.", "message.pastbound.scene.focus": "Tarihî odak: %s", "message.pastbound.scene.observe": "Canlandırma %s. sahneyi gösteriyor.", "message.pastbound.scene.ready": "Sahne hazır. İçine girmek için D’ye bas.", "message.pastbound.scene.control": "Artık tarihî sahnenin bir parçasısın.", "message.pastbound.scene.returned": "Tarihî canlandırmadan geri döndün.", "screen.pastbound.scene.title": "Yaşayan Tarih", "screen.pastbound.scene.phase_one": "İlk anı şekilleniyor...", "screen.pastbound.scene.phase_two": "Sesler ve hareket geçmişe dönüyor...", "screen.pastbound.scene.phase_three": "Sahne seçimini bekliyor...", "screen.pastbound.scene.press_d": "D: sahnenin kontrolünü al", "screen.pastbound.scene.escape_hint": "Esc: anlatım penceresini kapat", "screen.pastbound.dialogue.title": "Tarihle Konuşma", "screen.pastbound.dialogue.choose": "1, 2 veya 3 ile soru seç", "message.pastbound.dialogue.too_far": "Tarihî konuşmacıya yaklaş.", "entity.pastbound.scene.narrator": "Tarih Anlatıcısı", "entity.pastbound.scene.craftsman": "Zanaatkâr", "entity.pastbound.scene.witness": "Tanık", "entity.pastbound.scene.scribe": "Kâtip", "tooltip.pastbound.relic.echo": "Keşif yankısı: %s"},
-    "de_de": {"itemGroup.pastbound": "Pastbound: Echos der Geschichte", "screen.pastbound.journal": "Relikt-Tagebuch", "screen.pastbound.progress": "Geborgene Erinnerungen: %s/%s", "screen.pastbound.help": "R Tagebuch   V erwecken", "screen.pastbound.ready": "BEKANNT", "screen.pastbound.unknown": "UNBEKANNT", "screen.pastbound.riddle_hint": "Rätsel lösen", "screen.pastbound.close": "Esc zum Schließen"},
-    "fr_fr": {"itemGroup.pastbound": "Pastbound : Échos de l’histoire", "screen.pastbound.journal": "Journal des reliques", "screen.pastbound.progress": "Souvenirs retrouvés : %s/%s", "screen.pastbound.help": "R journal   V éveiller", "screen.pastbound.ready": "CONNU", "screen.pastbound.unknown": "INCONNU", "screen.pastbound.riddle_hint": "Résoudre l’énigme", "screen.pastbound.close": "Esc pour fermer"},
-    "es_es": {"itemGroup.pastbound": "Pastbound: Ecos de la historia", "screen.pastbound.journal": "Diario de reliquias", "screen.pastbound.progress": "Memorias recuperadas: %s/%s", "screen.pastbound.help": "R diario   V despertar", "screen.pastbound.ready": "CONOCIDA", "screen.pastbound.unknown": "DESCONOCIDA", "screen.pastbound.riddle_hint": "Resuelve el acertijo", "screen.pastbound.close": "Esc para cerrar"},
-    "es_mx": {"itemGroup.pastbound": "Pastbound: Ecos de la historia", "screen.pastbound.journal": "Diario de reliquias", "screen.pastbound.progress": "Memorias recuperadas: %s/%s", "screen.pastbound.help": "R diario   V despertar", "screen.pastbound.ready": "CONOCIDA", "screen.pastbound.unknown": "DESCONOCIDA", "screen.pastbound.riddle_hint": "Resuelve el acertijo", "screen.pastbound.close": "Esc para cerrar"},
-    "it_it": {"itemGroup.pastbound": "Pastbound: Echi della storia", "screen.pastbound.journal": "Diario delle reliquie", "screen.pastbound.progress": "Memorie recuperate: %s/%s", "screen.pastbound.help": "R diario   V risveglia", "screen.pastbound.ready": "NOTA", "screen.pastbound.unknown": "IGNOTA", "screen.pastbound.riddle_hint": "Risolvi l’enigma", "screen.pastbound.close": "Esc per chiudere"},
-    "pt_br": {"itemGroup.pastbound": "Pastbound: Ecos da história", "screen.pastbound.journal": "Diário de relíquias", "screen.pastbound.progress": "Memórias recuperadas: %s/%s", "screen.pastbound.help": "R diário   V despertar", "screen.pastbound.ready": "CONHECIDA", "screen.pastbound.unknown": "DESCONHECIDA", "screen.pastbound.riddle_hint": "Resolva o enigma", "screen.pastbound.close": "Esc para fechar"},
-    "pt_pt": {"itemGroup.pastbound": "Pastbound: Ecos da história", "screen.pastbound.journal": "Diário de relíquias", "screen.pastbound.progress": "Memórias recuperadas: %s/%s", "screen.pastbound.help": "R diário   V despertar", "screen.pastbound.ready": "CONHECIDA", "screen.pastbound.unknown": "DESCONHECIDA", "screen.pastbound.riddle_hint": "Resolve o enigma", "screen.pastbound.close": "Esc para fechar"},
-    "ru_ru": {"itemGroup.pastbound": "Pastbound: Эхо истории", "screen.pastbound.journal": "Дневник реликвий", "screen.pastbound.progress": "Возвращено воспоминаний: %s/%s", "screen.pastbound.help": "R дневник   V пробудить", "screen.pastbound.ready": "ИЗВЕСТНО", "screen.pastbound.unknown": "НЕИЗВЕСТНО", "screen.pastbound.riddle_hint": "Решите загадку", "screen.pastbound.close": "Esc — закрыть"},
-    "uk_ua": {"itemGroup.pastbound": "Pastbound: Відлуння історії", "screen.pastbound.journal": "Щоденник реліквій", "screen.pastbound.progress": "Відновлено спогадів: %s/%s", "screen.pastbound.help": "R щоденник   V пробудити", "screen.pastbound.ready": "ВІДОМО", "screen.pastbound.unknown": "НЕВІДОМО", "screen.pastbound.riddle_hint": "Розв’яжіть загадку", "screen.pastbound.close": "Esc — закрити"},
-    "pl_pl": {"itemGroup.pastbound": "Pastbound: Echa historii", "screen.pastbound.journal": "Dziennik relikwii", "screen.pastbound.progress": "Odzyskane wspomnienia: %s/%s", "screen.pastbound.help": "R dziennik   V przebudź", "screen.pastbound.ready": "ZNANA", "screen.pastbound.unknown": "NIEZNANA", "screen.pastbound.riddle_hint": "Rozwiąż zagadkę", "screen.pastbound.close": "Esc, aby zamknąć"},
-    "nl_nl": {"itemGroup.pastbound": "Pastbound: Echo’s van de geschiedenis", "screen.pastbound.journal": "Reliekenjournaal", "screen.pastbound.progress": "Herstelde herinneringen: %s/%s", "screen.pastbound.help": "R journaal   V wekken", "screen.pastbound.ready": "BEKEND", "screen.pastbound.unknown": "ONBEKEND", "screen.pastbound.riddle_hint": "Los het raadsel op", "screen.pastbound.close": "Esc om te sluiten"},
-    "sv_se": {"itemGroup.pastbound": "Pastbound: Historiens ekon", "screen.pastbound.journal": "Relikviedagbok", "screen.pastbound.progress": "Återfunna minnen: %s/%s", "screen.pastbound.help": "R dagbok   V väck", "screen.pastbound.ready": "KÄND", "screen.pastbound.unknown": "OKÄND", "screen.pastbound.riddle_hint": "Lös gåtan", "screen.pastbound.close": "Esc för att stänga"},
-    "da_dk": {"itemGroup.pastbound": "Pastbound: Historiens ekko", "screen.pastbound.journal": "Relikviedagbog", "screen.pastbound.progress": "Genfundne minder: %s/%s", "screen.pastbound.help": "R dagbog   V væk", "screen.pastbound.ready": "KENDT", "screen.pastbound.unknown": "UKENDT", "screen.pastbound.riddle_hint": "Løs gåden", "screen.pastbound.close": "Esc for at lukke"},
-    "nb_no": {"itemGroup.pastbound": "Pastbound: Historiens ekko", "screen.pastbound.journal": "Relikviedagbok", "screen.pastbound.progress": "Gjenfunne minner: %s/%s", "screen.pastbound.help": "R dagbok   V vekk", "screen.pastbound.ready": "KJENT", "screen.pastbound.unknown": "UKJENT", "screen.pastbound.riddle_hint": "Løs gåten", "screen.pastbound.close": "Esc for å lukke"},
-    "fi_fi": {"itemGroup.pastbound": "Pastbound: Historian kaiut", "screen.pastbound.journal": "Reliikkipäiväkirja", "screen.pastbound.progress": "Palautetut muistot: %s/%s", "screen.pastbound.help": "R päiväkirja   V herätä", "screen.pastbound.ready": "TUNNETTU", "screen.pastbound.unknown": "TUNTEMATON", "screen.pastbound.riddle_hint": "Ratkaise arvoitus", "screen.pastbound.close": "Esc sulkee"},
-    "cs_cz": {"itemGroup.pastbound": "Pastbound: Ozvěny dějin", "screen.pastbound.journal": "Deník relikvií", "screen.pastbound.progress": "Obnovené vzpomínky: %s/%s", "screen.pastbound.help": "R deník   V probudit", "screen.pastbound.ready": "ZNÁMÁ", "screen.pastbound.unknown": "NEZNÁMÁ", "screen.pastbound.riddle_hint": "Vyřeš hádanku", "screen.pastbound.close": "Esc pro zavření"},
-    "sk_sk": {"itemGroup.pastbound": "Pastbound: Ozveny dejín", "screen.pastbound.journal": "Denník relikvií", "screen.pastbound.progress": "Obnovené spomienky: %s/%s", "screen.pastbound.help": "R denník   V prebudiť", "screen.pastbound.ready": "ZNÁMA", "screen.pastbound.unknown": "NEZNÁMA", "screen.pastbound.riddle_hint": "Vyrieš hádanku", "screen.pastbound.close": "Esc na zatvorenie"},
-    "hu_hu": {"itemGroup.pastbound": "Pastbound: A történelem visszhangjai", "screen.pastbound.journal": "Ereklyenapló", "screen.pastbound.progress": "Visszaszerzett emlékek: %s/%s", "screen.pastbound.help": "R napló   V felébreszt", "screen.pastbound.ready": "ISMERT", "screen.pastbound.unknown": "ISMERETLEN", "screen.pastbound.riddle_hint": "Fejtsd meg a rejtvényt", "screen.pastbound.close": "Esc a bezáráshoz"},
-    "ro_ro": {"itemGroup.pastbound": "Pastbound: Ecourile istoriei", "screen.pastbound.journal": "Jurnalul relicvelor", "screen.pastbound.progress": "Amintiri recuperate: %s/%s", "screen.pastbound.help": "R jurnal   V trezește", "screen.pastbound.ready": "CUNOSCUTĂ", "screen.pastbound.unknown": "NECUNOSCUTĂ", "screen.pastbound.riddle_hint": "Rezolvă ghicitoarea", "screen.pastbound.close": "Esc pentru închidere"},
-    "bg_bg": {"itemGroup.pastbound": "Pastbound: Ехото на историята", "screen.pastbound.journal": "Дневник на реликвите", "screen.pastbound.progress": "Възстановени спомени: %s/%s", "screen.pastbound.help": "R дневник   V събуди", "screen.pastbound.ready": "ПОЗНАТА", "screen.pastbound.unknown": "НЕПОЗНАТА", "screen.pastbound.riddle_hint": "Реши загадката", "screen.pastbound.close": "Esc за затваряне"},
-    "el_gr": {"itemGroup.pastbound": "Pastbound: Ηχώ της ιστορίας", "screen.pastbound.journal": "Ημερολόγιο κειμηλίων", "screen.pastbound.progress": "Ανακτημένες μνήμες: %s/%s", "screen.pastbound.help": "R ημερολόγιο   V αφύπνιση", "screen.pastbound.ready": "ΓΝΩΣΤΟ", "screen.pastbound.unknown": "ΑΓΝΩΣΤΟ", "screen.pastbound.riddle_hint": "Λύσε το αίνιγμα", "screen.pastbound.close": "Esc για κλείσιμο"},
-    "zh_cn": {"itemGroup.pastbound": "Pastbound：历史回声", "screen.pastbound.journal": "遗物日志", "screen.pastbound.progress": "找回的记忆：%s/%s", "screen.pastbound.help": "R 日志   V 唤醒", "screen.pastbound.ready": "已知", "screen.pastbound.unknown": "未知", "screen.pastbound.riddle_hint": "解开谜语", "screen.pastbound.close": "按 Esc 关闭"},
-    "zh_tw": {"itemGroup.pastbound": "Pastbound：歷史迴響", "screen.pastbound.journal": "遺物日誌", "screen.pastbound.progress": "找回的記憶：%s/%s", "screen.pastbound.help": "R 日誌   V 喚醒", "screen.pastbound.ready": "已知", "screen.pastbound.unknown": "未知", "screen.pastbound.riddle_hint": "解開謎語", "screen.pastbound.close": "按 Esc 關閉"},
-    "ja_jp": {"itemGroup.pastbound": "Pastbound：歴史のこだま", "screen.pastbound.journal": "レリック日誌", "screen.pastbound.progress": "回収した記憶：%s/%s", "screen.pastbound.help": "R 日誌   V 覚醒", "screen.pastbound.ready": "既知", "screen.pastbound.unknown": "未知", "screen.pastbound.riddle_hint": "なぞなぞを解く", "screen.pastbound.close": "Escで閉じる"},
-    "ko_kr": {"itemGroup.pastbound": "Pastbound: 역사의 메아리", "screen.pastbound.journal": "유물 일지", "screen.pastbound.progress": "되찾은 기억: %s/%s", "screen.pastbound.help": "R 일지   V 각성", "screen.pastbound.ready": "알려짐", "screen.pastbound.unknown": "미지", "screen.pastbound.riddle_hint": "수수께끼 풀기", "screen.pastbound.close": "Esc로 닫기"},
-    "vi_vn": {"itemGroup.pastbound": "Pastbound: Tiếng vọng lịch sử", "screen.pastbound.journal": "Nhật ký di vật", "screen.pastbound.progress": "Ký ức phục hồi: %s/%s", "screen.pastbound.help": "R nhật ký   V đánh thức", "screen.pastbound.ready": "ĐÃ BIẾT", "screen.pastbound.unknown": "CHƯA BIẾT", "screen.pastbound.riddle_hint": "Giải câu đố", "screen.pastbound.close": "Esc để đóng"},
-    "th_th": {"itemGroup.pastbound": "Pastbound: เสียงสะท้อนแห่งประวัติศาสตร์", "screen.pastbound.journal": "บันทึกโบราณวัตถุ", "screen.pastbound.progress": "ความทรงจำที่กู้คืน: %s/%s", "screen.pastbound.help": "R บันทึก   V ปลุก", "screen.pastbound.ready": "รู้แล้ว", "screen.pastbound.unknown": "ไม่รู้จัก", "screen.pastbound.riddle_hint": "ไขปริศนา", "screen.pastbound.close": "กด Esc เพื่อปิด"},
-    "id_id": {"itemGroup.pastbound": "Pastbound: Gema Sejarah", "screen.pastbound.journal": "Jurnal Relik", "screen.pastbound.progress": "Kenangan dipulihkan: %s/%s", "screen.pastbound.help": "R jurnal   V bangunkan", "screen.pastbound.ready": "DIKENAL", "screen.pastbound.unknown": "TAK DIKENAL", "screen.pastbound.riddle_hint": "Pecahkan teka-teki", "screen.pastbound.close": "Esc untuk menutup"},
-    "ar_sa": {"itemGroup.pastbound": "Pastbound: أصداء التاريخ", "screen.pastbound.journal": "سجل الآثار", "screen.pastbound.progress": "الذكريات المستعادة: %s/%s", "screen.pastbound.help": "R السجل   V إيقاظ", "screen.pastbound.ready": "معروف", "screen.pastbound.unknown": "مجهول", "screen.pastbound.riddle_hint": "حل اللغز", "screen.pastbound.close": "اضغط Esc للإغلاق"},
-    "he_il": {"itemGroup.pastbound": "Pastbound: הדי ההיסטוריה", "screen.pastbound.journal": "יומן השרידים", "screen.pastbound.progress": "זיכרונות ששוחזרו: %s/%s", "screen.pastbound.help": "R יומן   V להעיר", "screen.pastbound.ready": "ידוע", "screen.pastbound.unknown": "לא ידוע", "screen.pastbound.riddle_hint": "פתור את החידה", "screen.pastbound.close": "Esc לסגירה"},
-    "af_za": {"itemGroup.pastbound": "Pastbound: Eggo's van die geskiedenis", "screen.pastbound.journal": "Relikwiejoernaal", "screen.pastbound.progress": "Herwonne herinneringe: %s/%s", "screen.pastbound.help": "R joernaal   V wek", "screen.pastbound.ready": "BEKEND", "screen.pastbound.unknown": "ONBEKEND", "screen.pastbound.riddle_hint": "Los die raaisel op", "screen.pastbound.close": "Esc om te sluit"},
-    "eo_uy": {"itemGroup.pastbound": "Pastbound: Eĥoj de historio", "screen.pastbound.journal": "Relikva taglibro", "screen.pastbound.progress": "Retrovitaj memoroj: %s/%s", "screen.pastbound.help": "R taglibro   V veki", "screen.pastbound.ready": "KONATA", "screen.pastbound.unknown": "NEKONATA", "screen.pastbound.riddle_hint": "Solvu la enigmon", "screen.pastbound.close": "Esc por fermi"},
-    "ga_ie": {"itemGroup.pastbound": "Pastbound: Macalla na staire", "screen.pastbound.journal": "Dialann iarsmaí", "screen.pastbound.progress": "Cuimhní aimsithe: %s/%s", "screen.pastbound.help": "R dialann   V múscail", "screen.pastbound.ready": "AITHNITHE", "screen.pastbound.unknown": "ANAITHNID", "screen.pastbound.riddle_hint": "Réitigh an tomhas", "screen.pastbound.close": "Esc le dúnadh"},
-    "cy_gb": {"itemGroup.pastbound": "Pastbound: Adleisiau hanes", "screen.pastbound.journal": "Dyddiadur creiriau", "screen.pastbound.progress": "Atgofion a adferwyd: %s/%s", "screen.pastbound.help": "R dyddiadur   V deffro", "screen.pastbound.ready": "GWYBOD", "screen.pastbound.unknown": "ANHYSBYS", "screen.pastbound.riddle_hint": "Datrys y pos", "screen.pastbound.close": "Esc i gau"}
+    "tr_tr": {"itemGroup.pastbound": "Pastbound: Tarihin Yankıları", "screen.pastbound.journal": "Relik Günlüğü", "key.pastbound.take_control": "Tarihî sahnenin kontrolünü al", "key.pastbound.language": "Pastbound dil menüsünü aç", "key.pastbound.relic_slot_1": "Relic yuvası 1’i etkinleştir", "key.pastbound.relic_slot_2": "Relic yuvası 2’yi etkinleştir", "key.pastbound.relic_slot_3": "Relic yuvası 3’ü etkinleştir", "key.pastbound.relic_slot_4": "Relic yuvası 4’ü etkinleştir", "key.pastbound.relic_slot_5": "Relic yuvası 5’i etkinleştir", "key.pastbound.relic_slot_6": "Relic yuvası 6’yı etkinleştir", "key.pastbound.relic_slot_7": "Relic yuvası 7’yi etkinleştir", "key.pastbound.relic_slot_8": "Relic yuvası 8’i etkinleştir", "key.pastbound.relic_slot_9": "Relic yuvası 9’u etkinleştir", "key.pastbound.relic_slot_10": "Relic yuvası 10’u etkinleştir", "block.pastbound.echo_archive": "Yankı Arşivi", "block.pastbound.resonance_pillar": "Rezonans Sütunu", "item.pastbound.echo_shard": "Yankı Parçası", "item.pastbound.memory_lens": "Hafıza Merceği", "item.pastbound.chronicle_scrap": "Kronik Parçası", "item.pastbound.history_ink": "Tarih Mürekkebi", "item.pastbound.time_stone": "Zaman Taşı", "item.pastbound.echo_seal": "Yankı Mührü", "item.pastbound.zaman_makinesi": "Zaman Makinesi", "item.pastbound.firin_cubugu": "Çubukta Fırın", "effect.pastbound.tarih_yankisi": "Tarih Yankısı",   "screen.pastbound.slot_hint": "U: 10 Netherite Block karşılığında 2 relic yuvası aç", "screen.pastbound.time_machine": "Zaman Makinesi", "screen.pastbound.time_machine.subtitle": "Yaşayan yankısını keşfetmek için tarihî bir durak seç.", "screen.pastbound.time_machine.hint": "Bir durağa tıkla veya 1-9’a bas", "screen.pastbound.time_machine.sent": "Zamansal rota hazırlandı", "screen.pastbound.time_machine.cost": "Yolculuk için 1 Zaman Taşı gerekir", "tooltip.pastbound.relic.power": "Yetenek: %s", "tooltip.pastbound.relic.activity": "Restorasyon etkinliği: %s", "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi", "tooltip.pastbound.relic.xp": "Tanımak için Shift ile sağ tıkla ve %s XP seviyesi harca", "tooltip.pastbound.relic.shortcut": "V: takılıyken uyandır", "message.pastbound.relic.fragment_already": "Bu yankı parçası zaten onarıldı.", "message.pastbound.relic.fragment_progress": "Yankı onarımı: %s/%s parça bulundu.", "message.pastbound.relic.fragment_complete": "Relic tamamen onarıldı: %s.", "message.pastbound.relic.identified": "XP harcanarak tanındı: %s.", "message.pastbound.relic.xp_hint": "%s XP seviyesine ihtiyacın var.", "message.pastbound.relic.knowledge": "Tarihî hafızaya eklendi: %s", "screen.pastbound.progress": "Kazanılan anılar: %s/%s", "screen.pastbound.help": "R günlük   V uyandır", "screen.pastbound.ready": "BİLİNİYOR", "screen.pastbound.unknown": "BİLİNMİYOR", "screen.pastbound.close": "Kapatmak için Esc", "screen.pastbound.page": "Sayfa %s/%s", "screen.pastbound.page_hint": "Sol/Sağ: sayfa değiştir   Tıkla: relic’i incele", "screen.pastbound.echo_progress": "Yankılar: %s/%s", "screen.pastbound.echo_found": "YANKI BULUNDU", "screen.pastbound.click_hint": "Tarihî sınavı açmak için bir relic’e tıkla", "screen.pastbound.modal_title": "Tarihî Yankı Restorasyonu",    "message.pastbound.echo.discovered": "Tarihî yankı bulundu: %s", "message.pastbound.echo.trace": "İz kaydedildi: %s", "message.pastbound.echo.bad_name": "Bu yankı kronikte yok.", "message.pastbound.echo.already": "%s yankısı zaten kaydedildi.", "message.pastbound.echo.wrong": "Yankı uzaklaşıyor. İpucu: %s", "message.pastbound.echo_count": "Bulunan tarihî yankılar: %s/%s", "message.pastbound.echo.stirs": "Bir tarihî yankı uyandı: %s", "message.pastbound.echo.open_journal": "Tarihî sınava girmek için R’ye basıp Relik Günlüğü’nü aç.", "message.pastbound.echo.locked": "%s için tarihî sınav henüz uyanmadı. Önce ilgili aksiyonu gerçekleştir.", "message.pastbound.global.yazi_devrimi": "Yazı Devrimi sunucuda yankılanıyor: kil üzerindeki işaretler hafızaya, hafıza da kuşaklar arasında bir köprüye dönüşüyor.", "message.pastbound.global.nil_kanallari": "Nil Kanalları tarihte yeni bir yol açıyor: taşkın, tahıl ve dikkatli ölçüm nehri ortak bir takvime dönüştürüyor.", "message.pastbound.global.yildiz_seferi": "Yıldız Seferi her ufku işaretliyor: denizciler yıldızları, dalgaları ve kuşları okuyarak belirsizliği eve dönüş yoluna çeviriyor.", "message.pastbound.global.kervan_yolu": "Kervan Yolu uzak anıları bağlıyor: tuz, ipek, hikâyeler ve aletler çölleri aşarken bilgi de insanlarla birlikte yol alıyor.", "message.pastbound.global.takvim_meclisi": "Takvim Meclisi yaşayan dünyayı hizalıyor: ekim, hasat, tören ve yolculuk ortak bir zaman ölçüsüne bağlanıyor.", "message.pastbound.global.demirci_hafizasi": "Demircilerin Hafızası yerin altında çınlıyor: cevher alete, alet şehre dönüşüyor ve her çekiç darbesi insan izini koruyor.", "message.pastbound.global.mozaik_baris": "Mozaik Barışı dağınık parçaları topluyor: farklı renkler ve gelenekler kendi biçimini kaybetmeden tek bir görüntü oluşturuyor.", "message.pastbound.global.ipek_degisimi": "İpek Değişimi kıyılar arasında bilgi taşıyor: diller, boyalar, ilaçlar ve matematik fikirleri tek bir tüccardan çok daha uzağa ulaşıyor.", "message.pastbound.global.quipu_sayimi": "Quipu Sayımı dünyanın ritmini kaydediyor: düğümler, mürekkep bulunmadığında miktarları, sözleri ve yolculukları koruyor.", "message.pastbound.global.astrolab_gogu": "Astrolab Göğü ölçülü bir yol gösteriyor: küçük bir alet matematiği, gökbilimi ve açık denizin tehlikeli özgürlüğünü birleştiriyor.", "message.pastbound.global.rune_nobeti": "Rune Nöbeti kuzey gecesini koruyor: taşa kazınmış işaret bir adı, uyarıyı ve onu işleyen elin hatırasını taşıyor.", "message.pastbound.global.ay_misyonu": "Ay Misyonu dünyanın ötesine yeni bir yankı bırakıyor: ayak izleri, araçlar ve merakın ufku değiştirebileceğine dair sessiz bir söz.", "message.pastbound.global.tarim_devrimi": "Tarım Devrimi insan yaşamının ritmini değiştiriyor: tohum, sulama ve depolanan tahıl mevsimlik kampı kalıcı yerleşime dönüştürüyor.", "message.pastbound.global.akdeniz_gemiciligi": "Akdeniz denizciliği limanları ve kültürleri bağlıyor: rüzgâr, akıntı ve tanıdık bir takımyıldız hikâyeyi denizin ötesine taşıyor.", "message.pastbound.global.matbaa_yankisi": "Matbaa Yankısı hafızayı çoğaltıyor: tek bir sayfa birçok elden geçerek fikre yazarından daha uzun bir hayat veriyor.", "message.pastbound.global.tip_bahcesi": "Şifa Bahçesi sabırlı gözlemi koruyor: kökler, yapraklar ve dikkatli notlar deneyimi bakım geleneğine dönüştürüyor.", "message.pastbound.global.cam_yolu": "Cam Yolu zanaatla parlıyor: kum, ısı ve sabır kırılgan malzemeyi ışığı ve günlük yaşamı koruyan kaplara çeviriyor.", "message.pastbound.global.gozlem_evi": "Gözlem Evi gece göğünü bir araya getiriyor: tekrar edilen gözlemler yukarı bakan herkesin paylaşabileceği örüntüler açığa çıkarıyor.", "message.pastbound.global.hukuk_meclisi": "Hukuk Meclisi hafızaya kamusal bir ses veriyor: kurallar topluluk onları birlikte açıkladığında, kaydettiğinde ve sorguladığında anlam kazanıyor.", "message.pastbound.global.arkeoloji_kesfi": "Arkeoloji Keşfi tozun altında başlıyor: kırık bir parça bir krallıktan uzun yaşayarak sıradan insanların nasıl yaşadığını anlatabiliyor.", "message.pastbound.packet.invalid": "Arşiv bu isteği reddetti.", "message.pastbound.slot.max": "On relic yuvasının tamamı zaten açık.", "message.pastbound.slot.cost": "İki relic yuvası açmak için %s Netherite Block gerekiyor.", "message.pastbound.slot.unlocked": "İki relic yuvası açıldı. Toplam kapasite: %s.", "message.pastbound.time_machine.unknown": "Bu tarihî durak makinede yok.", "message.pastbound.time_machine.cooldown": "Zaman makinesi hâlâ dengeleniyor.", "message.pastbound.time_machine.time_stone_needed": "Zamanda yolculuk için 1 Zaman Taşı gerekir.", "message.pastbound.time_machine.arrived": "%s durağına ulaşıldı: %s", "message.pastbound.time_machine.dimension_unavailable": "Tarihî keşif boyutu bu dünyada kullanılamıyor.", "message.pastbound.scene.enter": "%s tarihinin yaşayan sahnesine giriyorsun.", "message.pastbound.scene.press_d": "Kontrolü almak istediğinde D’ye bas.", "message.pastbound.scene.narration_intro": "%s başlıyor: %s", "message.pastbound.scene.narration_focus": "Tarihî odak: %s", "message.pastbound.scene.narration_detail": "Yaşayan sahne daha fazlasını gösteriyor: %s", "screen.pastbound.relic.activity": "Yankıyı onar: tarihî hafızayı keşfederek beş parçayı bul.", "screen.pastbound.relic.fragments": "Onarılan parçalar: %s/%s", "screen.pastbound.relic.fragment": "%s. parça", "screen.pastbound.relic.fragment_done": "Onarıldı", "screen.pastbound.relic.activity_hint": "Parçalara tıkla veya 1-5’e bas. Her parça bağımsızdır.", "screen.pastbound.language.title": "Pastbound Dil Seçimi", "screen.pastbound.language.choose": "Pastbound arayüzleri için dil seç", "screen.pastbound.language.english": "English", "screen.pastbound.language.turkish": "Türkçe", "screen.pastbound.language.default": "Varsayılan dil: English", "screen.pastbound.language.close": "Esc: kapat", "message.pastbound.scene.quest": "Mini görev: dört tarihî tanıkla konuş, dış çemberi keşfet ve işarete geri dön.", "message.pastbound.mission.steel_start": "Atölye görevi: üç çelik damarını kaz, ham çeliği fırında külçeye erit, çelik levha üret ve tarihî ocağı onar.", "message.pastbound.mission.steel_mined": "Üç çelik damarı açıldı. Ham çeliği bu tarihî atölyedeki fırında erit.", "message.pastbound.mission.steel_vein": "Çelik damarı %s/%s bulundu. İşaretli damarları kazmaya devam et.", "message.pastbound.mission.already_repaired": "Bu tarihî ocak zaten onarıldı.", "message.pastbound.mission.steel_smelted": "Külçe hazır. Bir çelik levha üret ve tarihî ocağa götür.", "message.pastbound.mission.plate_ready": "Levha hazır. Onarım için turuncu işaretli tarihî ocağı kullan.", "message.pastbound.mission.forge_locked": "Ocak soğuk. Önce çelik kaz, külçe erit ve çelik levha üret.", "message.pastbound.mission.plate_needed": "Bu tarihî ocağı onarmak için bir Çelik Levha getir.", "message.pastbound.mission.forge_repaired": "Bağdat Pili Atölyesi yeniden uğulduyor. Onarılan düzenek yeni bir yankı kaydetti.", "message.pastbound.scene.quest_explore": "Görev başladı: her tanıkla konuş, dış halkayı aş ve merkezdeki işarete geri dön.", "message.pastbound.scene.quest_talk": "%s numaralı tanık bir anı paylaştı. Konuşma yoluna devam et.", "message.pastbound.scene.quest_perimeter": "Dış halka keşfedildi. Manzara hikâyenin başka bir parçasını saklıyor.", "message.pastbound.scene.quest_return": "İşarete geri döndün. Sahne son anısını göstermeye hazır.", "message.pastbound.scene.quest_complete": "Tarihî mini görev tamamlandı. Arşivine iki Kronik Parçası eklendi.", "message.pastbound.scene.focus": "Tarihî odak: %s", "message.pastbound.scene.observe": "Canlandırma %s. sahneyi gösteriyor.", "message.pastbound.scene.ready": "Sahne hazır. İçine girmek için D’ye bas.", "message.pastbound.scene.control": "Artık tarihî sahnenin bir parçasısın.", "message.pastbound.scene.returned": "Tarihî canlandırmadan geri döndün.", "screen.pastbound.scene.title": "Yaşayan Tarih", "screen.pastbound.scene.phase_one": "İlk anı şekilleniyor...", "screen.pastbound.scene.phase_two": "Sesler ve hareket geçmişe dönüyor...", "screen.pastbound.scene.phase_three": "Sahne seçimini bekliyor...", "screen.pastbound.scene.press_d": "D: sahnenin kontrolünü al", "screen.pastbound.scene.escape_hint": "Esc: anlatım penceresini kapat", "screen.pastbound.dialogue.title": "Tarihle Konuşma", "screen.pastbound.dialogue.choose": "1, 2 veya 3 ile soru seç", "message.pastbound.dialogue.too_far": "Tarihî konuşmacıya yaklaş.", "entity.pastbound.scene.narrator": "Tarih Anlatıcısı", "entity.pastbound.scene.craftsman": "Zanaatkâr", "entity.pastbound.scene.witness": "Tanık", "entity.pastbound.scene.scribe": "Kâtip", "tooltip.pastbound.relic.echo": "Keşif yankısı: %s"},
+    "de_de": {"itemGroup.pastbound": "Pastbound: Echos der Geschichte", "screen.pastbound.journal": "Relikt-Tagebuch", "screen.pastbound.progress": "Geborgene Erinnerungen: %s/%s", "screen.pastbound.help": "R Tagebuch   V erwecken", "screen.pastbound.ready": "BEKANNT", "screen.pastbound.unknown": "UNBEKANNT", "screen.pastbound.close": "Esc zum Schließen"},
+    "fr_fr": {"itemGroup.pastbound": "Pastbound : Échos de l’histoire", "screen.pastbound.journal": "Journal des reliques", "screen.pastbound.progress": "Souvenirs retrouvés : %s/%s", "screen.pastbound.help": "R journal   V éveiller", "screen.pastbound.ready": "CONNU", "screen.pastbound.unknown": "INCONNU", "screen.pastbound.close": "Esc pour fermer"},
+    "es_es": {"itemGroup.pastbound": "Pastbound: Ecos de la historia", "screen.pastbound.journal": "Diario de reliquias", "screen.pastbound.progress": "Memorias recuperadas: %s/%s", "screen.pastbound.help": "R diario   V despertar", "screen.pastbound.ready": "CONOCIDA", "screen.pastbound.unknown": "DESCONOCIDA", "screen.pastbound.close": "Esc para cerrar"},
+    "es_mx": {"itemGroup.pastbound": "Pastbound: Ecos de la historia", "screen.pastbound.journal": "Diario de reliquias", "screen.pastbound.progress": "Memorias recuperadas: %s/%s", "screen.pastbound.help": "R diario   V despertar", "screen.pastbound.ready": "CONOCIDA", "screen.pastbound.unknown": "DESCONOCIDA", "screen.pastbound.close": "Esc para cerrar"},
+    "it_it": {"itemGroup.pastbound": "Pastbound: Echi della storia", "screen.pastbound.journal": "Diario delle reliquie", "screen.pastbound.progress": "Memorie recuperate: %s/%s", "screen.pastbound.help": "R diario   V risveglia", "screen.pastbound.ready": "NOTA", "screen.pastbound.unknown": "IGNOTA", "screen.pastbound.close": "Esc per chiudere"},
+    "pt_br": {"itemGroup.pastbound": "Pastbound: Ecos da história", "screen.pastbound.journal": "Diário de relíquias", "screen.pastbound.progress": "Memórias recuperadas: %s/%s", "screen.pastbound.help": "R diário   V despertar", "screen.pastbound.ready": "CONHECIDA", "screen.pastbound.unknown": "DESCONHECIDA", "screen.pastbound.close": "Esc para fechar"},
+    "pt_pt": {"itemGroup.pastbound": "Pastbound: Ecos da história", "screen.pastbound.journal": "Diário de relíquias", "screen.pastbound.progress": "Memórias recuperadas: %s/%s", "screen.pastbound.help": "R diário   V despertar", "screen.pastbound.ready": "CONHECIDA", "screen.pastbound.unknown": "DESCONHECIDA", "screen.pastbound.close": "Esc para fechar"},
+    "ru_ru": {"itemGroup.pastbound": "Pastbound: Эхо истории", "screen.pastbound.journal": "Дневник реликвий", "screen.pastbound.progress": "Возвращено воспоминаний: %s/%s", "screen.pastbound.help": "R дневник   V пробудить", "screen.pastbound.ready": "ИЗВЕСТНО", "screen.pastbound.unknown": "НЕИЗВЕСТНО", "screen.pastbound.close": "Esc — закрыть"},
+    "uk_ua": {"itemGroup.pastbound": "Pastbound: Відлуння історії", "screen.pastbound.journal": "Щоденник реліквій", "screen.pastbound.progress": "Відновлено спогадів: %s/%s", "screen.pastbound.help": "R щоденник   V пробудити", "screen.pastbound.ready": "ВІДОМО", "screen.pastbound.unknown": "НЕВІДОМО", "screen.pastbound.close": "Esc — закрити"},
+    "pl_pl": {"itemGroup.pastbound": "Pastbound: Echa historii", "screen.pastbound.journal": "Dziennik relikwii", "screen.pastbound.progress": "Odzyskane wspomnienia: %s/%s", "screen.pastbound.help": "R dziennik   V przebudź", "screen.pastbound.ready": "ZNANA", "screen.pastbound.unknown": "NIEZNANA", "screen.pastbound.close": "Esc, aby zamknąć"},
+    "nl_nl": {"itemGroup.pastbound": "Pastbound: Echo’s van de geschiedenis", "screen.pastbound.journal": "Reliekenjournaal", "screen.pastbound.progress": "Herstelde herinneringen: %s/%s", "screen.pastbound.help": "R journaal   V wekken", "screen.pastbound.ready": "BEKEND", "screen.pastbound.unknown": "ONBEKEND", "screen.pastbound.close": "Esc om te sluiten"},
+    "sv_se": {"itemGroup.pastbound": "Pastbound: Historiens ekon", "screen.pastbound.journal": "Relikviedagbok", "screen.pastbound.progress": "Återfunna minnen: %s/%s", "screen.pastbound.help": "R dagbok   V väck", "screen.pastbound.ready": "KÄND", "screen.pastbound.unknown": "OKÄND", "screen.pastbound.close": "Esc för att stänga"},
+    "da_dk": {"itemGroup.pastbound": "Pastbound: Historiens ekko", "screen.pastbound.journal": "Relikviedagbog", "screen.pastbound.progress": "Genfundne minder: %s/%s", "screen.pastbound.help": "R dagbog   V væk", "screen.pastbound.ready": "KENDT", "screen.pastbound.unknown": "UKENDT", "screen.pastbound.close": "Esc for at lukke"},
+    "nb_no": {"itemGroup.pastbound": "Pastbound: Historiens ekko", "screen.pastbound.journal": "Relikviedagbok", "screen.pastbound.progress": "Gjenfunne minner: %s/%s", "screen.pastbound.help": "R dagbok   V vekk", "screen.pastbound.ready": "KJENT", "screen.pastbound.unknown": "UKJENT", "screen.pastbound.close": "Esc for å lukke"},
+    "fi_fi": {"itemGroup.pastbound": "Pastbound: Historian kaiut", "screen.pastbound.journal": "Reliikkipäiväkirja", "screen.pastbound.progress": "Palautetut muistot: %s/%s", "screen.pastbound.help": "R päiväkirja   V herätä", "screen.pastbound.ready": "TUNNETTU", "screen.pastbound.unknown": "TUNTEMATON", "screen.pastbound.close": "Esc sulkee"},
+    "cs_cz": {"itemGroup.pastbound": "Pastbound: Ozvěny dějin", "screen.pastbound.journal": "Deník relikvií", "screen.pastbound.progress": "Obnovené vzpomínky: %s/%s", "screen.pastbound.help": "R deník   V probudit", "screen.pastbound.ready": "ZNÁMÁ", "screen.pastbound.unknown": "NEZNÁMÁ", "screen.pastbound.close": "Esc pro zavření"},
+    "sk_sk": {"itemGroup.pastbound": "Pastbound: Ozveny dejín", "screen.pastbound.journal": "Denník relikvií", "screen.pastbound.progress": "Obnovené spomienky: %s/%s", "screen.pastbound.help": "R denník   V prebudiť", "screen.pastbound.ready": "ZNÁMA", "screen.pastbound.unknown": "NEZNÁMA", "screen.pastbound.close": "Esc na zatvorenie"},
+    "hu_hu": {"itemGroup.pastbound": "Pastbound: A történelem visszhangjai", "screen.pastbound.journal": "Ereklyenapló", "screen.pastbound.progress": "Visszaszerzett emlékek: %s/%s", "screen.pastbound.help": "R napló   V felébreszt", "screen.pastbound.ready": "ISMERT", "screen.pastbound.unknown": "ISMERETLEN", "screen.pastbound.close": "Esc a bezáráshoz"},
+    "ro_ro": {"itemGroup.pastbound": "Pastbound: Ecourile istoriei", "screen.pastbound.journal": "Jurnalul relicvelor", "screen.pastbound.progress": "Amintiri recuperate: %s/%s", "screen.pastbound.help": "R jurnal   V trezește", "screen.pastbound.ready": "CUNOSCUTĂ", "screen.pastbound.unknown": "NECUNOSCUTĂ", "screen.pastbound.close": "Esc pentru închidere"},
+    "bg_bg": {"itemGroup.pastbound": "Pastbound: Ехото на историята", "screen.pastbound.journal": "Дневник на реликвите", "screen.pastbound.progress": "Възстановени спомени: %s/%s", "screen.pastbound.help": "R дневник   V събуди", "screen.pastbound.ready": "ПОЗНАТА", "screen.pastbound.unknown": "НЕПОЗНАТА", "screen.pastbound.close": "Esc за затваряне"},
+    "el_gr": {"itemGroup.pastbound": "Pastbound: Ηχώ της ιστορίας", "screen.pastbound.journal": "Ημερολόγιο κειμηλίων", "screen.pastbound.progress": "Ανακτημένες μνήμες: %s/%s", "screen.pastbound.help": "R ημερολόγιο   V αφύπνιση", "screen.pastbound.ready": "ΓΝΩΣΤΟ", "screen.pastbound.unknown": "ΑΓΝΩΣΤΟ", "screen.pastbound.close": "Esc για κλείσιμο"},
+    "zh_cn": {"itemGroup.pastbound": "Pastbound：历史回声", "screen.pastbound.journal": "遗物日志", "screen.pastbound.progress": "找回的记忆：%s/%s", "screen.pastbound.help": "R 日志   V 唤醒", "screen.pastbound.ready": "已知", "screen.pastbound.unknown": "未知", "screen.pastbound.close": "按 Esc 关闭"},
+    "zh_tw": {"itemGroup.pastbound": "Pastbound：歷史迴響", "screen.pastbound.journal": "遺物日誌", "screen.pastbound.progress": "找回的記憶：%s/%s", "screen.pastbound.help": "R 日誌   V 喚醒", "screen.pastbound.ready": "已知", "screen.pastbound.unknown": "未知", "screen.pastbound.close": "按 Esc 關閉"},
+    "ja_jp": {"itemGroup.pastbound": "Pastbound：歴史のこだま", "screen.pastbound.journal": "レリック日誌", "screen.pastbound.progress": "回収した記憶：%s/%s", "screen.pastbound.help": "R 日誌   V 覚醒", "screen.pastbound.ready": "既知", "screen.pastbound.unknown": "未知", "screen.pastbound.close": "Escで閉じる"},
+    "ko_kr": {"itemGroup.pastbound": "Pastbound: 역사의 메아리", "screen.pastbound.journal": "유물 일지", "screen.pastbound.progress": "되찾은 기억: %s/%s", "screen.pastbound.help": "R 일지   V 각성", "screen.pastbound.ready": "알려짐", "screen.pastbound.unknown": "미지", "screen.pastbound.close": "Esc로 닫기"},
+    "vi_vn": {"itemGroup.pastbound": "Pastbound: Tiếng vọng lịch sử", "screen.pastbound.journal": "Nhật ký di vật", "screen.pastbound.progress": "Ký ức phục hồi: %s/%s", "screen.pastbound.help": "R nhật ký   V đánh thức", "screen.pastbound.ready": "ĐÃ BIẾT", "screen.pastbound.unknown": "CHƯA BIẾT", "screen.pastbound.close": "Esc để đóng"},
+    "th_th": {"itemGroup.pastbound": "Pastbound: เสียงสะท้อนแห่งประวัติศาสตร์", "screen.pastbound.journal": "บันทึกโบราณวัตถุ", "screen.pastbound.progress": "ความทรงจำที่กู้คืน: %s/%s", "screen.pastbound.help": "R บันทึก   V ปลุก", "screen.pastbound.ready": "รู้แล้ว", "screen.pastbound.unknown": "ไม่รู้จัก", "screen.pastbound.close": "กด Esc เพื่อปิด"},
+    "id_id": {"itemGroup.pastbound": "Pastbound: Gema Sejarah", "screen.pastbound.journal": "Jurnal Relik", "screen.pastbound.progress": "Kenangan dipulihkan: %s/%s", "screen.pastbound.help": "R jurnal   V bangunkan", "screen.pastbound.ready": "DIKENAL", "screen.pastbound.unknown": "TAK DIKENAL", "screen.pastbound.close": "Esc untuk menutup"},
+    "ar_sa": {"itemGroup.pastbound": "Pastbound: أصداء التاريخ", "screen.pastbound.journal": "سجل الآثار", "screen.pastbound.progress": "الذكريات المستعادة: %s/%s", "screen.pastbound.help": "R السجل   V إيقاظ", "screen.pastbound.ready": "معروف", "screen.pastbound.unknown": "مجهول", "screen.pastbound.close": "اضغط Esc للإغلاق"},
+    "he_il": {"itemGroup.pastbound": "Pastbound: הדי ההיסטוריה", "screen.pastbound.journal": "יומן השרידים", "screen.pastbound.progress": "זיכרונות ששוחזרו: %s/%s", "screen.pastbound.help": "R יומן   V להעיר", "screen.pastbound.ready": "ידוע", "screen.pastbound.unknown": "לא ידוע", "screen.pastbound.close": "Esc לסגירה"},
+    "af_za": {"itemGroup.pastbound": "Pastbound: Eggo's van die geskiedenis", "screen.pastbound.journal": "Relikwiejoernaal", "screen.pastbound.progress": "Herwonne herinneringe: %s/%s", "screen.pastbound.help": "R joernaal   V wek", "screen.pastbound.ready": "BEKEND", "screen.pastbound.unknown": "ONBEKEND", "screen.pastbound.close": "Esc om te sluit"},
+    "eo_uy": {"itemGroup.pastbound": "Pastbound: Eĥoj de historio", "screen.pastbound.journal": "Relikva taglibro", "screen.pastbound.progress": "Retrovitaj memoroj: %s/%s", "screen.pastbound.help": "R taglibro   V veki", "screen.pastbound.ready": "KONATA", "screen.pastbound.unknown": "NEKONATA", "screen.pastbound.close": "Esc por fermi"},
+    "ga_ie": {"itemGroup.pastbound": "Pastbound: Macalla na staire", "screen.pastbound.journal": "Dialann iarsmaí", "screen.pastbound.progress": "Cuimhní aimsithe: %s/%s", "screen.pastbound.help": "R dialann   V múscail", "screen.pastbound.ready": "AITHNITHE", "screen.pastbound.unknown": "ANAITHNID", "screen.pastbound.close": "Esc le dúnadh"},
+    "cy_gb": {"itemGroup.pastbound": "Pastbound: Adleisiau hanes", "screen.pastbound.journal": "Dyddiadur creiriau", "screen.pastbound.progress": "Atgofion a adferwyd: %s/%s", "screen.pastbound.help": "R dyddiadur   V deffro", "screen.pastbound.ready": "GWYBOD", "screen.pastbound.unknown": "ANHYSBYS", "screen.pastbound.close": "Esc i gau"}
 }
 
 for locale, add in metinler.items():
@@ -457,24 +516,28 @@ for locale, add in metinler.items():
         veri[f"item.pastbound.{kimlik}"] = ad
     for kimlik, (ingilizce_ad, turkce_ad) in biome_adlari.items():
         veri[f"biome.pastbound.{kimlik}"] = turkce_ad if locale == "tr_tr" else ingilizce_ad
+    for kimlik, (ingilizce_ad, turkce_ad) in celik_esyalari.items():
+        veri[f"item.pastbound.{kimlik}"] = turkce_ad if locale == "tr_tr" else ingilizce_ad
+    for kimlik, (ingilizce_ad, turkce_ad) in celik_bloklari.items():
+        veri[f"block.pastbound.{kimlik}"] = turkce_ad if locale == "tr_tr" else ingilizce_ad
+        veri[f"item.pastbound.{kimlik}"] = turkce_ad if locale == "tr_tr" else ingilizce_ad
     ad_kaynagi = relicler if locale == "tr_tr" else ingilizce_relikler
     for kimlik, ad in ad_kaynagi.items():
         veri[f"item.pastbound.{kimlik}"] = ad
         veri[f"tooltip.pastbound.{kimlik}"] = ad
         veri[f"history.pastbound.relic.{kimlik}.title"] = ad
-        veri[f"history.pastbound.relic.{kimlik}.riddle"] = ingilizce_bilmeceler[kimlik]
+        veri[f"history.pastbound.relic.{kimlik}.activity"] = ingilizce_etkinlikler[kimlik]
         if locale == "tr_tr":
             veri[f"history.pastbound.relic.{kimlik}.title"] = relicler[kimlik]
-            veri[f"history.pastbound.relic.{kimlik}.riddle"] = turkce_bilmeceler[kimlik]
+            veri[f"history.pastbound.relic.{kimlik}.activity"] = turkce_etkinlikler[kimlik]
     for kimlik, ad in yankilar.items():
         yankı_adı = ingilizce_yankilar[kimlik]
         if locale == "tr_tr":
             yankı_adı = ad
         veri[f"history.pastbound.echo.{kimlik}.name"] = yankı_adı
         veri[f"history.pastbound.echo.{kimlik}.hint"] = yankı_adı
-        veri[f"history.pastbound.relic.{kimlik}.riddle"] = ad
         veri[f"advancement.pastbound.{kimlik}.title"] = yankı_adı
-        veri[f"advancement.pastbound.{kimlik}.description"] = "Solve the historical echo trial to recover its memory."
+        veri[f"advancement.pastbound.{kimlik}.description"] = "Complete the restoration activity to recover its historical memory."
     for kimlik, (ad, odak, aciklama) in time_duraklari.items():
         veri[f"history.pastbound.period.{kimlik}.name"] = ad
         veri[f"history.pastbound.period.{kimlik}.focus"] = odak
@@ -486,9 +549,10 @@ for locale, add in metinler.items():
             veri[f"history.pastbound.period.{kimlik}.description"] = turkce_aciklama
         anlatim_ad = turkce_ad if locale == "tr_tr" else ad
         anlatim_odak = turkce_odak if locale == "tr_tr" else odak
-        veri[f"history.pastbound.period.{kimlik}.dialogue_1"] = f"Ask about the first memory of {anlatim_ad}." if locale != "tr_tr" else f"{anlatim_ad} tarihinin ilk anısını sor."
-        veri[f"history.pastbound.period.{kimlik}.dialogue_2"] = f"Ask how {anlatim_odak.lower()} changed the world." if locale != "tr_tr" else f"{anlatim_odak} dünyayı nasıl değiştirdiğini sor."
-        veri[f"history.pastbound.period.{kimlik}.dialogue_3"] = "Ask what should be remembered today." if locale != "tr_tr" else "Bugün neyin hatırlanması gerektiğini sor."
+        konusma = konusmalar_tr[kimlik] if locale == "tr_tr" else konusmalar_en[kimlik]
+        veri[f"history.pastbound.period.{kimlik}.dialogue_1"] = konusma[0]
+        veri[f"history.pastbound.period.{kimlik}.dialogue_2"] = konusma[1]
+        veri[f"history.pastbound.period.{kimlik}.dialogue_3"] = konusma[2]
         veri[f"advancement.pastbound.time_machine.{kimlik}.title"] = ad
         veri[f"advancement.pastbound.time_machine.{kimlik}.description"] = aciklama
     veri["advancement.pastbound.time_machine.complete_expedition.title"] = "Time Cartographer"

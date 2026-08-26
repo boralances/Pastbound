@@ -5,6 +5,7 @@ import java.util.Set;
 import dev.pastbound.ModId;
 import dev.pastbound.network.PastboundPaketi;
 import dev.pastbound.registry.ModBlocks;
+import dev.pastbound.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.villager.Villager;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -37,6 +40,8 @@ public final class TarihiKesifDunyasi {
     private static final String SAHNE_AKTIF = "pastbound_sahne_aktif";
     private static final String SAHNE_SAYACI = "pastbound_sahne_sayaci";
     private static final String SAHNE_GOREV_MASKESI = "pastbound_sahne_gorev_maskesi";
+    private static final String CELIK_GOREV_ASAMASI = "pastbound_celik_gorev_asamasi";
+    private static final String CELIK_DAMAR_SAYISI = "pastbound_celik_damar_sayisi";
     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
 
     private TarihiKesifDunyasi() {
@@ -78,11 +83,13 @@ public final class TarihiKesifDunyasi {
         veri.putBoolean(SAHNE_AKTIF, true);
         veri.putInt(SAHNE_SAYACI, 0);
         veri.putInt(SAHNE_GOREV_MASKESI, 0);
+        veri.putInt(CELIK_GOREV_ASAMASI, donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? 1 : 0);
+        veri.putInt(CELIK_DAMAR_SAYISI, 0);
         sahneyiKur(hedef, SAHNE_MERKEZI, donem);
         oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
-        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest"));
+        oyuncu.sendSystemMessage(Component.translatable(donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "message.pastbound.mission.steel_start" : "message.pastbound.scene.quest"));
         PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(donem.kimlik(), 0));
         return true;
     }
@@ -126,6 +133,105 @@ public final class TarihiKesifDunyasi {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_explore"));
         }
 
+    }
+
+    public static boolean celiKirilabilir(ServerPlayer oyuncu, BlockPos konum) {
+        if (!boyuttaMi(oyuncu) || donemBulBoyuttan(oyuncu.level().dimension()) != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
+            return false;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        return veri.getIntOr(CELIK_GOREV_ASAMASI, 0) == 1 && oyuncu.level().getBlockState(konum).is(ModBlocks.STEEL_ORE.get());
+    }
+
+    public static void celiKirilmasi(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(CELIK_GOREV_ASAMASI, 0) != 1) {
+            return;
+        }
+        int damar = veri.getIntOr(CELIK_DAMAR_SAYISI, 0) + 1;
+        veri.putInt(CELIK_DAMAR_SAYISI, damar);
+        oyuncu.giveExperiencePoints(1);
+        if (damar < 3) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.steel_vein", damar, 3));
+            return;
+        }
+        veri.putInt(CELIK_GOREV_ASAMASI, 2);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.steel_mined"));
+        oyuncu.giveExperiencePoints(2);
+        goreviKontrolEt(oyuncu);
+    }
+
+    public static void celikKulluguEritildi(ServerPlayer oyuncu) {
+        if (!boyuttaMi(oyuncu) || donemBulBoyuttan(oyuncu.level().dimension()) != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(CELIK_GOREV_ASAMASI, 0) == 2) {
+            veri.putInt(CELIK_GOREV_ASAMASI, 3);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.steel_smelted"));
+            oyuncu.giveExperiencePoints(4);
+        }
+    }
+
+    public static void celikLevhaUretildi(ServerPlayer oyuncu) {
+        if (!boyuttaMi(oyuncu) || donemBulBoyuttan(oyuncu.level().dimension()) != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(CELIK_GOREV_ASAMASI, 0) == 3) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.plate_ready"));
+        }
+    }
+
+    public static boolean forgeOnar(ServerPlayer oyuncu, BlockPos konum) {
+        if (!boyuttaMi(oyuncu) || donemBulBoyuttan(oyuncu.level().dimension()) != TarihDonemi.BAGDAT_PILI_ATOLYESI || oyuncu.distanceToSqr(konum.getX() + 0.5D, konum.getY() + 0.5D, konum.getZ() + 0.5D) > 36.0D) {
+            return false;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(CELIK_GOREV_ASAMASI, 0) >= 4) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.already_repaired"));
+            return true;
+        }
+        if (veri.getIntOr(CELIK_GOREV_ASAMASI, 0) < 3) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.forge_locked"));
+            return true;
+        }
+        if (!oyuncu.getInventory().contains(new ItemStack(ModItems.STEEL_PLATE.get()))) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.plate_needed"));
+            return true;
+        }
+        for (int i = 0; i < oyuncu.getInventory().getContainerSize(); i++) {
+            ItemStack yigin = oyuncu.getInventory().getItem(i);
+            if (yigin.is(ModItems.STEEL_PLATE.get())) {
+                yigin.shrink(1);
+                break;
+            }
+        }
+        veri.putInt(CELIK_GOREV_ASAMASI, 4);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.forge_repaired"));
+        oyuncu.giveExperiencePoints(8);
+        goreviKontrolEt(oyuncu);
+        return true;
+    }
+
+    public static boolean tarihForgeMi(ServerPlayer oyuncu, BlockPos konum) {
+        return boyuttaMi(oyuncu) && oyuncu.level().getBlockState(konum).is(ModBlocks.HISTORICAL_FORGE.get());
+    }
+
+    public static int celikGorevAsamasi(ServerPlayer oyuncu) {
+        return ((IEntityExtension) oyuncu).getPersistentData().getIntOr(CELIK_GOREV_ASAMASI, 0);
+    }
+
+    public static void gorevVarliklariniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
+        if (donem != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
+            return;
+        }
+        seviye.setBlock(merkez.north(5).west(3), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
+        seviye.setBlock(merkez.north(5), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
+        seviye.setBlock(merkez.north(5).east(3), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
+        seviye.setBlock(merkez.south(5), ModBlocks.HISTORICAL_FORGE.get().defaultBlockState(), 3);
+        seviye.setBlock(merkez.east(5), Blocks.FURNACE.defaultBlockState(), 3);
+        seviye.setBlock(merkez.west(5), Blocks.CRAFTING_TABLE.defaultBlockState(), 3);
     }
 
     public static void konusmaCevapla(ServerPlayer oyuncu, String donemKimligi, int konusmaci, int secim) {
@@ -185,6 +291,8 @@ public final class TarihiKesifDunyasi {
         veri.remove(SAHNE_AKTIF);
         veri.remove(SAHNE_SAYACI);
         veri.remove(SAHNE_GOREV_MASKESI);
+        veri.remove(CELIK_GOREV_ASAMASI);
+        veri.remove(CELIK_DAMAR_SAYISI);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.returned"));
     }
 
@@ -211,6 +319,10 @@ public final class TarihiKesifDunyasi {
     private static void goreviKontrolEt(ServerPlayer oyuncu) {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+        TarihDonemi donem = donemBul(((IEntityExtension) oyuncu).getPersistentData().getStringOr(SAHNE_CAGI, ""));
+        if (donem == TarihDonemi.BAGDAT_PILI_ATOLYESI && celikGorevAsamasi(oyuncu) < 4) {
+            return;
+        }
         if ((gorevMaskesi & 63) == 63 && (gorevMaskesi & 64) == 0) {
             veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi | 64);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_complete"));
@@ -272,6 +384,7 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(merkez.east(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(3), dekor.defaultBlockState(), 3);
         tarihiYapiKur(seviye, merkez, donem);
+        gorevVarliklariniKur(seviye, merkez, donem);
         sahneAktorleriniKur(seviye, merkez, donem);
     }
 

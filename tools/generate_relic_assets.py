@@ -522,3 +522,62 @@ def agac_verileri_uret(prefix):
 
 agac_verileri_uret("uruk_cedar")
 agac_verileri_uret("chinampa_cypress")
+
+
+def celik_blok_dokusu(renk, vurgu, benekli=False):
+    goruntu = Image.new("RGBA", (16, 16), renk + (255,))
+    ciz = ImageDraw.Draw(goruntu)
+    koyu = karistir(renk, -42)
+    acik = karistir(renk, 34)
+    ciz.rectangle((0, 0, 15, 15), outline=koyu + (255,), width=1)
+    for i in range(4):
+        ciz.line((1, 3 + i * 4, 14, 3 + i * 4), fill=karistir(renk, -12) + (255,), width=1)
+    ciz.line((2, 1, 13, 1), fill=acik + (210,), width=1)
+    ciz.point((4, 5), fill=vurgu + (255,))
+    ciz.point((11, 9), fill=vurgu + (235,))
+    if benekli:
+        for x, y in ((2, 11), (7, 7), (13, 4), (9, 13), (5, 2)):
+            ciz.rectangle((x, y, x + 1, y + 1), fill=vurgu + (255,))
+    return goruntu
+
+
+def celik_varliklari_uret():
+    itemler = {
+        "raw_steel": ((151, 119, 75), 0),
+        "steel_ingot": ((119, 132, 139), 1),
+        "steel_plate": ((91, 108, 119), 2)
+    }
+    for kimlik, (renk, sira) in itemler.items():
+        tarih_esyasi(renk, sira).save(varlik / "textures/item" / f"{kimlik}.png")
+        model = {"parent": "minecraft:item/generated", "textures": {"layer0": f"pastbound:item/{kimlik}"}}
+        (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        item_tanimi_yaz(kimlik, f"pastbound:item/{kimlik}")
+    bloklar = {
+        "steel_ore": ((74, 83, 87), (151, 119, 75), True),
+        "deepslate_steel_ore": ((53, 58, 63), (151, 119, 75), True),
+        "steel_block": ((91, 108, 119), (176, 192, 195), False),
+        "historical_forge": ((63, 68, 73), (194, 137, 60), False)
+    }
+    for kimlik, (renk, vurgu, benekli) in bloklar.items():
+        celik_blok_dokusu(renk, vurgu, benekli).save(blok_dizini / f"{kimlik}.png")
+        blok_modeli_yaz(kimlik, "minecraft:block/cube_all", {"all": f"pastbound:block/{kimlik}"})
+        blok_durumu_yaz(kimlik, {"variants": {"": {"model": f"pastbound:block/{kimlik}"}}})
+        item_blok_modeli_yaz(kimlik)
+    veri_koku = kok / "src/main/resources/data/pastbound"
+    recipes = veri_koku / "recipe"
+    loot = veri_koku / "loot_table/blocks"
+    veri_dosyasi_yaz(recipes, "steel_ingot_from_smelting", {"type": "minecraft:smelting", "category": "misc", "cookingtime": 200, "experience": 0.7, "ingredient": {"item": "pastbound:raw_steel"}, "result": {"id": "pastbound:steel_ingot"}})
+    veri_dosyasi_yaz(recipes, "steel_ingot_from_blasting", {"type": "minecraft:blasting", "category": "misc", "cookingtime": 100, "experience": 0.7, "ingredient": {"item": "pastbound:raw_steel"}, "result": {"id": "pastbound:steel_ingot"}})
+    veri_dosyasi_yaz(recipes, "steel_plate", {"type": "minecraft:crafting_shaped", "category": "misc", "group": "pastbound_steel", "key": {"#": {"item": "pastbound:steel_ingot"}}, "pattern": ["###"], "result": {"count": 2, "id": "pastbound:steel_plate"}})
+    veri_dosyasi_yaz(recipes, "steel_block", {"type": "minecraft:crafting_shaped", "category": "building", "group": "pastbound_steel", "key": {"#": {"item": "pastbound:steel_ingot"}}, "pattern": ["###", "###", "###"], "result": {"id": "pastbound:steel_block"}})
+    veri_dosyasi_yaz(recipes, "historical_forge", {"type": "minecraft:crafting_shaped", "category": "building", "group": "pastbound_historical_forge", "key": {"#": {"item": "pastbound:steel_plate"}, "F": {"item": "minecraft:blast_furnace"}, "I": {"item": "minecraft:iron_ingot"}}, "pattern": ["#F#", " I ", "###"], "result": {"id": "pastbound:historical_forge"}})
+    veri_dosyasi_yaz(loot, "steel_ore", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:raw_steel", "functions": [{"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": 1.0, "max": 2.0}}, {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"}]}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/steel_ore"})
+    veri_dosyasi_yaz(loot, "deepslate_steel_ore", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:raw_steel", "functions": [{"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": 1.0, "max": 2.0}}, {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"}]}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/deepslate_steel_ore"})
+    veri_dosyasi_yaz(loot, "steel_block", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:steel_block"}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/steel_block"})
+    veri_dosyasi_yaz(loot, "historical_forge", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:historical_forge"}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/historical_forge"})
+    vanilla_etiket_koku = kok / "src/main/resources/data/minecraft/tags/block"
+    veri_dosyasi_yaz(vanilla_etiket_koku, "mineable/pickaxe", {"replace": False, "values": ["pastbound:steel_ore", "pastbound:deepslate_steel_ore", "pastbound:steel_block", "pastbound:historical_forge"]})
+    veri_dosyasi_yaz(vanilla_etiket_koku, "needs_iron_tool", {"replace": False, "values": ["pastbound:steel_ore", "pastbound:deepslate_steel_ore", "pastbound:steel_block", "pastbound:historical_forge"]})
+
+
+celik_varliklari_uret()

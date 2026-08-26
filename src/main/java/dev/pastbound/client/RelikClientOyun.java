@@ -3,6 +3,7 @@ package dev.pastbound.client;
 import dev.pastbound.ModId;
 import dev.pastbound.network.PastboundPaketi;
 import dev.pastbound.client.ui.RelikDefteriEkrani;
+import dev.pastbound.client.ui.PastboundDilEkrani;
 import dev.pastbound.client.ui.TarihCanlandirmaEkrani;
 import dev.pastbound.client.ui.TarihKoyluKonusmaEkrani;
 import net.minecraft.client.Minecraft;
@@ -39,6 +40,9 @@ public final class RelikClientOyun {
         }
         if (RelikClient.DEFTER_KISAYOLU.consumeClick()) {
             minecraft.setScreenAndShow(new RelikDefteriEkrani());
+        }
+        if (RelikClient.DIL_KISAYOLU.consumeClick()) {
+            minecraft.setScreenAndShow(new PastboundDilEkrani());
         }
         if (RelikClient.AKTIFLESTIRME_KISAYOLU.consumeClick()) {
             oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.etkinlestir()));

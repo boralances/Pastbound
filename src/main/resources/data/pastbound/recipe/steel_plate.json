@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pastbound_steel",
+  "key": {
+    "#": {
+      "item": "pastbound:steel_ingot"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "pastbound:steel_plate"
+  }
+}

@@ -35,7 +35,7 @@ public final class RelikItem extends Item implements ICurioItem {
         ItemStack yigin = oyuncu.getItemInHand(el);
         if (seviye.isClientSide()) {
             if (!oyuncu.isShiftKeyDown() && !RelikMantigi.biliyorMu(oyuncu, tanim)) {
-                RelikDefteriEkrani.bilmeceAc(tanim);
+                RelikDefteriEkrani.etkinlikAc(tanim);
             }
             return InteractionResult.SUCCESS;
         }
@@ -67,7 +67,7 @@ public final class RelikItem extends Item implements ICurioItem {
     public void appendHoverText(ItemStack yigin, TooltipContext baglam, TooltipDisplay gorunum, Consumer<Component> satir, TooltipFlag bayrak) {
         satir.accept(Component.translatable("tooltip.pastbound.relic.era", tanim.tarihBasligiBileseni()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.power", tanim.yeti().name()));
-        satir.accept(Component.translatable("tooltip.pastbound.relic.riddle", tanim.bilmeceBileseni()));
+        satir.accept(Component.translatable("tooltip.pastbound.relic.activity", tanim.etkinlikBileseni()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.identify", tanim.bilmeSeviyesi()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.xp", tanim.bilmeSeviyesi()));
         satir.accept(Component.translatable("tooltip.pastbound.relic.shortcut"));

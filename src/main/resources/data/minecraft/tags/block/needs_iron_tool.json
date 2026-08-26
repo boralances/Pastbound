@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "pastbound:steel_ore",
+    "pastbound:deepslate_steel_ore",
+    "pastbound:steel_block",
+    "pastbound:historical_forge"
+  ]
+}

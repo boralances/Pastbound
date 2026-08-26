@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "pastbound_historical_forge",
+  "key": {
+    "#": {
+      "item": "pastbound:steel_plate"
+    },
+    "F": {
+      "item": "minecraft:blast_furnace"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "#F#",
+    " I ",
+    "###"
+  ],
+  "result": {
+    "id": "pastbound:historical_forge"
+  }
+}

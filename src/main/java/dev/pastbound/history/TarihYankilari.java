@@ -2,6 +2,7 @@ package dev.pastbound.history;
 
 import dev.pastbound.ModId;
 import dev.pastbound.registry.ModBlocks;
+import dev.pastbound.registry.ModItems;
 import dev.pastbound.relic.RelikMantigi;
 import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -56,6 +57,10 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            if (olay.getState().is(ModBlocks.STEEL_ORE.get()) && TarihiKesifDunyasi.celiKirilabilir(sunucu, olay.getPos())) {
+                TarihiKesifDunyasi.celiKirilmasi(sunucu);
+                return;
+            }
             olay.setCanceled(true);
             return;
         }
@@ -88,6 +93,14 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            if (TarihiKesifDunyasi.tarihForgeMi(sunucu, olay.getPos())) {
+                olay.setCanceled(true);
+                TarihiKesifDunyasi.forgeOnar(sunucu, olay.getPos());
+                return;
+            }
+            if (olay.getLevel().getBlockState(olay.getPos()).is(net.minecraft.world.level.block.Blocks.FURNACE) || olay.getLevel().getBlockState(olay.getPos()).is(net.minecraft.world.level.block.Blocks.CRAFTING_TABLE)) {
+                return;
+            }
             olay.setCanceled(true);
             return;
         }
@@ -135,7 +148,9 @@ public final class TarihYankilari {
             return;
         }
         ItemStack yigin = olay.getCrafting();
-        if (yigin.is(Items.WRITABLE_BOOK)) {
+        if (yigin.is(ModItems.STEEL_PLATE.get())) {
+            TarihiKesifDunyasi.celikLevhaUretildi((ServerPlayer) oyuncu);
+        } else if (yigin.is(Items.WRITABLE_BOOK)) {
             yankiyiBaslat(oyuncu, TarihYankisi.TIMBUKTU_KERVANI);
         } else if (yigin.is(Items.CLOCK)) {
             yankiyiBaslat(oyuncu, TarihYankisi.ANTIKITHERA_GOK);
@@ -159,7 +174,9 @@ public final class TarihYankilari {
             return;
         }
         ItemStack yigin = olay.getSmelting();
-        if (yigin.is(Items.GLASS)) {
+        if (yigin.is(ModItems.STEEL_INGOT.get())) {
+            TarihiKesifDunyasi.celikKulluguEritildi((ServerPlayer) oyuncu);
+        } else if (yigin.is(Items.GLASS)) {
             yankiyiBaslat(oyuncu, TarihYankisi.SONG_FIRINI);
         } else if (yigin.is(Items.IRON_INGOT)) {
             yankiyiBaslat(oyuncu, TarihYankisi.BENIN_DOKUMU);
