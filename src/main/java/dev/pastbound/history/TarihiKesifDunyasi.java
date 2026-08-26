@@ -26,6 +26,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.common.extensions.IEntityExtension;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -42,6 +44,7 @@ public final class TarihiKesifDunyasi {
     private static final String SAHNE_GOREV_MASKESI = "pastbound_sahne_gorev_maskesi";
     private static final String CELIK_GOREV_ASAMASI = "pastbound_celik_gorev_asamasi";
     private static final String CELIK_DAMAR_SAYISI = "pastbound_celik_damar_sayisi";
+    private static final int SAHNE_ANIT_BITI = 256;
     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
 
     private TarihiKesifDunyasi() {
@@ -119,6 +122,9 @@ public final class TarihiKesifDunyasi {
             return;
         }
         sahneAktorleriniHareketEttir(oyuncu.level(), SAHNE_MERKEZI, sayac);
+        if (sayac % 50 == 0) {
+            sahneKapisiAnimasyonla(oyuncu.level(), SAHNE_MERKEZI, donem, (sayac / 50) % 2 == 1);
+        }
         if (sayac % 20 == 0) {
             PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(donem.kimlik(), sayac));
         }
@@ -214,6 +220,23 @@ public final class TarihiKesifDunyasi {
         return true;
     }
 
+    public static boolean anitKirilabilir(ServerPlayer oyuncu, BlockPos konum) {
+        if (!boyuttaMi(oyuncu) || !konum.equals(SAHNE_MERKEZI.north(6))) {
+            return false;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        return (veri.getIntOr(SAHNE_GOREV_MASKESI, 0) & SAHNE_ANIT_BITI) == 0 && oyuncu.level().getBlockState(konum).is(ModBlocks.ECHO_ARCHIVE.get());
+    }
+
+    public static void anitKirildi(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int maske = veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | SAHNE_ANIT_BITI;
+        veri.putInt(SAHNE_GOREV_MASKESI, maske);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_artifact"));
+        oyuncu.giveExperiencePoints(3);
+        goreviKontrolEt(oyuncu);
+    }
+
     public static boolean tarihForgeMi(ServerPlayer oyuncu, BlockPos konum) {
         return boyuttaMi(oyuncu) && oyuncu.level().getBlockState(konum).is(ModBlocks.HISTORICAL_FORGE.get());
     }
@@ -223,6 +246,7 @@ public final class TarihiKesifDunyasi {
     }
 
     public static void gorevVarliklariniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
+        seviye.setBlock(merkez.north(6), ModBlocks.ECHO_ARCHIVE.get().defaultBlockState(), 3);
         if (donem != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
             return;
         }
@@ -251,9 +275,11 @@ public final class TarihiKesifDunyasi {
         }
         if (!yakin) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.dialogue.too_far"));
+            PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.konusmaCevabi(donem.kimlik(), konusmaci, 0));
             return;
         }
-        oyuncu.sendSystemMessage(Component.translatable("history.pastbound.period." + donem.kimlik() + ".dialogue_" + secim));
+        oyuncu.sendSystemMessage(Component.translatable("history.pastbound.period." + donem.kimlik() + ".response_" + secim));
+        PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.konusmaCevabi(donem.kimlik(), konusmaci, secim));
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | (1 << konusmaci);
         veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
@@ -323,7 +349,10 @@ public final class TarihiKesifDunyasi {
         if (donem == TarihDonemi.BAGDAT_PILI_ATOLYESI && celikGorevAsamasi(oyuncu) < 4) {
             return;
         }
-        if ((gorevMaskesi & 63) == 63 && (gorevMaskesi & 64) == 0) {
+        boolean konusmaTamam = (gorevMaskesi & 15) != 0;
+        boolean hareketTamam = (gorevMaskesi & 48) == 48;
+        boolean anitTamam = (gorevMaskesi & SAHNE_ANIT_BITI) != 0;
+        if (konusmaTamam && hareketTamam && anitTamam && (gorevMaskesi & 64) == 0) {
             veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi | 64);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_complete"));
             oyuncu.getInventory().placeItemBackInInventory(new net.minecraft.world.item.ItemStack(dev.pastbound.registry.ModItems.CHRONICLE_SCRAP.get(), 2));
@@ -366,6 +395,7 @@ public final class TarihiKesifDunyasi {
                 }
             }
         }
+        sahneBariyerleriniKur(seviye, merkez);
         if (chinampaDonemiMi(donem)) {
             for (int x = -7; x <= 7; x++) {
                 seviye.setBlock(merkez.offset(x, 0, -6), Blocks.WATER.defaultBlockState(), 3);
@@ -384,8 +414,25 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(merkez.east(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(3), dekor.defaultBlockState(), 3);
         tarihiYapiKur(seviye, merkez, donem);
+        sahneKapisiKur(seviye, merkez, donem);
         gorevVarliklariniKur(seviye, merkez, donem);
         sahneAktorleriniKur(seviye, merkez, donem);
+    }
+
+    private static void sahneBariyerleriniKur(ServerLevel seviye, BlockPos merkez) {
+        for (int y = 0; y <= 4; y++) {
+            for (int i = -10; i <= 10; i++) {
+                seviye.setBlock(merkez.offset(i, y, -10), Blocks.BARRIER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(i, y, 10), Blocks.BARRIER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(-10, y, i), Blocks.BARRIER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(10, y, i), Blocks.BARRIER.defaultBlockState(), 3);
+            }
+        }
+        for (int x = -10; x <= 10; x++) {
+            for (int z = -10; z <= 10; z++) {
+                seviye.setBlock(merkez.offset(x, -1, z), Blocks.BARRIER.defaultBlockState(), 3);
+            }
+        }
     }
 
     private static void tarihiYapiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
@@ -430,6 +477,26 @@ public final class TarihiKesifDunyasi {
 
     private static Block ahsapYapragi(TarihDonemi donem) {
         return donem == TarihDonemi.TENOKTITLAN_GECIDI || donem == TarihDonemi.POLINEZYA_YILDIZ_YOLU || donem == TarihDonemi.ANTIKITHERA_LIMANI || donem == TarihDonemi.ISKENDERIYE_KUTUPHANESI || donem == TarihDonemi.TERMOPIL_SAVASI || donem == TarihDonemi.APOLLO_AY_ISTIGI ? ModBlocks.CHINAMPA_CYPRESS_LEAVES.get() : ModBlocks.URUK_CEDAR_LEAVES.get();
+    }
+
+    private static void sahneKapisiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
+        Block kapı = chinampaDonemiMi(donem) ? ModBlocks.CHINAMPA_CYPRESS_DOOR.get() : ModBlocks.URUK_CEDAR_DOOR.get();
+        BlockPos alt = merkez.north(8).above();
+        seviye.setBlock(alt, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, false), 3);
+        seviye.setBlock(alt.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, false), 3);
+    }
+
+    private static void sahneKapisiAnimasyonla(Level seviye, BlockPos merkez, TarihDonemi donem, boolean acik) {
+        BlockPos alt = merkez.north(8).above();
+        BlockState durum = seviye.getBlockState(alt);
+        if (!(durum.getBlock() instanceof DoorBlock)) {
+            return;
+        }
+        seviye.setBlock(alt, durum.setValue(DoorBlock.OPEN, acik), 3);
+        BlockState ust = seviye.getBlockState(alt.above());
+        if (ust.getBlock() instanceof DoorBlock) {
+            seviye.setBlock(alt.above(), ust.setValue(DoorBlock.OPEN, acik), 3);
+        }
     }
 
     private static void sahneAktorleriniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {

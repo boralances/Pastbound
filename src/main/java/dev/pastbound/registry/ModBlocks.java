@@ -36,6 +36,12 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> DEEPSLATE_STEEL_ORE = BLOCKS.register("deepslate_steel_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));
     public static final DeferredBlock<Block> STEEL_BLOCK = BLOCKS.register("steel_block", kimlik -> new Block(ozellik(Blocks.IRON_BLOCK, kimlik)));
     public static final DeferredBlock<Block> HISTORICAL_FORGE = BLOCKS.register("historical_forge", kimlik -> new Block(ozellik(Blocks.BLAST_FURNACE, kimlik)));
+    public static final DeferredBlock<Block> TIME_STONE_ORE = BLOCKS.register("time_stone_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));
+    public static final DeferredBlock<Block> NETHER_TIME_STONE_ORE = BLOCKS.register("nether_time_stone_ore", kimlik -> new Block(ozellik(Blocks.NETHER_QUARTZ_ORE, kimlik)));
+    public static final DeferredBlock<Block> CHRONICLE_ORE = BLOCKS.register("chronicle_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));
+    public static final DeferredBlock<Block> ASH_CHRONICLE_ORE = BLOCKS.register("ash_chronicle_ore", kimlik -> new Block(ozellik(Blocks.NETHER_QUARTZ_ORE, kimlik)));
+    public static final DeferredBlock<Block> END_ECHO_ORE = BLOCKS.register("end_echo_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik)));
+    public static final DeferredBlock<Block> VOID_CHRONICLE_ORE = BLOCKS.register("void_chronicle_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik)));
 
     public static final DeferredBlock<Block> URUK_CEDAR_LOG = BLOCKS.register("uruk_cedar_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.OAK_LOG, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_STRIPPED_LOG = BLOCKS.register("uruk_cedar_stripped_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.STRIPPED_OAK_LOG, kimlik)));

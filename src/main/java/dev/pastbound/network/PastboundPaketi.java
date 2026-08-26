@@ -62,6 +62,10 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
         return new PastboundPaketi(11, donem, konusmaci + ":" + secim);
     }
 
+    public static PastboundPaketi konusmaCevabi(String donem, int konusmaci, int secim) {
+        return new PastboundPaketi(12, donem, konusmaci + ":" + secim);
+    }
+
     @Override
     public Type<? extends CustomPacketPayload> type() {
         return TIP;
@@ -132,6 +136,13 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                     RelikClientOyun.konusmaPaketiniIsle(paket.birinci(), Integer.parseInt(paket.ikinci()));
                 } catch (NumberFormatException hata) {
                     RelikClientOyun.konusmaPaketiniIsle(paket.birinci(), 0);
+                }
+            } else if (paket.islem() == 12) {
+                try {
+                    String[] parcalar = paket.ikinci().split(":", 2);
+                    RelikClientOyun.konusmaCevabiniIsle(paket.birinci(), Integer.parseInt(parcalar[0]), Integer.parseInt(parcalar[1]));
+                } catch (RuntimeException hata) {
+                    RelikClientOyun.konusmaCevabiniIsle(paket.birinci(), 0, 0);
                 }
             }
         });

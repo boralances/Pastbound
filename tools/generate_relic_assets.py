@@ -359,6 +359,44 @@ def item_blok_modeli_yaz(kimlik):
     (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def kapi_dokusu(renk, vurgu):
+    goruntu = Image.new("RGBA", (16, 16), karistir(renk, 8) + (255,))
+    ciz = ImageDraw.Draw(goruntu)
+    koyu = karistir(renk, -48)
+    acik = karistir(renk, 35)
+    orta = karistir(renk, -8)
+    ciz.rectangle((0, 0, 15, 15), outline=koyu + (255,), width=1)
+    ciz.line((5, 1, 5, 14), fill=koyu + (255,), width=1)
+    ciz.line((6, 1, 6, 14), fill=acik + (180,), width=1)
+    ciz.line((10, 1, 10, 14), fill=koyu + (255,), width=1)
+    ciz.line((11, 1, 11, 14), fill=acik + (180,), width=1)
+    ciz.rectangle((2, 3, 13, 5), fill=orta + (255,))
+    ciz.rectangle((2, 10, 13, 12), fill=orta + (255,))
+    ciz.rectangle((3, 4, 12, 4), fill=acik + (200,))
+    ciz.rectangle((3, 11, 12, 11), fill=acik + (200,))
+    ciz.rectangle((1, 2, 2, 4), fill=vurgu + (255,))
+    ciz.rectangle((13, 11, 14, 13), fill=vurgu + (255,))
+    ciz.rectangle((12, 7, 14, 8), fill=koyu + (255,))
+    ciz.point((13, 7), fill=acik + (255,))
+    return goruntu
+
+
+def kapak_dokusu(renk, vurgu):
+    goruntu = Image.new("RGBA", (16, 16), karistir(renk, 3) + (255,))
+    ciz = ImageDraw.Draw(goruntu)
+    koyu = karistir(renk, -52)
+    acik = karistir(renk, 30)
+    ciz.rectangle((0, 0, 15, 15), outline=koyu + (255,), width=1)
+    for y in (4, 8, 12):
+        ciz.line((1, y, 14, y), fill=koyu + (255,), width=1)
+        ciz.line((1, y + 1, 14, y + 1), fill=acik + (170,), width=1)
+    ciz.rectangle((2, 2, 5, 3), fill=vurgu + (255,))
+    ciz.rectangle((10, 10, 13, 11), fill=vurgu + (230,))
+    ciz.rectangle((6, 6, 9, 9), outline=acik + (220,), width=1)
+    ciz.point((7, 7), fill=vurgu + (255,))
+    return goruntu
+
+
 def ahsap_familiasi_uret(prefix, renk, vurgu):
     log = f"{prefix}_log"
     stripped_log = f"{prefix}_stripped_log"
@@ -393,8 +431,8 @@ def ahsap_familiasi_uret(prefix, renk, vurgu):
     ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{planks}.png")
     ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{slab}.png")
     ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{stairs}.png")
-    ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{door}.png")
-    ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{trapdoor}.png")
+    kapi_dokusu(renk, vurgu).save(blok_dizini / f"{door}.png")
+    kapak_dokusu(renk, vurgu).save(blok_dizini / f"{trapdoor}.png")
     for kimlik in (fence, gate, plate, button):
         ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{kimlik}.png")
     blok_modeli_yaz(log, "minecraft:block/cube_column", {"end": f"pastbound:block/{log}_top", "side": f"pastbound:block/{log}"})
@@ -517,7 +555,7 @@ def agac_verileri_uret(prefix):
     veri_dosyasi_yaz(recipes, f"{prefix}_button", {"type": "minecraft:crafting_shapeless", "category": "redstone", "group": "historical_wood_button", "ingredients": [planks], "result": {"id": button}})
     veri_dosyasi_yaz(recipes, f"{prefix}_pressure_plate", {"type": "minecraft:crafting_shaped", "category": "redstone", "group": "historical_wood_pressure_plate", "key": {"#": planks}, "pattern": ["##"], "result": {"id": plate}})
     for kimlik in (f"{prefix}_log", f"{prefix}_stripped_log", f"{prefix}_wood", f"{prefix}_stripped_wood", f"{prefix}_leaves", f"{prefix}_sapling", f"{prefix}_planks", f"{prefix}_slab", f"{prefix}_stairs", f"{prefix}_door", f"{prefix}_trapdoor", f"{prefix}_fence", f"{prefix}_fence_gate", f"{prefix}_pressure_plate", f"{prefix}_button"):
-        veri_dosyasi_yaz(loot, kimlik, {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": f"pastbound:{kimlik}"}], "rolls": 1.0}], "random_sequence": f"pastbound:blocks/{kimlik}"})
+        veri_dosyasi_yaz(loot, kimlik, {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": f"pastbound:{kimlik}"}], "rolls": 1.0}]})
 
 
 agac_verileri_uret("uruk_cedar")
@@ -556,7 +594,13 @@ def celik_varliklari_uret():
         "steel_ore": ((74, 83, 87), (151, 119, 75), True),
         "deepslate_steel_ore": ((53, 58, 63), (151, 119, 75), True),
         "steel_block": ((91, 108, 119), (176, 192, 195), False),
-        "historical_forge": ((63, 68, 73), (194, 137, 60), False)
+        "historical_forge": ((63, 68, 73), (194, 137, 60), False),
+        "time_stone_ore": ((49, 68, 78), (76, 156, 151), True),
+        "nether_time_stone_ore": ((82, 42, 35), (76, 156, 151), True),
+        "chronicle_ore": ((58, 64, 79), (181, 148, 91), True),
+        "ash_chronicle_ore": ((72, 48, 45), (181, 148, 91), True),
+        "end_echo_ore": ((64, 58, 91), (119, 207, 190), True),
+        "void_chronicle_ore": ((40, 34, 61), (181, 148, 91), True)
     }
     for kimlik, (renk, vurgu, benekli) in bloklar.items():
         celik_blok_dokusu(renk, vurgu, benekli).save(blok_dizini / f"{kimlik}.png")
@@ -571,13 +615,24 @@ def celik_varliklari_uret():
     veri_dosyasi_yaz(recipes, "steel_plate", {"type": "minecraft:crafting_shaped", "category": "misc", "group": "pastbound_steel", "key": {"#": {"item": "pastbound:steel_ingot"}}, "pattern": ["###"], "result": {"count": 2, "id": "pastbound:steel_plate"}})
     veri_dosyasi_yaz(recipes, "steel_block", {"type": "minecraft:crafting_shaped", "category": "building", "group": "pastbound_steel", "key": {"#": {"item": "pastbound:steel_ingot"}}, "pattern": ["###", "###", "###"], "result": {"id": "pastbound:steel_block"}})
     veri_dosyasi_yaz(recipes, "historical_forge", {"type": "minecraft:crafting_shaped", "category": "building", "group": "pastbound_historical_forge", "key": {"#": {"item": "pastbound:steel_plate"}, "F": {"item": "minecraft:blast_furnace"}, "I": {"item": "minecraft:iron_ingot"}}, "pattern": ["#F#", " I ", "###"], "result": {"id": "pastbound:historical_forge"}})
-    veri_dosyasi_yaz(loot, "steel_ore", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:raw_steel", "functions": [{"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": 1.0, "max": 2.0}}, {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"}]}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/steel_ore"})
-    veri_dosyasi_yaz(loot, "deepslate_steel_ore", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:raw_steel", "functions": [{"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": 1.0, "max": 2.0}}, {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"}]}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/deepslate_steel_ore"})
-    veri_dosyasi_yaz(loot, "steel_block", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:steel_block"}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/steel_block"})
-    veri_dosyasi_yaz(loot, "historical_forge", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:historical_forge"}], "rolls": 1.0}], "random_sequence": "pastbound:blocks/historical_forge"})
+    veri_dosyasi_yaz(loot, "steel_ore", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:raw_steel", "functions": [{"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": 1.0, "max": 2.0}}, {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"}]}], "rolls": 1.0}]})
+    veri_dosyasi_yaz(loot, "deepslate_steel_ore", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:raw_steel", "functions": [{"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": 1.0, "max": 2.0}}, {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"}]}], "rolls": 1.0}]})
+    veri_dosyasi_yaz(loot, "steel_block", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:steel_block"}], "rolls": 1.0}]})
+    veri_dosyasi_yaz(loot, "historical_forge", {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": "pastbound:historical_forge"}], "rolls": 1.0}]})
+    maden_dusumleri = {
+        "time_stone_ore": "pastbound:time_stone",
+        "nether_time_stone_ore": "pastbound:time_stone",
+        "chronicle_ore": "pastbound:chronicle_scrap",
+        "ash_chronicle_ore": "pastbound:chronicle_scrap",
+        "end_echo_ore": "pastbound:echo_shard",
+        "void_chronicle_ore": "pastbound:echo_seal"
+    }
+    for kimlik, dusum in maden_dusumleri.items():
+        veri_dosyasi_yaz(loot, kimlik, {"type": "minecraft:block", "pools": [{"conditions": [{"condition": "minecraft:survives_explosion"}], "entries": [{"type": "minecraft:item", "name": dusum, "functions": [{"function": "minecraft:set_count", "count": {"type": "minecraft:uniform", "min": 1.0, "max": 2.0}}, {"function": "minecraft:apply_bonus", "enchantment": "minecraft:fortune", "formula": "minecraft:ore_drops"}]}], "rolls": 1.0}]})
     vanilla_etiket_koku = kok / "src/main/resources/data/minecraft/tags/block"
-    veri_dosyasi_yaz(vanilla_etiket_koku, "mineable/pickaxe", {"replace": False, "values": ["pastbound:steel_ore", "pastbound:deepslate_steel_ore", "pastbound:steel_block", "pastbound:historical_forge"]})
-    veri_dosyasi_yaz(vanilla_etiket_koku, "needs_iron_tool", {"replace": False, "values": ["pastbound:steel_ore", "pastbound:deepslate_steel_ore", "pastbound:steel_block", "pastbound:historical_forge"]})
+    maden_tag_degerleri = ["pastbound:steel_ore", "pastbound:deepslate_steel_ore", "pastbound:steel_block", "pastbound:historical_forge", "pastbound:time_stone_ore", "pastbound:nether_time_stone_ore", "pastbound:chronicle_ore", "pastbound:ash_chronicle_ore", "pastbound:end_echo_ore", "pastbound:void_chronicle_ore"]
+    veri_dosyasi_yaz(vanilla_etiket_koku, "mineable/pickaxe", {"replace": False, "values": maden_tag_degerleri})
+    veri_dosyasi_yaz(vanilla_etiket_koku, "needs_iron_tool", {"replace": False, "values": maden_tag_degerleri})
 
 
 celik_varliklari_uret()

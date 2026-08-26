@@ -1,16 +1,16 @@
 # Pastbound
 
-**Pastbound** is a CurseForge ModJam 2026 entry for **“Echoes of the Past.”** The mod treats history as a playable force rather than a decorative background. Forgotten civilizations leave behind physical relics; players recover their stories, restore five independent memory fragments, place them in a Curios relic slot, and bring a historical ability into the present.
+**Pastbound** is a CurseForge ModJam 2026 entry for **“Echoes of the Past.”** The mod treats history as a playable force rather than a decorative background. Forgotten civilizations leave behind physical relics; players recover their stories through independent restoration fragments, place them in a Curios relic slot, and bring a historical ability into the present.
 
-Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The final archive is named **`Pastbound-1.1.0.jar`**. A dedicated Baghdad Battery workshop mission now asks the player to mine three marked steel veins, smelt the raw steel, craft a steel plate, and repair the historical forge.
+Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current patch archive is named **`Pastbound-1.1.1.jar`**.
 
 ## Design pitch
 
-> Every forgotten moment leaves an echo. The player does not merely collect an artefact; the player restores its memory fragments, hears its story, and decides when that history should shape the present.
+> Every forgotten moment leaves an echo. The player does not merely collect an artefact; the player restores its fragments, learns its story, and decides when that history should shape the present.
 
 The central loop begins with crafting or discovering an **Echo Shard**, a crystallized fragment of a recorded moment. Four shards complete an **Echo Archive**. A **Memory Lens** reads the completed archive and releases its witness memory through nearby **Resonance Pillars**, creating a temporary historical shrine with sound, light, particles, and a short afterimage effect.
 
-The second layer is the relic hunt. Pastbound contains twenty-four history-inspired relics spanning writing systems, mathematics, navigation, astronomy, trade, statecraft, ritual, and exploration. A relic begins as unknown. The player can hold Shift and use it while paying its XP-level knowledge cost, or open the Journal and restore five independent memory fragments after the related historical echo awakens. Once understood, the relic remembers the player permanently through NeoForge entity persistent data.
+The second layer is the relic hunt. Pastbound contains twenty-four history-inspired relics spanning writing systems, mathematics, navigation, astronomy, trade, statecraft, ritual, and exploration. A relic begins as unknown. The player can hold Shift and use it while paying its XP-level knowledge cost, or open its GUI restoration activity and recover five independent historical fragments. Once understood, the relic remembers the player permanently through NeoForge entity persistent data.
 
 A known relic can be placed into the Curios **relic** slot. The **V** key awakens the first known relic equipped in that slot, while right-clicking the relic also activates it. Passive abilities pulse every two seconds while a known relic is worn. The **R** key opens the in-game Relic Journal, where the player can see the recovered-memory count, known relics, historical traces, activation status, and the controls needed to continue the expedition.
 
@@ -20,18 +20,19 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 |---|---|---|
 | Echo Archive | A reconstructed memory repository | Stores four Echo Shards, the first witness, and the recording time in a persistent BlockEntity. |
 | Resonance Pillar | A relay for a recovered historical signal | Activates across a 5×3×5 shrine volume and fades after 120 ticks. |
-| Echo Shard | A crystallized instant | Feeds the archive and awakens the first recorded memory. |
+| Echo Shard | A crystallized instant | Feeds the archive and is the shared catalyst for relic crafting. |
 | Memory Lens | An interpretive optical instrument | Reads complete memories, consumes durability, and awakens the shrine. |
-| Curios relic slot | A wearable museum case | Adds ten `relic` slots accepting the `curios:relic` item tag; eight are open initially. |
+| Curios relic slot | A wearable museum case | Provides eight open `relic` slots at first and two more after the Netherite exchange, accepting the `curios:relic` item tag. |
 | Relic Journal | A field notebook for the expedition | Opens with **R** and shows progression in a Minecraft-native dark parchment style. |
 | Relic awakening | History made active | Uses **V** or right-click to trigger the learned relic’s ability. |
-| Historical Echo Restorations | Independent memory fragments | Adds twenty-four event-linked historical restoration activities with server validation, XP rewards, and advancement unlocks. |
-| Chronicle research materials | Reconstructed scholarship supplies | Adds Chronicle Scrap, History Ink, Time Stone, Echo Seal, Raw Steel, Steel Ingot, and Steel Plate as research and workshop materials. |
+| Historical restoration | A playful interpretation layer | Makes identification possible through five independent memory fragments, while Shift-right-click remains the direct XP route. |
+| Historical field missions | Active archival moments | Adds movement, perimeter exploration, monument breaking, steel mining, smelting, forging, NPC dialogue, XP rewards, and advancement unlocks. |
+| Chronicle research materials | Reconstructed scholarship supplies | Adds Chronicle Scrap, History Ink, Time Stone, and Echo Seal as a four-step crafting chain. |
 | Time Machine | A reconstructed historical observatory | Opens a GUI with twelve destinations covering writing, war, libraries, early electricity, mechanical astronomy, scholarship, trade, navigation, settlement, and lunar exploration. |
 | Furnace on a Stick | Portable field equipment | Opens the native furnace GUI without placing a block. |
 | Chest relic rewards | Museum-grade discoveries | Relics are never craftable and appear only as rare additions to Village, Trial Chamber, and Ancient City chest openings. |
 | Relic slot progression | A Netherite-backed museum case | Eight relic slots begin open; ten Netherite Blocks exchanged through the journal open two more slots. |
-| Global history pulse | A server-wide historical era | Rotates twelve historical periods and opens their historical echo for every connected player. |
+| Global history pulse | A server-wide historical era | Rotates twelve historical periods and opens their echo trial for every connected player. |
 
 ## Relic catalogue
 
@@ -62,7 +63,7 @@ A known relic can be placed into the Curios **relic** slot. The **V** key awaken
 | Mali Tuz Mührü | Saharan trade | Luck |
 | İskandinav Rune Taşı | Northern inscription tradition | Invisibility |
 
-Each relic has its own 16×16 PNG, item model, item name, historical trace, restoration activity, knowledge cost, activation cooldown, active effect, passive pulse behavior, and chest-only acquisition rule. Relics intentionally have no crafting recipe; they are rare rewards added to Village, Trial Chamber, and Ancient City chest openings. Each relic is also paired with a historical echo restoration, from the Papyrus Cipher and Uruk Seal to the Timbuktu Caravan, Apollo Moon Walk, and Rune Stone.
+Each relic has its own 16×16 PNG, item model, item name, historical trace, restoration activity, knowledge cost, activation cooldown, active effect, passive pulse behavior, and chest-only acquisition rule. Relics intentionally have no crafting recipe; they are rare rewards added to Village, Trial Chamber, and Ancient City chest openings. Each relic is also paired with a historical echo trial, from the Papyrus Cipher and Uruk Seal to the Timbuktu Caravan, Apollo Moon Walk, and Rune Stone.
 
 ## Relic-specific abilities
 
@@ -72,13 +73,15 @@ These custom actions are applied after the classic effect and are encoded with T
 
 ## Global historical events
 
-`KureselTarihOlaylari` listens to the global server tick and rotates twelve server-wide historical periods: Writing Revolution, Nile Canals, Star Voyage, Caravan Road, Calendar Council, Smiths’ Memory, Mosaic Peace, Silk Exchange, Quipu Count, Astrolabe Sky, Rune Watch, and Moon Mission. Each period broadcasts a world-level message, unlocks its related historical echo for every connected player, and can add context-aware effects or particles when the player carries a relevant vanilla object such as a book, map, ingot, string, or clock.
+`KureselTarihOlaylari` listens to the global server tick and rotates twelve server-wide historical periods: Writing Revolution, Nile Canals, Star Voyage, Caravan Road, Calendar Council, Smiths’ Memory, Mosaic Peace, Silk Exchange, Quipu Count, Astrolabe Sky, Rune Watch, and Moon Mission. Each period broadcasts a world-level message, unlocks its related echo trial for every connected player, and can add context-aware effects or particles when the player carries a relevant vanilla object such as a book, map, ingot, string, or clock.
 
 The player-facing world actions include writing with books, reading routes with maps and compasses, carrying metal underground, trading with gold, travelling over high ground, entering water, surviving the End, walking at night, and following the server-wide era rotation. These are global history signals rather than arbitrary fantasy triggers, keeping the mod centered on historical technologies, travel, records, craft, and exchange.
 
+Version 1.1.1 adds a natural-world archaeology layer. New chunks can reveal rare Overworld historical biome pockets with Uruk floodplain or Tenochtitlan chinampa ambience, cedar or cypress growth, and Time Stone or Chronicle ore. The Nether contains Nether Time Stone and Ash Chronicle ore, while the End contains End Echo and Void Chronicle ore. These materials connect the present world to the same writing, electricity, trade, and astronomical history carried by the twelve time-machine destinations.
+
 ## Controls and GUI actions
 
-The **R** key opens the Relic Journal. Clicking a relic card opens a compact restoration modal with five independent memory-fragment buttons; fragments can be restored in any order without an answer test. The **V** key sends a server-authoritative custom payload rather than a chat command. The **L** key opens the language selector, where English and Türkçe can be applied without leaving the world. The first sixteen relics also apply the custom `tarih_yankisi` effect, while every relic keeps its own historical ability branch. Right-clicking an unknown relic opens the same restoration GUI. The **U** key in the journal offers the server-validated Netherite slot exchange. The final gameplay loop uses GUI screens and common custom payloads for restoration, historical missions, activation, time travel, and slot upgrades; no chat command is required for discovery.
+The **R** key opens the Relic Journal. Clicking an unknown relic opens a custom restoration modal with five independent fragment actions; fragments can be selected in any order and no order-dependent puzzle remains. The **V** key sends a server-authoritative custom payload rather than a chat command. The first sixteen relics also apply the custom `tarih_yankisi` effect, while every relic keeps its own historical ability branch. Shift-right-click remains the direct XP identification route. The **U** key in the journal offers the server-validated Netherite slot exchange. The final gameplay loop uses GUI screens and common custom payloads for restoration activities, field missions, dialogue, activation, time travel, and slot upgrades; no chat command is required for discovery.
 
 ## Curios integration
 
@@ -86,7 +89,7 @@ Curios is a required runtime dependency. The project declares the Curios Maven r
 
 ## Localization
 
-The project includes **36 locale JSON files**, exceeding the requested 32-language target. Every locale contains the Pastbound UI strings, keybind labels, archive feedback, relic activation messages, the complete relic catalogue, restoration activity labels, historical mission instructions, modal instructions, time machine labels, slot progression text, chest-loot feedback, event progress, and advancement keys. English is the default and fallback language; the in-game **L** menu can apply English or Türkçe immediately. The generated set includes English, Turkish, German, French, Spanish variants, Italian, Portuguese variants, Russian, Ukrainian, Polish, Dutch, Nordic locales, Central European locales, Chinese variants, Japanese, Korean, Vietnamese, Thai, Indonesian, Arabic, Hebrew, Afrikaans, Esperanto, Irish, and Welsh.
+The project includes **36 locale JSON files**, exceeding the requested 32-language target. Every locale contains the Pastbound UI strings, keybind labels, archive feedback, relic activation messages, the complete relic catalogue, historical trial labels, modal instructions, time machine labels, slot progression text, chest-loot feedback, event progress, and advancement keys. The generated set includes English, Turkish, German, French, Spanish variants, Italian, Portuguese variants, Russian, Ukrainian, Polish, Dutch, Nordic locales, Central European locales, Chinese variants, Japanese, Korean, Vietnamese, Thai, Indonesian, Arabic, Hebrew, Afrikaans, Esperanto, Irish, and Welsh.
 
 The locale generator is deterministic and can be rerun with:
 
@@ -97,13 +100,13 @@ python3 tools/generate_history_data.py
 
 ## Texture production
 
-All relic sprites and supporting assets are deterministic 16×16 pixel art generated from explicit RGB palette data. The blueprint intentionally uses uneven highlights, dark edge pixels, small asymmetries, material-specific palettes, and distinct hand-drawn glyph patterns instead of a single recoloured placeholder. The archive, pillar, charged pillar, Curios slot icon, 256×256 journal texture, 256×192 restoration modal texture, seven research and steel-material sprites, and the steel workshop assets are generated by the same source-controlled script.
+All relic sprites and supporting assets are deterministic 16×16 pixel art generated from explicit RGB palette data. The blueprint intentionally uses uneven highlights, dark edge pixels, small asymmetries, material-specific palettes, and distinct hand-drawn glyph patterns instead of a single recoloured placeholder. The archive, pillar, charged pillar, Curios slot icon, 256×256 journal texture, 256×192 historical trial modal texture, and four research-material sprites are generated by the same source-controlled script.
 
 ```bash
 python3 tools/generate_relic_assets.py
 ```
 
-The generator also produces the Time Machine item, Furnace on a Stick item, and the dedicated time-machine GUI texture. The original compact texture generator remains available for the core five assets:
+The generator also produces the Time Machine item, Furnace on a Stick item, dedicated time-machine GUI texture, separate wood door/trapdoor sprites with visible hardware, and distinct historical ore textures for Overworld, Nether, and End materials. The original compact texture generator remains available for the core five assets:
 
 ```bash
 python3 tools/generate_textures.py
@@ -128,7 +131,8 @@ Pastbound/
 │   ├── generate_relic_recipes.py
 │   ├── generate_history_data.py
 │   ├── generate_time_machine_data.py
-│   └── generate_textures.py
+│   ├── generate_textures.py
+│   └── validate_assets.py
 └── src/main/
     ├── java/dev/pastbound/
     │   ├── ModId.java
@@ -142,14 +146,20 @@ Pastbound/
     │   │   ├── TarihDonemi.java
     │   │   ├── TarihSandikGanimeti.java
     │   │   ├── TarihYankisi.java
-    │   │   ├── TarihYankilari.java
-    │   │   └── ZamanMakinesiMantigi.java
+│   │   ├── TarihYankilari.java
+│   │   ├── TarihMadenleri.java
+│   │   └── ZamanMakinesiMantigi.java
+
     │   ├── client/
     │   │   ├── RelikClient.java
     │   │   ├── RelikClientOyun.java
     │   │   └── ui/
     │   │       ├── RelikDefteriEkrani.java
-    │   │       └── ZamanMakinesiEkrani.java
+│   │       ├── TarihCanlandirmaEkrani.java
+│   │       ├── TarihKoyluKonusmaEkrani.java
+│   │       └── ZamanMakinesiEkrani.java
+
+
     │   ├── item/
     │   │   ├── FirinCubuguItem.java
     │   │   └── ZamanMakinesiItem.java
@@ -199,7 +209,7 @@ python3 tools/generate_locales.py
 The final file is created at:
 
 ```text
-Pastbound/build/libs/Pastbound-1.1.0.jar
+Pastbound/build/libs/Pastbound-1.1.1.jar
 ```
 
 For Windows PowerShell, use:
@@ -223,7 +233,7 @@ If a local Gradle cache is incomplete, use:
 ./gradlew --refresh-dependencies clean build
 ```
 
-The repository also contains a sandbox-validated 1.1.0 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above.
+The repository also contains a sandbox-validated 1.1.1 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above.
 
 ## License
 

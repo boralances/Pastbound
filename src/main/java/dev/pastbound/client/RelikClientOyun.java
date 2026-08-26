@@ -23,6 +23,10 @@ public final class RelikClientOyun {
         TarihKoyluKonusmaEkrani.ac(donem, konusmaci);
     }
 
+    public static void konusmaCevabiniIsle(String donem, int konusmaci, int secim) {
+        TarihKoyluKonusmaEkrani.cevabiGeldi(donem, konusmaci, secim);
+    }
+
     public static void canlandirmaPaketiniIsle(String donem, String sayac) {
         try {
             TarihCanlandirmaEkrani.guncelle(donem, Integer.parseInt(sayac));

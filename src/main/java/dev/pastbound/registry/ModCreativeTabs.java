@@ -35,6 +35,12 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.STEEL_PLATE.get());
             olay.accept(ModItems.STEEL_BLOCK.get());
             olay.accept(ModItems.HISTORICAL_FORGE.get());
+            olay.accept(ModItems.TIME_STONE_ORE.get());
+            olay.accept(ModItems.NETHER_TIME_STONE_ORE.get());
+            olay.accept(ModItems.CHRONICLE_ORE.get());
+            olay.accept(ModItems.ASH_CHRONICLE_ORE.get());
+            olay.accept(ModItems.END_ECHO_ORE.get());
+            olay.accept(ModItems.VOID_CHRONICLE_ORE.get());
             ModItems.RELIKLER.forEach(relik -> olay.accept(relik.get()));
             ModItems.TARIHI_AHSAP_ITEMLERI.forEach(item -> olay.accept(item.get()));
         }

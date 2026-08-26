@@ -4,6 +4,12 @@
     "pastbound:steel_ore",
     "pastbound:deepslate_steel_ore",
     "pastbound:steel_block",
-    "pastbound:historical_forge"
+    "pastbound:historical_forge",
+    "pastbound:time_stone_ore",
+    "pastbound:nether_time_stone_ore",
+    "pastbound:chronicle_ore",
+    "pastbound:ash_chronicle_ore",
+    "pastbound:end_echo_ore",
+    "pastbound:void_chronicle_ore"
   ]
 }

@@ -38,6 +38,12 @@ public final class ModItems {
     public static final DeferredItem<Item> RAW_STEEL = ITEMS.register("raw_steel", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64)));
     public static final DeferredItem<Item> STEEL_INGOT = ITEMS.register("steel_ingot", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64)));
     public static final DeferredItem<Item> STEEL_PLATE = ITEMS.register("steel_plate", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64)));
+    public static final DeferredItem<BlockItem> TIME_STONE_ORE = ITEMS.registerSimpleBlockItem("time_stone_ore", ModBlocks.TIME_STONE_ORE);
+    public static final DeferredItem<BlockItem> NETHER_TIME_STONE_ORE = ITEMS.registerSimpleBlockItem("nether_time_stone_ore", ModBlocks.NETHER_TIME_STONE_ORE);
+    public static final DeferredItem<BlockItem> CHRONICLE_ORE = ITEMS.registerSimpleBlockItem("chronicle_ore", ModBlocks.CHRONICLE_ORE);
+    public static final DeferredItem<BlockItem> ASH_CHRONICLE_ORE = ITEMS.registerSimpleBlockItem("ash_chronicle_ore", ModBlocks.ASH_CHRONICLE_ORE);
+    public static final DeferredItem<BlockItem> END_ECHO_ORE = ITEMS.registerSimpleBlockItem("end_echo_ore", ModBlocks.END_ECHO_ORE);
+    public static final DeferredItem<BlockItem> VOID_CHRONICLE_ORE = ITEMS.registerSimpleBlockItem("void_chronicle_ore", ModBlocks.VOID_CHRONICLE_ORE);
 
     public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);
     public static final DeferredItem<BlockItem> URUK_CEDAR_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_stripped_log", ModBlocks.URUK_CEDAR_STRIPPED_LOG);

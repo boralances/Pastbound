@@ -17,6 +17,8 @@ import dev.pastbound.network.PastboundPaketi;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -51,6 +53,26 @@ public final class TarihYankilari {
     }
 
     @SubscribeEvent
+    public static void hasarOnlendi(LivingDamageEvent.Pre olay) {
+        if (olay.getEntity() instanceof ServerPlayer oyuncu && TarihiKesifDunyasi.boyuttaMi(oyuncu)) {
+            olay.setNewDamage(0.0F);
+            if (oyuncu.getHealth() < 1.0F) {
+                oyuncu.setHealth(1.0F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void olumOnlendi(LivingDeathEvent olay) {
+        if (olay.getEntity() instanceof ServerPlayer oyuncu && TarihiKesifDunyasi.boyuttaMi(oyuncu)) {
+            olay.setCanceled(true);
+            oyuncu.setHealth(Math.max(1.0F, oyuncu.getHealth()));
+            oyuncu.clearFire();
+            oyuncu.setDeltaMovement(0.0D, 0.0D, 0.0D);
+        }
+    }
+
+    @SubscribeEvent
     public static void blokKirildi(BreakBlockEvent olay) {
         Player oyuncu = olay.getPlayer();
         if (oyuncu.level().isClientSide()) {
@@ -59,6 +81,10 @@ public final class TarihYankilari {
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
             if (olay.getState().is(ModBlocks.STEEL_ORE.get()) && TarihiKesifDunyasi.celiKirilabilir(sunucu, olay.getPos())) {
                 TarihiKesifDunyasi.celiKirilmasi(sunucu);
+                return;
+            }
+            if (olay.getState().is(ModBlocks.ECHO_ARCHIVE.get()) && TarihiKesifDunyasi.anitKirilabilir(sunucu, olay.getPos())) {
+                TarihiKesifDunyasi.anitKirildi(sunucu);
                 return;
             }
             olay.setCanceled(true);
