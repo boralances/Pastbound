@@ -26,6 +26,7 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.HISTORY_INK.get());
             olay.accept(ModItems.TIME_STONE.get());
             olay.accept(ModItems.ECHO_SEAL.get());
+            olay.accept(ModItems.CHRONICLE_COMPASS.get());
             olay.accept(ModItems.ZAMAN_MAKINESI.get());
             olay.accept(ModItems.FIRIN_CUBUGU.get());
             olay.accept(ModItems.STEEL_ORE.get());

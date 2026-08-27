@@ -277,6 +277,20 @@ zaman_makinesi().save(varlik / "textures/item/zaman_makinesi.png")
 firin_cubugu().save(varlik / "textures/item/firin_cubugu.png")
 zaman_gui().save(gui_dizini / "time_machine.png")
 tarih_yankisi_efekti().save(mob_effect_dizini / "tarih_yankisi.png")
+def kronik_pusulasi():
+    goruntu = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    ciz = ImageDraw.Draw(goruntu)
+    ciz.ellipse((2, 2, 13, 13), fill=(39, 45, 53, 255), outline=(207, 164, 77, 255), width=1)
+    ciz.ellipse((4, 4, 11, 11), fill=(44, 102, 116, 255), outline=(126, 210, 191, 255), width=1)
+    ciz.polygon([(8, 3), (10, 8), (8, 13), (7, 8)], fill=(230, 192, 103, 255))
+    ciz.polygon([(8, 3), (7, 8), (8, 13), (9, 8)], fill=(190, 67, 55, 255))
+    ciz.point((8, 8), fill=(250, 239, 170, 255))
+    ciz.point((3, 8), fill=(164, 230, 202, 255))
+    ciz.point((12, 8), fill=(164, 230, 202, 255))
+    ciz.point((8, 2), fill=(248, 226, 139, 255))
+    return goruntu
+
+
 yeni_esyalar = {
     "chronicle_scrap": ((181, 148, 91), 0),
     "history_ink": ((62, 66, 104), 1),
@@ -288,6 +302,11 @@ for kimlik, (renk, sira) in yeni_esyalar.items():
     model = {"parent": "minecraft:item/generated", "textures": {"layer0": f"pastbound:item/{kimlik}"}}
     (model_dizini / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     item_tanimi_yaz(kimlik, f"pastbound:item/{kimlik}")
+
+kronik_pusulasi().save(varlik / "textures/item/chronicle_compass.png")
+model = {"parent": "minecraft:item/generated", "textures": {"layer0": "pastbound:item/chronicle_compass"}}
+(model_dizini / "chronicle_compass.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+item_tanimi_yaz("chronicle_compass", "pastbound:item/chronicle_compass")
 
 for kimlik, kok_model in (("zaman_makinesi", "minecraft:item/generated"), ("firin_cubugu", "minecraft:item/handheld")):
     model = {"parent": kok_model, "textures": {"layer0": f"pastbound:item/{kimlik}"}}

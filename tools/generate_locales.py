@@ -385,6 +385,9 @@ ortak = {
     "block.pastbound.resonance_pillar": "Resonance Pillar",
     "item.pastbound.echo_shard": "Echo Shard",
     "item.pastbound.memory_lens": "Memory Lens",
+    "item.pastbound.chronicle_compass": "Chronicle Compass",
+    "message.pastbound.compass.none": "The Chronicle Compass finds no historical ore nearby.",
+    "message.pastbound.compass.found": "%s is %s blocks away at %s, %s, %s.",
     "tooltip.pastbound.relic.power": "Ability: %s",
     "tooltip.pastbound.relic.activity": "Restoration activity: %s",
     "tooltip.pastbound.relic.identify": "Knowledge cost: %s XP levels",
@@ -588,6 +591,10 @@ metinler = {
 for locale, add in metinler.items():
     veri = dict(ortak)
     veri.update(add)
+    if locale == "tr_tr":
+        veri["item.pastbound.chronicle_compass"] = "Kronik Pusulası"
+        veri["message.pastbound.compass.none"] = "Kronik Pusulası yakında tarihî cevher bulamıyor."
+        veri["message.pastbound.compass.found"] = "%s, %s blok ötede bulundu: %s, %s, %s."
     ahsap_kaynagi = turkce_ahsaplar if locale == "tr_tr" else ahsaplar
     for kimlik, ad in ahsap_kaynagi.items():
         veri[f"block.pastbound.{kimlik}"] = ad
