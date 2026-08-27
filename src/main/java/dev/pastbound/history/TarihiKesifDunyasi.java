@@ -92,7 +92,7 @@ public final class TarihiKesifDunyasi {
         oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
-        oyuncu.sendSystemMessage(Component.translatable(donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "message.pastbound.mission.steel_start" : "message.pastbound.scene.quest"));
+        oyuncu.sendSystemMessage(Component.translatable(donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "message.pastbound.mission.steel_start" : "message.pastbound.scene.quest_period", Component.translatable("screen.pastbound.scene.task." + donem.kimlik())));
         PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(donem.kimlik(), 0));
         return true;
     }
@@ -225,7 +225,8 @@ public final class TarihiKesifDunyasi {
             return false;
         }
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
-        return (veri.getIntOr(SAHNE_GOREV_MASKESI, 0) & SAHNE_ANIT_BITI) == 0 && oyuncu.level().getBlockState(konum).is(ModBlocks.ECHO_ARCHIVE.get());
+        TarihDonemi donem = donemBul(veri.getStringOr(SAHNE_CAGI, ""));
+        return donem != null && (veri.getIntOr(SAHNE_GOREV_MASKESI, 0) & SAHNE_ANIT_BITI) == 0 && oyuncu.level().getBlockState(konum).is(gorevAniti(donem));
     }
 
     public static void anitKirildi(ServerPlayer oyuncu) {
@@ -245,8 +246,25 @@ public final class TarihiKesifDunyasi {
         return ((IEntityExtension) oyuncu).getPersistentData().getIntOr(CELIK_GOREV_ASAMASI, 0);
     }
 
+    private static Block gorevAniti(TarihDonemi donem) {
+        return switch (donem) {
+            case URUK_YAZI_EVI -> Blocks.CLAY;
+            case TERMOPIL_SAVASI -> Blocks.STONE;
+            case ISKENDERIYE_KUTUPHANESI -> Blocks.BOOKSHELF;
+            case BAGDAT_PILI_ATOLYESI -> Blocks.COPPER_BLOCK.weathering().unaffected();
+            case ANTIKITHERA_LIMANI -> Blocks.POLISHED_DEEPSLATE;
+            case BAGDAT_BILGI_EVI -> Blocks.CHISELED_BOOKSHELF;
+            case TIMBUKTU_EL_YAZMALARI -> Blocks.SANDSTONE;
+            case TENOKTITLAN_GECIDI -> Blocks.PRISMARINE;
+            case POLINEZYA_YILDIZ_YOLU -> Blocks.LAPIS_BLOCK;
+            case CATALHOYUK_YERLESKESI -> Blocks.TERRACOTTA;
+            case APOLLO_AY_ISTIGI -> Blocks.IRON_BLOCK;
+            case IPEK_YOLU_KERVANSARAYI -> Blocks.RED_SANDSTONE;
+        };
+    }
+
     public static void gorevVarliklariniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
-        seviye.setBlock(merkez.north(6), ModBlocks.ECHO_ARCHIVE.get().defaultBlockState(), 3);
+        seviye.setBlock(merkez.north(6), gorevAniti(donem).defaultBlockState(), 3);
         if (donem != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
             return;
         }
@@ -349,7 +367,7 @@ public final class TarihiKesifDunyasi {
         if (donem == TarihDonemi.BAGDAT_PILI_ATOLYESI && celikGorevAsamasi(oyuncu) < 4) {
             return;
         }
-        boolean konusmaTamam = (gorevMaskesi & 15) != 0;
+        boolean konusmaTamam = (gorevMaskesi & 15) == 15;
         boolean hareketTamam = (gorevMaskesi & 48) == 48;
         boolean anitTamam = (gorevMaskesi & SAHNE_ANIT_BITI) != 0;
         if (konusmaTamam && hareketTamam && anitTamam && (gorevMaskesi & 64) == 0) {

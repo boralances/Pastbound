@@ -83,7 +83,7 @@ public final class TarihYankilari {
                 TarihiKesifDunyasi.celiKirilmasi(sunucu);
                 return;
             }
-            if (olay.getState().is(ModBlocks.ECHO_ARCHIVE.get()) && TarihiKesifDunyasi.anitKirilabilir(sunucu, olay.getPos())) {
+            if (TarihiKesifDunyasi.anitKirilabilir(sunucu, olay.getPos())) {
                 TarihiKesifDunyasi.anitKirildi(sunucu);
                 return;
             }

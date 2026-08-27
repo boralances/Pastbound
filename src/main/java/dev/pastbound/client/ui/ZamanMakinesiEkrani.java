@@ -72,6 +72,10 @@ public final class ZamanMakinesiEkrani extends Screen {
                 cizim.textWithWordWrap(font, donem.aciklamaBileseni(), x + 8, y + 40, kartGenislik - 16, 0xFFB9C8C9);
             }
         }
+        if (seciliDonem >= 0 && seciliDonem < TarihDonemi.values().length) {
+            TarihDonemi secili = TarihDonemi.values()[seciliDonem];
+            cizim.centeredText(font, Component.translatable("screen.pastbound.time_machine.preview", Component.translatable("screen.pastbound.scene.task." + secili.kimlik())), sol + genislik / 2, ust + yukseklik - 64, 0xFFB6D4C9);
+        }
         if (mesajSayaci > 0) {
             cizim.centeredText(font, Component.translatable("screen.pastbound.time_machine.sent"), sol + genislik / 2, ust + yukseklik - 32, 0xFF7ED0A8);
         } else {

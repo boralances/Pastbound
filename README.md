@@ -2,7 +2,7 @@
 
 **Pastbound** is a CurseForge ModJam 2026 entry for **“Echoes of the Past.”** The mod treats history as a playable force rather than a decorative background. Forgotten civilizations leave behind physical relics; players recover their stories through independent restoration fragments, place them in a Curios relic slot, and bring a historical ability into the present.
 
-Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current patch archive is named **`Pastbound-1.1.2.jar`**.
+Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current patch archive is named **`Pastbound-1.2.0.jar`**.
 
 ## Design pitch
 
@@ -77,7 +77,9 @@ These custom actions are applied after the classic effect and are encoded with T
 
 The player-facing world actions include writing with books, reading routes with maps and compasses, carrying metal underground, trading with gold, travelling over high ground, entering water, surviving the End, walking at night, and following the server-wide era rotation. These are global history signals rather than arbitrary fantasy triggers, keeping the mod centered on historical technologies, travel, records, craft, and exchange.
 
-Version 1.1.2 adds a natural-world archaeology layer. New chunks can reveal rare Overworld historical biome pockets with Uruk floodplain or Tenochtitlan chinampa ambience, cedar or cypress growth, and Time Stone or Chronicle ore. The Nether contains Nether Time Stone and Ash Chronicle ore, while the End contains End Echo and Void Chronicle ore. These materials connect the present world to the same writing, electricity, trade, and astronomical history carried by the twelve time-machine destinations.
+Version 1.2.0 adds a natural-world archaeology layer. New chunks can reveal rare Overworld historical biome pockets with Uruk floodplain or Tenochtitlan chinampa ambience, cedar or cypress growth, water channels, archaeology markers, passive wildlife and dimension-aware hostile spawns. Time Stone and Chronicle ores now form multi-block veins in the Overworld, while Nether Time Stone and Ash Chronicle veins form in the Nether and End Echo and Void Chronicle veins form in the End. Nether observation monuments and End sky-watch platforms turn each dimension into a distinct historical field site. These materials connect the present world to the same writing, electricity, trade, and astronomical history carried by the twelve time-machine destinations.
+
+The living-history quest layer now requires a complete field expedition instead of a single conversation. Every destination gives the player a period-specific objective: speak with all four witnesses, cross the scene perimeter, return to the central beacon and break that era’s own archive monument. Baghdad adds the full workshop chain of mining three steel veins, smelting, crafting a steel plate and repairing the historical forge. The time-machine screen previews the active mission before travel, and the scene HUD shows both the mission and the destination’s ecosystem clue.
 
 ## Controls and GUI actions
 
@@ -209,7 +211,7 @@ python3 tools/generate_locales.py
 The final file is created at:
 
 ```text
-Pastbound/build/libs/Pastbound-1.1.2.jar
+Pastbound/build/libs/Pastbound-1.2.0.jar
 ```
 
 For Windows PowerShell, use:
@@ -233,7 +235,7 @@ If a local Gradle cache is incomplete, use:
 ./gradlew --refresh-dependencies clean build
 ```
 
-The repository also contains a sandbox-validated 1.1.2 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above.
+The repository also contains a sandbox-validated 1.2.0 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above.
 
 ## License
 

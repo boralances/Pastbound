@@ -80,11 +80,14 @@ public final class TarihCanlandirmaEkrani extends Screen {
         }
         String asama = sayac < 80 ? "screen.pastbound.scene.phase_one" : sayac < 160 ? "screen.pastbound.scene.phase_two" : "screen.pastbound.scene.phase_three";
         cizim.centeredText(font, Component.translatable(asama), sol + genislik / 2, ust + 180, 0xFF9FC6BE);
-        String hedef = donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "screen.pastbound.scene.task_steel" : "screen.pastbound.scene.task_active";
+        String hedef = donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "screen.pastbound.scene.task_steel" : "screen.pastbound.scene.task." + donem.kimlik();
         cizim.textWithWordWrap(font, Component.translatable(hedef), sol + 28, ust + 202, genislik - 56, 0xFFE4B870);
+        if (donem != null) {
+            cizim.textWithWordWrap(font, Component.translatable("screen.pastbound.scene.ecosystem." + donem.kimlik()), sol + 28, ust + 236, genislik - 56, 0xFF9FC6BE);
+        }
         if (!kontrolAcik && sayac > 0) {
             String kapi = (sayac / 50) % 2 == 1 ? "screen.pastbound.scene.door_open" : "screen.pastbound.scene.door_closed";
-            cizim.centeredText(font, Component.translatable(kapi), sol + genislik / 2, ust + 230, 0xFF9FC6BE);
+            cizim.centeredText(font, Component.translatable(kapi), sol + genislik / 2, ust + 270, 0xFF9FC6BE);
         }
         if (!kontrolAcik) {
             cizim.centeredText(font, Component.translatable("screen.pastbound.scene.press_d"), sol + genislik / 2, ust + yukseklik - 44, 0xFFE0B26B);
