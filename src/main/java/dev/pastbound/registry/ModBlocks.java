@@ -35,7 +35,7 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> STEEL_ORE = BLOCKS.register("steel_ore", kimlik -> new Block(ozellik(Blocks.IRON_ORE, kimlik)));
     public static final DeferredBlock<Block> DEEPSLATE_STEEL_ORE = BLOCKS.register("deepslate_steel_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));
     public static final DeferredBlock<Block> STEEL_BLOCK = BLOCKS.register("steel_block", kimlik -> new Block(ozellik(Blocks.IRON_BLOCK, kimlik)));
-    public static final DeferredBlock<Block> HISTORICAL_FORGE = BLOCKS.register("historical_forge", kimlik -> new Block(ozellik(Blocks.BLAST_FURNACE, kimlik)));
+    public static final DeferredBlock<Block> HISTORICAL_FORGE = BLOCKS.register("historical_forge", kimlik -> new Block(ozellik(Blocks.IRON_BLOCK, kimlik).sound(SoundType.NETHERITE_BLOCK).destroyTime(4.0F).explosionResistance(6.0F)));
     public static final DeferredBlock<Block> TIME_STONE_ORE = BLOCKS.register("time_stone_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));
     public static final DeferredBlock<Block> NETHER_TIME_STONE_ORE = BLOCKS.register("nether_time_stone_ore", kimlik -> new Block(ozellik(Blocks.NETHER_QUARTZ_ORE, kimlik)));
     public static final DeferredBlock<Block> CHRONICLE_ORE = BLOCKS.register("chronicle_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));
