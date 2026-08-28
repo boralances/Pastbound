@@ -334,6 +334,32 @@ public final class TarihiKesifDunyasi {
         goreviKontrolEt(oyuncu);
     }
 
+    public static boolean sahneKapisiMi(ServerPlayer oyuncu, BlockPos konum) {
+        if (!boyuttaMi(oyuncu)) {
+            return false;
+        }
+        BlockPos alt = konum;
+        if (oyuncu.level().getBlockState(alt).getBlock() instanceof DoorBlock && oyuncu.level().getBlockState(alt).getValue(DoorBlock.HALF) == DoubleBlockHalf.UPPER) {
+            alt = konum.below();
+        }
+        return alt.equals(SAHNE_MERKEZI.north(8).above()) && oyuncu.level().getBlockState(alt).getBlock() instanceof DoorBlock;
+    }
+
+    public static void sahneKapisiEtkilesildi(ServerPlayer oyuncu, BlockPos konum) {
+        if (!sahneKapisiMi(oyuncu, konum)) {
+            return;
+        }
+        BlockPos alt = konum;
+        BlockState durum = oyuncu.level().getBlockState(alt);
+        if (durum.getValue(DoorBlock.HALF) == DoubleBlockHalf.UPPER) {
+            alt = konum.below();
+            durum = oyuncu.level().getBlockState(alt);
+        }
+        boolean acik = !durum.getValue(DoorBlock.OPEN);
+        ((DoorBlock) durum.getBlock()).setOpen(oyuncu, oyuncu.level(), durum, alt, acik);
+        oyuncu.sendSystemMessage(Component.translatable(acik ? "message.pastbound.scene.door_opened" : "message.pastbound.scene.door_closed"));
+    }
+
     public static boolean tarihForgeMi(ServerPlayer oyuncu, BlockPos konum) {
         return boyuttaMi(oyuncu) && oyuncu.level().getBlockState(konum).is(ModBlocks.HISTORICAL_FORGE.get());
     }

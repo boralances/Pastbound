@@ -119,6 +119,11 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            if (TarihiKesifDunyasi.sahneKapisiMi(sunucu, olay.getPos())) {
+                olay.setCanceled(true);
+                TarihiKesifDunyasi.sahneKapisiEtkilesildi(sunucu, olay.getPos());
+                return;
+            }
             if (TarihiKesifDunyasi.anitIncelenebilir(sunucu, olay.getPos()) && olay.getItemStack().is(ModItems.MEMORY_LENS.get())) {
                 olay.setCanceled(true);
                 TarihiKesifDunyasi.anitIncelendi(sunucu);
