@@ -1,6 +1,9 @@
 package dev.pastbound.history;
 
 import dev.pastbound.ModId;
+import dev.pastbound.block.entity.AncientStorageBlockEntity;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.ChestMenu;
 import dev.pastbound.registry.ModBlocks;
 import dev.pastbound.registry.ModItems;
 import dev.pastbound.relic.RelikMantigi;
@@ -11,6 +14,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import dev.pastbound.network.PastboundPaketi;
@@ -120,6 +124,11 @@ public final class TarihYankilari {
     public static void blokEtkilesildi(PlayerInteractEvent.RightClickBlock olay) {
         Player oyuncu = olay.getEntity();
         if (oyuncu.level().isClientSide()) {
+            return;
+        }
+        if (oyuncu instanceof ServerPlayer sunucu && olay.getLevel().getBlockEntity(olay.getPos()) instanceof AncientStorageBlockEntity depolama) {
+            sunucu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> ChestMenu.sixRows(id, envanter, depolama), Component.translatable("container.pastbound.ancient_storage")));
+            olay.setCanceled(true);
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {

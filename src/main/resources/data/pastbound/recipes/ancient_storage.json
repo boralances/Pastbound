@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "pastbound_ancient_storage",
+  "pattern": [
+    "SCS",
+    "EAE",
+    "SCS"
+  ],
+  "key": {
+    "S": "minecraft:chest",
+    "C": "pastbound:chronicle_scrap",
+    "E": "pastbound:echo_shard",
+    "A": "minecraft:amethyst_block"
+  },
+  "result": {
+    "id": "pastbound:ancient_storage",
+    "count": 1
+  }
+}

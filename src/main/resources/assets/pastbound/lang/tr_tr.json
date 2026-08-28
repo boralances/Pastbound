@@ -639,5 +639,8 @@
   "message.pastbound.world.power_needs": "Düzeneği çalıştırmak için 2 bakır külçe, 4 redstone ve 1 çelik levha gerekiyor.",
   "message.pastbound.world.power_active": "Elektrik devresi çalıştı. Köyün geçmişten kalan yankısı arşive kaydedildi.",
   "message.pastbound.period.unique_complete": "%s döneminin özel saha görevi tamamlandı. Şimdi tüm tarih görev zincirini bitir.",
-  "message.pastbound.period.unique_progress": "Dönem özel kanıtı %s/%s tamamlandı. Sahadaki diğer kanıtı bulmaya devam et."
+  "message.pastbound.period.unique_progress": "Dönem özel kanıtı %s/%s tamamlandı. Sahadaki diğer kanıtı bulmaya devam et.",
+  "block.pastbound.ancient_storage": "Kadim Depolama",
+  "item.pastbound.ancient_storage": "Kadim Depolama",
+  "container.pastbound.ancient_storage": "Kadim Depolama Arşivi"
 }

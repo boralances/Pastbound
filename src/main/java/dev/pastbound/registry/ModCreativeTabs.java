@@ -21,6 +21,7 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.ECHO_SHARD.get());
             olay.accept(ModItems.MEMORY_LENS.get());
             olay.accept(ModItems.ECHO_ARCHIVE.get());
+            olay.accept(ModItems.ANCIENT_STORAGE.get());
             olay.accept(ModItems.RESONANCE_PILLAR.get());
             olay.accept(ModItems.CHRONICLE_SCRAP.get());
             olay.accept(ModItems.HISTORY_INK.get());

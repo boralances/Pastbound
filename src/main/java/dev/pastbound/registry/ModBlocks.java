@@ -2,6 +2,7 @@ package dev.pastbound.registry;
 
 import dev.pastbound.ModId;
 import dev.pastbound.block.EchoArchiveBlock;
+import dev.pastbound.block.AncientStorageBlock;
 import dev.pastbound.block.ResonancePillarBlock;
 import dev.pastbound.block.TarihBasincPlakaBlock;
 import dev.pastbound.block.TarihBasamakBlock;
@@ -31,6 +32,7 @@ public final class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ModId.MOD_ID);
 
     public static final DeferredBlock<EchoArchiveBlock> ECHO_ARCHIVE = BLOCKS.register("echo_archive", kimlik -> new EchoArchiveBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_PURPLE).sound(SoundType.AMETHYST).destroyTime(2.5F).explosionResistance(6.0F).lightLevel(durum -> 5)));
+    public static final DeferredBlock<AncientStorageBlock> ANCIENT_STORAGE = BLOCKS.register("ancient_storage", kimlik -> new AncientStorageBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_BROWN).sound(SoundType.WOOD).destroyTime(3.0F).explosionResistance(6.0F)));
     public static final DeferredBlock<ResonancePillarBlock> RESONANCE_PILLAR = BLOCKS.register("resonance_pillar", kimlik -> new ResonancePillarBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_BLUE).sound(SoundType.COPPER).destroyTime(3.0F).explosionResistance(7.0F).lightLevel(durum -> durum.getValue(ResonancePillarBlock.CHARGED) ? 15 : 4)));
     public static final DeferredBlock<Block> STEEL_ORE = BLOCKS.register("steel_ore", kimlik -> new Block(ozellik(Blocks.IRON_ORE, kimlik)));
     public static final DeferredBlock<Block> DEEPSLATE_STEEL_ORE = BLOCKS.register("deepslate_steel_ore", kimlik -> new Block(ozellik(Blocks.DEEPSLATE_IRON_ORE, kimlik)));

@@ -22,6 +22,7 @@ public final class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ModId.MOD_ID);
 
     public static final DeferredItem<BlockItem> ECHO_ARCHIVE = ITEMS.registerSimpleBlockItem("echo_archive", ModBlocks.ECHO_ARCHIVE);
+    public static final DeferredItem<BlockItem> ANCIENT_STORAGE = ITEMS.registerSimpleBlockItem("ancient_storage", ModBlocks.ANCIENT_STORAGE);
     public static final DeferredItem<BlockItem> RESONANCE_PILLAR = ITEMS.registerSimpleBlockItem("resonance_pillar", ModBlocks.RESONANCE_PILLAR);
 
     public static final DeferredItem<EchoShardItem> ECHO_SHARD = ITEMS.register("echo_shard", registryName -> new EchoShardItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
