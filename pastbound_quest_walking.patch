@@ -1,0 +1,162 @@
+diff --git a/src/main/java/dev/pastbound/history/TarihiKesifDunyasi.java b/src/main/java/dev/pastbound/history/TarihiKesifDunyasi.java
+index 77d4b85..f244dc9 100644
+--- a/src/main/java/dev/pastbound/history/TarihiKesifDunyasi.java
++++ b/src/main/java/dev/pastbound/history/TarihiKesifDunyasi.java
+@@ -44,9 +44,23 @@ public final class TarihiKesifDunyasi {
+     private static final String SAHNE_GOREV_MASKESI = "pastbound_sahne_gorev_maskesi";
+     private static final String CELIK_GOREV_ASAMASI = "pastbound_celik_gorev_asamasi";
+     private static final String CELIK_DAMAR_SAYISI = "pastbound_celik_damar_sayisi";
++    private static final String YURUME_MESAFESI = "pastbound_yurume_mesafesi";
++    private static final String IZLEME_X = "pastbound_izleme_x";
++    private static final String IZLEME_Y = "pastbound_izleme_y";
++    private static final String IZLEME_Z = "pastbound_izleme_z";
+     private static final int SAHNE_ANIT_BITI = 256;
+     private static final int SAHNE_INCELEME_BITI = 128;
++    private static final int SAHNE_DURAK_A_BITI = 16;
++    private static final int SAHNE_DURAK_B_BITI = 32;
++    private static final int SAHNE_DURAK_C_BITI = 512;
++    private static final int SAHNE_DURAKLAR_MASKESI = SAHNE_DURAK_A_BITI | SAHNE_DURAK_B_BITI | SAHNE_DURAK_C_BITI;
++    private static final double YURUME_HEDEFI_BLOK = 55.0D;
+     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
++    private static final BlockPos[] GOREV_DURAKLARI = {
++            SAHNE_MERKEZI.offset(-7, 0, -7),
++            SAHNE_MERKEZI.offset(7, 0, -7),
++            SAHNE_MERKEZI.offset(0, 0, 7)
++    };
+ 
+     private TarihiKesifDunyasi() {
+     }
+@@ -89,6 +103,10 @@ public final class TarihiKesifDunyasi {
+         veri.putInt(SAHNE_GOREV_MASKESI, 0);
+         veri.putInt(CELIK_GOREV_ASAMASI, donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? 1 : 0);
+         veri.putInt(CELIK_DAMAR_SAYISI, 0);
++        veri.putDouble(YURUME_MESAFESI, 0.0D);
++        veri.remove(IZLEME_X);
++        veri.remove(IZLEME_Y);
++        veri.remove(IZLEME_Z);
+         sahneyiKur(hedef, SAHNE_MERKEZI, donem);
+         oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
+         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
+@@ -355,29 +373,81 @@ public final class TarihiKesifDunyasi {
+         veri.remove(SAHNE_GOREV_MASKESI);
+         veri.remove(CELIK_GOREV_ASAMASI);
+         veri.remove(CELIK_DAMAR_SAYISI);
++        veri.remove(YURUME_MESAFESI);
++        veri.remove(IZLEME_X);
++        veri.remove(IZLEME_Y);
++        veri.remove(IZLEME_Z);
+         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.returned"));
+     }
+ 
+     public static void kontrolSonrasiTik(ServerPlayer oyuncu) {
+-        if (!boyuttaMi(oyuncu) || oyuncu.tickCount % 10 != 0) {
++        if (!boyuttaMi(oyuncu)) {
++            return;
++        }
++        gercekYurumeyiIzle(oyuncu);
++        if (oyuncu.tickCount % 10 != 0) {
+             return;
+         }
+         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+         int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+-        double uzaklik = oyuncu.distanceToSqr(SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D);
+-        if (uzaklik >= 49.0D && (gorevMaskesi & 16) == 0) {
+-            gorevMaskesi |= 16;
+-            veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
+-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_perimeter"));
++        String[] durakMesajlari = {
++                "message.pastbound.scene.quest_perimeter",
++                "message.pastbound.scene.quest_waypoint_b",
++                "message.pastbound.scene.quest_return"
++        };
++        int[] durakBitleri = {SAHNE_DURAK_A_BITI, SAHNE_DURAK_B_BITI, SAHNE_DURAK_C_BITI};
++        for (int i = 0; i < GOREV_DURAKLARI.length; i++) {
++            if ((gorevMaskesi & durakBitleri[i]) != 0) {
++                continue;
++            }
++            BlockPos durak = GOREV_DURAKLARI[i];
++            if (oyuncu.distanceToSqr(durak.getX() + 0.5D, durak.getY() + 1.0D, durak.getZ() + 0.5D) <= 6.25D) {
++                gorevMaskesi |= durakBitleri[i];
++                veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
++                oyuncu.sendSystemMessage(Component.translatable(durakMesajlari[i]));
++            } else if (oyuncu.level() instanceof ServerLevel seviye) {
++                seviye.sendParticles(ParticleTypes.END_ROD, durak.getX() + 0.5D, durak.getY() + 1.2D, durak.getZ() + 0.5D, 2, 0.2D, 0.4D, 0.2D, 0.01D);
++            }
+         }
+-        if (uzaklik <= 9.0D && (gorevMaskesi & 32) == 0) {
+-            gorevMaskesi |= 32;
++        double yuruneMesafe = veri.getDoubleOr(YURUME_MESAFESI, 0.0D);
++        if (yuruneMesafe >= YURUME_HEDEFI_BLOK && (gorevMaskesi & 1024) == 0) {
++            gorevMaskesi |= 1024;
+             veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
+-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_return"));
++            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_distance"));
++        } else if (yuruneMesafe < YURUME_HEDEFI_BLOK && oyuncu.tickCount % 100 == 0) {
++            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_distance_progress", Math.round(yuruneMesafe), Math.round(YURUME_HEDEFI_BLOK)));
+         }
+         goreviKontrolEt(oyuncu);
+     }
+ 
++    private static void gercekYurumeyiIzle(ServerPlayer oyuncu) {
++        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
++        double x = oyuncu.getX();
++        double y = oyuncu.getY();
++        double z = oyuncu.getZ();
++        if (!veri.contains(IZLEME_X)) {
++            veri.putDouble(IZLEME_X, x);
++            veri.putDouble(IZLEME_Y, y);
++            veri.putDouble(IZLEME_Z, z);
++            return;
++        }
++        double eskiX = veri.getDoubleOr(IZLEME_X, x);
++        double eskiY = veri.getDoubleOr(IZLEME_Y, y);
++        double eskiZ = veri.getDoubleOr(IZLEME_Z, z);
++        double dx = x - eskiX;
++        double dy = y - eskiY;
++        double dz = z - eskiZ;
++        double adim = Math.sqrt(dx * dx + dy * dy + dz * dz);
++        // Ignore teleports/glitches so only genuine walking counts toward the distance goal.
++        if (adim > 0.005D && adim < 1.2D) {
++            double toplam = veri.getDoubleOr(YURUME_MESAFESI, 0.0D) + adim;
++            veri.putDouble(YURUME_MESAFESI, toplam);
++        }
++        veri.putDouble(IZLEME_X, x);
++        veri.putDouble(IZLEME_Y, y);
++        veri.putDouble(IZLEME_Z, z);
++    }
++
+     private static void goreviKontrolEt(ServerPlayer oyuncu) {
+         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+         int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+@@ -386,7 +456,9 @@ public final class TarihiKesifDunyasi {
+             return;
+         }
+         boolean konusmaTamam = (gorevMaskesi & 15) == 15;
+-        boolean hareketTamam = (gorevMaskesi & 48) == 48;
++        boolean duraklarTamam = (gorevMaskesi & SAHNE_DURAKLAR_MASKESI) == SAHNE_DURAKLAR_MASKESI;
++        boolean mesafeTamam = (gorevMaskesi & 1024) != 0;
++        boolean hareketTamam = duraklarTamam && mesafeTamam;
+         boolean incelemeTamam = (gorevMaskesi & SAHNE_INCELEME_BITI) != 0;
+         boolean anitTamam = (gorevMaskesi & SAHNE_ANIT_BITI) != 0;
+         if (konusmaTamam && hareketTamam && incelemeTamam && anitTamam && (gorevMaskesi & 64) == 0) {
+diff --git a/src/main/resources/assets/pastbound/lang/en_us.json b/src/main/resources/assets/pastbound/lang/en_us.json
+index de63404..4eec533 100644
+--- a/src/main/resources/assets/pastbound/lang/en_us.json
++++ b/src/main/resources/assets/pastbound/lang/en_us.json
+@@ -137,10 +137,13 @@
+   "message.pastbound.mission.forge_locked": "The forge is cold. Mine steel, smelt an ingot and craft a steel plate first.",
+   "message.pastbound.mission.plate_needed": "Bring one Steel Plate to repair this historical forge.",
+   "message.pastbound.mission.forge_repaired": "The Baghdad Battery workshop hums again. The repaired device records a new echo.",
+-  "message.pastbound.scene.quest_explore": "Mission active: speak with every witness, walk beyond the outer ring, and return to the central beacon.",
++  "message.pastbound.scene.quest_explore": "Mission active: speak with every witness, walk on foot to the three marked waypoints, and cover enough ground on the way.",
+   "message.pastbound.scene.quest_talk": "Witness %s has shared a memory. Continue the conversation route.",
+-  "message.pastbound.scene.quest_perimeter": "Perimeter discovered. The landscape preserves another piece of the story.",
+-  "message.pastbound.scene.quest_return": "You returned to the beacon. The scene is ready to reveal its final memory.",
++  "message.pastbound.scene.quest_perimeter": "You reached the first waypoint on foot. Its ground preserves another piece of the story.",
++  "message.pastbound.scene.quest_waypoint_b": "You reached the second waypoint on foot. The path is coming together.",
++  "message.pastbound.scene.quest_return": "You reached the final waypoint on foot. The scene is ready to reveal its last memory.",
++  "message.pastbound.scene.quest_distance": "You have walked far enough across the scene. That leg of the mission is complete.",
++  "message.pastbound.scene.quest_distance_progress": "Walking progress: %s / %s blocks covered on foot.",
+   "message.pastbound.scene.quest_complete": "Historical mission complete. Two Chronicle Scraps were added to your archive.",
+   "message.pastbound.scene.focus": "Historical focus: %s",
+   "message.pastbound.scene.observe": "The reconstruction reveals scene %s.",
