@@ -129,7 +129,9 @@ public final class TarihYankilari {
                 TarihiKesifDunyasi.forgeOnar(sunucu, olay.getPos());
                 return;
             }
-            if (olay.getLevel().getBlockState(olay.getPos()).is(net.minecraft.world.level.block.Blocks.FURNACE) || olay.getLevel().getBlockState(olay.getPos()).is(net.minecraft.world.level.block.Blocks.CRAFTING_TABLE)) {
+            net.minecraft.world.level.block.state.BlockState durakAleti = olay.getLevel().getBlockState(olay.getPos());
+            if (durakAleti.is(net.minecraft.world.level.block.Blocks.FURNACE) || durakAleti.is(net.minecraft.world.level.block.Blocks.CRAFTING_TABLE) || durakAleti.is(net.minecraft.world.level.block.Blocks.CARTOGRAPHY_TABLE)) {
+                TarihiKesifDunyasi.durakAletiEtkilesildi(sunucu, olay.getPos());
                 return;
             }
             olay.setCanceled(true);

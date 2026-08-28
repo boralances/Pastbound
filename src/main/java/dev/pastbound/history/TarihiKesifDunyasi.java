@@ -57,8 +57,12 @@ public final class TarihiKesifDunyasi {
     private static final int SAHNE_DURAK_A_KONUSMA_BITI = 4096;
     private static final int SAHNE_DURAK_B_KONUSMA_BITI = 8192;
     private static final int SAHNE_DURAK_C_KONUSMA_BITI = 16384;
+    private static final int SAHNE_DURAK_A_CIHAZ_BITI = 32768;
+    private static final int SAHNE_DURAK_B_CIHAZ_BITI = 65536;
+    private static final int SAHNE_DURAK_C_CIHAZ_BITI = 131072;
     private static final int SAHNE_DURAKLAR_MASKESI = SAHNE_DURAK_A_BITI | SAHNE_DURAK_B_BITI | SAHNE_DURAK_C_BITI;
     private static final int SAHNE_DURAK_KONUSMA_MASKESI = SAHNE_DURAK_A_KONUSMA_BITI | SAHNE_DURAK_B_KONUSMA_BITI | SAHNE_DURAK_C_KONUSMA_BITI;
+    private static final int SAHNE_DURAK_CIHAZ_MASKESI = SAHNE_DURAK_A_CIHAZ_BITI | SAHNE_DURAK_B_CIHAZ_BITI | SAHNE_DURAK_C_CIHAZ_BITI;
     private static final double YURUME_HEDEFI_BLOK = 55.0D;
     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
     private static final BlockPos[] GOREV_DURAKLARI = {
@@ -279,6 +283,36 @@ public final class TarihiKesifDunyasi {
         goreviKontrolEt(oyuncu);
     }
 
+    public static void durakAletiEtkilesildi(ServerPlayer oyuncu, BlockPos konum) {
+        if (!boyuttaMi(oyuncu)) {
+            return;
+        }
+        int durak = -1;
+        for (int i = 0; i < GOREV_DURAKLARI.length; i++) {
+            if (GOREV_DURAKLARI[i].equals(konum)) {
+                durak = i;
+                break;
+            }
+        }
+        if (durak < 0) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int[] hareketBitleri = {SAHNE_DURAK_A_BITI, SAHNE_DURAK_B_BITI, SAHNE_DURAK_C_BITI};
+        int[] cihazBitleri = {SAHNE_DURAK_A_CIHAZ_BITI, SAHNE_DURAK_B_CIHAZ_BITI, SAHNE_DURAK_C_CIHAZ_BITI};
+        int maske = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+        if ((maske & hareketBitleri[durak]) == 0) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.waypoint_locked"));
+            return;
+        }
+        if ((maske & cihazBitleri[durak]) == 0) {
+            veri.putInt(SAHNE_GOREV_MASKESI, maske | cihazBitleri[durak]);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.station_used", durak + 1));
+            oyuncu.giveExperiencePoints(1);
+            goreviKontrolEt(oyuncu);
+        }
+    }
+
     public static void durakKonusuldu(ServerPlayer oyuncu, int durak) {
         if (!boyuttaMi(oyuncu) || durak < 0 || durak > 2) {
             return;
@@ -328,6 +362,12 @@ public final class TarihiKesifDunyasi {
 
     public static void gorevVarliklariniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
         seviye.setBlock(merkez.north(6), gorevAniti(donem).defaultBlockState(), 3);
+        Block[] durakAletleri = {Blocks.CRAFTING_TABLE, Blocks.FURNACE, Blocks.CARTOGRAPHY_TABLE};
+        for (int i = 0; i < GOREV_DURAKLARI.length; i++) {
+            BlockPos durak = GOREV_DURAKLARI[i];
+            seviye.setBlock(durak, durakAletleri[i].defaultBlockState(), 3);
+            seviye.setBlock(durak.above(), Blocks.LANTERN.defaultBlockState(), 3);
+        }
         if (donem != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
             return;
         }
@@ -487,8 +527,9 @@ public final class TarihiKesifDunyasi {
         boolean konusmaTamam = (gorevMaskesi & 15) == 15;
         boolean duraklarTamam = (gorevMaskesi & SAHNE_DURAKLAR_MASKESI) == SAHNE_DURAKLAR_MASKESI;
         boolean durakKonusmalariTamam = (gorevMaskesi & SAHNE_DURAK_KONUSMA_MASKESI) == SAHNE_DURAK_KONUSMA_MASKESI;
+        boolean durakCihazlariTamam = (gorevMaskesi & SAHNE_DURAK_CIHAZ_MASKESI) == SAHNE_DURAK_CIHAZ_MASKESI;
         boolean mesafeTamam = (gorevMaskesi & 1024) != 0;
-        boolean hareketTamam = duraklarTamam && durakKonusmalariTamam && mesafeTamam;
+        boolean hareketTamam = duraklarTamam && durakKonusmalariTamam && durakCihazlariTamam && mesafeTamam;
         boolean incelemeTamam = (gorevMaskesi & SAHNE_INCELEME_BITI) != 0;
         boolean anitTamam = (gorevMaskesi & SAHNE_ANIT_BITI) != 0;
         if (konusmaTamam && hareketTamam && incelemeTamam && anitTamam && (gorevMaskesi & 64) == 0) {

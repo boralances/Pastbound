@@ -1,3 +1,6 @@
 {
-  "parent": "pastbound:block/uruk_cedar_door"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pastbound:block/uruk_cedar_door"
+  }
 }

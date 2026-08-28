@@ -1,3 +1,6 @@
 {
-  "parent": "pastbound:block/chinampa_cypress_door"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pastbound:block/chinampa_cypress_door"
+  }
 }
