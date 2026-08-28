@@ -624,5 +624,18 @@
   "message.pastbound.scene.quest_distance_progress": "Walking progress: %s / %s blocks covered on foot.",
   "message.pastbound.scene.station_used": "Saha durağı %s kullanıldı. Şimdi uzmanıyla konuş ve sonraki durağa ilerle.",
   "message.pastbound.scene.door_opened": "Tarihî kapı açıldı. Sahneye giriş yolu hazır.",
-  "message.pastbound.scene.door_closed": "Tarihî kapı kapandı. Anı korunuyor."
+  "message.pastbound.scene.door_closed": "Tarihî kapı kapandı. Anı korunuyor.",
+  "message.pastbound.world.quest_title": "Görev: Köyün Elektrik Yankısını Geri Getir",
+  "message.pastbound.world.go_village": "Köye git ve arşivci köylüyü bul. Sadece cevap vermek yetmez; onun işaretli alanına ulaşmalısın.",
+  "message.pastbound.world.village_reached": "Köydeki arşivci seni görevlendirdi. Şimdi güneydeki maden ocağına git.",
+  "message.pastbound.world.archivist_spoke": "Arşivci kömür izlerini ve eski devre planını verdi. Maden ocağına git.",
+  "message.pastbound.world.go_mine": "Maden ocağına gerçekten git. Üç işaretli çelik cevherini kaz.",
+  "message.pastbound.world.mine_reached": "Maden ocağına ulaştın. Çelik damarları burada; üç tanesini çıkar.",
+  "message.pastbound.world.mine_steel": "Üç çelik cevherini kaz ve köye geri taşı.",
+  "message.pastbound.world.steel_found": "Çelik cevheri %s/%s çıkarıldı.",
+  "message.pastbound.world.carry_steel": "Çelikleri köy meydanındaki rezonans sütununa taşı.",
+  "message.pastbound.world.returned_with_steel": "Çelikleri geri getirdin. Şimdi elektrik düzeneğini kur.",
+  "message.pastbound.world.build_power": "Rezonans sütununu bakır, redstone ve çelik levha ile çalıştır.",
+  "message.pastbound.world.power_needs": "Düzeneği çalıştırmak için 2 bakır külçe, 4 redstone ve 1 çelik levha gerekiyor.",
+  "message.pastbound.world.power_active": "Elektrik devresi çalıştı. Köyün geçmişten kalan yankısı arşive kaydedildi."
 }

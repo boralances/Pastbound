@@ -624,5 +624,18 @@
   "entity.pastbound.scene.engineer": "Power Engineer",
   "message.pastbound.scene.station_used": "Field station %s used. Speak with its specialist before moving to the next station.",
   "message.pastbound.scene.door_opened": "The historical door opens. The route into the scene is clear.",
-  "message.pastbound.scene.door_closed": "The historical door closes. The memory is protected."
+  "message.pastbound.scene.door_closed": "The historical door closes. The memory is protected.",
+  "message.pastbound.world.quest_title": "Quest: Restore the Village Power Echo",
+  "message.pastbound.world.go_village": "Travel to the village and find the archivist villager. A dialogue answer is not enough; reach the marked site.",
+  "message.pastbound.world.village_reached": "The village archivist has assigned the job. Travel south to the mine.",
+  "message.pastbound.world.archivist_spoke": "The archivist gave you a coal trace and an old circuit plan. Go to the mine.",
+  "message.pastbound.world.go_mine": "Travel to the mine. Break the three marked steel ore blocks.",
+  "message.pastbound.world.mine_reached": "You reached the mine. The steel veins are here; recover three of them.",
+  "message.pastbound.world.mine_steel": "Mine three steel ores and carry them back to the village.",
+  "message.pastbound.world.steel_found": "Steel ore %s/%s recovered.",
+  "message.pastbound.world.carry_steel": "Carry the steel to the resonance pillar in the village square.",
+  "message.pastbound.world.returned_with_steel": "You brought the steel back. Now build the electrical device.",
+  "message.pastbound.world.build_power": "Activate the resonance pillar with copper, redstone and a steel plate.",
+  "message.pastbound.world.power_needs": "The device needs 2 copper ingots, 4 redstone and 1 steel plate.",
+  "message.pastbound.world.power_active": "The electrical circuit is alive. The village echo has been recorded in the archive."
 }

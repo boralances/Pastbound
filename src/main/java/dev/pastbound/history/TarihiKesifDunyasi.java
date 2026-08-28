@@ -23,6 +23,7 @@ import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -49,6 +50,15 @@ public final class TarihiKesifDunyasi {
     private static final String IZLEME_X = "pastbound_izleme_x";
     private static final String IZLEME_Y = "pastbound_izleme_y";
     private static final String IZLEME_Z = "pastbound_izleme_z";
+    private static final String DUNYA_GOREVI = "pastbound_dunya_gorevi";
+    private static final String DUNYA_HEDEF_X = "pastbound_dunya_hedef_x";
+    private static final String DUNYA_HEDEF_Y = "pastbound_dunya_hedef_y";
+    private static final String DUNYA_HEDEF_Z = "pastbound_dunya_hedef_z";
+    private static final String DUNYA_MADEN_X = "pastbound_dunya_maden_x";
+    private static final String DUNYA_MADEN_Y = "pastbound_dunya_maden_y";
+    private static final String DUNYA_MADEN_Z = "pastbound_dunya_maden_z";
+    private static final String DUNYA_CELIK = "pastbound_dunya_celik";
+    private static final String DUNYA_MADEN_GIRILDI = "pastbound_dunya_maden_girildi";
     private static final int SAHNE_ANIT_BITI = 256;
     private static final int SAHNE_INCELEME_BITI = 128;
     private static final int SAHNE_DURAK_A_BITI = 16;
@@ -334,6 +344,176 @@ public final class TarihiKesifDunyasi {
         goreviKontrolEt(oyuncu);
     }
 
+    public static void dunyaGoreviniBaslat(ServerPlayer oyuncu) {
+        if (!oyuncu.level().dimension().equals(Level.OVERWORLD)) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(DUNYA_GOREVI, 0) != 0) {
+            return;
+        }
+        ServerLevel seviye = (ServerLevel) oyuncu.level();
+        BlockPos baslangic = oyuncu.blockPosition();
+        Villager hedef = seviye.getEntitiesOfClass(Villager.class, oyuncu.getBoundingBox().inflate(256.0D)).stream().findFirst().orElse(null);
+        BlockPos koy;
+        if (hedef != null) {
+            koy = hedef.blockPosition();
+            hedef.addTag("pastbound_koy_uzmani");
+        } else {
+            koy = baslangic.east(64);
+            koyYapisiKur(seviye, koy);
+            EntityType<?> tip = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse("minecraft:villager"));
+            if (tip != null) {
+                Entity varlik = tip.create(seviye, EntitySpawnReason.COMMAND);
+                if (varlik instanceof Villager koylu) {
+                    koylu.setPos(koy.getX() + 0.5D, koy.getY() + 1.0D, koy.getZ() + 0.5D);
+                    koylu.setInvulnerable(true);
+                    koylu.addTag("pastbound_koy_uzmani");
+                    koylu.setCustomName(Component.translatable("entity.pastbound.village.archivist"));
+                    koylu.setCustomNameVisible(true);
+                    seviye.addFreshEntity(koylu);
+                }
+            }
+        }
+        BlockPos maden = koy.south(24);
+        madenYapisiKur(seviye, maden);
+        veri.putInt(DUNYA_GOREVI, 1);
+        veri.putDouble(DUNYA_HEDEF_X, koy.getX() + 0.5D);
+        veri.putDouble(DUNYA_HEDEF_Y, koy.getY() + 1.0D);
+        veri.putDouble(DUNYA_HEDEF_Z, koy.getZ() + 0.5D);
+        veri.putDouble(DUNYA_MADEN_X, maden.getX() + 0.5D);
+        veri.putDouble(DUNYA_MADEN_Y, maden.getY() + 1.0D);
+        veri.putDouble(DUNYA_MADEN_Z, maden.getZ() + 0.5D);
+        veri.putInt(DUNYA_CELIK, 0);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.quest_title"));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.go_village"));
+    }
+
+    public static void dunyaGoreviTik(ServerPlayer oyuncu) {
+        if (!oyuncu.level().dimension().equals(Level.OVERWORLD)) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int asama = veri.getIntOr(DUNYA_GOREVI, 0);
+        if (asama == 1 && hedefeUlastiMi(oyuncu)) {
+            veri.putInt(DUNYA_GOREVI, 2);
+            hedefiMadenYap(oyuncu);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.village_reached"));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.go_mine"));
+        } else if (asama == 2 && hedefeUlastiMi(oyuncu)) {
+            if (!veri.getBooleanOr(DUNYA_MADEN_GIRILDI, false)) {
+                veri.putBoolean(DUNYA_MADEN_GIRILDI, true);
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.mine_reached"));
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.mine_steel"));
+            }
+        } else if (asama == 3 && hedefeUlastiMi(oyuncu)) {
+            if (oyuncu.getInventory().countItem(ModItems.RAW_STEEL.get()) >= 3) {
+                veri.putInt(DUNYA_GOREVI, 4);
+                MinecraftServer sunucu = oyuncu.level().getServer();
+                ServerLevel seviye = sunucu.overworld();
+                BlockPos merkez = new BlockPos(0, 64, 0);
+                seviye.setBlock(merkez, ModBlocks.RESONANCE_PILLAR.get().defaultBlockState(), 3);
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.returned_with_steel"));
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.build_power"));
+            }
+        }
+    }
+
+    private static boolean hedefeUlastiMi(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        double dx = oyuncu.getX() - veri.getDoubleOr(DUNYA_HEDEF_X, Double.MAX_VALUE);
+        double dy = oyuncu.getY() - veri.getDoubleOr(DUNYA_HEDEF_Y, Double.MAX_VALUE);
+        double dz = oyuncu.getZ() - veri.getDoubleOr(DUNYA_HEDEF_Z, Double.MAX_VALUE);
+        return dx * dx + dy * dy + dz * dz <= 64.0D;
+    }
+
+    public static void koyUzmaniIleKonusuldu(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(DUNYA_GOREVI, 0) == 1 && hedefeUlastiMi(oyuncu)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.archivist_spoke"));
+            veri.putInt(DUNYA_GOREVI, 2);
+            hedefiMadenYap(oyuncu);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.go_mine"));
+        }
+    }
+
+    public static void dunyaCelikKirildi(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(DUNYA_GOREVI, 0) != 2) {
+            return;
+        }
+        int sayi = veri.getIntOr(DUNYA_CELIK, 0) + 1;
+        veri.putInt(DUNYA_CELIK, sayi);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.steel_found", sayi, 3));
+        if (sayi >= 3) {
+            veri.putInt(DUNYA_GOREVI, 3);
+            veri.putDouble(DUNYA_HEDEF_X, 0.5D);
+            veri.putDouble(DUNYA_HEDEF_Y, 65.0D);
+            veri.putDouble(DUNYA_HEDEF_Z, 0.5D);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.carry_steel"));
+        }
+    }
+
+    public static boolean dunyaElektrikEtkilesildi(ServerPlayer oyuncu, BlockPos konum) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        if (veri.getIntOr(DUNYA_GOREVI, 0) != 4 || !oyuncu.level().dimension().equals(Level.OVERWORLD) || !konum.equals(new BlockPos(0, 64, 0)) || !oyuncu.level().getBlockState(konum).is(ModBlocks.RESONANCE_PILLAR.get())) {
+            return false;
+        }
+        if (oyuncu.getInventory().countItem(Items.COPPER_INGOT) < 2 || oyuncu.getInventory().countItem(Items.REDSTONE) < 4 || oyuncu.getInventory().countItem(ModItems.STEEL_PLATE.get()) < 1) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.power_needs"));
+            return true;
+        }
+        oyuncu.getInventory().clearOrCountMatchingItems(yigin -> yigin.is(Items.COPPER_INGOT), 2, oyuncu.getInventory());
+        oyuncu.getInventory().clearOrCountMatchingItems(yigin -> yigin.is(Items.REDSTONE), 4, oyuncu.getInventory());
+        oyuncu.getInventory().clearOrCountMatchingItems(yigin -> yigin.is(ModItems.STEEL_PLATE.get()), 1, oyuncu.getInventory());
+        veri.putInt(DUNYA_GOREVI, 5);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.power_active"));
+        return true;
+    }
+
+    private static void hedefiMadenYap(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        BlockPos maden = new BlockPos((int) veri.getDoubleOr(DUNYA_MADEN_X, 0.0D), (int) veri.getDoubleOr(DUNYA_MADEN_Y, 64.0D), (int) veri.getDoubleOr(DUNYA_MADEN_Z, 0.0D));
+        veri.putDouble(DUNYA_HEDEF_X, maden.getX());
+        veri.putDouble(DUNYA_HEDEF_Y, maden.getY());
+        veri.putDouble(DUNYA_HEDEF_Z, maden.getZ());
+    }
+
+    private static void koyYapisiKur(ServerLevel seviye, BlockPos merkez) {
+        for (int x = -4; x <= 4; x++) {
+            for (int z = -4; z <= 4; z++) {
+                seviye.setBlock(merkez.offset(x, 0, z), Blocks.GRASS_BLOCK.defaultBlockState(), 3);
+            }
+        }
+        for (int x = -3; x <= 3; x++) {
+            seviye.setBlock(merkez.offset(x, 1, -3), Blocks.OAK_PLANKS.defaultBlockState(), 3);
+            seviye.setBlock(merkez.offset(x, 1, 3), Blocks.OAK_PLANKS.defaultBlockState(), 3);
+        }
+        for (int z = -3; z <= 3; z++) {
+            seviye.setBlock(merkez.offset(-3, 1, z), Blocks.OAK_PLANKS.defaultBlockState(), 3);
+            seviye.setBlock(merkez.offset(3, 1, z), Blocks.OAK_PLANKS.defaultBlockState(), 3);
+        }
+        seviye.setBlock(merkez, Blocks.BELL.defaultBlockState(), 3);
+        seviye.setBlock(merkez.east(2), Blocks.CRAFTING_TABLE.defaultBlockState(), 3);
+        seviye.setBlock(merkez.west(2), Blocks.FURNACE.defaultBlockState(), 3);
+    }
+
+    private static void madenYapisiKur(ServerLevel seviye, BlockPos merkez) {
+        for (int x = -3; x <= 3; x++) {
+            for (int z = -3; z <= 3; z++) {
+                seviye.setBlock(merkez.offset(x, -1, z), Blocks.DEEPSLATE.defaultBlockState(), 3);
+            }
+        }
+        for (int i = -1; i <= 1; i++) {
+            seviye.setBlock(merkez.offset(i, 0, 0), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
+            seviye.setBlock(merkez.offset(i, 0, 1), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
+        }
+        for (int y = 0; y <= 2; y++) {
+            seviye.setBlock(merkez.offset(-3, y, -3), Blocks.DEEPSLATE_BRICKS.defaultBlockState(), 3);
+            seviye.setBlock(merkez.offset(3, y, -3), Blocks.DEEPSLATE_BRICKS.defaultBlockState(), 3);
+        }
+    }
+
     public static boolean sahneKapisiMi(ServerPlayer oyuncu, BlockPos konum) {
         if (!boyuttaMi(oyuncu)) {
             return false;
@@ -471,6 +651,9 @@ public final class TarihiKesifDunyasi {
         veri.remove(IZLEME_Y);
         veri.remove(IZLEME_Z);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.returned"));
+        if (hedef.dimension().equals(Level.OVERWORLD)) {
+            dunyaGoreviniBaslat(oyuncu);
+        }
     }
 
     public static void kontrolSonrasiTik(ServerPlayer oyuncu) {
