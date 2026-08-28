@@ -45,6 +45,7 @@ public final class TarihiKesifDunyasi {
     private static final String CELIK_GOREV_ASAMASI = "pastbound_celik_gorev_asamasi";
     private static final String CELIK_DAMAR_SAYISI = "pastbound_celik_damar_sayisi";
     private static final int SAHNE_ANIT_BITI = 256;
+    private static final int SAHNE_INCELEME_BITI = 128;
     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
 
     private TarihiKesifDunyasi() {
@@ -238,6 +239,23 @@ public final class TarihiKesifDunyasi {
         goreviKontrolEt(oyuncu);
     }
 
+    public static boolean anitIncelenebilir(ServerPlayer oyuncu, BlockPos konum) {
+        if (!boyuttaMi(oyuncu) || !konum.equals(SAHNE_MERKEZI.north(6))) {
+            return false;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        TarihDonemi donem = donemBul(veri.getStringOr(SAHNE_CAGI, ""));
+        return donem != null && (veri.getIntOr(SAHNE_GOREV_MASKESI, 0) & SAHNE_INCELEME_BITI) == 0 && oyuncu.level().getBlockState(konum).is(gorevAniti(donem));
+    }
+
+    public static void anitIncelendi(ServerPlayer oyuncu) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        veri.putInt(SAHNE_GOREV_MASKESI, veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | SAHNE_INCELEME_BITI);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_inspect"));
+        oyuncu.giveExperiencePoints(2);
+        goreviKontrolEt(oyuncu);
+    }
+
     public static boolean tarihForgeMi(ServerPlayer oyuncu, BlockPos konum) {
         return boyuttaMi(oyuncu) && oyuncu.level().getBlockState(konum).is(ModBlocks.HISTORICAL_FORGE.get());
     }
@@ -369,8 +387,9 @@ public final class TarihiKesifDunyasi {
         }
         boolean konusmaTamam = (gorevMaskesi & 15) == 15;
         boolean hareketTamam = (gorevMaskesi & 48) == 48;
+        boolean incelemeTamam = (gorevMaskesi & SAHNE_INCELEME_BITI) != 0;
         boolean anitTamam = (gorevMaskesi & SAHNE_ANIT_BITI) != 0;
-        if (konusmaTamam && hareketTamam && anitTamam && (gorevMaskesi & 64) == 0) {
+        if (konusmaTamam && hareketTamam && incelemeTamam && anitTamam && (gorevMaskesi & 64) == 0) {
             veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi | 64);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_complete"));
             oyuncu.getInventory().placeItemBackInInventory(new net.minecraft.world.item.ItemStack(dev.pastbound.registry.ModItems.CHRONICLE_SCRAP.get(), 2));

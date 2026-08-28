@@ -127,6 +127,7 @@
   "message.pastbound.scene.quest": "Aktif görev: bir tanıkla konuş, dış halkayı aş, merkeze dön ve işaretli arşiv anıtını kır.",
   "message.pastbound.scene.quest_period": "Aktif görev: %s",
   "message.pastbound.scene.quest_artifact": "İşaretli arşiv anıtı açıldı. Hafızası artık tarihî kaydın bir parçası.",
+  "message.pastbound.scene.quest_inspect": "Hafıza Merceği anıtın gizli katmanını açığa çıkardı. Hikâyesi artık onarılmaya hazır.",
   "message.pastbound.mission.steel_start": "Atölye görevi: üç çelik damarını kaz, ham çeliği fırında külçeye erit, çelik levha üret ve tarihî ocağı onar.",
   "message.pastbound.mission.steel_mined": "Üç çelik damarı açıldı. Ham çeliği bu tarihî atölyedeki fırında erit.",
   "message.pastbound.mission.steel_vein": "Çelik damarı %s/%s bulundu. İşaretli damarları kazmaya devam et.",

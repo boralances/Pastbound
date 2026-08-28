@@ -509,6 +509,7 @@ ortak = {
     "message.pastbound.scene.quest": "Active mission: speak with one witness, walk beyond the outer ring, return to the beacon, then break the marked archive monument.",
     "message.pastbound.scene.quest_period": "Active mission: %s",
     "message.pastbound.scene.quest_artifact": "The marked archive monument breaks open. Its memory is now part of the historical record.",
+    "message.pastbound.scene.quest_inspect": "The Memory Lens reveals the monument’s hidden layer. Its story is ready to be restored.",
     "message.pastbound.mission.steel_start": "Workshop mission: mine the three steel veins, smelt raw steel into an ingot, craft a steel plate, then repair the historical forge.",
     "message.pastbound.mission.steel_mined": "The three steel veins are open. Smelt the raw steel in a furnace inside this historical workshop.",
     "message.pastbound.mission.steel_vein": "Steel vein %s/%s recovered. Keep mining the marked veins.",
@@ -634,6 +635,8 @@ for locale, add in metinler.items():
     veri["item.pastbound.chronicle_compass"] = pusula[0]
     veri["message.pastbound.compass.none"] = pusula[1]
     veri["message.pastbound.compass.found"] = pusula[2]
+    if locale == "tr_tr":
+        veri["message.pastbound.scene.quest_inspect"] = "Hafıza Merceği anıtın gizli katmanını açığa çıkardı. Hikâyesi artık onarılmaya hazır."
     ahsap_kaynagi = turkce_ahsaplar if locale == "tr_tr" else ahsaplar
     for kimlik, ad in ahsap_kaynagi.items():
         veri[f"block.pastbound.{kimlik}"] = ad

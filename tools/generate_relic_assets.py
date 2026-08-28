@@ -584,17 +584,26 @@ agac_verileri_uret("chinampa_cypress")
 def celik_blok_dokusu(renk, vurgu, benekli=False):
     goruntu = Image.new("RGBA", (16, 16), renk + (255,))
     ciz = ImageDraw.Draw(goruntu)
-    koyu = karistir(renk, -42)
-    acik = karistir(renk, 34)
-    ciz.rectangle((0, 0, 15, 15), outline=koyu + (255,), width=1)
-    for i in range(4):
-        ciz.line((1, 3 + i * 4, 14, 3 + i * 4), fill=karistir(renk, -12) + (255,), width=1)
-    ciz.line((2, 1, 13, 1), fill=acik + (210,), width=1)
-    ciz.point((4, 5), fill=vurgu + (255,))
-    ciz.point((11, 9), fill=vurgu + (235,))
+    koyu = karistir(renk, -48)
+    derin = karistir(renk, -25)
+    orta = karistir(renk, -8)
+    acik = karistir(renk, 38)
+    ciz.rectangle((0, 0, 15, 15), fill=derin + (255,), outline=koyu + (255,), width=1)
+    for y in range(2, 15, 4):
+        ciz.line((1, y, 14, y - 1), fill=orta + (255,), width=1)
+        ciz.line((2, y + 1, 13, y), fill=acik + (90,), width=1)
+    ciz.line((2, 2, 12, 13), fill=koyu + (170,), width=1)
+    ciz.line((5, 1, 14, 10), fill=acik + (100,), width=1)
+    for x, y in ((3, 5), (10, 4), (6, 11), (12, 12)):
+        ciz.point((x, y), fill=acik + (255,))
+    ciz.rectangle((4, 6, 5, 7), fill=vurgu + (255,))
+    ciz.rectangle((10, 9, 11, 10), fill=vurgu + (255,))
+    ciz.point((5, 6), fill=karistir(vurgu, 52) + (255,))
+    ciz.point((11, 9), fill=karistir(vurgu, 52) + (255,))
     if benekli:
-        for x, y in ((2, 11), (7, 7), (13, 4), (9, 13), (5, 2)):
-            ciz.rectangle((x, y, x + 1, y + 1), fill=vurgu + (255,))
+        for x, y in ((2, 12), (7, 3), (13, 5), (8, 8), (3, 2), (12, 14)):
+            ciz.rectangle((x, y, min(15, x + 1), min(15, y + 1)), fill=vurgu + (255,))
+            ciz.point((x, y), fill=karistir(vurgu, 58) + (255,))
     return goruntu
 
 
