@@ -622,5 +622,7 @@
   "entity.pastbound.scene.archaeologist": "Field Archaeologist",
   "entity.pastbound.scene.miner": "Ore Surveyor",
   "entity.pastbound.scene.engineer": "Power Engineer",
-  "message.pastbound.scene.station_used": "Field station %s used. Speak with its specialist before moving to the next station."
+  "message.pastbound.scene.station_used": "Field station %s used. Speak with its specialist before moving to the next station.",
+  "message.pastbound.scene.door_opened": "The historical door opens. The route into the scene is clear.",
+  "message.pastbound.scene.door_closed": "The historical door closes. The memory is protected."
 }
