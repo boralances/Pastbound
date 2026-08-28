@@ -183,6 +183,12 @@ public final class ZamanMakinesiMantigi {
                 oyuncu.giveExperiencePoints(3);
                 yankipar(oyuncu, seviye, ParticleTypes.HAPPY_VILLAGER);
             }
+            case EPIDAURUM_TİYATROSU -> {
+                efekt(oyuncu, MobEffects.REGENERATION, 220, 0);
+                efekt(oyuncu, MobEffects.NIGHT_VISION, 220, 0);
+                oyuncu.giveExperiencePoints(6);
+                yankipar(oyuncu, seviye, ParticleTypes.END_ROD);
+            }
         }
     }
 
@@ -200,6 +206,7 @@ public final class ZamanMakinesiMantigi {
             case CATALHOYUK_YERLESKESI -> "catalhoyuk_evleri";
             case APOLLO_AY_ISTIGI -> "apollo_ay_yuruyusu";
             case IPEK_YOLU_KERVANSARAYI -> "song_firini";
+            case EPIDAURUM_TİYATROSU -> "roma_forumu";
         };
         TarihYankisi yanki = TarihYankilari.yankiBul(kimlik);
         if (yanki != null) {

@@ -296,6 +296,7 @@ public final class TarihiKesifDunyasi {
             case CATALHOYUK_YERLESKESI -> Blocks.TERRACOTTA;
             case APOLLO_AY_ISTIGI -> Blocks.IRON_BLOCK;
             case IPEK_YOLU_KERVANSARAYI -> Blocks.RED_SANDSTONE;
+            case EPIDAURUM_TİYATROSU -> Blocks.CALCITE;
         };
     }
 
@@ -672,6 +673,7 @@ public final class TarihiKesifDunyasi {
             case CATALHOYUK_YERLESKESI -> Blocks.TERRACOTTA;
             case APOLLO_AY_ISTIGI -> Blocks.IRON_BLOCK;
             case IPEK_YOLU_KERVANSARAYI -> Blocks.RED_SANDSTONE;
+            case EPIDAURUM_TİYATROSU -> Blocks.CALCITE;
         };
     }
 }

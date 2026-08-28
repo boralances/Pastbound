@@ -14,7 +14,8 @@ public enum TarihDonemi {
     POLINEZYA_YILDIZ_YOLU("polinezya_yildiz_yolu", "Polinezya Yıldız Yolu", "Okyanus navigasyonu", "Haritasız denizde yıldız, dalga ve kuş rotalarını oku."),
     CATALHOYUK_YERLESKESI("catalhoyuk_yerleskesi", "Çatalhöyük Yerleşkesi", "İlk ortak yaşam", "Evlerin ve boncukların topluluk hafızasını keşfet."),
     APOLLO_AY_ISTIGI("apollo_ay_istigi", "Apollo Ay İstasyonu", "Yakın geçmişte uzay", "Ay yüzeyinde bırakılan izlerin sessiz tanığı ol."),
-    IPEK_YOLU_KERVANSARAYI("ipek_yolu_kervansarayi", "İpek Yolu Kervansarayı", "Kültürler arası değişim", "Dillerin, kumaşların ve fikirlerin aynı avluda buluşmasını gör.");
+    IPEK_YOLU_KERVANSARAYI("ipek_yolu_kervansarayi", "İpek Yolu Kervansarayı", "Kültürler arası değişim", "Dillerin, kumaşların ve fikirlerin aynı avluda buluşmasını gör."),
+    EPIDAURUM_TİYATROSU("epidaurum_tiyatrosu", "Epidaurum Tiyatrosu", "Taş, sahne ve şifa", "Adriyatik kıyısında tiyatro, liman ve Asklepios geleneğinin yaşayan yankısını araştır.");
 
     private final String kimlik;
     private final String ad;

@@ -605,5 +605,15 @@
   "advancement.pastbound.time_machine.ipek_yolu_kervansarayi.title": "Silk Road Caravanserai",
   "advancement.pastbound.time_machine.ipek_yolu_kervansarayi.description": "Listen to languages, fabrics, recipes and ideas meet in one courtyard as travelers transform trade into a network of shared memory.",
   "advancement.pastbound.time_machine.complete_expedition.title": "Time Cartographer",
-  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine."
+  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine.",
+  "history.pastbound.period.epidaurum_tiyatrosu.name": "Epidaurum Theater",
+  "history.pastbound.period.epidaurum_tiyatrosu.focus": "Stone, stage and healing",
+  "history.pastbound.period.epidaurum_tiyatrosu.description": "Explore a living echo of theater, harbor life and the healing tradition of Asklepios on the Adriatic coast.",
+  "screen.pastbound.scene.task.epidaurum_tiyatrosu": "Speak with the actor, cross the theater tiers, return to the beacon and break the calcite healing-stage monument.",
+  "screen.pastbound.scene.ecosystem.epidaurum_tiyatrosu": "Adriatic archaeology: Chronicle ore marks the theater foundations and healing courtyards of Epidaurum.",
+  "advancement.pastbound.time_machine.epidaurum_tiyatrosu.title": "Epidaurum Theater",
+  "advancement.pastbound.time_machine.epidaurum_tiyatrosu.description": "Explore the Adriatic theater, harbor and healing tradition of Epidaurum.",
+  "history.pastbound.period.epidaurum_tiyatrosu.response_1": "A harbor made the stage a meeting place for travelers, healers and citizens.",
+  "history.pastbound.period.epidaurum_tiyatrosu.response_2": "The stone tiers carried voices farther than any single lifetime.",
+  "history.pastbound.period.epidaurum_tiyatrosu.response_3": "Healing and performance both asked a community to remember together."
 }

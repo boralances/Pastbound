@@ -602,5 +602,15 @@
   "advancement.pastbound.time_machine.ipek_yolu_kervansarayi.title": "Silk Road Caravanserai",
   "advancement.pastbound.time_machine.ipek_yolu_kervansarayi.description": "Listen to languages, fabrics, recipes and ideas meet in one courtyard as travelers transform trade into a network of shared memory.",
   "advancement.pastbound.time_machine.complete_expedition.title": "Time Cartographer",
-  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine."
+  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine.",
+  "history.pastbound.period.epidaurum_tiyatrosu.name": "Epidaurum Tiyatrosu",
+  "history.pastbound.period.epidaurum_tiyatrosu.focus": "Taş, sahne ve şifa",
+  "history.pastbound.period.epidaurum_tiyatrosu.description": "Adriyatik kıyısında tiyatronun, liman yaşamının ve Asklepios geleneğinin yaşayan yankısını araştır.",
+  "screen.pastbound.scene.task.epidaurum_tiyatrosu": "Oyuncu ile konuş, tiyatro basamaklarını geç, işarete dön ve kalsit şifa-sahne anıtını kır.",
+  "screen.pastbound.scene.ecosystem.epidaurum_tiyatrosu": "Adriyatik arkeolojisi: Kronik cevheri Epidaurum tiyatrosunun ve şifa avlularının temellerini işaretler.",
+  "advancement.pastbound.time_machine.epidaurum_tiyatrosu.title": "Epidaurum Tiyatrosu",
+  "advancement.pastbound.time_machine.epidaurum_tiyatrosu.description": "Epidaurum’un Adriyatik tiyatrosunu, limanını ve şifa geleneğini keşfet.",
+  "history.pastbound.period.epidaurum_tiyatrosu.response_1": "Liman, sahneyi gezginler, şifacılar ve yurttaşlar için buluşma yerine dönüştürdü.",
+  "history.pastbound.period.epidaurum_tiyatrosu.response_2": "Taş basamaklar sesleri tek bir ömürden daha uzağa taşıdı.",
+  "history.pastbound.period.epidaurum_tiyatrosu.response_3": "Şifa ve gösteri, topluluktan birlikte hatırlamasını istedi."
 }

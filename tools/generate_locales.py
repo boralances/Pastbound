@@ -272,7 +272,8 @@ time_duraklari = {
     "polinezya_yildiz_yolu": ("Polynesian Star Route", "Ocean navigation", "Read stars, swells, winds and birds with navigators who cross an open ocean without drawing a conventional map."),
     "catalhoyuk_yerleskesi": ("Catalhoyuk Settlement", "The first shared homes", "Move through connected homes and shared spaces where food, craft, burial and memory shape one of humanity’s earliest communities."),
     "apollo_ay_istigi": ("Apollo Lunar Station", "The recent road to space", "Follow the quiet preparations behind a lunar journey and see how instruments, teamwork and a single footprint extend history beyond Earth."),
-    "ipek_yolu_kervansarayi": ("Silk Road Caravanserai", "Exchange between cultures", "Listen to languages, fabrics, recipes and ideas meet in one courtyard as travelers transform trade into a network of shared memory.")
+    "ipek_yolu_kervansarayi": ("Silk Road Caravanserai", "Exchange between cultures", "Listen to languages, fabrics, recipes and ideas meet in one courtyard as travelers transform trade into a network of shared memory."),
+    "epidaurum_tiyatrosu": ("Epidaurum Theater", "Stone, stage and healing", "Explore a living echo of theater, harbor life and the healing tradition of Asklepios on the Adriatic coast.")
 }
 
 turkce_time_duraklari = {
@@ -287,7 +288,8 @@ turkce_time_duraklari = {
     "polinezya_yildiz_yolu": ("Polinezya Yıldız Yolu", "Okyanus navigasyonu", "Geleneksel bir harita çizmeden açık okyanusu geçen denizcilerle yıldızları, dalgaları, rüzgârı ve kuşları oku."),
     "catalhoyuk_yerleskesi": ("Çatalhöyük Yerleşkesi", "İlk ortak yaşam", "Birbirine bağlanan evlerde dolaş; yiyecek, zanaat, gömü ve hatıranın ilk topluluklardan birini nasıl şekillendirdiğini izle."),
     "apollo_ay_istigi": ("Apollo Ay İstasyonu", "Uzaya giden yakın tarih yolu", "Ay yolculuğunun sessiz hazırlıklarını izle; araçların, ekip çalışmasının ve tek bir ayak izinin Dünya tarihini nasıl genişlettiğini gör."),
-    "ipek_yolu_kervansarayi": ("İpek Yolu Kervansarayı", "Kültürler arası değişim", "Tek bir avluda dillerin, kumaşların, tariflerin ve fikirlerin buluşmasını dinle; ticaretin ortak hafızaya dönüşmesine tanık ol.")
+    "ipek_yolu_kervansarayi": ("İpek Yolu Kervansarayı", "Kültürler arası değişim", "Tek bir avluda dillerin, kumaşların, tariflerin ve fikirlerin buluşmasını dinle; ticaretin ortak hafızaya dönüşmesine tanık ol."),
+    "epidaurum_tiyatrosu": ("Epidaurum Tiyatrosu", "Taş, sahne ve şifa", "Adriyatik kıyısında tiyatronun, liman yaşamının ve Asklepios geleneğinin yaşayan yankısını araştır.")
 }
 
 gorevler_en = {
@@ -302,7 +304,8 @@ gorevler_en = {
     "polinezya_yildiz_yolu": "Speak with the navigator, cross the star markers, return to the beacon and break the lapis route monument.",
     "catalhoyuk_yerleskesi": "Speak with the elder, cross the shared-house markers, return to the beacon and break the terracotta hearth monument.",
     "apollo_ay_istigi": "Speak with the astronaut, cross the lunar markers, return to the beacon and break the iron mission monument.",
-    "ipek_yolu_kervansarayi": "Speak with the merchant, cross the caravan yard, return to the beacon and break the red sandstone exchange monument."
+    "ipek_yolu_kervansarayi": "Speak with the merchant, cross the caravan yard, return to the beacon and break the red sandstone exchange monument.",
+    "epidaurum_tiyatrosu": "Speak with the actor, cross the theater tiers, return to the beacon and break the calcite healing-stage monument."
 }
 
 gorevler_tr = {
@@ -317,7 +320,8 @@ gorevler_tr = {
     "polinezya_yildiz_yolu": "Denizci ile konuş, yıldız işaretlerini geç, işarete dön ve lapis rota anıtını kır.",
     "catalhoyuk_yerleskesi": "Yaşlı ile konuş, ortak ev işaretlerini geç, işarete dön ve pişmiş toprak ocak anıtını kır.",
     "apollo_ay_istigi": "Astronot ile konuş, Ay işaretlerini geç, işarete dön ve demir görev anıtını kır.",
-    "ipek_yolu_kervansarayi": "Tüccar ile konuş, kervan avlusunu geç, işarete dön ve kızıl kumtaşı değişim anıtını kır."
+    "ipek_yolu_kervansarayi": "Tüccar ile konuş, kervan avlusunu geç, işarete dön ve kızıl kumtaşı değişim anıtını kır.",
+    "epidaurum_tiyatrosu": "Oyuncu ile konuş, tiyatro basamaklarını geç, işarete dön ve kalsit şifa-sahne anıtını kır."
 }
 
 ekosistem_en = {
@@ -332,7 +336,8 @@ ekosistem_en = {
     "polinezya_yildiz_yolu": "Ocean ecology: star routes point toward rare chronicle deposits.",
     "catalhoyuk_yerleskesi": "Settlement ecology: earth, hearths and buried chronicle traces preserve community life.",
     "apollo_ay_istigi": "Lunar ecology: End Echo ore glows where the sky becomes a destination.",
-    "ipek_yolu_kervansarayi": "Exchange ecology: rare chronicle veins cross the routes that carried ideas."
+    "ipek_yolu_kervansarayi": "Exchange ecology: rare chronicle veins cross the routes that carried ideas.",
+    "epidaurum_tiyatrosu": "Adriatic archaeology: Chronicle ore marks the theater foundations and healing courtyards of Epidaurum."
 }
 
 ekosistem_tr = {
@@ -347,7 +352,8 @@ ekosistem_tr = {
     "polinezya_yildiz_yolu": "Okyanus ekolojisi: Yıldız rotaları nadir kronik yataklarını gösterir.",
     "catalhoyuk_yerleskesi": "Yerleşim ekolojisi: Toprak, ocak ve gömülü kronik izleri ortak yaşamı korur.",
     "apollo_ay_istigi": "Ay ekolojisi: Gökyüzü hedefe dönüştüğünde End Yankısı cevheri parlar.",
-    "ipek_yolu_kervansarayi": "Değişim ekolojisi: Nadir kronik damarları fikirleri taşıyan yolları keser."
+    "ipek_yolu_kervansarayi": "Değişim ekolojisi: Nadir kronik damarları fikirleri taşıyan yolları keser.",
+    "epidaurum_tiyatrosu": "Adriyatik arkeolojisi: Kronik cevheri Epidaurum tiyatrosunun ve şifa avlularının temellerini işaretler."
 }
 
 konusmalar_en = {
@@ -362,7 +368,8 @@ konusmalar_en = {
     "polinezya_yildiz_yolu": ("How do you steer without a drawn map?", "Stars, swells, winds and birds form a living chart remembered by navigators.", "What makes a distant island recognizable?"),
     "catalhoyuk_yerleskesi": ("Why are the homes joined together?", "Shared roofs, hearths and rituals make a settlement a network of memory.", "What does an ordinary room reveal about a community?"),
     "apollo_ay_istigi": ("What was the first task on the surface?", "A checklist, a partner and a sample turned a short walk into lasting science.", "Why does one footprint matter to history?"),
-    "ipek_yolu_kervansarayi": ("Who can rest in this courtyard?", "Merchants exchange languages, goods and techniques as well as silver.", "How does a road become a shared memory?")
+    "ipek_yolu_kervansarayi": ("Who can rest in this courtyard?", "Merchants exchange languages, goods and techniques as well as silver.", "How does a road become a shared memory?"),
+    "epidaurum_tiyatrosu": ("Why build a theater beside a harbor?", "Performance, healing and public life can turn stone into a shared civic memory.", "What survives when the audience is gone?")
 }
 
 konusmalar_tr = {
@@ -377,7 +384,8 @@ konusmalar_tr = {
     "polinezya_yildiz_yolu": ("Çizilmiş harita olmadan nasıl yön bulursun?", "Yıldızlar, dalgalar, rüzgârlar ve kuşlar denizcilerin hatırladığı canlı bir harita oluşturur.", "Uzak bir ada nasıl tanınır?"),
     "catalhoyuk_yerleskesi": ("Evler neden birbirine bağlı?", "Ortak çatılar, ocaklar ve törenler yerleşimi bir hafıza ağına dönüştürür.", "Sıradan bir oda topluluk hakkında ne anlatır?"),
     "apollo_ay_istigi": ("Yüzeydeki ilk görev neydi?", "Bir kontrol listesi, bir yol arkadaşı ve bir örnek kısa yürüyüşü kalıcı bilime dönüştürdü.", "Tek bir ayak izi tarih için neden önemli?"),
-    "ipek_yolu_kervansarayi": ("Bu avluda kim dinlenebilir?", "Tüccarlar gümüşün yanında dilleri, malları ve teknikleri de değiş tokuş eder.", "Bir yol nasıl ortak hafızaya dönüşür?")
+    "ipek_yolu_kervansarayi": ("Bu avluda kim dinlenebilir?", "Tüccarlar gümüşün yanında dilleri, malları ve teknikleri de değiş tokuş eder.", "Bir yol nasıl ortak hafızaya dönüşür?"),
+    "epidaurum_tiyatrosu": ("Limanın yanına neden tiyatro kuruldu?", "Gösteri, şifa ve kamusal yaşam taşı ortak bir kent hafızasına dönüştürebilir.", "Seyirci gittikten sonra ne kalır?")
 }
 
 ortak = {
