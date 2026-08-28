@@ -637,5 +637,6 @@
   "message.pastbound.world.returned_with_steel": "Çelikleri geri getirdin. Şimdi elektrik düzeneğini kur.",
   "message.pastbound.world.build_power": "Rezonans sütununu bakır, redstone ve çelik levha ile çalıştır.",
   "message.pastbound.world.power_needs": "Düzeneği çalıştırmak için 2 bakır külçe, 4 redstone ve 1 çelik levha gerekiyor.",
-  "message.pastbound.world.power_active": "Elektrik devresi çalıştı. Köyün geçmişten kalan yankısı arşive kaydedildi."
+  "message.pastbound.world.power_active": "Elektrik devresi çalıştı. Köyün geçmişten kalan yankısı arşive kaydedildi.",
+  "message.pastbound.period.unique_complete": "%s döneminin özel saha görevi tamamlandı. Şimdi tüm tarih görev zincirini bitir."
 }

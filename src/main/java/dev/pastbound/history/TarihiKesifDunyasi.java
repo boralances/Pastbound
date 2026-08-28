@@ -70,6 +70,7 @@ public final class TarihiKesifDunyasi {
     private static final int SAHNE_DURAK_A_CIHAZ_BITI = 32768;
     private static final int SAHNE_DURAK_B_CIHAZ_BITI = 65536;
     private static final int SAHNE_DURAK_C_CIHAZ_BITI = 131072;
+    private static final int DONEM_OZEL_BITI = 1048576;
     private static final int SAHNE_DURAKLAR_MASKESI = SAHNE_DURAK_A_BITI | SAHNE_DURAK_B_BITI | SAHNE_DURAK_C_BITI;
     private static final int SAHNE_DURAK_KONUSMA_MASKESI = SAHNE_DURAK_A_KONUSMA_BITI | SAHNE_DURAK_B_KONUSMA_BITI | SAHNE_DURAK_C_KONUSMA_BITI;
     private static final int SAHNE_DURAK_CIHAZ_MASKESI = SAHNE_DURAK_A_CIHAZ_BITI | SAHNE_DURAK_B_CIHAZ_BITI | SAHNE_DURAK_C_CIHAZ_BITI;
@@ -726,6 +727,39 @@ public final class TarihiKesifDunyasi {
         veri.putDouble(IZLEME_Z, z);
     }
 
+    public static void donemOzelEylem(ServerPlayer oyuncu, BlockPos konum, ItemStack yigin) {
+        if (!boyuttaMi(oyuncu)) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        TarihDonemi donem = donemBul(veri.getStringOr(SAHNE_CAGI, ""));
+        if (donem == null || (veri.getIntOr(SAHNE_GOREV_MASKESI, 0) & DONEM_OZEL_BITI) != 0) {
+            return;
+        }
+        BlockState durum = oyuncu.level().getBlockState(konum);
+        boolean tamam = switch (donem) {
+            case URUK_YAZI_EVI -> durum.is(Blocks.CLAY);
+            case TERMOPIL_SAVASI -> yigin.is(Items.SHIELD);
+            case ISKENDERIYE_KUTUPHANESI -> durum.is(Blocks.BOOKSHELF);
+            case BAGDAT_PILI_ATOLYESI -> celikGorevAsamasi(oyuncu) >= 4;
+            case ANTIKITHERA_LIMANI -> yigin.is(Items.CLOCK);
+            case BAGDAT_BILGI_EVI -> yigin.is(Items.WRITABLE_BOOK);
+            case TIMBUKTU_EL_YAZMALARI -> yigin.is(Items.PAPER);
+            case TENOKTITLAN_GECIDI -> yigin.is(Items.WATER_BUCKET) || oyuncu.isInWater();
+            case POLINEZYA_YILDIZ_YOLU -> yigin.is(Items.OAK_BOAT) || yigin.is(Items.BAMBOO_RAFT);
+            case CATALHOYUK_YERLESKESI -> durum.is(Blocks.TERRACOTTA);
+            case APOLLO_AY_ISTIGI -> oyuncu.getY() >= 78.0D;
+            case IPEK_YOLU_KERVANSARAYI -> yigin.is(Items.EMERALD);
+            case EPIDAURUM_TİYATROSU -> durum.is(Blocks.CALCITE);
+        };
+        if (tamam) {
+            veri.putInt(SAHNE_GOREV_MASKESI, veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | DONEM_OZEL_BITI);
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.period.unique_complete", donem.adBileseni()));
+            oyuncu.giveExperiencePoints(2);
+            goreviKontrolEt(oyuncu);
+        }
+    }
+
     private static void goreviKontrolEt(ServerPlayer oyuncu) {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
@@ -741,7 +775,8 @@ public final class TarihiKesifDunyasi {
         boolean hareketTamam = duraklarTamam && durakKonusmalariTamam && durakCihazlariTamam && mesafeTamam;
         boolean incelemeTamam = (gorevMaskesi & SAHNE_INCELEME_BITI) != 0;
         boolean anitTamam = (gorevMaskesi & SAHNE_ANIT_BITI) != 0;
-        if (konusmaTamam && hareketTamam && incelemeTamam && anitTamam && (gorevMaskesi & 64) == 0) {
+        boolean donemOzelTamam = (gorevMaskesi & DONEM_OZEL_BITI) != 0 || (donem == TarihDonemi.BAGDAT_PILI_ATOLYESI && celikGorevAsamasi(oyuncu) >= 4);
+        if (konusmaTamam && hareketTamam && incelemeTamam && anitTamam && donemOzelTamam && (gorevMaskesi & 64) == 0) {
             veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi | 64);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_complete"));
             oyuncu.getInventory().placeItemBackInInventory(new net.minecraft.world.item.ItemStack(dev.pastbound.registry.ModItems.CHRONICLE_SCRAP.get(), 2));

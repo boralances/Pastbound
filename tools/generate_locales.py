@@ -545,6 +545,7 @@ ortak = {
     "message.pastbound.world.build_power": "Activate the resonance pillar with copper, redstone and a steel plate.",
     "message.pastbound.world.power_needs": "The device needs 2 copper ingots, 4 redstone and 1 steel plate.",
     "message.pastbound.world.power_active": "The electrical circuit is alive. The village echo has been recorded in the archive.",
+    "message.pastbound.period.unique_complete": "The unique field objective for %s is complete. Finish the full historical quest chain.",
     "message.pastbound.world.mine_reached": "You reached the mine. The steel veins are here; recover three of them.",
     "message.pastbound.world.steel_found": "Steel ore %s/%s recovered.",
     "entity.pastbound.village.archivist": "Village Archivist",

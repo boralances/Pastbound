@@ -79,6 +79,7 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            TarihiKesifDunyasi.donemOzelEylem(sunucu, olay.getPos(), ItemStack.EMPTY);
             if (olay.getState().is(ModBlocks.STEEL_ORE.get()) && TarihiKesifDunyasi.celiKirilabilir(sunucu, olay.getPos())) {
                 TarihiKesifDunyasi.celiKirilmasi(sunucu);
                 return;
@@ -122,6 +123,7 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            TarihiKesifDunyasi.donemOzelEylem(sunucu, olay.getPos(), olay.getItemStack());
             if (TarihiKesifDunyasi.sahneKapisiMi(sunucu, olay.getPos())) {
                 olay.setCanceled(true);
                 TarihiKesifDunyasi.sahneKapisiEtkilesildi(sunucu, olay.getPos());
@@ -205,6 +207,7 @@ public final class TarihYankilari {
             return;
         }
         ItemStack yigin = olay.getCrafting();
+        TarihiKesifDunyasi.donemOzelEylem((ServerPlayer) oyuncu, oyuncu.blockPosition(), yigin);
         if (yigin.is(ModItems.STEEL_PLATE.get())) {
             TarihiKesifDunyasi.celikLevhaUretildi((ServerPlayer) oyuncu);
         } else if (yigin.is(Items.WRITABLE_BOOK)) {
@@ -231,6 +234,7 @@ public final class TarihYankilari {
             return;
         }
         ItemStack yigin = olay.getSmelting();
+        TarihiKesifDunyasi.donemOzelEylem((ServerPlayer) oyuncu, oyuncu.blockPosition(), yigin);
         if (yigin.is(ModItems.STEEL_INGOT.get())) {
             TarihiKesifDunyasi.celikKulluguEritildi((ServerPlayer) oyuncu);
         } else if (yigin.is(Items.GLASS)) {
@@ -284,6 +288,7 @@ public final class TarihYankilari {
         if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu) {
             TarihiKesifDunyasi.dunyaGoreviniBaslat(sunucu);
             TarihiKesifDunyasi.dunyaGoreviTik(sunucu);
+            TarihiKesifDunyasi.donemOzelEylem(sunucu, sunucu.blockPosition(), ItemStack.EMPTY);
         }
         if (oyuncu.tickCount % 40 != 0) {
             return;
