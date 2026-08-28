@@ -11,6 +11,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class KronikPusulasiItem extends Item {
+    public static final int YATAY_TARAMA_YARICAPI = 32;
+    public static final int DIKEY_TARAMA_YARICAPI = 24;
+
     public KronikPusulasiItem(Properties ozellikler) {
         super(ozellikler);
     }
@@ -28,16 +31,16 @@ public final class KronikPusulasiItem extends Item {
         BlockState durum = seviye.getBlockState(hedef);
         int uzaklik = (int) Math.sqrt(oyuncu.blockPosition().distSqr(hedef));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.compass.found", cevherAdi(durum), uzaklik, hedef.getX(), hedef.getY(), hedef.getZ()));
-        oyuncu.getCooldowns().addCooldown(oyuncu.getItemInHand(el), 40);
+        oyuncu.getCooldowns().addCooldown(oyuncu.getItemInHand(el), 60);
         return InteractionResult.SUCCESS_SERVER;
     }
 
     private static BlockPos enYakinCevher(Level seviye, BlockPos merkez) {
         BlockPos hedef = null;
         double enKisa = Double.MAX_VALUE;
-        for (int x = merkez.getX() - 24; x <= merkez.getX() + 24; x++) {
-            for (int y = Math.max(seviye.getMinY(), merkez.getY() - 16); y <= Math.min(seviye.getMaxY(), merkez.getY() + 16); y++) {
-                for (int z = merkez.getZ() - 24; z <= merkez.getZ() + 24; z++) {
+        for (int x = merkez.getX() - YATAY_TARAMA_YARICAPI; x <= merkez.getX() + YATAY_TARAMA_YARICAPI; x++) {
+            for (int y = Math.max(seviye.getMinY(), merkez.getY() - DIKEY_TARAMA_YARICAPI); y <= Math.min(seviye.getMaxY(), merkez.getY() + DIKEY_TARAMA_YARICAPI); y++) {
+                for (int z = merkez.getZ() - YATAY_TARAMA_YARICAPI; z <= merkez.getZ() + YATAY_TARAMA_YARICAPI; z++) {
                     BlockPos konum = new BlockPos(x, y, z);
                     if (cevherMi(seviye.getBlockState(konum))) {
                         double uzaklik = merkez.distSqr(konum);

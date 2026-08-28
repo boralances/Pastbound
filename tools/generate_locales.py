@@ -588,13 +588,52 @@ metinler = {
     "cy_gb": {"itemGroup.pastbound": "Pastbound: Adleisiau hanes", "screen.pastbound.journal": "Dyddiadur creiriau", "screen.pastbound.progress": "Atgofion a adferwyd: %s/%s", "screen.pastbound.help": "R dyddiadur   V deffro", "screen.pastbound.ready": "GWYBOD", "screen.pastbound.unknown": "ANHYSBYS", "screen.pastbound.close": "Esc i gau"}
 }
 
+pusula_dilleri = {
+    "af_za": ("Kroniekkompas", "Die Kroniekkompas vind geen historiese erts naby nie.", "%s is %s blokke weg by %s, %s, %s."),
+    "ar_sa": ("بوصلة السجل الزمني", "لا تعثر بوصلة السجل الزمني على خام تاريخي قريب.", "تم العثور على %s على بعد %s كتلة عند %s، %s، %s."),
+    "bg_bg": ("Хроникална компас", "Хроникалният компас не открива историческа руда наблизо.", "%s е на %s блока при %s, %s, %s."),
+    "cs_cz": ("Kronikový kompas", "Kronikový kompas poblíž nenachází historickou rudu.", "%s je %s bloků daleko na souřadnicích %s, %s, %s."),
+    "cy_gb": ("Cwmpawd Cronicl", "Nid yw Cwmpawd y Cronicl yn dod o hyd i fwyn hanesyddol gerllaw.", "Mae %s %s bloc i ffwrdd yn %s, %s, %s."),
+    "da_dk": ("Krønikekompas", "Krønikekompasset finder ingen historisk malm i nærheden.", "%s er %s blokke væk ved %s, %s, %s."),
+    "de_de": ("Chronik-Kompass", "Der Chronik-Kompass findet kein historisches Erz in der Nähe.", "%s ist %s Blöcke entfernt bei %s, %s, %s."),
+    "el_gr": ("Πυξίδα Χρονικού", "Η Πυξίδα Χρονικού δεν βρίσκει ιστορικό μετάλλευμα κοντά.", "Το %s απέχει %s μπλοκ στις συντεταγμένες %s, %s, %s."),
+    "en_us": ("Chronicle Compass", "The Chronicle Compass finds no historical ore nearby.", "%s is %s blocks away at %s, %s, %s."),
+    "eo_uy": ("Kronika Kompaso", "La Kronika Kompaso ne trovas historian ercon proksime.", "%s estas %s blokojn for ĉe %s, %s, %s."),
+    "es_es": ("Brújula de Crónicas", "La Brújula de Crónicas no encuentra mineral histórico cerca.", "%s está a %s bloques, en %s, %s, %s."),
+    "es_mx": ("Brújula de Crónicas", "La Brújula de Crónicas no encuentra mineral histórico cerca.", "%s está a %s bloques, en %s, %s, %s."),
+    "fi_fi": ("Kroniikkakompassi", "Kroniikkakompassi ei löydä historiallista malmia läheltä.", "%s on %s korttelin päässä koordinaateissa %s, %s, %s."),
+    "fr_fr": ("Boussole des chroniques", "La Boussole des chroniques ne trouve aucun minerai historique à proximité.", "%s se trouve à %s blocs aux coordonnées %s, %s, %s."),
+    "ga_ie": ("Compás na Croinice", "Ní aimsíonn Compás na Croinice méine stairiúil in aice láimhe.", "Tá %s %s bloc ar shiúl ag %s, %s, %s."),
+    "he_il": ("מצפן הכרוניקה", "מצפן הכרוניקה לא מצא עפרה היסטורית בקרבת מקום.", "%s נמצא במרחק של %s בלוקים ב־%s, %s, %s."),
+    "hu_hu": ("Krónikairánytű", "A Krónikairánytű nem talál történelmi ércet a közelben.", "A(z) %s %s blokkal arrébb található: %s, %s, %s."),
+    "id_id": ("Kompas Kronik", "Kompas Kronik tidak menemukan bijih sejarah di dekat sini.", "%s berjarak %s blok di %s, %s, %s."),
+    "it_it": ("Bussola delle cronache", "La Bussola delle cronache non trova minerale storico nelle vicinanze.", "%s si trova a %s blocchi alle coordinate %s, %s, %s."),
+    "ja_jp": ("年代記コンパス", "年代記コンパスは近くに歴史の鉱石を見つけられません。", "%s は座標 %s, %s, %s にある %s ブロック先です。"),
+    "ko_kr": ("연대기 나침반", "연대기 나침반이 근처에서 역사 광석을 찾지 못했습니다.", "%s은(는) %s블록 거리의 %s, %s, %s에 있습니다."),
+    "nb_no": ("Krønike-kompass", "Krønike-kompasset finner ingen historisk malm i nærheten.", "%s er %s blokker unna ved %s, %s, %s."),
+    "nl_nl": ("Kroniekkompas", "Het Kroniekkompas vindt geen historisch erts in de buurt.", "%s ligt %s blokken verderop bij %s, %s, %s."),
+    "pl_pl": ("Kompas Kronik", "Kompas Kronik nie znajduje w pobliżu historycznej rudy.", "%s znajduje się %s bloków dalej na %s, %s, %s."),
+    "pt_br": ("Bússola da Crônica", "A Bússola da Crônica não encontra minério histórico por perto.", "%s está a %s blocos em %s, %s, %s."),
+    "pt_pt": ("Bússola da Crónica", "A Bússola da Crónica não encontra minério histórico por perto.", "%s está a %s blocos em %s, %s, %s."),
+    "ro_ro": ("Busola Cronicii", "Busola Cronicii nu găsește minereu istoric în apropiere.", "%s se află la %s blocuri, la %s, %s, %s."),
+    "ru_ru": ("Компас хроники", "Компас хроники не находит поблизости историческую руду.", "%s находится в %s блоках по координатам %s, %s, %s."),
+    "sk_sk": ("Kronikový kompas", "Kronikový kompas nenašiel v okolí historickú rudu.", "%s je vzdialená %s blokov na súradniciach %s, %s, %s."),
+    "sv_se": ("Krönikkompass", "Krönikkompassen hittar ingen historisk malm i närheten.", "%s är %s block bort vid %s, %s, %s."),
+    "th_th": ("เข็มทิศพงศาวดาร", "เข็มทิศพงศาวดารไม่พบแร่ประวัติศาสตร์ใกล้เคียง", "พบ %s อยู่ห่างออกไป %s บล็อกที่ %s, %s, %s"),
+    "tr_tr": ("Kronik Pusulası", "Kronik Pusulası yakında tarihî cevher bulamıyor.", "%s, %s blok ötede bulundu: %s, %s, %s."),
+    "uk_ua": ("Компас хроніки", "Компас хроніки не знаходить поблизу історичної руди.", "%s знаходиться за %s блоків на координатах %s, %s, %s."),
+    "vi_vn": ("La bàn Biên niên", "La bàn Biên niên không tìm thấy quặng lịch sử gần đây.", "%s cách %s khối tại %s, %s, %s."),
+    "zh_cn": ("编年史指南针", "编年史指南针没有在附近找到历史矿石。", "%s 位于 %s 格之外，坐标为 %s、%s、%s。"),
+    "zh_tw": ("編年史羅盤", "編年史羅盤在附近找不到歷史礦石。", "%s 位於 %s 格之外，座標為 %s、%s、%s。")
+}
+
 for locale, add in metinler.items():
     veri = dict(ortak)
     veri.update(add)
-    if locale == "tr_tr":
-        veri["item.pastbound.chronicle_compass"] = "Kronik Pusulası"
-        veri["message.pastbound.compass.none"] = "Kronik Pusulası yakında tarihî cevher bulamıyor."
-        veri["message.pastbound.compass.found"] = "%s, %s blok ötede bulundu: %s, %s, %s."
+    pusula = pusula_dilleri.get(locale, pusula_dilleri["en_us"])
+    veri["item.pastbound.chronicle_compass"] = pusula[0]
+    veri["message.pastbound.compass.none"] = pusula[1]
+    veri["message.pastbound.compass.found"] = pusula[2]
     ahsap_kaynagi = turkce_ahsaplar if locale == "tr_tr" else ahsaplar
     for kimlik, ad in ahsap_kaynagi.items():
         veri[f"block.pastbound.{kimlik}"] = ad

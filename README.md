@@ -2,7 +2,7 @@
 
 **Pastbound** is a CurseForge ModJam 2026 entry for **“Echoes of the Past.”** The mod treats history as a playable force rather than a decorative background. Forgotten civilizations leave behind physical relics; players recover their stories through independent restoration fragments, place them in a Curios relic slot, and bring a historical ability into the present.
 
-Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current patch archive is named **`Pastbound-1.3.0.jar`**.
+Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current patch archive is named **`Pastbound-1.3.1.jar`**.
 
 ## Design pitch
 
@@ -77,14 +77,14 @@ These custom actions are applied after the classic effect and are encoded with T
 
 The player-facing world actions include writing with books, reading routes with maps and compasses, carrying metal underground, trading with gold, travelling over high ground, entering water, surviving the End, walking at night, and following the server-wide era rotation. These are global history signals rather than arbitrary fantasy triggers, keeping the mod centered on historical technologies, travel, records, craft, and exchange.
 
-Version 1.3.0 adds a natural-world archaeology layer. New chunks can reveal rare Overworld historical biome pockets with Uruk floodplain or Tenochtitlan chinampa ambience, cedar or cypress growth, water channels, archaeology markers, passive wildlife and dimension-aware hostile spawns. Time Stone and Chronicle ores now form multi-block veins in the Overworld, while Nether Time Stone and Ash Chronicle veins form in the Nether and End Echo and Void Chronicle veins form in the End. Nether observation monuments and End sky-watch platforms turn each dimension into a distinct historical field site. These materials connect the present world to the same writing, electricity, trade, and astronomical history carried by the twelve time-machine destinations.
+Version 1.3.1 adds a natural-world archaeology layer. New chunks can reveal rare Overworld historical biome pockets with Uruk floodplain or Tenochtitlan chinampa ambience, cedar or cypress growth, water channels, archaeology markers, passive wildlife and dimension-aware hostile spawns. Time Stone and Chronicle ores now form multi-block veins in the Overworld, while Nether Time Stone and Ash Chronicle veins form in the Nether and End Echo and Void Chronicle veins form in the End. Nether observation monuments and End sky-watch platforms turn each dimension into a distinct historical field site. These materials connect the present world to the same writing, electricity, trade, and astronomical history carried by the twelve time-machine destinations.
 
 The living-history quest layer now requires a complete field expedition instead of a single conversation. Every destination gives the player a period-specific objective: speak with all four witnesses, cross the scene perimeter, return to the central beacon and break that era’s own archive monument. Baghdad adds the full workshop chain of mining three steel veins, smelting, crafting a steel plate and repairing the historical forge. The time-machine screen previews the active mission before travel, and the scene HUD shows both the mission and the destination’s ecosystem clue.
 
 ## Controls and GUI actions
 
-The **R** key opens the Relic Journal. Clicking an unknown relic opens a custom restoration modal with five independent fragment actions; fragments can be selected in any order and no order-dependent puzzle remains. The new **Chronicle Compass** is a craftable field tool that scans nearby blocks for historical ore and reports the localized ore name, distance and coordinates, turning exploration into a deliberate archaeological hunt.
-The **V** key sends a server-authoritative custom payload rather than a chat command. The first sixteen relics also apply the custom `tarih_yankisi` effect, while every relic keeps its own historical ability branch. Shift-right-click remains the direct XP identification route. The **U** key in the journal offers the server-validated Netherite slot exchange. Registry IDs such as `zaman_makinesi`, `chronicle_compass` and `time_stone_ore` remain stable technical identifiers for commands and data packs; their player-facing names are English by default and translate when the client language is changed. The final gameplay loop uses GUI screens and common custom payloads for restoration activities, field missions, dialogue, activation, time travel, and slot upgrades; no chat command is required for discovery.
+The **R** key opens the Relic Journal. Clicking an unknown relic opens a custom restoration modal with five independent fragment actions; fragments can be selected in any order and no order-dependent puzzle remains. The new **Chronicle Compass** is a craftable field tool with a **32-block horizontal radius** and a **24-block vertical radius**. Right-clicking scans the 65 × 49 × 65 search volume, selects the nearest historical ore by three-dimensional distance, reports its localized name, distance and coordinates, and then applies a short 60-tick cooldown to prevent spam. If no historical ore is present in that volume, it gives a localized no-discovery message. This turns exploration into a deliberate archaeological hunt rather than a passive search.
+The **V** key sends a server-authoritative custom payload rather than a chat command. The first sixteen relics also apply the custom `tarih_yankisi` effect, while every relic keeps its own historical ability branch. Shift-right-click remains the direct XP identification route. The **U** key in the journal offers the server-validated Netherite slot exchange. Registry IDs such as `zaman_makinesi`, `chronicle_compass` and `time_stone_ore` remain stable technical identifiers for commands and data packs; their player-facing names are English by default and translate when the client language is changed. The locale generator now covers 36 Minecraft locale files, including the requested 32-language set, with dedicated Chronicle Compass names and messages in each supported locale and safe English fallback for future keys. The final gameplay loop uses GUI screens and common custom payloads for restoration activities, field missions, dialogue, activation, time travel, and slot upgrades; no chat command is required for discovery.
 
 ## Curios integration
 
@@ -212,7 +212,7 @@ python3 tools/generate_locales.py
 The final file is created at:
 
 ```text
-Pastbound/build/libs/Pastbound-1.3.0.jar
+Pastbound/build/libs/Pastbound-1.3.1.jar
 ```
 
 For Windows PowerShell, use:
