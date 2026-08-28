@@ -651,6 +651,7 @@ public final class TarihiKesifDunyasi {
         veri.remove(IZLEME_X);
         veri.remove(IZLEME_Y);
         veri.remove(IZLEME_Z);
+        veri.remove("pastbound_donem_ozel_sayac");
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.returned"));
         if (hedef.dimension().equals(Level.OVERWORLD)) {
             dunyaGoreviniBaslat(oyuncu);
@@ -737,7 +738,7 @@ public final class TarihiKesifDunyasi {
             return;
         }
         BlockState durum = oyuncu.level().getBlockState(konum);
-        boolean tamam = switch (donem) {
+        boolean eylem = switch (donem) {
             case URUK_YAZI_EVI -> durum.is(Blocks.CLAY);
             case TERMOPIL_SAVASI -> yigin.is(Items.SHIELD);
             case ISKENDERIYE_KUTUPHANESI -> durum.is(Blocks.BOOKSHELF);
@@ -752,7 +753,18 @@ public final class TarihiKesifDunyasi {
             case IPEK_YOLU_KERVANSARAYI -> yigin.is(Items.EMERALD);
             case EPIDAURUM_TİYATROSU -> durum.is(Blocks.CALCITE);
         };
-        if (tamam) {
+        if (eylem) {
+            int hedef = switch (donem) {
+                case URUK_YAZI_EVI, ISKENDERIYE_KUTUPHANESI, CATALHOYUK_YERLESKESI, EPIDAURUM_TİYATROSU -> 3;
+                case TERMOPIL_SAVASI, ANTIKITHERA_LIMANI, BAGDAT_BILGI_EVI, TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> 2;
+                default -> 1;
+            };
+            int sayac = veri.getIntOr("pastbound_donem_ozel_sayac", 0) + 1;
+            veri.putInt("pastbound_donem_ozel_sayac", sayac);
+            if (sayac < hedef) {
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.period.unique_progress", sayac, hedef));
+                return;
+            }
             veri.putInt(SAHNE_GOREV_MASKESI, veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | DONEM_OZEL_BITI);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.period.unique_complete", donem.adBileseni()));
             oyuncu.giveExperiencePoints(2);

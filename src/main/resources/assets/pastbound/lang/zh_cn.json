@@ -638,5 +638,6 @@
   "message.pastbound.world.build_power": "Activate the resonance pillar with copper, redstone and a steel plate.",
   "message.pastbound.world.power_needs": "The device needs 2 copper ingots, 4 redstone and 1 steel plate.",
   "message.pastbound.world.power_active": "The electrical circuit is alive. The village echo has been recorded in the archive.",
-  "message.pastbound.period.unique_complete": "The unique field objective for %s is complete. Finish the full historical quest chain."
+  "message.pastbound.period.unique_complete": "The unique field objective for %s is complete. Finish the full historical quest chain.",
+  "message.pastbound.period.unique_progress": "Period-specific evidence %s/%s complete. Keep searching for the next field clue."
 }
