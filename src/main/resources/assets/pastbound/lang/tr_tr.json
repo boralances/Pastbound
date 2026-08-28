@@ -621,5 +621,6 @@
   "entity.pastbound.scene.engineer": "Güç Mühendisi",
   "message.pastbound.scene.quest_waypoint_b": "You reached the second waypoint on foot. The path is coming together.",
   "message.pastbound.scene.quest_distance": "You have walked far enough across the scene. That leg of the mission is complete.",
-  "message.pastbound.scene.quest_distance_progress": "Walking progress: %s / %s blocks covered on foot."
+  "message.pastbound.scene.quest_distance_progress": "Walking progress: %s / %s blocks covered on foot.",
+  "message.pastbound.scene.station_used": "Saha durağı %s kullanıldı. Şimdi uzmanıyla konuş ve sonraki durağa ilerle."
 }

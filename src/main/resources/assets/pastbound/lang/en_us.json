@@ -621,5 +621,6 @@
   "message.pastbound.scene.waypoint_talk": "Field station %s recorded: the evidence is added to your expedition log.",
   "entity.pastbound.scene.archaeologist": "Field Archaeologist",
   "entity.pastbound.scene.miner": "Ore Surveyor",
-  "entity.pastbound.scene.engineer": "Power Engineer"
+  "entity.pastbound.scene.engineer": "Power Engineer",
+  "message.pastbound.scene.station_used": "Field station %s used. Speak with its specialist before moving to the next station."
 }
