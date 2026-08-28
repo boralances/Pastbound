@@ -155,6 +155,13 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            for (int i = 0; i < 3; i++) {
+                if (villager.entityTags().contains("pastbound_durak_" + i)) {
+                    olay.setCanceled(true);
+                    TarihiKesifDunyasi.durakKonusuldu(sunucu, i);
+                    return;
+                }
+            }
             int konusmaci = 0;
             for (int i = 0; i < 4; i++) {
                 if (villager.entityTags().contains("pastbound_sahne_" + i)) {

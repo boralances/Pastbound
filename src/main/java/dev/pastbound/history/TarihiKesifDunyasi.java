@@ -20,6 +20,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.villager.Villager;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -53,7 +54,11 @@ public final class TarihiKesifDunyasi {
     private static final int SAHNE_DURAK_A_BITI = 16;
     private static final int SAHNE_DURAK_B_BITI = 32;
     private static final int SAHNE_DURAK_C_BITI = 512;
+    private static final int SAHNE_DURAK_A_KONUSMA_BITI = 4096;
+    private static final int SAHNE_DURAK_B_KONUSMA_BITI = 8192;
+    private static final int SAHNE_DURAK_C_KONUSMA_BITI = 16384;
     private static final int SAHNE_DURAKLAR_MASKESI = SAHNE_DURAK_A_BITI | SAHNE_DURAK_B_BITI | SAHNE_DURAK_C_BITI;
+    private static final int SAHNE_DURAK_KONUSMA_MASKESI = SAHNE_DURAK_A_KONUSMA_BITI | SAHNE_DURAK_B_KONUSMA_BITI | SAHNE_DURAK_C_KONUSMA_BITI;
     private static final double YURUME_HEDEFI_BLOK = 55.0D;
     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
     private static final BlockPos[] GOREV_DURAKLARI = {
@@ -176,8 +181,8 @@ public final class TarihiKesifDunyasi {
         int damar = veri.getIntOr(CELIK_DAMAR_SAYISI, 0) + 1;
         veri.putInt(CELIK_DAMAR_SAYISI, damar);
         oyuncu.giveExperiencePoints(1);
-        if (damar < 3) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.steel_vein", damar, 3));
+        if (damar < 6) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.mission.steel_vein", damar, 6));
             return;
         }
         veri.putInt(CELIK_GOREV_ASAMASI, 2);
@@ -270,6 +275,27 @@ public final class TarihiKesifDunyasi {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         veri.putInt(SAHNE_GOREV_MASKESI, veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | SAHNE_INCELEME_BITI);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_inspect"));
+        oyuncu.giveExperiencePoints(2);
+        goreviKontrolEt(oyuncu);
+    }
+
+    public static void durakKonusuldu(ServerPlayer oyuncu, int durak) {
+        if (!boyuttaMi(oyuncu) || durak < 0 || durak > 2) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int[] hareketBitleri = {SAHNE_DURAK_A_BITI, SAHNE_DURAK_B_BITI, SAHNE_DURAK_C_BITI};
+        int[] konusmaBitleri = {SAHNE_DURAK_A_KONUSMA_BITI, SAHNE_DURAK_B_KONUSMA_BITI, SAHNE_DURAK_C_KONUSMA_BITI};
+        int maske = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+        if ((maske & hareketBitleri[durak]) == 0) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.waypoint_locked"));
+            return;
+        }
+        if ((maske & konusmaBitleri[durak]) != 0) {
+            return;
+        }
+        veri.putInt(SAHNE_GOREV_MASKESI, maske | konusmaBitleri[durak]);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.waypoint_talk", durak + 1));
         oyuncu.giveExperiencePoints(2);
         goreviKontrolEt(oyuncu);
     }
@@ -397,6 +423,7 @@ public final class TarihiKesifDunyasi {
                 "message.pastbound.scene.quest_return"
         };
         int[] durakBitleri = {SAHNE_DURAK_A_BITI, SAHNE_DURAK_B_BITI, SAHNE_DURAK_C_BITI};
+        int[] konusmaBitleri = {SAHNE_DURAK_A_KONUSMA_BITI, SAHNE_DURAK_B_KONUSMA_BITI, SAHNE_DURAK_C_KONUSMA_BITI};
         for (int i = 0; i < GOREV_DURAKLARI.length; i++) {
             if ((gorevMaskesi & durakBitleri[i]) != 0) {
                 continue;
@@ -406,6 +433,7 @@ public final class TarihiKesifDunyasi {
                 gorevMaskesi |= durakBitleri[i];
                 veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
                 oyuncu.sendSystemMessage(Component.translatable(durakMesajlari[i]));
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.waypoint_need_talk"));
             } else if (oyuncu.level() instanceof ServerLevel seviye) {
                 seviye.sendParticles(ParticleTypes.END_ROD, durak.getX() + 0.5D, durak.getY() + 1.2D, durak.getZ() + 0.5D, 2, 0.2D, 0.4D, 0.2D, 0.01D);
             }
@@ -439,7 +467,7 @@ public final class TarihiKesifDunyasi {
         double dy = y - eskiY;
         double dz = z - eskiZ;
         double adim = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        // Ignore teleports/glitches so only genuine walking counts toward the distance goal.
+        
         if (adim > 0.005D && adim < 1.2D) {
             double toplam = veri.getDoubleOr(YURUME_MESAFESI, 0.0D) + adim;
             veri.putDouble(YURUME_MESAFESI, toplam);
@@ -458,8 +486,9 @@ public final class TarihiKesifDunyasi {
         }
         boolean konusmaTamam = (gorevMaskesi & 15) == 15;
         boolean duraklarTamam = (gorevMaskesi & SAHNE_DURAKLAR_MASKESI) == SAHNE_DURAKLAR_MASKESI;
+        boolean durakKonusmalariTamam = (gorevMaskesi & SAHNE_DURAK_KONUSMA_MASKESI) == SAHNE_DURAK_KONUSMA_MASKESI;
         boolean mesafeTamam = (gorevMaskesi & 1024) != 0;
-        boolean hareketTamam = duraklarTamam && mesafeTamam;
+        boolean hareketTamam = duraklarTamam && durakKonusmalariTamam && mesafeTamam;
         boolean incelemeTamam = (gorevMaskesi & SAHNE_INCELEME_BITI) != 0;
         boolean anitTamam = (gorevMaskesi & SAHNE_ANIT_BITI) != 0;
         if (konusmaTamam && hareketTamam && incelemeTamam && anitTamam && (gorevMaskesi & 64) == 0) {
@@ -611,7 +640,7 @@ public final class TarihiKesifDunyasi {
 
     private static void sahneAktorleriniKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
         for (Entity varlik : seviye.getEntitiesOfClass(Entity.class, new net.minecraft.world.phys.AABB(merkez).inflate(12.0D))) {
-            if (varlik.entityTags().contains("pastbound_sahne")) {
+            if (varlik.entityTags().contains("pastbound_sahne") || varlik.entityTags().contains("pastbound_durak_0") || varlik.entityTags().contains("pastbound_durak_1") || varlik.entityTags().contains("pastbound_durak_2")) {
                 varlik.discard();
             }
         }
@@ -632,6 +661,21 @@ public final class TarihiKesifDunyasi {
                 aktor.addTag("pastbound_sahne");
                 aktor.addTag("pastbound_sahne_" + i);
                 aktor.setCustomName(Component.translatable(roller[i]).append(" — ").append(donem.adBileseni()));
+                aktor.setCustomNameVisible(true);
+                seviye.addFreshEntity(aktor);
+            }
+        }
+        int[][] durakKonumlari = {{-7, -7}, {7, -7}, {0, 7}};
+        String[] durakRolleri = {"entity.pastbound.scene.archaeologist", "entity.pastbound.scene.miner", "entity.pastbound.scene.engineer"};
+        for (int i = 0; i < durakKonumlari.length; i++) {
+            Entity varlik = tip.create(seviye, EntitySpawnReason.COMMAND);
+            if (varlik instanceof Villager aktor) {
+                aktor.setPos(merkez.getX() + durakKonumlari[i][0] + 0.5D, merkez.getY() + 1.0D, merkez.getZ() + durakKonumlari[i][1] + 0.5D);
+                aktor.setNoAi(true);
+                aktor.setInvulnerable(true);
+                aktor.setSilent(false);
+                aktor.addTag("pastbound_durak_" + i);
+                aktor.setCustomName(Component.translatable(durakRolleri[i]).append(" — ").append(donem.adBileseni()));
                 aktor.setCustomNameVisible(true);
                 seviye.addFreshEntity(aktor);
             }
