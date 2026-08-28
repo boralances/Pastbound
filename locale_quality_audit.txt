@@ -1,0 +1,39 @@
+locale_files=36
+reference_keys=604
+af_za.json   keys=604  missing=0   empty=0   same_as_en=
+ar_sa.json   keys=604  missing=0   empty=0   same_as_en=
+bg_bg.json   keys=604  missing=0   empty=0   same_as_en=
+cs_cz.json   keys=604  missing=0   empty=0   same_as_en=
+cy_gb.json   keys=604  missing=0   empty=0   same_as_en=
+da_dk.json   keys=604  missing=0   empty=0   same_as_en=
+de_de.json   keys=604  missing=0   empty=0   same_as_en=
+el_gr.json   keys=604  missing=0   empty=0   same_as_en=
+en_us.json   keys=604  missing=0   empty=0   same_as_en=
+eo_uy.json   keys=604  missing=0   empty=0   same_as_en=
+es_es.json   keys=604  missing=0   empty=0   same_as_en=
+es_mx.json   keys=604  missing=0   empty=0   same_as_en=
+fi_fi.json   keys=604  missing=0   empty=0   same_as_en=
+fr_fr.json   keys=604  missing=0   empty=0   same_as_en=
+ga_ie.json   keys=604  missing=0   empty=0   same_as_en=
+he_il.json   keys=604  missing=0   empty=0   same_as_en=
+hu_hu.json   keys=604  missing=0   empty=0   same_as_en=
+id_id.json   keys=604  missing=0   empty=0   same_as_en=
+it_it.json   keys=604  missing=0   empty=0   same_as_en=
+ja_jp.json   keys=604  missing=0   empty=0   same_as_en=
+ko_kr.json   keys=604  missing=0   empty=0   same_as_en=
+nb_no.json   keys=604  missing=0   empty=0   same_as_en=
+nl_nl.json   keys=604  missing=0   empty=0   same_as_en=
+pl_pl.json   keys=604  missing=0   empty=0   same_as_en=
+pt_br.json   keys=604  missing=0   empty=0   same_as_en=
+pt_pt.json   keys=604  missing=0   empty=0   same_as_en=
+ro_ro.json   keys=604  missing=0   empty=0   same_as_en=
+ru_ru.json   keys=604  missing=0   empty=0   same_as_en=
+sk_sk.json   keys=604  missing=0   empty=0   same_as_en=
+sv_se.json   keys=604  missing=0   empty=0   same_as_en=
+th_th.json   keys=604  missing=0   empty=0   same_as_en=
+tr_tr.json   keys=604  missing=0   empty=0   same_as_en=
+uk_ua.json   keys=604  missing=0   empty=0   same_as_en=
+vi_vn.json   keys=604  missing=0   empty=0   same_as_en=
+zh_cn.json   keys=604  missing=0   empty=0   same_as_en=
+zh_tw.json   keys=604  missing=0   empty=0   same_as_en=
+quest_translation_keys=21
