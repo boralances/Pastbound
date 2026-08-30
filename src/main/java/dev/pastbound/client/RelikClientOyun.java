@@ -48,6 +48,12 @@ public final class RelikClientOyun {
         if (RelikClient.DIL_KISAYOLU.consumeClick()) {
             minecraft.setScreenAndShow(new PastboundDilEkrani());
         }
+        if (RelikClient.CRAFTING_TABLE_CUBUGU_KISAYOLU.consumeClick()) {
+            oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.portableWorkstation("crafting")));
+        }
+        if (RelikClient.FIRIN_CUBUGU_KISAYOLU.consumeClick()) {
+            oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.portableWorkstation("furnace")));
+        }
         if (RelikClient.AKTIFLESTIRME_KISAYOLU.consumeClick()) {
             oyuncu.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.etkinlestir()));
         }

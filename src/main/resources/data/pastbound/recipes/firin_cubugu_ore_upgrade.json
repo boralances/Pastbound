@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    "TFT",
+    " S "
+  ],
+  "key": {
+    "C": {"item": "pastbound:chronicle_ore"},
+    "T": {"item": "pastbound:time_stone"},
+    "F": {"item": "pastbound:gelistirilmis_firin_cubugu"},
+    "S": {"item": "pastbound:steel_ingot"}
+  },
+  "result": {
+    "id": "pastbound:gelistirilmis_firin_cubugu",
+    "count": 1
+  }
+}

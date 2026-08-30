@@ -5,6 +5,11 @@ import dev.pastbound.client.RelikClientOyun;
 import dev.pastbound.history.TarihiKesifDunyasi;
 import dev.pastbound.history.ZamanMakinesiMantigi;
 import dev.pastbound.relic.RelikMantigi;
+import dev.pastbound.registry.ModItems;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.CraftingMenu;
+import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -50,6 +55,10 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
         return new PastboundPaketi(8, "", "");
     }
 
+    public static PastboundPaketi portableWorkstation(String tip) {
+        return new PastboundPaketi(13, tip, "");
+    }
+
     public static PastboundPaketi yuvaEtkinlestir(int yuva) {
         return new PastboundPaketi(9, Integer.toString(yuva), "");
     }
@@ -85,9 +94,31 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                 case 8 -> TarihiKesifDunyasi.don(oyuncu);
                 case 9 -> yuvaIsteğiniAl(oyuncu, paket.birinci());
                 case 11 -> konusmaSeciminiAl(oyuncu, paket.birinci(), paket.ikinci());
+                case 13 -> portableWorkstationAl(oyuncu, paket.birinci());
                 default -> oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.packet.invalid"));
             }
         });
+    }
+
+    private static void portableWorkstationAl(ServerPlayer oyuncu, String tip) {
+        boolean furnace = tip.equals("furnace");
+        boolean sahip = false;
+        for (int i = 0; i < oyuncu.getInventory().getContainerSize(); i++) {
+            net.minecraft.world.item.ItemStack yigin = oyuncu.getInventory().getItem(i);
+            if (yigin.is(furnace ? ModItems.FIRIN_CUBUGU.get() : ModItems.CRAFTING_TABLE_CUBUGU.get()) || yigin.is(ModItems.GELISTIRILMIS_FIRIN_CUBUGU.get())) {
+                sahip = true;
+                break;
+            }
+        }
+        if (!sahip) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.portable.missing"));
+            return;
+        }
+        if (furnace) {
+            oyuncu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> new FurnaceMenu(id, envanter), Component.translatable("container.furnace")));
+        } else {
+            oyuncu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> new CraftingMenu(id, envanter, net.minecraft.world.inventory.ContainerLevelAccess.NULL), Component.translatable("container.crafting")));
+        }
     }
 
     private static void miniEtkinligiAl(ServerPlayer oyuncu, String relikKimligi, String parcaMetni) {

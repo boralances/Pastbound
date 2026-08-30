@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    "TWT",
+    " S "
+  ],
+  "key": {
+    "C": {"item": "pastbound:chronicle_ore"},
+    "T": {"item": "pastbound:time_stone"},
+    "W": {"item": "pastbound:crafting_table_cubugu"},
+    "S": {"item": "pastbound:steel_plate"}
+  },
+  "result": {
+    "id": "pastbound:crafting_table_cubugu",
+    "count": 1
+  }
+}
