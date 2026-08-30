@@ -4,17 +4,16 @@ from zipfile import ZIP_DEFLATED, ZipFile
 root = Path(__file__).resolve().parents[1]
 classes = root / "build/classes/java/main"
 resources = root / "src/main/resources"
-output = root / "build/libs" / "Pastbound-2.5.3.jar"
-properties = {
-    "mod_id": "pastbound",
-    "mod_name": "Pastbound",
-    "mod_license": "MIT",
-    "mod_version": "2.5.3",
-    "minecraft_version": "26.2",
-    "minecraft_version_range": "[26.2]",
-    "neo_version": "26.2.0.66",
-    "curios_version": "16.0.0+26.2",
-}
+def read_properties():
+    values = {}
+    for line in (root / "gradle.properties").read_text(encoding="utf-8").splitlines():
+        if "=" in line and not line.startswith("#"):
+            key, value = line.split("=", 1)
+            values[key.strip()] = value.strip()
+    return values
+
+properties = read_properties()
+output = root / "build/libs" / f"Pastbound-{properties['mod_version']}.jar"
 
 def expand_metadata(text):
     for key, value in properties.items():

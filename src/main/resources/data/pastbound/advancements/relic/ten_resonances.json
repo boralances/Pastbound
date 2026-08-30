@@ -1,0 +1,26 @@
+{
+  "parent": "pastbound:history/complete_collection",
+  "display": {
+    "icon": {
+      "id": "pastbound:echo_seal"
+    },
+    "title": {
+      "translate": "advancement.pastbound.relic.ten_resonances.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.relic.ten_resonances.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rezonans": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 15
+  }
+}

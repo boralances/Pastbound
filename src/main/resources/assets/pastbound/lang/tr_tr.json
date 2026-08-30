@@ -672,5 +672,7 @@
   "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine.",
   "advancement.pastbound.time_machine.curators_seal.title": "Küratör Mührü",
   "advancement.pastbound.time_machine.curators_seal.description": "Her tarihî keşif rotasını tamamla ve arşivi koru.",
-  "message.pastbound.time_machine.curators_seal": "Küratör Mührü artık senin. Her tarihî rota arşivde korunmuş bir yankıya dönüştü."
+  "message.pastbound.time_machine.curators_seal": "Küratör Mührü artık senin. Her tarihî rota arşivde korunmuş bir yankıya dönüştü.",
+  "advancement.pastbound.relic.ten_resonances.title": "On Yankının Rezonansı",
+  "advancement.pastbound.relic.ten_resonances.description": "On farklı tarihî emaneti etkinleştir ve yankılarını birleştir."
 }

@@ -672,5 +672,7 @@
   "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine.",
   "advancement.pastbound.time_machine.curators_seal.title": "Curator's Seal",
   "advancement.pastbound.time_machine.curators_seal.description": "Complete every historical expedition and preserve the archive.",
-  "message.pastbound.time_machine.curators_seal": "The Curator's Seal is yours. Every historical route now has a preserved echo."
+  "message.pastbound.time_machine.curators_seal": "The Curator's Seal is yours. Every historical route now has a preserved echo.",
+  "advancement.pastbound.relic.ten_resonances.title": "Ten Resonances",
+  "advancement.pastbound.relic.ten_resonances.description": "Activate ten different historical relics and join their echoes."
 }

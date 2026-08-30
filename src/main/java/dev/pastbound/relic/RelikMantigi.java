@@ -35,6 +35,7 @@ public final class RelikMantigi {
     private static final String GUNLUK_IPUCU_GONDERILDI = "pastbound_gunluk_ipucu_gonderildi";
     private static final String ACIK_RELIK_YUVALARI = "pastbound_acik_relik_yuvalari";
     private static final String MINI_ETKINLIK_PARCALARI = "pastbound_relik_mini_etkinlik_parcalari";
+    private static final String ETKINLESTIRILEN_RELIKLER = "pastbound_etkinlestirilen_relikler";
     private static final int BASLANGIC_RELIK_YUVASI = 8;
     private static final int AZAMI_RELIK_YUVASI = 10;
     private static final String AYRAC = "|";
@@ -278,6 +279,7 @@ public final class RelikMantigi {
             return false;
         }
         aktifUygula(oyuncu, tanim);
+        rezonansiKaydet(oyuncu, tanim);
         beklemeler.addCooldown(yigin, tanim.beklemeSuresi());
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.relic.activated", tanim.adBileseni()));
         oyuncu.level().playSound(null, oyuncu.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 0.8F, 0.7F + tanim.ordinal() % 6 * 0.1F);
@@ -285,6 +287,25 @@ public final class RelikMantigi {
             sunucu.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 18, 0.45D, 0.65D, 0.45D, 0.08D);
         }
         return true;
+    }
+
+    private static void rezonansiKaydet(Player oyuncu, RelikTanimi tanim) {
+        if (!(oyuncu instanceof ServerPlayer sunucu)) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        String eski = veri.getStringOr(ETKINLESTIRILEN_RELIKLER, "");
+        if (Arrays.asList(eski.split("\\|", -1)).contains(tanim.kimlik())) {
+            return;
+        }
+        String yeni = eski.isEmpty() ? tanim.kimlik() : eski + AYRAC + tanim.kimlik();
+        veri.putString(ETKINLESTIRILEN_RELIKLER, yeni);
+        if (yeni.split("\\|", -1).length >= 10) {
+            AdvancementHolder basari = sunucu.level().getServer().getAdvancements().get(Identifier.fromNamespaceAndPath("pastbound", "relic/ten_resonances"));
+            if (basari != null) {
+                sunucu.getAdvancements().award(basari, "rezonans");
+            }
+        }
     }
 
     public static void aktifUygula(Player oyuncu, RelikTanimi tanim) {

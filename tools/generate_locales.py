@@ -769,4 +769,10 @@ for locale, add in metinler.items():
         veri["advancement.pastbound.time_machine.curators_seal.title"] = "Curator's Seal"
         veri["advancement.pastbound.time_machine.curators_seal.description"] = "Complete every historical expedition and preserve the archive."
         veri["message.pastbound.time_machine.curators_seal"] = "The Curator's Seal is yours. Every historical route now has a preserved echo."
+    if locale == "tr_tr":
+        veri["advancement.pastbound.relic.ten_resonances.title"] = "On Yankının Rezonansı"
+        veri["advancement.pastbound.relic.ten_resonances.description"] = "On farklı tarihî emaneti etkinleştir ve yankılarını birleştir."
+    else:
+        veri["advancement.pastbound.relic.ten_resonances.title"] = "Ten Resonances"
+        veri["advancement.pastbound.relic.ten_resonances.description"] = "Activate ten different historical relics and join their echoes."
     (lang / f"{locale}.json").write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
