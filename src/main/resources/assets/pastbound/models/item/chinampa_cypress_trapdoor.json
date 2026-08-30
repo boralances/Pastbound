@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/trapdoor_bottom",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "texture": "pastbound:block/chinampa_cypress_trapdoor"
+    "layer0": "pastbound:block/chinampa_cypress_trapdoor"
   }
 }

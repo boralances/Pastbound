@@ -27,6 +27,8 @@ import net.neoforged.neoforge.event.level.ChunkEvent;
 public final class TarihMadenleri {
     private static final ResourceKey<Biome> URUK_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "uruk_floodplain"));
     private static final ResourceKey<Biome> CHINAMPA_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "tenochtitlan_chinampa"));
+    private static final ResourceKey<Biome> END_ECHO_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "end_echo_gardens"));
+    private static final ResourceKey<Biome> VOID_CHRONICLE_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "void_chronicle_wastes"));
 
     private TarihMadenleri() {
     }
@@ -48,8 +50,12 @@ public final class TarihMadenleri {
             if (rastgele.nextInt(18) == 0) {
                 netherDamar(seviye, chunk, rastgele);
             }
-        } else if (seviye.dimension().equals(Level.END) && rastgele.nextInt(18) == 0) {
-            endDamar(seviye, chunk, rastgele);
+        } else if (seviye.dimension().equals(Level.END)) {
+            if (rastgele.nextInt(8) == 0) {
+                endBiyomCebi(seviye, chunk, rastgele);
+            } else if (rastgele.nextInt(6) == 0) {
+                endDamar(seviye, chunk, rastgele);
+            }
         }
     }
 
@@ -72,6 +78,16 @@ public final class TarihMadenleri {
         damarYerlestir(seviye, chunk, rastgele, ModBlocks.NETHER_TIME_STONE_ORE.get(), 18 + rastgele.nextInt(62), 6, true, false);
         damarYerlestir(seviye, chunk, rastgele, ModBlocks.ASH_CHRONICLE_ORE.get(), 24 + rastgele.nextInt(50), 5, true, false);
         netherAniti(seviye, chunk, rastgele);
+    }
+
+
+    private static void endBiyomCebi(ServerLevel seviye, LevelChunk chunk, RandomSource rastgele) {
+        ResourceKey<Biome> anahtar = Math.floorMod(chunk.getPos().x() + chunk.getPos().z(), 2) == 0 ? END_ECHO_BIYOMU : VOID_CHRONICLE_BIYOMU;
+        Holder<Biome> biyom = seviye.registryAccess().lookupOrThrow(Registries.BIOME).get(anahtar).orElse(null);
+        if (biyom != null) {
+            biyomCebiUygula(chunk, biyom);
+        }
+        endDamar(seviye, chunk, rastgele);
     }
 
     private static void endDamar(ServerLevel seviye, LevelChunk chunk, RandomSource rastgele) {

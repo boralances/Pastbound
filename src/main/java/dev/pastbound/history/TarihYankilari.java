@@ -133,6 +133,10 @@ public final class TarihYankilari {
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
             TarihiKesifDunyasi.donemOzelEylem(sunucu, olay.getPos(), olay.getItemStack());
+            if (TarihiKesifDunyasi.uzakAtolyeEtkilesildi(sunucu, olay.getPos())) {
+                olay.setCanceled(true);
+                return;
+            }
             if (TarihiKesifDunyasi.sahneKapisiMi(sunucu, olay.getPos())) {
                 olay.setCanceled(true);
                 TarihiKesifDunyasi.sahneKapisiEtkilesildi(sunucu, olay.getPos());
