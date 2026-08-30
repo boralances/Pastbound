@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/template_trapdoor_top",
   "textures": {
-    "texture": "pastbound:block/uruk_cedar_trapdoor"
+    "texture": "pastbound:block/uruk_cedar_trapdoor",
+    "particle": "pastbound:block/uruk_cedar_trapdoor"
   }
 }

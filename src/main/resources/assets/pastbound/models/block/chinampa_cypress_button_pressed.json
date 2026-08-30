@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/button_pressed",
   "textures": {
-    "texture": "pastbound:block/chinampa_cypress_button"
+    "texture": "pastbound:block/chinampa_cypress_button",
+    "particle": "pastbound:block/chinampa_cypress_button"
   }
 }

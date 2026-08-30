@@ -25,11 +25,11 @@
       "y": 90
     },
     "facing=east,in_wall=true,open=true,powered=false": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 90
     },
     "facing=east,in_wall=true,open=true,powered=true": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 90
     },
     "facing=south,in_wall=false,open=false,powered=false": {
@@ -57,11 +57,11 @@
       "y": 0
     },
     "facing=south,in_wall=true,open=true,powered=false": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 0
     },
     "facing=south,in_wall=true,open=true,powered=true": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 0
     },
     "facing=west,in_wall=false,open=false,powered=false": {
@@ -89,11 +89,11 @@
       "y": 270
     },
     "facing=west,in_wall=true,open=true,powered=false": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 270
     },
     "facing=west,in_wall=true,open=true,powered=true": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 270
     },
     "facing=north,in_wall=false,open=false,powered=false": {
@@ -121,11 +121,11 @@
       "y": 180
     },
     "facing=north,in_wall=true,open=true,powered=false": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 180
     },
     "facing=north,in_wall=true,open=true,powered=true": {
-      "model": "pastbound:block/uruk_cedar_fence_gate_open_wall",
+      "model": "pastbound:block/uruk_cedar_fence_gate_wall_open",
       "y": 180
     }
   }

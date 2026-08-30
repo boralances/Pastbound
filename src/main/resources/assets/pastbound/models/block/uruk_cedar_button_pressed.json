@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/button_pressed",
   "textures": {
-    "texture": "pastbound:block/uruk_cedar_button"
+    "texture": "pastbound:block/uruk_cedar_button",
+    "particle": "pastbound:block/uruk_cedar_button"
   }
 }

@@ -9,7 +9,7 @@
   "key": {
     "C": {"item": "pastbound:chronicle_ore"},
     "T": {"item": "pastbound:time_stone"},
-    "F": {"item": "pastbound:gelistirilmis_firin_cubugu"},
+    "F": {"item": "pastbound:firin_cubugu"},
     "S": {"item": "pastbound:steel_ingot"}
   },
   "result": {

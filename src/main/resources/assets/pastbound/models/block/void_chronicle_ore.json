@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pastbound:block/void_chronicle_ore"
+    "all": "pastbound:block/void_chronicle_ore",
+    "particle": "pastbound:block/void_chronicle_ore"
   }
 }

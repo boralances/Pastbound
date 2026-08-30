@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/template_trapdoor",
   "textures": {
-    "texture": "pastbound:block/chinampa_cypress_trapdoor"
+    "texture": "pastbound:block/chinampa_cypress_trapdoor",
+    "particle": "pastbound:block/chinampa_cypress_trapdoor"
   }
 }

@@ -2,6 +2,9 @@ package dev.pastbound.history;
 
 import dev.pastbound.ModId;
 import dev.pastbound.block.entity.AncientStorageBlockEntity;
+import dev.pastbound.client.ui.FirinCubuguMenusu;
+import dev.pastbound.history.TarihBasarilari;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ChestMenu;
 import dev.pastbound.registry.ModBlocks;
@@ -127,6 +130,19 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && olay.getLevel().getBlockEntity(olay.getPos()) instanceof AncientStorageBlockEntity depolama) {
+            if (sunucu.isShiftKeyDown() && olay.getItemStack().isEmpty()) {
+                int tasinan = 0;
+                for (AncientStorageBlockEntity arsiv : yakindakiArsivler(sunucu, olay.getPos())) {
+                    tasinan += arsiv.tarihEsyaArsivle(sunucu);
+                    arsiv.sirala();
+                }
+                if (tasinan > 0) {
+                    TarihBasarilari.ver(sunucu, "archive/connected_archive");
+                }
+                sunucu.sendSystemMessage(Component.translatable(tasinan > 0 ? "message.pastbound.ancient_storage.deposited" : "message.pastbound.ancient_storage.nothing_to_archive", tasinan));
+                olay.setCanceled(true);
+                return;
+            }
             sunucu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> ChestMenu.sixRows(id, envanter, depolama), Component.translatable("container.pastbound.ancient_storage")));
             olay.setCanceled(true);
             return;
@@ -279,6 +295,17 @@ public final class TarihYankilari {
         }
     }
 
+    private static java.util.List<AncientStorageBlockEntity> yakindakiArsivler(ServerPlayer oyuncu, BlockPos merkez) {
+        java.util.List<AncientStorageBlockEntity> arsivler = new java.util.ArrayList<>();
+        for (BlockPos konum : BlockPos.betweenClosed(merkez.offset(-8, -4, -8), merkez.offset(8, 4, 8))) {
+            if (oyuncu.level().getBlockEntity(konum) instanceof AncientStorageBlockEntity arsiv && arsiv.stillValid(oyuncu)) {
+                arsivler.add(arsiv);
+            }
+        }
+        arsivler.sort(java.util.Comparator.comparingDouble(arsiv -> arsiv.getBlockPos().distSqr(merkez)));
+        return arsivler;
+    }
+
     @SubscribeEvent
     public static void oyunaGirdi(PlayerEvent.PlayerLoggedInEvent olay) {
         Player oyuncu = olay.getEntity();
@@ -291,6 +318,9 @@ public final class TarihYankilari {
         if (oyuncu.level().isClientSide()) {
             return;
         }
+        if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu && sunucu.containerMenu instanceof FirinCubuguMenusu firin) {
+            firin.tikle(sunucu);
+        }
         if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu && TarihiKesifDunyasi.canlandirmaAktifMi(sunucu)) {
             TarihiKesifDunyasi.tik(sunucu);
             return;
@@ -299,8 +329,6 @@ public final class TarihYankilari {
             TarihiKesifDunyasi.kontrolSonrasiTik(sunucu);
         }
         if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu) {
-            TarihiKesifDunyasi.dunyaGoreviniBaslat(sunucu);
-            TarihiKesifDunyasi.dunyaGoreviTik(sunucu);
             TarihiKesifDunyasi.donemOzelEylem(sunucu, sunucu.blockPosition(), ItemStack.EMPTY);
         }
         if (oyuncu.tickCount % 40 != 0) {

@@ -93,7 +93,7 @@ def duz_kare(renk, parilti=False):
             sec = orta if (x + y) % 5 else acik
             ciz.point((x, y), fill=sec + (255,))
     if parilti:
-        ciz.rectangle((6, 1, 9, 14), fill=acik + (150,))
+        ciz.rectangle((6, 1, 9, 14), fill=acik + (255,))
         ciz.point((7, 7), fill=(255, 244, 180, 255))
         ciz.point((8, 8), fill=(255, 244, 180, 255))
     return goruntu
@@ -331,22 +331,22 @@ def ahsap_doku(renk, vurgu, yatay=False, yaprak=False):
             for x in range(16):
                 if (x * 5 + y * 3) % 7 not in (0, 1):
                     ton = orta if (x + y) % 4 else acik
-                    ciz.point((x, y), fill=ton + (235,))
-        ciz.point((4, 3), fill=vurgu + (255,))
+                    ciz.point((x, y), fill=ton + (255,))
+                    ciz.point((4, 3), fill=vurgu + (255,))
         ciz.point((11, 8), fill=acik + (255,))
-        ciz.point((7, 13), fill=koyu + (230,))
+        ciz.point((7, 13), fill=koyu + (255,))
         return goruntu
     for i in range(4):
         if yatay:
             y = 2 + i * 4
             ciz.line((0, y, 15, y), fill=koyu + (255,), width=1)
-            ciz.line((0, y + 1, 15, y + 1), fill=acik + (120,), width=1)
+            ciz.line((0, y + 1, 15, y + 1), fill=acik + (255,), width=1)
         else:
             x = 2 + i * 4
             ciz.line((x, 0, x, 15), fill=koyu + (255,), width=1)
-            ciz.line((x + 1, 0, x + 1, 15), fill=acik + (120,), width=1)
+            ciz.line((x + 1, 0, x + 1, 15), fill=acik + (255,), width=1)
     ciz.point((3, 5), fill=vurgu + (255,))
-    ciz.point((12, 11), fill=vurgu + (210,))
+    ciz.point((12, 11), fill=vurgu + (255,))
     return goruntu
 
 
@@ -357,14 +357,18 @@ def ahsap_ust_doku(renk, vurgu):
     acik = karistir(renk, 38)
     ciz.rectangle((1, 1, 14, 14), outline=koyu + (255,), width=1)
     for yaricap in (3, 5, 7):
-        ciz.ellipse((8 - yaricap, 8 - yaricap, 8 + yaricap, 8 + yaricap), outline=koyu + (210,), width=1)
+        ciz.ellipse((8 - yaricap, 8 - yaricap, 8 + yaricap, 8 + yaricap), outline=koyu + (255,), width=1)
     ciz.point((8, 8), fill=vurgu + (255,))
-    ciz.point((5, 5), fill=acik + (220,))
+    ciz.point((5, 5), fill=acik + (255,))
     return goruntu
 
 
 def blok_modeli_yaz(kimlik, parent, dokular):
-    model = {"parent": parent, "textures": dokular}
+    textures = dict(dokular)
+    parcacik = textures.get("particle") or textures.get("all") or textures.get("side") or textures.get("texture") or textures.get("cross")
+    if parcacik is not None:
+        textures["particle"] = parcacik
+    model = {"parent": parent, "textures": textures}
     (varlik / "models/block" / f"{kimlik}.json").write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
@@ -386,13 +390,13 @@ def kapi_dokusu(renk, vurgu):
     orta = karistir(renk, -8)
     ciz.rectangle((0, 0, 15, 15), outline=koyu + (255,), width=1)
     ciz.line((5, 1, 5, 14), fill=koyu + (255,), width=1)
-    ciz.line((6, 1, 6, 14), fill=acik + (180,), width=1)
+    ciz.line((6, 1, 6, 14), fill=acik + (255,), width=1)
     ciz.line((10, 1, 10, 14), fill=koyu + (255,), width=1)
-    ciz.line((11, 1, 11, 14), fill=acik + (180,), width=1)
+    ciz.line((11, 1, 11, 14), fill=acik + (255,), width=1)
     ciz.rectangle((2, 3, 13, 5), fill=orta + (255,))
     ciz.rectangle((2, 10, 13, 12), fill=orta + (255,))
-    ciz.rectangle((3, 4, 12, 4), fill=acik + (200,))
-    ciz.rectangle((3, 11, 12, 11), fill=acik + (200,))
+    ciz.rectangle((3, 4, 12, 4), fill=acik + (255,))
+    ciz.rectangle((3, 11, 12, 11), fill=acik + (255,))
     ciz.rectangle((1, 2, 2, 4), fill=vurgu + (255,))
     ciz.rectangle((13, 11, 14, 13), fill=vurgu + (255,))
     ciz.rectangle((12, 7, 14, 8), fill=koyu + (255,))
@@ -408,10 +412,10 @@ def kapak_dokusu(renk, vurgu):
     ciz.rectangle((0, 0, 15, 15), outline=koyu + (255,), width=1)
     for y in (4, 8, 12):
         ciz.line((1, y, 14, y), fill=koyu + (255,), width=1)
-        ciz.line((1, y + 1, 14, y + 1), fill=acik + (170,), width=1)
+        ciz.line((1, y + 1, 14, y + 1), fill=acik + (255,), width=1)
     ciz.rectangle((2, 2, 5, 3), fill=vurgu + (255,))
-    ciz.rectangle((10, 10, 13, 11), fill=vurgu + (230,))
-    ciz.rectangle((6, 6, 9, 9), outline=acik + (220,), width=1)
+    ciz.rectangle((10, 10, 13, 11), fill=vurgu + (255,))
+    ciz.rectangle((6, 6, 9, 9), outline=acik + (255,), width=1)
     ciz.point((7, 7), fill=vurgu + (255,))
     return goruntu
 
@@ -443,9 +447,9 @@ def ahsap_familiasi_uret(prefix, renk, vurgu):
     ciz = ImageDraw.Draw(fidan)
     ciz.line((8, 14, 8, 6), fill=karistir(renk, -40) + (255,), width=1)
     ciz.line((8, 9, 4, 5), fill=vurgu + (255,), width=1)
-    ciz.line((8, 8, 12, 3), fill=vurgu + (230,), width=1)
-    ciz.rectangle((5, 4, 7, 7), fill=karistir(vurgu, 15) + (235,))
-    ciz.rectangle((10, 3, 12, 6), fill=vurgu + (235,))
+    ciz.line((8, 8, 12, 3), fill=vurgu + (255,), width=1)
+    ciz.rectangle((5, 4, 7, 7), fill=karistir(vurgu, 15) + (255,))
+    ciz.rectangle((10, 3, 12, 6), fill=vurgu + (255,))
     fidan.save(blok_dizini / f"{sapling}.png")
     ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{planks}.png")
     ahsap_doku(karistir(renk, 12), vurgu, yatay=True).save(blok_dizini / f"{slab}.png")
@@ -524,7 +528,7 @@ def ahsap_familiasi_uret(prefix, renk, vurgu):
     for facing, y in (("east", 90), ("south", 0), ("west", 270), ("north", 180)):
         for open_state in ("false", "true"):
             for in_wall in ("false", "true"):
-                model = gate + ("_open" if open_state == "true" else "") + ("_wall" if in_wall == "true" else "")
+                model = gate + ("_wall" if in_wall == "true" else "") + ("_open" if open_state == "true" else "")
                 gate_variants[f"facing={facing},in_wall={in_wall},open={open_state},powered=false"] = {"model": f"pastbound:block/{model}", "y": y}
                 gate_variants[f"facing={facing},in_wall={in_wall},open={open_state},powered=true"] = {"model": f"pastbound:block/{model}", "y": y}
     blok_durumu_yaz(gate, {"variants": gate_variants})
@@ -592,8 +596,8 @@ def celik_blok_dokusu(renk, vurgu, benekli=False):
     for y in range(2, 15, 4):
         ciz.line((1, y, 14, y - 1), fill=orta + (255,), width=1)
         ciz.line((2, y + 1, 13, y), fill=acik + (90,), width=1)
-    ciz.line((2, 2, 12, 13), fill=koyu + (170,), width=1)
-    ciz.line((5, 1, 14, 10), fill=acik + (100,), width=1)
+    ciz.line((2, 2, 12, 13), fill=koyu + (255,), width=1)
+    ciz.line((5, 1, 14, 10), fill=acik + (255,), width=1)
     for x, y in ((3, 5), (10, 4), (6, 11), (12, 12)):
         ciz.point((x, y), fill=acik + (255,))
     ciz.rectangle((4, 6, 5, 7), fill=vurgu + (255,))

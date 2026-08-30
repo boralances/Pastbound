@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from PIL import Image, ImageDraw
 
 root = Path(__file__).resolve().parents[1] / "src/main/resources/assets/pastbound/textures/block"

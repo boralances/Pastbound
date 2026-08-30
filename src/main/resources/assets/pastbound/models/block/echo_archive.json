@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pastbound:block/echo_archive"
+    "all": "pastbound:block/echo_archive",
+    "particle": "pastbound:block/echo_archive"
   }
 }

@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/pressure_plate_down",
   "textures": {
-    "texture": "pastbound:block/uruk_cedar_pressure_plate"
+    "texture": "pastbound:block/uruk_cedar_pressure_plate",
+    "particle": "pastbound:block/uruk_cedar_pressure_plate"
   }
 }

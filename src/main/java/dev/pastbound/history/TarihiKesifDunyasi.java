@@ -748,9 +748,6 @@ public final class TarihiKesifDunyasi {
         veri.remove(IZLEME_Z);
         veri.remove("pastbound_donem_ozel_sayac");
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.returned"));
-        if (hedef.dimension().equals(Level.OVERWORLD)) {
-            dunyaGoreviniBaslat(oyuncu);
-        }
     }
 
     public static void kontrolSonrasiTik(ServerPlayer oyuncu) {

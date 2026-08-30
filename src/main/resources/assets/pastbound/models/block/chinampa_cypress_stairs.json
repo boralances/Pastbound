@@ -3,6 +3,7 @@
   "textures": {
     "side": "pastbound:block/chinampa_cypress_planks",
     "bottom": "pastbound:block/chinampa_cypress_planks",
-    "top": "pastbound:block/chinampa_cypress_planks"
+    "top": "pastbound:block/chinampa_cypress_planks",
+    "particle": "pastbound:block/chinampa_cypress_planks"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "parent": "pastbound:workstations/portable_furnace",
+  "display": {
+    "icon": {
+      "id": "pastbound:gelistirilmis_firin_cubugu"
+    },
+    "title": {
+      "translate": "advancement.pastbound.portable_furnace_master.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.portable_furnace_master.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "eylem": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

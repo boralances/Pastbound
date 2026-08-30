@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/template_fence_gate_wall_open",
   "textures": {
-    "texture": "pastbound:block/uruk_cedar_fence_gate"
+    "texture": "pastbound:block/uruk_cedar_fence_gate",
+    "particle": "pastbound:block/uruk_cedar_fence_gate"
   }
 }

@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pastbound:block/uruk_cedar_stripped_wood"
+    "all": "pastbound:block/uruk_cedar_stripped_wood",
+    "particle": "pastbound:block/uruk_cedar_stripped_wood"
   }
 }

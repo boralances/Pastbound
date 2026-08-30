@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/template_orientable_trapdoor_open",
   "textures": {
-    "texture": "pastbound:block/uruk_cedar_trapdoor"
+    "texture": "pastbound:block/uruk_cedar_trapdoor",
+    "particle": "pastbound:block/uruk_cedar_trapdoor"
   }
 }

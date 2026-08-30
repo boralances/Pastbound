@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pastbound:block/resonance_pillar_charged"
+    "all": "pastbound:block/resonance_pillar_charged",
+    "particle": "pastbound:block/resonance_pillar_charged"
   }
 }

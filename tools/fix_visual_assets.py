@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+
 from PIL import Image
 
 root = Path(__file__).resolve().parents[1]

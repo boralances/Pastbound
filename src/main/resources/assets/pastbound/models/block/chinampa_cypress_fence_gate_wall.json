@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/template_fence_gate_wall",
   "textures": {
-    "texture": "pastbound:block/chinampa_cypress_fence_gate"
+    "texture": "pastbound:block/chinampa_cypress_fence_gate",
+    "particle": "pastbound:block/chinampa_cypress_fence_gate"
   }
 }

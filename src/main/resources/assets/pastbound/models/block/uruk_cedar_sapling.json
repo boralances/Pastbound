@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "pastbound:block/uruk_cedar_sapling"
+    "cross": "pastbound:block/uruk_cedar_sapling",
+    "particle": "pastbound:block/uruk_cedar_sapling"
   }
 }

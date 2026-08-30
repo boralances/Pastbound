@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pastbound:block/end_echo_ore"
+    "all": "pastbound:block/end_echo_ore",
+    "particle": "pastbound:block/end_echo_ore"
   }
 }

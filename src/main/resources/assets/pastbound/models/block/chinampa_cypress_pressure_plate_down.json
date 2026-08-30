@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/pressure_plate_down",
   "textures": {
-    "texture": "pastbound:block/chinampa_cypress_pressure_plate"
+    "texture": "pastbound:block/chinampa_cypress_pressure_plate",
+    "particle": "pastbound:block/chinampa_cypress_pressure_plate"
   }
 }

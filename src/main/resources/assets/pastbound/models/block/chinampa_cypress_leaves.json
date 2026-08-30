@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "pastbound:block/chinampa_cypress_leaves"
+    "all": "pastbound:block/chinampa_cypress_leaves",
+    "particle": "pastbound:block/chinampa_cypress_leaves"
   }
 }

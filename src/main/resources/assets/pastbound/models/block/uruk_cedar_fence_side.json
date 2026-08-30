@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/fence_side",
   "textures": {
-    "texture": "pastbound:block/uruk_cedar_fence"
+    "texture": "pastbound:block/uruk_cedar_fence",
+    "particle": "pastbound:block/uruk_cedar_fence"
   }
 }

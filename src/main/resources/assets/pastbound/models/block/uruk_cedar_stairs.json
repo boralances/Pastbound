@@ -3,6 +3,7 @@
   "textures": {
     "side": "pastbound:block/uruk_cedar_planks",
     "bottom": "pastbound:block/uruk_cedar_planks",
-    "top": "pastbound:block/uruk_cedar_planks"
+    "top": "pastbound:block/uruk_cedar_planks",
+    "particle": "pastbound:block/uruk_cedar_planks"
   }
 }

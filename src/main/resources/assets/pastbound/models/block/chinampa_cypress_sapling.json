@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "pastbound:block/chinampa_cypress_sapling"
+    "cross": "pastbound:block/chinampa_cypress_sapling",
+    "particle": "pastbound:block/chinampa_cypress_sapling"
   }
 }

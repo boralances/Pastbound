@@ -3,6 +3,7 @@
   "textures": {
     "bottom": "pastbound:block/ancient_storage_bottom",
     "side": "pastbound:block/ancient_storage_side",
-    "top": "pastbound:block/ancient_storage_top"
+    "top": "pastbound:block/ancient_storage_top",
+    "particle": "pastbound:block/ancient_storage_side"
   }
 }

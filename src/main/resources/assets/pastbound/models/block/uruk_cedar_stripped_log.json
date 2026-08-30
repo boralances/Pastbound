@@ -2,6 +2,7 @@
   "parent": "minecraft:block/cube_column",
   "textures": {
     "end": "pastbound:block/uruk_cedar_stripped_log_top",
-    "side": "pastbound:block/uruk_cedar_stripped_log"
+    "side": "pastbound:block/uruk_cedar_stripped_log",
+    "particle": "pastbound:block/uruk_cedar_stripped_log"
   }
 }

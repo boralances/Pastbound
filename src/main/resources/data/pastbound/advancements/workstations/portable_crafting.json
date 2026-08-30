@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "id": "pastbound:crafting_table_cubugu"
+    },
+    "title": {
+      "translate": "advancement.pastbound.portable_crafting.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.portable_crafting.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "eylem": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
