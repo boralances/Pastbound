@@ -323,29 +323,63 @@ public final class RelikMantigi {
 
     private static void ekTarihselEtkiUygula(Player oyuncu, RelikTanimi tanim) {
         switch (tanim) {
-            case ROSSETTA_TASI -> {
-                oyuncu.giveExperiencePoints(3);
-                yakinCanlilariAydinlat(oyuncu, 10.0D);
-            }
-            case GILGAMESH_TABLETI -> {
-                oyuncu.heal(2.0F);
-                efekt(oyuncu, MobEffects.RESISTANCE, 80, 0);
-            }
-            case ANUBIS_ANKHI -> {
-                oyuncu.setRemainingFireTicks(0);
-                oyuncu.removeEffect(MobEffects.POISON);
-                oyuncu.removeEffect(MobEffects.WITHER);
-            }
-            case MINOS_LABIRENT_MUHRU -> oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.12D, 0.0D));
-            case ROMA_AUREUSU -> oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.GOLD_NUGGET, 2));
-            case VIKING_GUNES_PUSULASI -> efekt(oyuncu, MobEffects.NIGHT_VISION, 160, 0);
-            case SAMURAY_KABZASI -> oyuncu.setAbsorptionAmount(Math.max(4.0F, oyuncu.getAbsorptionAmount()));
-            case MAYA_GUNES_CARKI -> oyuncu.giveExperiencePoints(4);
-            case INKA_QUIPUSU -> oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.STRING, 2));
-            case HARAPPA_MUHRU -> oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.CLAY_BALL, 2));
+            case ROSSETTA_TASI -> rossettaBilgisiniAc(oyuncu);
+            case GILGAMESH_TABLETI -> gilgameshDayanikliligi(oyuncu);
+            case ANUBIS_ANKHI -> anubisArindirmasi(oyuncu);
+            case MINOS_LABIRENT_MUHRU -> minosSicramasi(oyuncu);
+            case ROMA_AUREUSU -> romaAureusu(oyuncu);
+            case VIKING_GUNES_PUSULASI -> vikingGeceGorusu(oyuncu);
+            case SAMURAY_KABZASI -> samurayKoruması(oyuncu);
+            case MAYA_GUNES_CARKI -> mayaTakvimi(oyuncu);
+            case INKA_QUIPUSU -> inkaBaglari(oyuncu);
+            case HARAPPA_MUHRU -> harappaKilTabletleri(oyuncu);
             default -> {
             }
         }
+    }
+
+    private static void rossettaBilgisiniAc(Player oyuncu) {
+        oyuncu.giveExperiencePoints(3);
+        yakinCanlilariAydinlat(oyuncu, 10.0D);
+    }
+
+    private static void gilgameshDayanikliligi(Player oyuncu) {
+        oyuncu.heal(2.0F);
+        efekt(oyuncu, MobEffects.RESISTANCE, 80, 0);
+    }
+
+    private static void anubisArindirmasi(Player oyuncu) {
+        oyuncu.setRemainingFireTicks(0);
+        oyuncu.removeEffect(MobEffects.POISON);
+        oyuncu.removeEffect(MobEffects.WITHER);
+    }
+
+    private static void minosSicramasi(Player oyuncu) {
+        oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.12D, 0.0D));
+    }
+
+    private static void romaAureusu(Player oyuncu) {
+        oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.GOLD_NUGGET, 2));
+    }
+
+    private static void vikingGeceGorusu(Player oyuncu) {
+        efekt(oyuncu, MobEffects.NIGHT_VISION, 160, 0);
+    }
+
+    private static void samurayKoruması(Player oyuncu) {
+        oyuncu.setAbsorptionAmount(Math.max(4.0F, oyuncu.getAbsorptionAmount()));
+    }
+
+    private static void mayaTakvimi(Player oyuncu) {
+        oyuncu.giveExperiencePoints(4);
+    }
+
+    private static void inkaBaglari(Player oyuncu) {
+        oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.STRING, 2));
+    }
+
+    private static void harappaKilTabletleri(Player oyuncu) {
+        oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.CLAY_BALL, 2));
     }
 
     private static void ozelYankiUygula(Player oyuncu, RelikTanimi tanim) {
