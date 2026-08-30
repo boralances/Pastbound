@@ -9,13 +9,13 @@ The mod is built around a simple idea: every artefact should have a story, and t
 | Item | Current value |
 |---|---|
 | Mod | Pastbound |
-| Release | 2.5.5 |
+| Release | 2.5.6 |
 | Minecraft / NeoForge target | 26.2 / NeoForge 26.2.0.66 |
 | Curios | 16.0.0+26.2 |
 | Java | 25 |
 | Loader | NeoForge |
 | License | MIT |
-| Current release | [Pastbound v2.5.5](https://github.com/boralances/Pastbound/releases/tag/v2.5.5) |
+| Current release | [Pastbound v2.5.6](https://github.com/boralances/Pastbound/releases/tag/v2.5.6) |
 
 The version numbers above are taken from `gradle.properties`, which is the source of truth for the project version and dependency targets.
 
@@ -112,7 +112,7 @@ python3 tools/audit_assets.py
 The finished development JAR is written to:
 
 ```text
-build/libs/Pastbound-2.5.5.jar
+build/libs/Pastbound-2.5.6.jar
 ```
 
 The version in that filename changes automatically when `mod_version` in `gradle.properties` changes. Do not rename the file by hand when preparing a release; update the project version, rebuild, and let Gradle produce the matching artifact.
@@ -144,14 +144,14 @@ python3 tools/assemble_release_jar.py
 
 `assemble_release_jar.py` reads `mod_version` from `gradle.properties`, takes compiled classes from `build/classes/java/main`, takes resources from `src/main/resources`, expands the NeoForge metadata placeholders, and writes the result to `build/libs/Pastbound-<version>.jar`. The packager sorts archive entries so repeated builds are stable and easy to compare.
 
-For Pastbound 2.5.5, the fallback output is `build/libs/Pastbound-2.5.5.jar`. Before distributing it, check the archive contents and its version metadata:
+For Pastbound 2.5.6, the fallback output is `build/libs/Pastbound-2.5.6.jar`. Before distributing it, check the archive contents and its version metadata:
 
 ```bash
-unzip -p build/libs/Pastbound-2.5.5.jar META-INF/neoforge.mods.toml | grep -E 'version=|logoFile'
-unzip -l build/libs/Pastbound-2.5.5.jar | grep -E 'textures/mob_effect|pastbound_logo.png|RelikMantigi.class'
+unzip -p build/libs/Pastbound-2.5.6.jar META-INF/neoforge.mods.toml | grep -E 'version=|logoFile'
+unzip -l build/libs/Pastbound-2.5.6.jar | grep -E 'textures/mob_effect|pastbound_logo.png|RelikMantigi.class'
 ```
 
-The current 2.5.5 release contains the deterministic 512×512 logo made from the actual Time Machine texture. It does not use AI-generated logo artwork.
+The current 2.5.6 release contains the deterministic 512×512 logo made from the actual Time Machine texture. It does not use AI-generated logo artwork.
 
 ## Validation checklist
 

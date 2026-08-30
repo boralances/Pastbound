@@ -16,6 +16,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -31,7 +32,7 @@ public final class ModItems {
     public static final DeferredItem<Item> CHRONICLE_SCRAP = ITEMS.register("chronicle_scrap", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(32)));
     public static final DeferredItem<Item> HISTORY_INK = ITEMS.register("history_ink", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
     public static final DeferredItem<Item> TIME_STONE = ITEMS.register("time_stone", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
-    public static final DeferredItem<Item> ECHO_SEAL = ITEMS.register("echo_seal", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
+    public static final DeferredItem<Item> ECHO_SEAL = ITEMS.register("echo_seal", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant().rarity(Rarity.EPIC)));
     public static final DeferredItem<KronikPusulasiItem> CHRONICLE_COMPASS = ITEMS.register("chronicle_compass", registryName -> new KronikPusulasiItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
     public static final DeferredItem<ZamanMakinesiItem> ZAMAN_MAKINESI = ITEMS.register("zaman_makinesi", registryName -> new ZamanMakinesiItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
     public static final DeferredItem<FirinCubuguItem> FIRIN_CUBUGU = ITEMS.register("firin_cubugu", registryName -> new FirinCubuguItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1), false));
