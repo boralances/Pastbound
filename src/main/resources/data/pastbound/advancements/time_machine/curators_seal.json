@@ -1,0 +1,26 @@
+{
+  "parent": "pastbound:time_machine/complete_expedition",
+  "display": {
+    "icon": {
+      "id": "pastbound:echo_seal"
+    },
+    "title": {
+      "translate": "advancement.pastbound.time_machine.curators_seal.title"
+    },
+    "description": {
+      "translate": "advancement.pastbound.time_machine.curators_seal.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kesif": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 25
+  }
+}

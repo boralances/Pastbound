@@ -4,6 +4,7 @@ license="${mod_license}"
 modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
+logoFile="logo.png"
 credits="Created for CurseForge ModJam 2026"
 authors="Pastbound Team"
 description='''Pastbound turns history into a playable archaeology loop. Recover relics from lost civilizations, solve the riddles behind them, and let Curios relics bring the past back into the present.'''

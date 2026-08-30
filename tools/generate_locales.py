@@ -761,4 +761,12 @@ for locale, add in metinler.items():
         veri[f"advancement.pastbound.time_machine.{kimlik}.description"] = aciklama
     veri["advancement.pastbound.time_machine.complete_expedition.title"] = "Time Cartographer"
     veri["advancement.pastbound.time_machine.complete_expedition.description"] = "Explore every historical destination in the time machine."
+    if locale == "tr_tr":
+        veri["advancement.pastbound.time_machine.curators_seal.title"] = "Küratör Mührü"
+        veri["advancement.pastbound.time_machine.curators_seal.description"] = "Her tarihî keşif rotasını tamamla ve arşivi koru."
+        veri["message.pastbound.time_machine.curators_seal"] = "Küratör Mührü artık senin. Her tarihî rota arşivde korunmuş bir yankıya dönüştü."
+    else:
+        veri["advancement.pastbound.time_machine.curators_seal.title"] = "Curator's Seal"
+        veri["advancement.pastbound.time_machine.curators_seal.description"] = "Complete every historical expedition and preserve the archive."
+        veri["message.pastbound.time_machine.curators_seal"] = "The Curator's Seal is yours. Every historical route now has a preserved echo."
     (lang / f"{locale}.json").write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

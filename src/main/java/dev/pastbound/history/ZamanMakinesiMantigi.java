@@ -115,6 +115,13 @@ public final class ZamanMakinesiMantigi {
             if (koleksiyon != null) {
                 oyuncu.getAdvancements().award(koleksiyon, "kesif");
             }
+            AdvancementHolder sergi = ((ServerLevel) oyuncu.level()).getServer().getAdvancements().get(Identifier.fromNamespaceAndPath("pastbound", "time_machine/curators_seal"));
+            if (sergi != null) {
+                if (oyuncu.getAdvancements().award(sergi, "kesif")) {
+                    oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ECHO_SEAL.get()));
+                    oyuncu.sendSystemMessage(Component.translatable("message.pastbound.time_machine.curators_seal"));
+                }
+            }
         }
     }
 

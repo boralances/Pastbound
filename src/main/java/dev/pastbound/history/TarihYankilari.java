@@ -98,9 +98,6 @@ public final class TarihYankilari {
             olay.setCanceled(true);
             return;
         }
-        if (oyuncu instanceof ServerPlayer sunucu && olay.getState().is(ModBlocks.STEEL_ORE.get())) {
-            TarihiKesifDunyasi.dunyaCelikKirildi(sunucu);
-        }
         if (olay.getState().is(ModBlocks.ECHO_ARCHIVE.get())) {
             yankiyiBaslat(oyuncu, TarihYankisi.CATALHOYUK_EVLERI);
         } else if (olay.getState().is(net.minecraft.world.level.block.Blocks.CLAY)) {
@@ -176,10 +173,6 @@ public final class TarihYankilari {
             olay.setCanceled(true);
             return;
         }
-        if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.dunyaElektrikEtkilesildi(sunucu, olay.getPos())) {
-            olay.setCanceled(true);
-            return;
-        }
         if (olay.getLevel().getBlockState(olay.getPos()).is(ModBlocks.ECHO_ARCHIVE.get())) {
             yankiyiBaslat(oyuncu, TarihYankisi.PAPIRUS_SIFRESI);
         } else if (olay.getLevel().getBlockState(olay.getPos()).is(net.minecraft.world.level.block.Blocks.CRAFTING_TABLE)) {
@@ -197,11 +190,6 @@ public final class TarihYankilari {
     public static void varlikEtkilesildi(PlayerInteractEvent.EntityInteract olay) {
         Player oyuncu = olay.getEntity();
         if (oyuncu.level().isClientSide() || !(olay.getTarget() instanceof Villager villager)) {
-            return;
-        }
-        if (oyuncu instanceof ServerPlayer sunucu && !TarihiKesifDunyasi.boyuttaMi(sunucu) && villager.entityTags().contains("pastbound_koy_uzmani")) {
-            olay.setCanceled(true);
-            TarihiKesifDunyasi.koyUzmaniIleKonusuldu(sunucu);
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {

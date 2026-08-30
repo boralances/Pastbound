@@ -15,6 +15,9 @@
   "message.pastbound.compass.none": "Компас хроніки не знаходить поблизу історичної руди.",
   "message.pastbound.compass.found": "%s знаходиться за %s блоків на координатах %s, %s, %s.",
   "tooltip.pastbound.relic.power": "Ability: %s",
+  "tooltip.pastbound.portable_furnace": "Portable smelting: insert an ingredient and fuel, then close the menu to return unfinished stacks.",
+  "tooltip.pastbound.portable_furnace_master": "Enhanced tier: cooks at twice the normal portable-furnace speed.",
+  "tooltip.pastbound.portable_crafting": "Portable 3×3 workshop for field fabrication.",
   "tooltip.pastbound.relic.activity": "Restoration activity: %s",
   "tooltip.pastbound.relic.identify": "Knowledge cost: %s XP levels",
   "tooltip.pastbound.relic.xp": "Shift-right-click to spend %s XP levels and identify",
@@ -666,5 +669,8 @@
   "advancement.pastbound.time_machine.epidaurum_tiyatrosu.title": "Epidaurum Theater",
   "advancement.pastbound.time_machine.epidaurum_tiyatrosu.description": "Explore a living echo of theater, harbor life and the healing tradition of Asklepios on the Adriatic coast.",
   "advancement.pastbound.time_machine.complete_expedition.title": "Time Cartographer",
-  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine."
+  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine.",
+  "advancement.pastbound.time_machine.curators_seal.title": "Curator's Seal",
+  "advancement.pastbound.time_machine.curators_seal.description": "Complete every historical expedition and preserve the archive.",
+  "message.pastbound.time_machine.curators_seal": "The Curator's Seal is yours. Every historical route now has a preserved echo."
 }

@@ -15,6 +15,9 @@
   "message.pastbound.compass.none": "Kronik Pusulası yakında tarihî cevher bulamıyor.",
   "message.pastbound.compass.found": "%s, %s blok ötede bulundu: %s, %s, %s.",
   "tooltip.pastbound.relic.power": "Yetenek: %s",
+  "tooltip.pastbound.portable_furnace": "Taşınabilir eritme: malzeme ve yakıt koy; yarım kalan yığınlar kapanışta geri döner.",
+  "tooltip.pastbound.portable_furnace_master": "Geliştirilmiş seviye: normal taşınabilir fırın hızının iki katında çalışır.",
+  "tooltip.pastbound.portable_crafting": "Sahada üretim için taşınabilir 3×3 atölye.",
   "tooltip.pastbound.relic.activity": "Restorasyon etkinliği: %s",
   "tooltip.pastbound.relic.identify": "Bilgi bedeli: %s XP seviyesi",
   "tooltip.pastbound.relic.xp": "Tanımak için Shift ile sağ tıkla ve %s XP seviyesi harca",
@@ -666,5 +669,8 @@
   "advancement.pastbound.time_machine.epidaurum_tiyatrosu.title": "Epidaurum Theater",
   "advancement.pastbound.time_machine.epidaurum_tiyatrosu.description": "Explore a living echo of theater, harbor life and the healing tradition of Asklepios on the Adriatic coast.",
   "advancement.pastbound.time_machine.complete_expedition.title": "Time Cartographer",
-  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine."
+  "advancement.pastbound.time_machine.complete_expedition.description": "Explore every historical destination in the time machine.",
+  "advancement.pastbound.time_machine.curators_seal.title": "Küratör Mührü",
+  "advancement.pastbound.time_machine.curators_seal.description": "Her tarihî keşif rotasını tamamla ve arşivi koru.",
+  "message.pastbound.time_machine.curators_seal": "Küratör Mührü artık senin. Her tarihî rota arşivde korunmuş bir yankıya dönüştü."
 }

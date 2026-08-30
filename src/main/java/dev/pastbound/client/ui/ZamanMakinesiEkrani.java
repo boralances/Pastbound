@@ -11,11 +11,13 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.world.item.ItemStack;
 
 public final class ZamanMakinesiEkrani extends Screen {
     private static final int SAYFADAKI_DURAK = 4;
+    private static final Identifier PASTBOUND_LOGOSU = Identifier.parse("pastbound:textures/gui/pastbound_logo.png");
     private int seciliDonem;
     private int sayfa;
     private int mesajSayaci;
@@ -52,7 +54,8 @@ public final class ZamanMakinesiEkrani extends Screen {
         cizim.fill(sol, ust, sol + genislik, ust + yukseklik, 0xE51E242D);
         cizim.outline(sol, ust, genislik, yukseklik, 0xFFD1A55E);
         cizim.fill(sol + 10, ust + 10, sol + genislik - 10, ust + 48, 0xC63B2D3B);
-        cizim.centeredText(font, title, sol + genislik / 2, ust + 16, 0xFFF4D6A3);
+        cizim.blit(PASTBOUND_LOGOSU, sol + 14, ust + 14, sol + 42, ust + 42, 0.0F, 1.0F, 0.0F, 1.0F);
+        cizim.centeredText(font, title, sol + genislik / 2 + 16, ust + 16, 0xFFF4D6A3);
         cizim.textWithWordWrap(font, Component.translatable("screen.pastbound.time_machine.subtitle"), sol + 18, ust + 31, genislik - 36, 0xFFC7D4D9);
         cizim.text(font, Component.translatable("screen.pastbound.time_machine.inventory", zamanTasiSayisi()), sol + 16, ust + 59, zamanTasiSayisi() > 0 ? 0xFF9AD4B8 : 0xFFE0B26B);
         cizim.text(font, Component.translatable("screen.pastbound.time_machine.archive", seciliDonem + 1, TarihDonemi.values().length), sol + genislik - 150, ust + 59, 0xFFB98B52);
