@@ -318,6 +318,34 @@ public final class RelikMantigi {
             case SESSIZLIK -> efekt(oyuncu, MobEffects.INVISIBILITY, 180, 0);
         }
         ozelYankiUygula(oyuncu, tanim);
+        ekTarihselEtkiUygula(oyuncu, tanim);
+    }
+
+    private static void ekTarihselEtkiUygula(Player oyuncu, RelikTanimi tanim) {
+        switch (tanim) {
+            case ROSSETTA_TASI -> {
+                oyuncu.giveExperiencePoints(3);
+                yakinCanlilariAydinlat(oyuncu, 10.0D);
+            }
+            case GILGAMESH_TABLETI -> {
+                oyuncu.heal(2.0F);
+                efekt(oyuncu, MobEffects.RESISTANCE, 80, 0);
+            }
+            case ANUBIS_ANKHI -> {
+                oyuncu.setRemainingFireTicks(0);
+                oyuncu.removeEffect(MobEffects.POISON);
+                oyuncu.removeEffect(MobEffects.WITHER);
+            }
+            case MINOS_LABIRENT_MUHRU -> oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.12D, 0.0D));
+            case ROMA_AUREUSU -> oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.GOLD_NUGGET, 2));
+            case VIKING_GUNES_PUSULASI -> efekt(oyuncu, MobEffects.NIGHT_VISION, 160, 0);
+            case SAMURAY_KABZASI -> oyuncu.setAbsorptionAmount(Math.max(4.0F, oyuncu.getAbsorptionAmount()));
+            case MAYA_GUNES_CARKI -> oyuncu.giveExperiencePoints(4);
+            case INKA_QUIPUSU -> oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.STRING, 2));
+            case HARAPPA_MUHRU -> oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.CLAY_BALL, 2));
+            default -> {
+            }
+        }
     }
 
     private static void ozelYankiUygula(Player oyuncu, RelikTanimi tanim) {
