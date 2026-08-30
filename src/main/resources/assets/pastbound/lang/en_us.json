@@ -642,5 +642,9 @@
   "message.pastbound.period.unique_progress": "Period-specific evidence %s/%s complete. Keep searching for the next field clue.",
   "block.pastbound.ancient_storage": "Ancient Storage",
   "item.pastbound.ancient_storage": "Ancient Storage",
-  "container.pastbound.ancient_storage": "Ancient Storage Archive"
+  "container.pastbound.ancient_storage": "Ancient Storage Archive",
+  "item.pastbound.crafting_table_cubugu": "Crafting Table on a Stick",
+  "item.pastbound.gelistirilmis_firin_cubugu": "Upgraded Furnace on a Stick",
+  "screen.pastbound.relic.connect_points": "Connect the points in the correct order",
+  "screen.pastbound.relic.connect_progress": "Point sequence %s/%s"
 }

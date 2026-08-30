@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "SCS",
+    " I "
+  ],
+  "key": {
+    "P": {"item": "minecraft:oak_planks"},
+    "S": {"item": "minecraft:stick"},
+    "C": {"item": "minecraft:crafting_table"},
+    "I": {"item": "minecraft:iron_ingot"}
+  },
+  "result": {
+    "id": "pastbound:crafting_table_cubugu",
+    "count": 1
+  }
+}

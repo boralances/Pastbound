@@ -642,5 +642,9 @@
   "message.pastbound.period.unique_progress": "Dönem özel kanıtı %s/%s tamamlandı. Sahadaki diğer kanıtı bulmaya devam et.",
   "block.pastbound.ancient_storage": "Kadim Depolama",
   "item.pastbound.ancient_storage": "Kadim Depolama",
-  "container.pastbound.ancient_storage": "Kadim Depolama Arşivi"
+  "container.pastbound.ancient_storage": "Kadim Depolama Arşivi",
+  "item.pastbound.crafting_table_cubugu": "Çubukta Crafting Table",
+  "item.pastbound.gelistirilmis_firin_cubugu": "Geliştirilmiş Çubukta Fırın",
+  "screen.pastbound.relic.connect_points": "Noktaları doğru sırayla birleştir",
+  "screen.pastbound.relic.connect_progress": "Nokta sırası %s/%s"
 }

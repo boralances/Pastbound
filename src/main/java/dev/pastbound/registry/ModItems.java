@@ -6,6 +6,7 @@ import java.util.List;
 import dev.pastbound.ModId;
 import dev.pastbound.item.EchoShardItem;
 import dev.pastbound.item.FirinCubuguItem;
+import dev.pastbound.item.CraftingTableCubuguItem;
 import dev.pastbound.item.MemoryLensItem;
 import dev.pastbound.item.KronikPusulasiItem;
 import dev.pastbound.item.ZamanMakinesiItem;
@@ -34,6 +35,8 @@ public final class ModItems {
     public static final DeferredItem<KronikPusulasiItem> CHRONICLE_COMPASS = ITEMS.register("chronicle_compass", registryName -> new KronikPusulasiItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
     public static final DeferredItem<ZamanMakinesiItem> ZAMAN_MAKINESI = ITEMS.register("zaman_makinesi", registryName -> new ZamanMakinesiItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
     public static final DeferredItem<FirinCubuguItem> FIRIN_CUBUGU = ITEMS.register("firin_cubugu", registryName -> new FirinCubuguItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
+    public static final DeferredItem<FirinCubuguItem> GELISTIRILMIS_FIRIN_CUBUGU = ITEMS.register("gelistirilmis_firin_cubugu", registryName -> new FirinCubuguItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
+    public static final DeferredItem<CraftingTableCubuguItem> CRAFTING_TABLE_CUBUGU = ITEMS.register("crafting_table_cubugu", registryName -> new CraftingTableCubuguItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
     public static final DeferredItem<BlockItem> STEEL_ORE = ITEMS.registerSimpleBlockItem("steel_ore", ModBlocks.STEEL_ORE);
     public static final DeferredItem<BlockItem> DEEPSLATE_STEEL_ORE = ITEMS.registerSimpleBlockItem("deepslate_steel_ore", ModBlocks.DEEPSLATE_STEEL_ORE);
     public static final DeferredItem<BlockItem> STEEL_BLOCK = ITEMS.registerSimpleBlockItem("steel_block", ModBlocks.STEEL_BLOCK);

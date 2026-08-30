@@ -30,6 +30,8 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.CHRONICLE_COMPASS.get());
             olay.accept(ModItems.ZAMAN_MAKINESI.get());
             olay.accept(ModItems.FIRIN_CUBUGU.get());
+            olay.accept(ModItems.GELISTIRILMIS_FIRIN_CUBUGU.get());
+            olay.accept(ModItems.CRAFTING_TABLE_CUBUGU.get());
             olay.accept(ModItems.STEEL_ORE.get());
             olay.accept(ModItems.DEEPSLATE_STEEL_ORE.get());
             olay.accept(ModItems.RAW_STEEL.get());

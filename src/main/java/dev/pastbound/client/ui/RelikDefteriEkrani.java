@@ -122,6 +122,16 @@ public final class RelikDefteriEkrani extends Screen {
         }
         cizim.textWithWordWrap(font, Component.translatable("screen.pastbound.relic.activity"), sol + 14, ust + 88, genislik - 28, 0xFFC7D4D9);
         cizim.text(font, Component.translatable("screen.pastbound.relic.fragments", parcaSayisi(), 5), sol + 14, ust + 122, 0xFFE4B870);
+        int[] noktaX = {sol + 48, sol + 112, sol + 184, sol + 256, sol + 320};
+        int[] noktaY = {ust + 126, ust + 112, ust + 130, ust + 108, ust + 124};
+        for (int i = 0; i < noktaX.length; i++) {
+            if (i > 0 && parcalar[i - 1]) {
+                cizim.fill(noktaX[i - 1], noktaY[i - 1], noktaX[i] + 4, noktaY[i] + 4, 0xFF79C6A2);
+            }
+            int renk = parcalar[i] ? 0xFFE0C17C : i == parcaSayisi() ? 0xFFB98B52 : 0xFF4A4F58;
+            cizim.fill(noktaX[i] - 4, noktaY[i] - 4, noktaX[i] + 5, noktaY[i] + 5, renk);
+            cizim.centeredText(font, Component.literal(Integer.toString(i + 1)), noktaX[i], noktaY[i] - 3, 0xFF19151D);
+        }
         int kolon = genislik >= 310 ? 5 : 3;
         int butonGenislik = Math.min(54, Math.max(42, (genislik - 28 - (kolon - 1) * 5) / kolon));
         for (int i = 0; i < 5; i++) {
@@ -145,7 +155,7 @@ public final class RelikDefteriEkrani extends Screen {
     }
 
     private void parcaTikla(int parca) {
-        if (parca < 0 || parca >= parcalar.length || parcalar[parca]) {
+        if (parca < 0 || parca >= parcalar.length || parcalar[parca] || parca != parcaSayisi()) {
             return;
         }
         parcalar[parca] = true;
