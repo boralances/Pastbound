@@ -80,13 +80,7 @@ A development checkout needs a **64-bit Java 25 JDK**. The built mod requires th
 
 ## Getting the source
 
-```bash
-git clone https://github.com/boralances/Pastbound.git
-cd Pastbound
-git checkout feature/historical-interface-repair
-```
-
-The `feature/historical-interface-repair` branch contains the current polished ModJam implementation. Stable packaged builds are attached to the [GitHub Releases page](https://github.com/boralances/Pastbound/releases).
+The complete source code is available in the [Pastbound GitHub repository](https://github.com/boralances/Pastbound). Stable packaged builds are attached to the [GitHub Releases page](https://github.com/boralances/Pastbound/releases).
 
 ## Building a JAR with Gradle
 
