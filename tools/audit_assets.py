@@ -23,6 +23,19 @@ for path in assets.rglob("*.json"):
             if not texture_path.exists():
                 errors.append(f"missing_texture:{path.relative_to(root)}:{value}")
 
+for path in assets.rglob("*.json"):
+    if "/models/" not in path.as_posix():
+        continue
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        continue
+    parent = data.get("parent")
+    if isinstance(parent, str) and parent.startswith("pastbound:"):
+        parent_path = parent.removeprefix("pastbound:")
+        if parent_path not in model_paths:
+            errors.append(f"missing_parent_model:{path.relative_to(root)}:{parent}")
+
 for path in (assets / "blockstates").glob("*.json"):
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -33,7 +46,10 @@ for path in (assets / "blockstates").glob("*.json"):
         references.append(variant.get("model"))
     for part in data.get("multipart", []):
         apply = part.get("apply", {})
-        references.append(apply.get("model"))
+        if isinstance(apply, list):
+            references.extend(item.get("model") for item in apply if isinstance(item, dict))
+        else:
+            references.append(apply.get("model"))
     for reference in references:
         if isinstance(reference, str) and reference.startswith("pastbound:"):
             model = reference.removeprefix("pastbound:")
