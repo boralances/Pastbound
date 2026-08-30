@@ -775,4 +775,18 @@ for locale, add in metinler.items():
     else:
         veri["advancement.pastbound.relic.ten_resonances.title"] = "Ten Resonances"
         veri["advancement.pastbound.relic.ten_resonances.description"] = "Activate ten different historical relics and join their echoes."
+    efekt_adlari = {
+        "rossetta_bilgisi": ("Rosetta Bilgisi", "Rosetta Knowledge"),
+        "gilgamesh_dayanikliligi": ("Gılgamış Dayanıklılığı", "Gilgamesh Endurance"),
+        "anubis_arindirmasi": ("Anubis Arındırması", "Anubis Cleansing"),
+        "minos_sicramasi": ("Minos Sıçraması", "Minos Leap"),
+        "roma_aureusu": ("Roma Aureusu", "Roman Aureus"),
+        "viking_gece_gorusu": ("Viking Gece Görüşü", "Viking Night Sight"),
+        "samuray_korumasi": ("Samuray Koruması", "Samurai Guard"),
+        "maya_takvimi": ("Maya Takvimi", "Maya Calendar"),
+        "inka_baglari": ("İnka Bağları", "Inca Knots"),
+        "harappa_kil_tabletleri": ("Harappa Kil Tabletleri", "Harappan Clay Tablets"),
+    }
+    for kimlik, adlar in efekt_adlari.items():
+        veri[f"effect.pastbound.{kimlik}"] = adlar[0] if locale == "tr_tr" else adlar[1]
     (lang / f"{locale}.json").write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -674,5 +674,15 @@
   "advancement.pastbound.time_machine.curators_seal.description": "Complete every historical expedition and preserve the archive.",
   "message.pastbound.time_machine.curators_seal": "The Curator's Seal is yours. Every historical route now has a preserved echo.",
   "advancement.pastbound.relic.ten_resonances.title": "Ten Resonances",
-  "advancement.pastbound.relic.ten_resonances.description": "Activate ten different historical relics and join their echoes."
+  "advancement.pastbound.relic.ten_resonances.description": "Activate ten different historical relics and join their echoes.",
+  "effect.pastbound.rossetta_bilgisi": "Rosetta Knowledge",
+  "effect.pastbound.gilgamesh_dayanikliligi": "Gilgamesh Endurance",
+  "effect.pastbound.anubis_arindirmasi": "Anubis Cleansing",
+  "effect.pastbound.minos_sicramasi": "Minos Leap",
+  "effect.pastbound.roma_aureusu": "Roman Aureus",
+  "effect.pastbound.viking_gece_gorusu": "Viking Night Sight",
+  "effect.pastbound.samuray_korumasi": "Samurai Guard",
+  "effect.pastbound.maya_takvimi": "Maya Calendar",
+  "effect.pastbound.inka_baglari": "Inca Knots",
+  "effect.pastbound.harappa_kil_tabletleri": "Harappan Clay Tablets"
 }

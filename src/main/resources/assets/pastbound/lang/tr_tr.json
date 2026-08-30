@@ -674,5 +674,15 @@
   "advancement.pastbound.time_machine.curators_seal.description": "Her tarihî keşif rotasını tamamla ve arşivi koru.",
   "message.pastbound.time_machine.curators_seal": "Küratör Mührü artık senin. Her tarihî rota arşivde korunmuş bir yankıya dönüştü.",
   "advancement.pastbound.relic.ten_resonances.title": "On Yankının Rezonansı",
-  "advancement.pastbound.relic.ten_resonances.description": "On farklı tarihî emaneti etkinleştir ve yankılarını birleştir."
+  "advancement.pastbound.relic.ten_resonances.description": "On farklı tarihî emaneti etkinleştir ve yankılarını birleştir.",
+  "effect.pastbound.rossetta_bilgisi": "Rosetta Bilgisi",
+  "effect.pastbound.gilgamesh_dayanikliligi": "Gılgamış Dayanıklılığı",
+  "effect.pastbound.anubis_arindirmasi": "Anubis Arındırması",
+  "effect.pastbound.minos_sicramasi": "Minos Sıçraması",
+  "effect.pastbound.roma_aureusu": "Roma Aureusu",
+  "effect.pastbound.viking_gece_gorusu": "Viking Gece Görüşü",
+  "effect.pastbound.samuray_korumasi": "Samuray Koruması",
+  "effect.pastbound.maya_takvimi": "Maya Takvimi",
+  "effect.pastbound.inka_baglari": "İnka Bağları",
+  "effect.pastbound.harappa_kil_tabletleri": "Harappa Kil Tabletleri"
 }

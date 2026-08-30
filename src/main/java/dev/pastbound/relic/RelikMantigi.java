@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -362,45 +363,59 @@ public final class RelikMantigi {
     private static void rossettaBilgisiniAc(Player oyuncu) {
         oyuncu.giveExperiencePoints(3);
         yakinCanlilariAydinlat(oyuncu, 10.0D);
+        tarihselEtki(oyuncu, ModEffects.ROSSETTA_BILGISI, 160);
     }
 
     private static void gilgameshDayanikliligi(Player oyuncu) {
         oyuncu.heal(2.0F);
         efekt(oyuncu, MobEffects.RESISTANCE, 80, 0);
+        tarihselEtki(oyuncu, ModEffects.GILGAMESH_DAYANIKLILIGI, 120);
     }
 
     private static void anubisArindirmasi(Player oyuncu) {
         oyuncu.setRemainingFireTicks(0);
         oyuncu.removeEffect(MobEffects.POISON);
         oyuncu.removeEffect(MobEffects.WITHER);
+        tarihselEtki(oyuncu, ModEffects.ANUBIS_ARINDIRMASI, 120);
     }
 
     private static void minosSicramasi(Player oyuncu) {
         oyuncu.setDeltaMovement(oyuncu.getDeltaMovement().add(0.0D, 0.12D, 0.0D));
+        tarihselEtki(oyuncu, ModEffects.MINOS_SICRAMASI, 100);
     }
 
     private static void romaAureusu(Player oyuncu) {
         oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.GOLD_NUGGET, 2));
+        tarihselEtki(oyuncu, ModEffects.ROMA_AUREUSU, 140);
     }
 
     private static void vikingGeceGorusu(Player oyuncu) {
         efekt(oyuncu, MobEffects.NIGHT_VISION, 160, 0);
+        tarihselEtki(oyuncu, ModEffects.VIKING_GECE_GORUSU, 180);
     }
 
     private static void samurayKoruması(Player oyuncu) {
         oyuncu.setAbsorptionAmount(Math.max(4.0F, oyuncu.getAbsorptionAmount()));
+        tarihselEtki(oyuncu, ModEffects.SAMURAY_KORUMASI, 140);
     }
 
     private static void mayaTakvimi(Player oyuncu) {
         oyuncu.giveExperiencePoints(4);
+        tarihselEtki(oyuncu, ModEffects.MAYA_TAKVIMI, 140);
     }
 
     private static void inkaBaglari(Player oyuncu) {
         oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.STRING, 2));
+        tarihselEtki(oyuncu, ModEffects.INKA_BAGLARI, 140);
     }
 
     private static void harappaKilTabletleri(Player oyuncu) {
         oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.CLAY_BALL, 2));
+        tarihselEtki(oyuncu, ModEffects.HARAPPA_KIL_TABLETLERI, 140);
+    }
+
+    private static void tarihselEtki(Player oyuncu, net.minecraft.core.Holder<MobEffect> etki, int sure) {
+        oyuncu.addEffect(new MobEffectInstance(etki, sure, 0, false, true, true));
     }
 
     private static void ozelYankiUygula(Player oyuncu, RelikTanimi tanim) {
