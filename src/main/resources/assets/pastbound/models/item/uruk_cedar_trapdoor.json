@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/trapdoor_bottom",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "texture": "pastbound:block/uruk_cedar_trapdoor"
+    "layer0": "pastbound:block/uruk_cedar_trapdoor"
   }
 }
