@@ -7,9 +7,15 @@
     " S "
   ],
   "key": {
-    "I": {"item": "minecraft:iron_ingot"},
-    "F": {"item": "minecraft:furnace"},
-    "S": {"item": "minecraft:stick"}
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
     "id": "pastbound:firin_cubugu",

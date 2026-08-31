@@ -7,10 +7,18 @@
     " P "
   ],
   "key": {
-    "S": {"item": "pastbound:firin_cubugu"},
-    "F": {"item": "minecraft:blast_furnace"},
-    "I": {"item": "pastbound:steel_ingot"},
-    "P": {"item": "pastbound:steel_plate"}
+    "S": {
+      "item": "pastbound:firin_cubugu"
+    },
+    "F": {
+      "item": "minecraft:blast_furnace"
+    },
+    "I": {
+      "item": "pastbound:steel_ingot"
+    },
+    "P": {
+      "item": "pastbound:steel_plate"
+    }
   },
   "result": {
     "id": "pastbound:gelistirilmis_firin_cubugu",

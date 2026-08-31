@@ -30,6 +30,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.common.extensions.IEntityExtension;
@@ -645,6 +646,10 @@ public final class TarihiKesifDunyasi {
     }
 
     private static void villagerKur(ServerLevel seviye, BlockPos konum, String ad) {
+        AABB alan = new AABB(konum).inflate(2.0D);
+        for (Villager eski : seviye.getEntitiesOfClass(Villager.class, alan)) {
+            eski.discard();
+        }
         Entity varlik = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse("minecraft:villager")).create(seviye, EntitySpawnReason.COMMAND);
         if (varlik instanceof Villager koylu) {
             koylu.setPos(konum.getX() + 0.5D, konum.getY() + 1.0D, konum.getZ() + 0.5D);
