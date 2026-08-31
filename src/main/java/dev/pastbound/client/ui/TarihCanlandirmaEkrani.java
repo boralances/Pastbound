@@ -65,7 +65,7 @@ public final class TarihCanlandirmaEkrani extends Screen {
     public void extractRenderState(GuiGraphicsExtractor cizim, int fareX, int fareY, float kismi) {
         cizim.fill(0, 0, cizim.guiWidth(), cizim.guiHeight(), 0xC6111722);
         int genislik = Math.min(560, Math.max(240, cizim.guiWidth() - 24));
-        int yukseklik = Math.min(340, Math.max(220, cizim.guiHeight() - 24));
+        int yukseklik = Math.min(360, Math.max(260, cizim.guiHeight() - 24));
         int sol = (cizim.guiWidth() - genislik) / 2;
         int ust = (cizim.guiHeight() - yukseklik) / 2;
         cizim.fill(sol - 5, ust - 5, sol + genislik + 5, ust + yukseklik + 5, 0xB815111F);
@@ -73,26 +73,45 @@ public final class TarihCanlandirmaEkrani extends Screen {
         cizim.outline(sol, ust, genislik, yukseklik, 0xFFD0A25F);
         cizim.fill(sol + 12, ust + 12, sol + genislik - 12, ust + 48, 0xC93D3041);
         cizim.centeredText(font, title, sol + genislik / 2, ust + 22, 0xFFF3D59D);
+        int akısY = ust + 61;
         if (donem != null) {
-            cizim.centeredText(font, donem.adBileseni(), sol + genislik / 2, ust + 64, 0xFFF4E5C4);
-            cizim.centeredText(font, donem.odakBileseni(), sol + genislik / 2, ust + 83, 0xFFE4B870);
-            satirliMetin(cizim, donem.aciklamaBileseni(), sol + 34, ust + 110, genislik - 68, 0xFFC7D4D9, 3);
+            cizim.centeredText(font, donem.adBileseni(), sol + genislik / 2, akısY, 0xFFF4E5C4);
+            akısY += 18;
+            Component odak = donem.odakBileseni();
+            int odakSatiri = satirSayisi(odak, genislik - 68, 2);
+            satirliMetin(cizim, odak, sol + 34, akısY, genislik - 68, 0xFFE4B870, odakSatiri);
+            akısY += odakSatiri * 10 + 6;
+            Component aciklama = donem.aciklamaBileseni();
+            int aciklamaSatiri = satirSayisi(aciklama, genislik - 68, 3);
+            satirliMetin(cizim, aciklama, sol + 34, akısY, genislik - 68, 0xFFC7D4D9, aciklamaSatiri);
+            akısY += aciklamaSatiri * 10 + 10;
         }
         String asama = sayac < 80 ? "screen.pastbound.scene.phase_one" : sayac < 160 ? "screen.pastbound.scene.phase_two" : "screen.pastbound.scene.phase_three";
-        cizim.centeredText(font, Component.translatable(asama), sol + genislik / 2, ust + 169, 0xFF9FC6BE);
+        cizim.centeredText(font, Component.translatable(asama), sol + genislik / 2, akısY, 0xFF9FC6BE);
+        akısY += 18;
         String hedef = donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "screen.pastbound.scene.task_steel" : "screen.pastbound.scene.task." + donem.kimlik();
-        satirliMetin(cizim, Component.translatable(hedef), sol + 28, ust + 190, genislik - 56, 0xFFE4B870, 3);
+        Component hedefMetni = Component.translatable(hedef);
+        int hedefSatiri = satirSayisi(hedefMetni, genislik - 56, 3);
+        satirliMetin(cizim, hedefMetni, sol + 28, akısY, genislik - 56, 0xFFE4B870, hedefSatiri);
+        akısY += hedefSatiri * 10 + 8;
         if (donem != null) {
-            satirliMetin(cizim, Component.translatable("screen.pastbound.scene.ecosystem." + donem.kimlik()), sol + 28, ust + 235, genislik - 56, 0xFF9FC6BE, 2);
+            Component ekosistem = Component.translatable("screen.pastbound.scene.ecosystem." + donem.kimlik());
+            int ekosistemSatiri = satirSayisi(ekosistem, genislik - 56, 2);
+            satirliMetin(cizim, ekosistem, sol + 28, akısY, genislik - 56, 0xFF9FC6BE, ekosistemSatiri);
+            akısY += ekosistemSatiri * 10 + 8;
         }
         if (!kontrolAcik && sayac > 0) {
             String kapi = (sayac / 50) % 2 == 1 ? "screen.pastbound.scene.door_open" : "screen.pastbound.scene.door_closed";
-            cizim.centeredText(font, Component.translatable(kapi), sol + genislik / 2, ust + 268, 0xFF9FC6BE);
+            cizim.centeredText(font, Component.translatable(kapi), sol + genislik / 2, Math.min(akısY, ust + yukseklik - 62), 0xFF9FC6BE);
         }
         if (!kontrolAcik) {
             cizim.centeredText(font, Component.translatable("screen.pastbound.scene.press_d"), sol + genislik / 2, ust + yukseklik - 44, 0xFFE0B26B);
         }
         cizim.centeredText(font, Component.translatable("screen.pastbound.scene.escape_hint"), sol + genislik / 2, ust + yukseklik - 24, 0xFF7D8A92);
+    }
+
+    private int satirSayisi(Component metin, int genislik, int azamiSatir) {
+        return Math.min(azamiSatir, Math.max(1, font.split(metin, genislik).size()));
     }
 
     private void satirliMetin(GuiGraphicsExtractor cizim, Component metin, int x, int y, int genislik, int renk, int azamiSatir) {

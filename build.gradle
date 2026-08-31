@@ -106,3 +106,27 @@ idea {
         downloadJavadoc = true
     }
 }
+
+
+tasks.register('packageRelease') {
+    group = 'build'
+    description = 'Builds the processed NeoForge jar and copies it to dist with a SHA-256 sidecar.'
+    dependsOn tasks.named('jar')
+    doLast {
+        def releaseDir = layout.projectDirectory.dir('dist').asFile
+        releaseDir.mkdirs()
+        def releaseName = "${base.archivesName.get()}-${project.version}.jar"
+        def releaseJar = new File(releaseDir, releaseName)
+        def sourceJar = tasks.named('jar').get().archiveFile.get().asFile
+        java.nio.file.Files.copy(sourceJar.toPath(), releaseJar.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING)
+        def digest = java.security.MessageDigest.getInstance('SHA-256')
+        def hash = java.nio.file.Files.readAllBytes(releaseJar.toPath())
+        def hex = digest.digest(hash).collect { String.format('%02x', it) }.join()
+        new File(releaseDir, "${releaseName}.sha256").text = "${hex}  ${releaseName}\n"
+        logger.lifecycle("Release jar: ${releaseJar}")
+    }
+}
+
+ tasks.named('build') {
+    finalizedBy tasks.named('packageRelease')
+}

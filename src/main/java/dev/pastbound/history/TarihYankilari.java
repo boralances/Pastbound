@@ -15,6 +15,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
@@ -87,7 +91,6 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
-            TarihiKesifDunyasi.donemOzelEylem(sunucu, olay.getPos(), ItemStack.EMPTY);
             if (olay.getState().is(ModBlocks.STEEL_ORE.get()) && TarihiKesifDunyasi.celiKirilabilir(sunucu, olay.getPos())) {
                 TarihiKesifDunyasi.celiKirilmasi(sunucu);
                 return;
@@ -96,11 +99,8 @@ public final class TarihYankilari {
                 TarihiKesifDunyasi.anitKirildi(sunucu);
                 return;
             }
-            boolean gorevHedefi = olay.getState().is(ModBlocks.STEEL_ORE.get()) || olay.getState().is(Blocks.CLAY) || olay.getState().is(Blocks.SAND) || olay.getState().is(Blocks.COPPER_ORE) || olay.getState().is(Blocks.LAPIS_ORE) || olay.getState().is(Blocks.AMETHYST_BLOCK) || olay.getState().is(ModBlocks.ECHO_ARCHIVE.get());
-            if (!gorevHedefi || olay.getState().is(Blocks.BARRIER) || olay.getState().is(ModBlocks.RESONANCE_PILLAR.get())) {
-                olay.setCanceled(true);
-                sunucu.sendSystemMessage(Component.translatable("message.pastbound.scene.protected_block"));
-            }
+            olay.setCanceled(true);
+            sunucu.sendSystemMessage(Component.translatable("message.pastbound.scene.protected_block"));
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && olay.getState().is(ModBlocks.STEEL_ORE.get())) {
@@ -157,6 +157,10 @@ public final class TarihYankilari {
             if (TarihiKesifDunyasi.sahneKapisiMi(sunucu, olay.getPos())) {
                 olay.setCanceled(true);
                 TarihiKesifDunyasi.sahneKapisiEtkilesildi(sunucu, olay.getPos());
+                return;
+            }
+            BlockState tiklananDurum = olay.getLevel().getBlockState(olay.getPos());
+            if (tiklananDurum.getBlock() instanceof DoorBlock || tiklananDurum.getBlock() instanceof TrapDoorBlock || tiklananDurum.getBlock() instanceof FenceGateBlock) {
                 return;
             }
             if (TarihiKesifDunyasi.anitIncelenebilir(sunucu, olay.getPos()) && olay.getItemStack().is(ModItems.MEMORY_LENS.get())) {
@@ -216,7 +220,7 @@ public final class TarihYankilari {
             }
             int konusmaci = -1;
             for (int i = 0; i < 4; i++) {
-                if (villager.entityTags().contains("pastbound_sahne_" + i)) {
+                if (villager.entityTags().contains("pastbound_sahne_" + i) || villager.entityTags().contains("pastbound_dialogue_" + i)) {
                     konusmaci = i;
                     break;
                 }

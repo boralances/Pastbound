@@ -72,16 +72,24 @@ public final class TarihKoyluKonusmaEkrani extends Screen {
         cizim.centeredText(font, title, sol + genislik / 2, ust + 17, 0xFFF4D6A3);
         cizim.centeredText(font, Component.translatable("entity.pastbound.scene." + konusmaciAdi()), sol + genislik / 2, ust + 54, 0xFFF4E5C4);
         cizim.centeredText(font, donem.adBileseni(), sol + genislik / 2, ust + 70, 0xFFE4B870);
-        cizim.textWithWordWrap(font, donem.odakBileseni(), sol + 18, ust + 91, genislik - 36, 0xFFC7D4D9);
+        Component odak = donem.odakBileseni();
+        int odakSatiri = satirSayisi(odak, genislik - 36, 3);
+        satirliMetin(cizim, odak, sol + 18, ust + 91, genislik - 36, 0xFFC7D4D9, odakSatiri);
+        int cevapY = ust + 91 + odakSatiri * 10 + 8;
+        int cevapYukseklik = 0;
         if (cevapBekleniyor) {
-            cizim.fill(sol + 12, ust + 108, sol + genislik - 12, ust + 156, 0x9A162029);
-            cizim.centeredText(font, Component.translatable("screen.pastbound.dialogue.waiting"), sol + genislik / 2, ust + 127, 0xFF9FC6BE);
+            cevapYukseklik = 30;
+            cizim.fill(sol + 12, cevapY, sol + genislik - 12, cevapY + cevapYukseklik, 0x9A162029);
+            cizim.centeredText(font, Component.translatable("screen.pastbound.dialogue.waiting"), sol + genislik / 2, cevapY + 10, 0xFF9FC6BE);
         } else if (sonSecim > 0) {
-            cizim.fill(sol + 12, ust + 108, sol + genislik - 12, ust + 158, 0x9A162029);
-            cizim.text(font, Component.translatable("screen.pastbound.dialogue.response"), sol + 20, ust + 114, 0xFFE4B870);
-            cizim.textWithWordWrap(font, Component.translatable("history.pastbound.period." + donem.kimlik() + ".response_" + sonSecim), sol + 20, ust + 129, genislik - 40, 0xFFF0E1C3);
+            Component cevap = Component.translatable("history.pastbound.period." + donem.kimlik() + ".response_" + sonSecim);
+            int cevapSatiri = satirSayisi(cevap, genislik - 40, 3);
+            cevapYukseklik = 20 + cevapSatiri * 9;
+            cizim.fill(sol + 12, cevapY, sol + genislik - 12, cevapY + cevapYukseklik, 0x9A162029);
+            cizim.text(font, Component.translatable("screen.pastbound.dialogue.response"), sol + 20, cevapY + 6, 0xFFE4B870);
+            satirliMetin(cizim, cevap, sol + 20, cevapY + 19, genislik - 40, 0xFFF0E1C3, cevapSatiri);
         }
-        int butonY = ust + yukseklik - 112;
+        int butonY = butonY(ust, yukseklik, genislik, cevapY + cevapYukseklik);
         int butonGenislik = Math.max(70, (genislik - 42) / 3);
         for (int i = 0; i < 3; i++) {
             int x = sol + 12 + i * (butonGenislik + 9);
@@ -89,10 +97,29 @@ public final class TarihKoyluKonusmaEkrani extends Screen {
             cizim.fill(x, butonY, x + butonGenislik, butonY + 54, arkaPlan);
             cizim.outline(x, butonY, butonGenislik, 54, 0xFFB98B52);
             cizim.text(font, Component.literal((i + 1) + "."), x + 8, butonY + 8, 0xFFE0B26B);
-            cizim.textWithWordWrap(font, Component.translatable("history.pastbound.period." + donem.kimlik() + ".dialogue_" + (i + 1)), x + 8, butonY + 23, butonGenislik - 16, 0xFFF0E1C3);
+            satirliMetin(cizim, Component.translatable("history.pastbound.period." + donem.kimlik() + ".dialogue_" + (i + 1)), x + 8, butonY + 23, butonGenislik - 16, 0xFFF0E1C3, 2);
         }
-        cizim.centeredText(font, Component.translatable("screen.pastbound.dialogue.choose"), sol + genislik / 2, ust + yukseklik - 42, 0xFF9FC6BE);
+        cizim.centeredText(font, Component.translatable("screen.pastbound.dialogue.choose"), sol + genislik / 2, butonY + 60, 0xFF9FC6BE);
         cizim.centeredText(font, Component.translatable("screen.pastbound.close"), sol + genislik / 2, ust + yukseklik - 24, 0xFF7D8A92);
+    }
+
+    private int satirSayisi(Component metin, int genislik, int azamiSatir) {
+        return Math.min(azamiSatir, Math.max(1, font.split(metin, genislik).size()));
+    }
+
+    private void satirliMetin(GuiGraphicsExtractor cizim, Component metin, int x, int y, int genislik, int renk, int azamiSatir) {
+        int satir = 0;
+        for (var parca : font.split(metin, genislik)) {
+            if (satir >= azamiSatir) {
+                break;
+            }
+            cizim.text(font, parca, x, y + satir * 9, renk);
+            satir++;
+        }
+    }
+
+    private int butonY(int ust, int yukseklik, int genislik, int cevapAltY) {
+        return Math.max(ust + yukseklik - 112, cevapAltY + 8);
     }
 
     private String konusmaciAdi() {
@@ -125,7 +152,10 @@ public final class TarihKoyluKonusmaEkrani extends Screen {
         int yukseklik = Math.min(320, Math.max(240, height - 18));
         int sol = (width - genislik) / 2;
         int ust = (height - yukseklik) / 2;
-        int butonY = ust + yukseklik - 112;
+        int odakSatiri = satirSayisi(donem.odakBileseni(), genislik - 36, 3);
+        int cevapY = ust + 91 + odakSatiri * 10 + 8;
+        int cevapYukseklik = cevapBekleniyor ? 30 : sonSecim > 0 ? 20 + satirSayisi(Component.translatable("history.pastbound.period." + donem.kimlik() + ".response_" + sonSecim), genislik - 40, 3) * 9 : 0;
+        int butonY = butonY(ust, yukseklik, genislik, cevapY + cevapYukseklik);
         int butonGenislik = Math.max(70, (genislik - 42) / 3);
         for (int i = 0; i < 3; i++) {
             int x = sol + 12 + i * (butonGenislik + 9);

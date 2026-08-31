@@ -207,12 +207,14 @@ python3 tools/generate_relic_recipes.py
 python3 tools/generate_time_machine_data.py
 python3 tools/generate_locales.py
 ./gradlew clean build
+./gradlew packageRelease
 ```
 
-The final file is created at:
+`build` görevi işlenmiş metadata içeren geliştirme jarını `build/libs/` altında üretir. CurseForge veya mod klasöründe kullanılacak release jarını ve yanında doğrulama hash dosyasını oluşturmak için `packageRelease` çalıştırın:
 
 ```text
-Pastbound/build/libs/Pastbound-1.4.0.jar
+Pastbound/dist/Pastbound-2.6.11.jar
+Pastbound/dist/Pastbound-2.6.11.jar.sha256
 ```
 
 For Windows PowerShell, use:
@@ -236,7 +238,7 @@ If a local Gradle cache is incomplete, use:
 ./gradlew --refresh-dependencies clean build
 ```
 
-The repository also contains a sandbox-validated 1.3.0 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above.
+The repository also contains a sandbox-validated 1.3.0 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above. Do not upload the manually assembled or unprocessed `dist` artifact; use `./gradlew packageRelease`, which applies `META-INF/neoforge.mods.toml` substitutions before copying the jar.
 
 ## License
 

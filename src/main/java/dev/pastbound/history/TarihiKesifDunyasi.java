@@ -634,7 +634,7 @@ public final class TarihiKesifDunyasi {
         lokasyonZeminiKur(seviye, atölye, 6, Blocks.COBBLED_DEEPSLATE);
         koyEviKur(seviye, koy, donem);
         madenGirisiKur(seviye, maden);
-        elektrikAtolyesiKur(seviye, atölye);
+        elektrikAtolyesiKur(seviye, atölye, donem);
         gorevIsaretiKur(seviye, koy, Blocks.BELL);
         gorevIsaretiKur(seviye, maden, Blocks.LANTERN);
         gorevIsaretiKur(seviye, atölye, Blocks.REDSTONE_TORCH);
@@ -656,6 +656,12 @@ public final class TarihiKesifDunyasi {
 
     private static void koyEviKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
         Block duvar = ahsapPlanki(donem);
+        Block tema = koyTemaBlogu(donem);
+        for (int x = -3; x <= 3; x++) {
+            for (int z = -3; z <= 3; z++) {
+                seviye.setBlock(merkez.offset(x, 0, z), duvar.defaultBlockState(), 3);
+            }
+        }
         for (int y = 1; y <= 3; y++) {
             for (int x = -3; x <= 3; x++) {
                 seviye.setBlock(merkez.offset(x, y, -3), duvar.defaultBlockState(), 3);
@@ -666,10 +672,24 @@ public final class TarihiKesifDunyasi {
                 seviye.setBlock(merkez.offset(3, y, z), duvar.defaultBlockState(), 3);
             }
         }
-        seviye.setBlock(merkez, Blocks.CRAFTING_TABLE.defaultBlockState(), 3);
+        for (int x = -3; x <= 3; x++) {
+            for (int z = -3; z <= 3; z++) {
+                if (Math.abs(x) + Math.abs(z) <= 5) {
+                    seviye.setBlock(merkez.offset(x, 4, z), duvar.defaultBlockState(), 3);
+                }
+            }
+        }
+        BlockPos kapi = merkez.south(3);
+        seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
+        seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
+        Block kapı = kapisi(donem);
+        seviye.setBlock(kapi, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, false), 3);
+        seviye.setBlock(kapi.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, false), 3);
+        seviye.setBlock(merkez, tema.defaultBlockState(), 3);
         seviye.setBlock(merkez.east(), Blocks.LECTERN.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(), Blocks.BELL.defaultBlockState(), 3);
-        villagerKur(seviye, merkez.east(2), "entity.pastbound.village.archivist");
+        seviye.setBlock(merkez.north(), koyMeslekBlogu(donem).defaultBlockState(), 3);
+        villagerKur(seviye, merkez.east(2), koyUzmaniAdi(donem));
     }
 
     private static void villagerKur(ServerLevel seviye, BlockPos konum, String ad) {
@@ -680,6 +700,7 @@ public final class TarihiKesifDunyasi {
             koylu.setCustomName(Component.translatable(ad));
             koylu.setCustomNameVisible(true);
             koylu.addTag("pastbound_saha_uzmani");
+            koylu.addTag("pastbound_dialogue_3");
             seviye.addFreshEntity(koylu);
         }
     }
@@ -690,6 +711,12 @@ public final class TarihiKesifDunyasi {
                 seviye.setBlock(merkez.offset(x, y, -2), Blocks.DEEPSLATE_BRICKS.defaultBlockState(), 3);
             }
         }
+        BlockPos kapi = merkez.north(2);
+        seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
+        seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
+        Block kapı = ModBlocks.NETHER_WART_DOOR.get();
+        seviye.setBlock(kapi, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, false), 3);
+        seviye.setBlock(kapi.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, false), 3);
         for (int i = -2; i <= 2; i++) {
             seviye.setBlock(merkez.offset(i, 1, 0), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
             seviye.setBlock(merkez.offset(i, 2, 0), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
@@ -698,11 +725,31 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(merkez.south(3), Blocks.FURNACE.defaultBlockState(), 3);
     }
 
-    private static void elektrikAtolyesiKur(ServerLevel seviye, BlockPos merkez) {
-        for (int x = -4; x <= 4; x++) {
-            seviye.setBlock(merkez.offset(x, 1, -3), Blocks.COPPER_BLOCK.weathering().unaffected().defaultBlockState(), 3);
-            seviye.setBlock(merkez.offset(x, 1, 3), Blocks.COPPER_BLOCK.weathering().unaffected().defaultBlockState(), 3);
+    private static void elektrikAtolyesiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
+        Block duvar = Blocks.COPPER_BLOCK.weathering().unaffected();
+        for (int y = 1; y <= 3; y++) {
+            for (int x = -4; x <= 4; x++) {
+                seviye.setBlock(merkez.offset(x, y, -3), duvar.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(x, y, 3), duvar.defaultBlockState(), 3);
+            }
+            for (int z = -2; z <= 2; z++) {
+                seviye.setBlock(merkez.offset(-4, y, z), duvar.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(4, y, z), duvar.defaultBlockState(), 3);
+            }
         }
+        for (int x = -4; x <= 4; x++) {
+            for (int z = -3; z <= 3; z++) {
+                if (Math.abs(x) + Math.abs(z) <= 6) {
+                    seviye.setBlock(merkez.offset(x, 4, z), duvar.defaultBlockState(), 3);
+                }
+            }
+        }
+        BlockPos kapi = merkez.south(3);
+        seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
+        seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
+        Block kapı = kapisi(donem);
+        seviye.setBlock(kapi, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, false), 3);
+        seviye.setBlock(kapi.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, false), 3);
         seviye.setBlock(merkez, ModBlocks.RESONANCE_PILLAR.get().defaultBlockState(), 3);
         seviye.setBlock(merkez.east(2), Blocks.REDSTONE_BLOCK.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(2), Blocks.COPPER_BLOCK.weathering().unaffected().defaultBlockState(), 3);
@@ -726,7 +773,7 @@ public final class TarihiKesifDunyasi {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         boolean yakin = false;
         for (Entity varlik : oyuncu.level().getEntitiesOfClass(Entity.class, oyuncu.getBoundingBox().inflate(5.0D))) {
-            if (varlik.entityTags().contains("pastbound_sahne_" + konusmaci)) {
+            if (varlik.entityTags().contains("pastbound_sahne_" + konusmaci) || varlik.entityTags().contains("pastbound_dialogue_" + konusmaci)) {
                 yakin = true;
                 break;
             }
@@ -1078,6 +1125,7 @@ public final class TarihiKesifDunyasi {
         if (seviye.dimension().equals(Level.OVERWORLD)) {
             return;
         }
+        modNPCleriTemizle(seviye, merkez);
         Block dekor = dekorBlogu(donem);
         BlockState zemin = zeminBlogu(donem).defaultBlockState();
         BlockState kenar = dekor.defaultBlockState();
@@ -1110,6 +1158,7 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(merkez.west(3), dekor.defaultBlockState(), 3);
         tarihiYapiKur(seviye, merkez, donem);
         sahneAcikGecidiniKur(seviye, merkez);
+        sahneKapisiKur(seviye, merkez, donem);
         gorevYolunuAmetistleKur(seviye, merkez);
         gorevVarliklariniKur(seviye, merkez, donem);
         sahneAktorleriniKur(seviye, merkez, donem);
@@ -1202,6 +1251,47 @@ public final class TarihiKesifDunyasi {
         }
     }
 
+    private static Block kapisi(TarihDonemi donem) {
+        return chinampaDonemiMi(donem) ? ModBlocks.CHINAMPA_CYPRESS_DOOR.get() : ModBlocks.URUK_CEDAR_DOOR.get();
+    }
+
+    private static Block koyTemaBlogu(TarihDonemi donem) {
+        return switch (donem) {
+            case URUK_YAZI_EVI -> Blocks.CLAY;
+            case TERMOPIL_SAVASI -> Blocks.STONE_BRICKS;
+            case ISKENDERIYE_KUTUPHANESI, BAGDAT_BILGI_EVI -> Blocks.BOOKSHELF;
+            case BAGDAT_PILI_ATOLYESI -> Blocks.COPPER_BLOCK.weathering().unaffected();
+            case ANTIKITHERA_LIMANI -> Blocks.POLISHED_DEEPSLATE;
+            case TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> Blocks.SANDSTONE;
+            case TENOKTITLAN_GECIDI -> Blocks.PRISMARINE;
+            case POLINEZYA_YILDIZ_YOLU -> Blocks.LAPIS_BLOCK;
+            case CATALHOYUK_YERLESKESI -> Blocks.TERRACOTTA;
+            case APOLLO_AY_ISTIGI -> Blocks.IRON_BLOCK;
+            case EPIDAURUM_TİYATROSU -> Blocks.CALCITE;
+        };
+    }
+
+    private static Block koyMeslekBlogu(TarihDonemi donem) {
+        return switch (donem) {
+            case URUK_YAZI_EVI, ISKENDERIYE_KUTUPHANESI, BAGDAT_BILGI_EVI -> Blocks.LECTERN;
+            case TERMOPIL_SAVASI, BAGDAT_PILI_ATOLYESI -> Blocks.SMITHING_TABLE;
+            case ANTIKITHERA_LIMANI, APOLLO_AY_ISTIGI, TENOKTITLAN_GECIDI, POLINEZYA_YILDIZ_YOLU -> Blocks.CARTOGRAPHY_TABLE;
+            case TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> Blocks.LOOM;
+            case CATALHOYUK_YERLESKESI -> Blocks.STONECUTTER;
+            case EPIDAURUM_TİYATROSU -> Blocks.CRAFTING_TABLE;
+        };
+    }
+
+    private static String koyUzmaniAdi(TarihDonemi donem) {
+        return switch (donem) {
+            case BAGDAT_PILI_ATOLYESI -> "entity.pastbound.power.engineer";
+            case TERMOPIL_SAVASI, ANTIKITHERA_LIMANI -> "entity.pastbound.scene.engineer";
+            case TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> "entity.pastbound.scene.scribe";
+            case TENOKTITLAN_GECIDI, POLINEZYA_YILDIZ_YOLU -> "entity.pastbound.scene.archaeologist";
+            default -> "entity.pastbound.village.archivist";
+        };
+    }
+
     private static Block ahsapPlanki(TarihDonemi donem) {
         return donem == TarihDonemi.TENOKTITLAN_GECIDI || donem == TarihDonemi.POLINEZYA_YILDIZ_YOLU || donem == TarihDonemi.ANTIKITHERA_LIMANI || donem == TarihDonemi.ISKENDERIYE_KUTUPHANESI || donem == TarihDonemi.TERMOPIL_SAVASI || donem == TarihDonemi.APOLLO_AY_ISTIGI ? ModBlocks.CHINAMPA_CYPRESS_PLANKS.get() : ModBlocks.URUK_CEDAR_PLANKS.get();
     }
@@ -1231,6 +1321,19 @@ public final class TarihiKesifDunyasi {
         BlockState ust = seviye.getBlockState(alt.above());
         if (ust.getBlock() instanceof DoorBlock) {
             seviye.setBlock(alt.above(), ust.setValue(DoorBlock.OPEN, acik), 3);
+        }
+    }
+
+    private static void modNPCleriTemizle(ServerLevel seviye, BlockPos merkez) {
+        for (Entity varlik : seviye.getEntitiesOfClass(Entity.class, new net.minecraft.world.phys.AABB(merkez).inflate(60.0D))) {
+            if (varlik.entityTags().contains("pastbound_sahne")
+                    || varlik.entityTags().contains("pastbound_durak_0")
+                    || varlik.entityTags().contains("pastbound_durak_1")
+                    || varlik.entityTags().contains("pastbound_durak_2")
+                    || varlik.entityTags().contains("pastbound_saha_uzmani")
+                    || varlik.entityTags().contains("pastbound_koy_uzmani")) {
+                varlik.discard();
+            }
         }
     }
 

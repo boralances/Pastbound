@@ -65,11 +65,11 @@ public final class ZamanMakinesiEkrani extends Screen {
             cizim.fill(x, y, x + kartGenislik, y + kartYukseklik, secili ? 0xD64C5C5E : 0xB52A343C);
             cizim.outline(x, y, kartGenislik, kartYukseklik, secili ? 0xFFE6C37A : 0xFF68747A);
             cizim.text(font, Component.literal((i + 1) + ". ").append(donem.adBileseni()), x + 8, y + 7, 0xFFF4E5C4);
-            if (kartYukseklik >= 44) {
-                cizim.textWithWordWrap(font, donem.odakBileseni(), x + 8, y + 23, kartGenislik - 16, 0xFFE1B56C);
+            if (kartYukseklik >= 40) {
+                satirliMetin(cizim, donem.odakBileseni(), x + 8, y + 23, kartGenislik - 16, 0xFFE1B56C, 2);
             }
-            if (kartYukseklik >= 64) {
-                cizim.textWithWordWrap(font, donem.aciklamaBileseni(), x + 8, y + 40, kartGenislik - 16, 0xFFB9C8C9);
+            if (kartYukseklik >= 58) {
+                satirliMetin(cizim, donem.aciklamaBileseni(), x + 8, y + 40, kartGenislik - 16, 0xFFB9C8C9, 2);
             }
         }
         if (seciliDonem >= 0 && seciliDonem < TarihDonemi.values().length) {
@@ -143,6 +143,17 @@ public final class ZamanMakinesiEkrani extends Screen {
         return Math.min(450, Math.max(220, height - 16));
     }
 
+    private void satirliMetin(GuiGraphicsExtractor cizim, Component metin, int x, int y, int genislik, int renk, int azamiSatir) {
+        int satir = 0;
+        for (var parca : font.split(metin, genislik)) {
+            if (satir >= azamiSatir) {
+                break;
+            }
+            cizim.text(font, parca, x, y + satir * 9, renk);
+            satir++;
+        }
+    }
+
     private int sutunSayisi() {
         int genislik = panelGenislik();
         if (genislik >= 560) {
@@ -160,6 +171,6 @@ public final class ZamanMakinesiEkrani extends Screen {
 
     private int kartYukseklik() {
         int satir = (TarihDonemi.values().length + sutunSayisi() - 1) / sutunSayisi();
-        return Math.max(30, Math.min(70, (panelYukseklik() - 132 - (satir - 1) * 8) / satir));
+        return Math.max(30, Math.min(70, (panelYukseklik() - 162 - (satir - 1) * 8) / satir));
     }
 }
