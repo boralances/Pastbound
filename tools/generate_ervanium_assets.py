@@ -51,11 +51,3 @@ smelt = {
 }
 (RECIPES / "ervanium_ingot_from_smelting.json").write_text(json.dumps(smelt, indent=2) + "\n", encoding="utf-8")
 
-template = {
-    "type": "minecraft:crafting_shaped",
-    "category": "misc",
-    "pattern": ["SES", "ENE", "SES"],
-    "key": {"S": {"item": "minecraft:netherite_scrap"}, "E": {"item": "pastbound:ervanium_ingot"}, "N": {"item": "pastbound:ervanium_smithing_template"}},
-    "result": {"id": "pastbound:ervanium_smithing_template", "count": 2},
-}
-(RECIPES / "ervanium_smithing_template_duplicate.json").write_text(json.dumps(template, indent=2) + "\n", encoding="utf-8")
