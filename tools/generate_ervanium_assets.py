@@ -32,16 +32,21 @@ for name, color in items.items():
     definition = {"model": {"type": "minecraft:model", "model": f"pastbound:item/{name}"}}
     (ASSETS / "items" / f"{name}.json").write_text(json.dumps(definition, indent=2) + "\n", encoding="utf-8")
 
-def shaped(name, pattern, key, count=1):
-    data = {"type": "minecraft:crafting_shaped", "category": "equipment", "pattern": pattern, "key": key, "result": {"id": f"pastbound:{name}", "count": count}}
+def smithing(name, base):
+    data = {
+        "type": "minecraft:smithing_transform",
+        "template": "pastbound:ervanium_smithing_template",
+        "base": f"minecraft:{base}",
+        "addition": "pastbound:ervanium_ingot",
+        "result": {"id": f"pastbound:{name}"},
+    }
     (RECIPES / f"{name}.json").write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
-ingot = {"E": {"item": "pastbound:ervanium_ingot"}}
-shaped("ervanium_helmet", ["EEE", "E E"], ingot)
-shaped("ervanium_chestplate", ["E E", "EEE", "EEE"], ingot)
-shaped("ervanium_leggings", ["EEE", "E E", "E E"], ingot)
-shaped("ervanium_boots", ["E E", "E E"], ingot)
-shaped("ervanium_sword", ["E", "E", "S"], {"E": {"item": "pastbound:ervanium_ingot"}, "S": {"item": "minecraft:stick"}})
+smithing("ervanium_helmet", "diamond_helmet")
+smithing("ervanium_chestplate", "diamond_chestplate")
+smithing("ervanium_leggings", "diamond_leggings")
+smithing("ervanium_boots", "diamond_boots")
+smithing("ervanium_sword", "diamond_sword")
 
 smelt = {
     "type": "minecraft:smelting",
