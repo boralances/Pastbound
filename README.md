@@ -2,7 +2,7 @@
 
 **Pastbound** is a CurseForge ModJam 2026 entry for **“Echoes of the Past.”** The mod treats history as a playable force rather than a decorative background. Forgotten civilizations leave behind physical relics; players recover their stories through independent restoration fragments, place them in a Curios relic slot, and bring a historical ability into the present.
 
-Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current release archive is named **`Pastbound-2.8.0.jar`**.
+Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current release archive is named **`Pastbound-3.5.0.jar`**.
 
 ## Design pitch
 
@@ -190,55 +190,9 @@ Pastbound/
             ├── advancements/history/
             ├── advancements/time_machine/
             ├── loot_table/
-            ├── recipes/
+            ├── recipe/
             └── tags/
 ```
-
-## Build instructions
-
-Install a **64-bit Java 25 JDK** and verify that Gradle sees it. From the project root, regenerate source-controlled assets and run:
-
-```bash
-cd Pastbound
-java -version
-./gradlew --version
-python3 tools/generate_relic_assets.py
-python3 tools/generate_relic_recipes.py
-python3 tools/generate_time_machine_data.py
-python3 tools/generate_locales.py
-./gradlew clean build
-./gradlew packageRelease
-```
-
-`build` görevi işlenmiş metadata içeren geliştirme jarını `build/libs/` altında üretir. CurseForge veya mod klasöründe kullanılacak release jarını ve yanında doğrulama hash dosyasını oluşturmak için `packageRelease` çalıştırın:
-
-```text
-Pastbound/dist/Pastbound-2.8.0.jar
-Pastbound/dist/Pastbound-2.8.0.jar.sha256
-```
-
-For Windows PowerShell, use:
-
-```powershell
-cd Pastbound
-java -version
-.\gradlew.bat clean build
-```
-
-The development client and server tasks are:
-
-```bash
-./gradlew runClient
-./gradlew runServer
-```
-
-If a local Gradle cache is incomplete, use:
-
-```bash
-./gradlew --refresh-dependencies clean build
-```
-
-The repository also contains a sandbox-validated 1.3.0 JAR built from the manually verified mapped 26.2 classpath. On a low-memory environment where the NeoForm decompiler is killed before `compileJava`, regenerate textures and locales, compile the Java sources with a Java 25 compiler, stage the resulting classes under `build/classes/java/main`, and run the normal Gradle `jar` task while excluding only `compileJava` and `neoFormDecompile`. A normal development machine with sufficient memory should use the standard `./gradlew clean build` command above. Do not upload the manually assembled or unprocessed `dist` artifact; use `./gradlew packageRelease`, which applies `META-INF/neoforge.mods.toml` substitutions before copying the jar.
 
 ## License
 
