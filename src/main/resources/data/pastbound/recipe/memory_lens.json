@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "pastbound_memory_lens",
+  "pattern": [
+    " G ",
+    "AEA",
+    " G "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "E": {
+      "item": "pastbound:echo_shard"
+    }
+  },
+  "result": {
+    "id": "pastbound:memory_lens",
+    "count": 1
+  }
+}

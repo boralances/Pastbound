@@ -32,7 +32,7 @@ public final class PastboundKomutlari {
                 .then(Commands.literal("help").executes(komut -> {
                     komut.getSource().sendSuccess(() -> Component.literal("/pastbound progress - show completed dimensions"), false);
                     komut.getSource().sendSuccess(() -> Component.literal("/pastbound wiki - give the in-game field wiki"), false);
-                    komut.getSource().sendSuccess(() -> Component.literal("/pastbound unlock_recipes - unlock all Pastbound recipes (OP)"), false);
+                    komut.getSource().sendSuccess(() -> Component.literal("/pastbound unlock_recipes - unlock all Pastbound recipes"), false);
                     komut.getSource().sendSuccess(() -> Component.literal("/pastbound test_kit - give coal, torches, pickaxe and steel tools"), false);
                     return 1;
                 }))
@@ -42,7 +42,7 @@ public final class PastboundKomutlari {
                     komut.getSource().sendSuccess(() -> Component.literal("Pastbound Field Wiki given."), false);
                     return 1;
                 }))
-                .then(Commands.literal("unlock_recipes").requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER)).executes(komut -> {
+                .then(Commands.literal("unlock_recipes").executes(komut -> {
                     ServerPlayer oyuncu = komut.getSource().getPlayerOrException();
                     var tarifler = oyuncu.level().getServer().getRecipeManager().getRecipes().stream()
                             .filter(tarif -> tarif.id().identifier().getNamespace().equals(ModId.MOD_ID))
