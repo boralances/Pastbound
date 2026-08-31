@@ -3,6 +3,7 @@ package dev.pastbound;
 import dev.pastbound.block.ResonancePillarBlock;
 import dev.pastbound.block.entity.EchoArchiveBlockEntity;
 import dev.pastbound.registry.ModBlocks;
+import dev.pastbound.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -25,7 +26,7 @@ public final class PastboundMemory {
         Level seviye = baglam.getLevel();
         BlockPos konum = baglam.getClickedPos();
         Player oyuncu = baglam.getPlayer();
-        if (oyuncu == null || !(seviye.getBlockEntity(konum) instanceof EchoArchiveBlockEntity arsiv)) {
+        if (oyuncu == null || !(seviye.getBlockEntity(konum) instanceof EchoArchiveBlockEntity arsiv) || !baglam.getItemInHand().is(ModItems.ECHO_SHARD.get())) {
             return InteractionResult.PASS;
         }
         if (arsiv.isComplete()) {

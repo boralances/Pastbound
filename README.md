@@ -9,13 +9,13 @@ The mod is built around a simple idea: every artefact should have a story, and t
 | Item | Current value |
 |---|---|
 | Mod | Pastbound |
-| Release | 2.5.7 |
+| Release | 2.5.8 |
 | Minecraft / NeoForge target | 26.2 / NeoForge 26.2.0.66 |
 | Curios | 16.0.0+26.2 |
 | Java | 25 |
 | Loader | NeoForge |
 | License | MIT |
-| Current release | [Pastbound v2.5.7](https://github.com/boralances/Pastbound/releases/tag/v2.5.7) |
+| Current release | [Pastbound v2.5.8](https://github.com/boralances/Pastbound/releases/tag/v2.5.8) |
 
 The version numbers above are taken from `gradle.properties`, which is the source of truth for the project version and dependency targets.
 
@@ -33,7 +33,7 @@ The Time Machine is an interactive historical observatory rather than a simple t
 
 | System | Purpose in the mod |
 |---|---|
-| Echo Archive and Resonance Pillars | Recover and replay historical witness memories. |
+| Echo Archive and Resonance Pillars | Recover and replay historical witness memories with validated Echo Shards. |
 | Relic Journal | Provide the player’s research log, restoration interface, and progression view. |
 | Curios relic slot | Turn restored relics into a deliberate equipment loadout. |
 | Time Machine | Travel to themed historical dimensions through a mission-focused interface. |
@@ -44,7 +44,7 @@ The Time Machine is an interactive historical observatory rather than a simple t
 | Global historical events | Rotate server-wide historical periods and unlock related echo trials. |
 | Advancements | Track relic research, time-machine expeditions, workstations, archives, and the Curator’s Seal. |
 
-The portable furnace also has an enhanced tier with faster processing. Ancient Storage is designed as an in-world archive rather than a generic technology network: it compacts matching stacks, sorts deterministically, and supports quick archiving with **Shift-right-click**.
+The portable furnace also has an enhanced tier with faster processing. Ancient Storage is designed as an in-world archive rather than a generic technology network: it compacts matching stacks, sorts deterministically, and supports quick archiving with **Shift-right-click**. Ancient Storage and Echo Archive use explicit inventory item models and textures, so they remain identifiable outside the world.
 
 ## Relics and custom effects
 
@@ -106,7 +106,7 @@ python3 tools/audit_assets.py
 The finished development JAR is written to:
 
 ```text
-build/libs/Pastbound-2.5.7.jar
+build/libs/Pastbound-2.5.8.jar
 ```
 
 The version in that filename changes automatically when `mod_version` in `gradle.properties` changes. Do not rename the file by hand when preparing a release; update the project version, rebuild, and let Gradle produce the matching artifact.
@@ -138,14 +138,14 @@ python3 tools/assemble_release_jar.py
 
 `assemble_release_jar.py` reads `mod_version` from `gradle.properties`, takes compiled classes from `build/classes/java/main`, takes resources from `src/main/resources`, expands the NeoForge metadata placeholders, and writes the result to `build/libs/Pastbound-<version>.jar`. The packager sorts archive entries so repeated builds are stable and easy to compare.
 
-For Pastbound 2.5.7, the fallback output is `build/libs/Pastbound-2.5.7.jar`. Before distributing it, check the archive contents and its version metadata:
+For Pastbound 2.5.8, the fallback output is `build/libs/Pastbound-2.5.8.jar`. Before distributing it, check the archive contents and its version metadata:
 
 ```bash
-unzip -p build/libs/Pastbound-2.5.7.jar META-INF/neoforge.mods.toml | grep -E 'version=|logoFile'
-unzip -l build/libs/Pastbound-2.5.7.jar | grep -E 'textures/mob_effect|pastbound_logo.png|RelikMantigi.class'
+unzip -p build/libs/Pastbound-2.5.8.jar META-INF/neoforge.mods.toml | grep -E 'version=|logoFile'
+unzip -l build/libs/Pastbound-2.5.8.jar | grep -E 'textures/mob_effect|pastbound_logo.png|RelikMantigi.class'
 ```
 
-The current 2.5.7 release contains the deterministic 512×512 logo made from the actual Time Machine texture. It does not use AI-generated logo artwork.
+The current 2.5.8 release contains the deterministic 512×512 logo made from the actual Time Machine texture. It does not use AI-generated logo artwork. Dimension distance hints are sent once per expedition instead of repeatedly filling the chat.
 
 ## Validation checklist
 

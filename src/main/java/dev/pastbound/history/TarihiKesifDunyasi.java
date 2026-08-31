@@ -23,6 +23,8 @@ import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -47,6 +49,7 @@ public final class TarihiKesifDunyasi {
     private static final String CELIK_GOREV_ASAMASI = "pastbound_celik_gorev_asamasi";
     private static final String CELIK_DAMAR_SAYISI = "pastbound_celik_damar_sayisi";
     private static final String YURUME_MESAFESI = "pastbound_yurume_mesafesi";
+    private static final String MESAFE_IPUCU_GONDERILDI = "pastbound_mesafe_ipucu_gonderildi";
     private static final String IZLEME_X = "pastbound_izleme_x";
     private static final String IZLEME_Y = "pastbound_izleme_y";
     private static final String IZLEME_Z = "pastbound_izleme_z";
@@ -128,6 +131,7 @@ public final class TarihiKesifDunyasi {
         veri.putInt(CELIK_GOREV_ASAMASI, donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? 1 : 0);
         veri.putInt(CELIK_DAMAR_SAYISI, 0);
         veri.putDouble(YURUME_MESAFESI, 0.0D);
+        veri.putBoolean(MESAFE_IPUCU_GONDERILDI, false);
         veri.remove(IZLEME_X);
         veri.remove(IZLEME_Y);
         veri.remove(IZLEME_Z);
@@ -704,11 +708,27 @@ public final class TarihiKesifDunyasi {
         oyuncu.sendSystemMessage(Component.translatable("history.pastbound.period." + donem.kimlik() + ".response_" + secim));
         PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.konusmaCevabi(donem.kimlik(), konusmaci, secim));
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
-        int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | (1 << konusmaci);
-        veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
+        int konusmaBiti = 1 << konusmaci;
+        int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+        if ((gorevMaskesi & konusmaBiti) != 0) {
+            return;
+        }
+        veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi | konusmaBiti);
+        tanikSecimOdulu(oyuncu, secim);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_talk", konusmaci + 1));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.choice_reward", Component.translatable("message.pastbound.scene.choice_" + secim)));
         goreviKontrolEt(oyuncu);
         oyuncu.level().playSound(null, oyuncu.blockPosition(), net.minecraft.sounds.SoundEvents.VILLAGER_TRADE, net.minecraft.sounds.SoundSource.NEUTRAL, 0.8F, 1.0F + secim * 0.08F);
+    }
+
+    private static void tanikSecimOdulu(ServerPlayer oyuncu, int secim) {
+        switch (secim) {
+            case 1 -> oyuncu.addEffect(new MobEffectInstance(MobEffects.HASTE, 240, 0, false, true, true));
+            case 2 -> oyuncu.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0, false, true, true));
+            case 3 -> oyuncu.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 200, 0, false, true, true));
+            default -> {
+            }
+        }
     }
 
     public static void don(ServerPlayer oyuncu) {
@@ -743,6 +763,7 @@ public final class TarihiKesifDunyasi {
         veri.remove(CELIK_GOREV_ASAMASI);
         veri.remove(CELIK_DAMAR_SAYISI);
         veri.remove(YURUME_MESAFESI);
+        veri.remove(MESAFE_IPUCU_GONDERILDI);
         veri.remove(IZLEME_X);
         veri.remove(IZLEME_Y);
         veri.remove(IZLEME_Z);
@@ -786,7 +807,8 @@ public final class TarihiKesifDunyasi {
             gorevMaskesi |= 1024;
             veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_distance"));
-        } else if (yuruneMesafe < YURUME_HEDEFI_BLOK && oyuncu.tickCount % 100 == 0) {
+        } else if (yuruneMesafe < YURUME_HEDEFI_BLOK && !veri.getBooleanOr(MESAFE_IPUCU_GONDERILDI, false)) {
+            veri.putBoolean(MESAFE_IPUCU_GONDERILDI, true);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_distance_progress", Math.round(yuruneMesafe), Math.round(YURUME_HEDEFI_BLOK)));
         }
                 uzakLokasyonlariIzle(oyuncu);

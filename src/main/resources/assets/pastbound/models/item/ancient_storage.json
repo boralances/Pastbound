@@ -1,3 +1,6 @@
 {
-  "parent": "pastbound:block/ancient_storage"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "pastbound:item/ancient_storage"
+  }
 }
