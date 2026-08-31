@@ -29,6 +29,7 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.ECHO_SEAL.get());
             olay.accept(ModItems.CHRONICLE_COMPASS.get());
             olay.accept(ModItems.ZAMAN_MAKINESI.get());
+            olay.accept(ModItems.TARIH_WIKI.get());
             olay.accept(ModItems.FIRIN_CUBUGU.get());
             olay.accept(ModItems.GELISTIRILMIS_FIRIN_CUBUGU.get());
             olay.accept(ModItems.CRAFTING_TABLE_CUBUGU.get());
@@ -45,6 +46,8 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.ASH_CHRONICLE_ORE.get());
             olay.accept(ModItems.END_ECHO_ORE.get());
             olay.accept(ModItems.VOID_CHRONICLE_ORE.get());
+            olay.accept(ModItems.ERVANIUM_ORE.get());
+            olay.accept(ModItems.ERVANIUM_SMITHING_TEMPLATE.get());
             ModItems.RELIKLER.forEach(relik -> olay.accept(relik.get()));
             ModItems.TARIHI_AHSAP_ITEMLERI.forEach(item -> olay.accept(item.get()));
         }

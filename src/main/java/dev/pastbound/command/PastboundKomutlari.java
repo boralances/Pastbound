@@ -31,7 +31,24 @@ public final class PastboundKomutlari {
                 }))
                 .then(Commands.literal("help").executes(komut -> {
                     komut.getSource().sendSuccess(() -> Component.literal("/pastbound progress - show completed dimensions"), false);
+                    komut.getSource().sendSuccess(() -> Component.literal("/pastbound wiki - give the in-game field wiki"), false);
+                    komut.getSource().sendSuccess(() -> Component.literal("/pastbound unlock_recipes - unlock all Pastbound recipes (OP)"), false);
                     komut.getSource().sendSuccess(() -> Component.literal("/pastbound test_kit - give coal, torches, pickaxe and steel tools"), false);
+                    return 1;
+                }))
+                .then(Commands.literal("wiki").executes(komut -> {
+                    ServerPlayer oyuncu = komut.getSource().getPlayerOrException();
+                    oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.TARIH_WIKI.get()));
+                    komut.getSource().sendSuccess(() -> Component.literal("Pastbound Field Wiki given."), false);
+                    return 1;
+                }))
+                .then(Commands.literal("unlock_recipes").requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER)).executes(komut -> {
+                    ServerPlayer oyuncu = komut.getSource().getPlayerOrException();
+                    var tarifler = oyuncu.level().getServer().getRecipeManager().getRecipes().stream()
+                            .filter(tarif -> tarif.id().identifier().getNamespace().equals(ModId.MOD_ID))
+                            .toList();
+                    oyuncu.awardRecipes(tarifler);
+                    komut.getSource().sendSuccess(() -> Component.literal("Pastbound recipes unlocked: " + tarifler.size()), false);
                     return 1;
                 }))
                 .then(Commands.literal("test_kit").requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER)).executes(komut -> {

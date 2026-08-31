@@ -665,5 +665,18 @@
   "block.pastbound.nether_wart_door": "Nether Wart Door",
   "block.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor",
   "item.pastbound.nether_wart_door": "Nether Wart Door",
-  "item.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor"
+  "item.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor",
+  "item.pastbound.tarih_wiki": "Pastbound Saha Wiki",
+  "screen.pastbound.wiki": "Pastbound Saha Wiki",
+  "screen.pastbound.wiki.controls": "A/D veya Sol/Sağ: sayfa değiştir   Esc: kapat",
+  "screen.pastbound.wiki.page.0.title": "Başlangıç",
+  "screen.pastbound.wiki.page.0.body": "Zaman Makinesi ile tarihî bir dimensiona gir. İşaretli uzmanlarla konuş, merkez anıtını incele, üç görev istasyonunu ziyaret et ve döneme özel hedefi tamamla.",
+  "screen.pastbound.wiki.page.1.title": "Çelik Görevi",
+  "screen.pastbound.wiki.page.1.body": "Bağdat Pil Atölyesi dimensionında görünen Çelik Cevheri’ni kır, ham çeliği erit, Çelik Levha üret ve Tarihî Ocağı onar. Girişte kömür ve meşale verilir.",
+  "screen.pastbound.wiki.page.2.title": "Rezonans ve Ametist",
+  "screen.pastbound.wiki.page.2.body": "Gerekli malzemelerle Rezonans Sütunu’nu kullan. Ametist işaretleri yalnızca barrier rotasında yürürken geçici olarak ayağının altında görünür.",
+  "screen.pastbound.wiki.page.3.title": "Relikler ve Sandıklar",
+  "screen.pastbound.wiki.page.3.body": "Yapı sandıklarında tek seferlik nadir relic ödülü şansı vardır. Relikleri deneyim kullanarak tanımla ve tarihî eylemlerle restore et.",
+  "screen.pastbound.wiki.page.4.title": "Ervanium",
+  "screen.pastbound.wiki.page.4.body": "İlk beş tamamlanan dimension iki Ervanium Smithing Template verir. Ervanium Cevheri yeni oluşan End Midlands chunklarında çok nadirdir. Template’i sekiz Netherite Block ile çoğaltabilirsin."
 }
