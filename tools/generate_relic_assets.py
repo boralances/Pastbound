@@ -538,7 +538,27 @@ ahsap_familiasi_uret("uruk_cedar", (132, 88, 54), (201, 166, 91))
 ahsap_familiasi_uret("chinampa_cypress", (83, 111, 78), (86, 183, 157))
 
 
+def tarif_semasini_duzelt(veri):
+    tarif_tipi = veri.get("type")
+    if tarif_tipi == "minecraft:crafting_shaped":
+        for anahtar, malzeme in list(veri.get("key", {}).items()):
+            if isinstance(malzeme, str):
+                veri["key"][anahtar] = {"item": malzeme} if ":" in malzeme else {"tag": f"minecraft:{malzeme}"}
+    if tarif_tipi in {"minecraft:crafting_shapeless", "minecraft:smelting", "minecraft:blasting"}:
+        if isinstance(veri.get("ingredient"), str):
+            malzeme = veri["ingredient"]
+            veri["ingredient"] = {"item": malzeme} if ":" in malzeme else {"item": f"minecraft:{malzeme}"}
+        if isinstance(veri.get("ingredients"), list):
+            veri["ingredients"] = [
+                ({"item": malzeme} if ":" in malzeme else {"item": f"minecraft:{malzeme}"})
+                if isinstance(malzeme, str) else malzeme
+                for malzeme in veri["ingredients"]
+            ]
+    return veri
+
+
 def veri_dosyasi_yaz(kok_yolu, kimlik, veri):
+    veri = tarif_semasini_duzelt(veri)
     yol = kok_yolu / f"{kimlik}.json"
     yol.parent.mkdir(parents=True, exist_ok=True)
     yol.write_text(json.dumps(veri, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -561,7 +581,7 @@ def agac_verileri_uret(prefix):
     gate = f"pastbound:{prefix}_fence_gate"
     plate = f"pastbound:{prefix}_pressure_plate"
     button = f"pastbound:{prefix}_button"
-    recipes = veri_koku / "recipe"
+    recipes = veri_koku / "recipes"
     loot = veri_koku / "loot_table/blocks"
     veri_dosyasi_yaz(recipes, f"{prefix}_planks", {"type": "minecraft:crafting_shaped", "category": "building", "group": "historical_wood_planks", "key": {"#": log}, "pattern": ["#"], "result": {"count": 4, "id": planks}})
     veri_dosyasi_yaz(recipes, f"{prefix}_stripped_planks", {"type": "minecraft:crafting_shaped", "category": "building", "group": "historical_wood_planks", "key": {"#": stripped_log}, "pattern": ["#"], "result": {"count": 4, "id": planks}})
@@ -636,7 +656,7 @@ def celik_varliklari_uret():
         blok_durumu_yaz(kimlik, {"variants": {"": {"model": f"pastbound:block/{kimlik}"}}})
         item_blok_modeli_yaz(kimlik)
     veri_koku = kok / "src/main/resources/data/pastbound"
-    recipes = veri_koku / "recipe"
+    recipes = veri_koku / "recipes"
     loot = veri_koku / "loot_table/blocks"
     veri_dosyasi_yaz(recipes, "steel_ingot_from_smelting", {"type": "minecraft:smelting", "category": "misc", "cookingtime": 200, "experience": 0.7, "ingredient": {"item": "pastbound:raw_steel"}, "result": {"id": "pastbound:steel_ingot"}})
     veri_dosyasi_yaz(recipes, "steel_ingot_from_blasting", {"type": "minecraft:blasting", "category": "misc", "cookingtime": 100, "experience": 0.7, "ingredient": {"item": "pastbound:raw_steel"}, "result": {"id": "pastbound:steel_ingot"}})
