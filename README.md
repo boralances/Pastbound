@@ -2,7 +2,7 @@
 
 **Pastbound** is a CurseForge ModJam 2026 entry for **“Echoes of the Past.”** The mod treats history as a playable force rather than a decorative background. Forgotten civilizations leave behind physical relics; players recover their stories through independent restoration fragments, place them in a Curios relic slot, and bring a historical ability into the present.
 
-Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current patch archive is named **`Pastbound-2.1.0.jar`**.
+Pastbound targets **Minecraft 26.2**, **NeoForge 26.2.0.66**, and **Curios 16.0.0+26.2**. The Gradle project uses the official NeoGradle MDK structure and Java 25. The current release archive is named **`Pastbound-2.8.0.jar`**.
 
 ## Design pitch
 
@@ -213,8 +213,8 @@ python3 tools/generate_locales.py
 `build` görevi işlenmiş metadata içeren geliştirme jarını `build/libs/` altında üretir. CurseForge veya mod klasöründe kullanılacak release jarını ve yanında doğrulama hash dosyasını oluşturmak için `packageRelease` çalıştırın:
 
 ```text
-Pastbound/dist/Pastbound-2.6.11.jar
-Pastbound/dist/Pastbound-2.6.11.jar.sha256
+Pastbound/dist/Pastbound-2.8.0.jar
+Pastbound/dist/Pastbound-2.8.0.jar.sha256
 ```
 
 For Windows PowerShell, use:
