@@ -1,37 +1,87 @@
 {
-  "attributes": {
-    "minecraft:visual/sky_color": "#79a8d8",
-    "minecraft:visual/fog_color": "#b7c7bd"
-  },
   "carvers": [],
   "downfall": 0.8,
   "effects": {
-    "water_color": "#3f8f9a",
-    "water_fog_color": "#2f6975"
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "sky_color": 7907327,
+    "fog_color": 12638463
   },
-  "features": [[], [], [], [], [], [], [], [], [], [], []],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {
     "ambient": [
-      {"type": "minecraft:bat", "weight": 10, "minCount": 1, "maxCount": 2}
+      {
+        "type": "minecraft:bat",
+        "weight": 10,
+        "minCount": 1,
+        "maxCount": 2
+      }
     ],
     "axolotls": [],
     "creature": [
-      {"type": "minecraft:sheep", "weight": 10, "minCount": 2, "maxCount": 4},
-      {"type": "minecraft:cow", "weight": 8, "minCount": 2, "maxCount": 4},
-      {"type": "minecraft:pig", "weight": 8, "minCount": 2, "maxCount": 4},
-      {"type": "minecraft:chicken", "weight": 5, "minCount": 2, "maxCount": 4}
+      {
+        "type": "minecraft:sheep",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:cow",
+        "weight": 8,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:pig",
+        "weight": 8,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:chicken",
+        "weight": 5,
+        "minCount": 2,
+        "maxCount": 4
+      }
     ],
     "monster": [
-      {"type": "minecraft:zombie", "weight": 8, "minCount": 1, "maxCount": 2}
+      {
+        "type": "minecraft:zombie",
+        "weight": 8,
+        "minCount": 1,
+        "maxCount": 2
+      }
     ],
     "underground_water_creature": [],
     "water_ambient": [
-      {"type": "minecraft:cod", "weight": 8, "minCount": 1, "maxCount": 3}
+      {
+        "type": "minecraft:cod",
+        "weight": 8,
+        "minCount": 1,
+        "maxCount": 3
+      }
     ],
     "water_creature": [
-      {"type": "minecraft:salmon", "weight": 8, "minCount": 1, "maxCount": 3}
+      {
+        "type": "minecraft:salmon",
+        "weight": 8,
+        "minCount": 1,
+        "maxCount": 3
+      }
     ]
   },
   "temperature": 0.9

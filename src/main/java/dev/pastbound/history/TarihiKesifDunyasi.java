@@ -13,6 +13,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.StructureTags;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -358,36 +359,22 @@ public final class TarihiKesifDunyasi {
             return;
         }
         ServerLevel seviye = (ServerLevel) oyuncu.level();
-        BlockPos baslangic = oyuncu.blockPosition();
-        Villager hedef = seviye.getEntitiesOfClass(Villager.class, oyuncu.getBoundingBox().inflate(256.0D)).stream().findFirst().orElse(null);
-        BlockPos koy;
-        if (hedef != null) {
-            koy = hedef.blockPosition();
-            hedef.addTag("pastbound_koy_uzmani");
-        } else {
-            koy = baslangic.east(64);
-            koyYapisiKur(seviye, koy);
-            EntityType<?> tip = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse("minecraft:villager"));
-            if (tip != null) {
-                Entity varlik = tip.create(seviye, EntitySpawnReason.COMMAND);
-                if (varlik instanceof Villager koylu) {
-                    koylu.setPos(koy.getX() + 0.5D, koy.getY() + 1.0D, koy.getZ() + 0.5D);
-                    koylu.setInvulnerable(true);
-                    koylu.addTag("pastbound_koy_uzmani");
-                    koylu.setCustomName(Component.translatable("entity.pastbound.village.archivist"));
-                    koylu.setCustomNameVisible(true);
-                    seviye.addFreshEntity(koylu);
-                }
-            }
+        BlockPos koy = seviye.findNearestMapStructure(StructureTags.VILLAGE, oyuncu.blockPosition(), 512, false);
+        if (koy == null || koy.equals(BlockPos.ZERO)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.structure_missing"));
+            return;
         }
-        BlockPos maden = koy.south(24);
-        madenYapisiKur(seviye, maden);
+        BlockPos maden = seviye.findNearestMapStructure(StructureTags.MINESHAFT, koy, 768, false);
+        if (maden == null || maden.equals(BlockPos.ZERO)) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.structure_missing"));
+            return;
+        }
         veri.putInt(DUNYA_GOREVI, 1);
         veri.putDouble(DUNYA_HEDEF_X, koy.getX() + 0.5D);
-        veri.putDouble(DUNYA_HEDEF_Y, koy.getY() + 1.0D);
+        veri.putDouble(DUNYA_HEDEF_Y, seviye.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, koy.getX(), koy.getZ()) + 1.0D);
         veri.putDouble(DUNYA_HEDEF_Z, koy.getZ() + 0.5D);
         veri.putDouble(DUNYA_MADEN_X, maden.getX() + 0.5D);
-        veri.putDouble(DUNYA_MADEN_Y, maden.getY() + 1.0D);
+        veri.putDouble(DUNYA_MADEN_Y, seviye.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, maden.getX(), maden.getZ()) + 1.0D);
         veri.putDouble(DUNYA_MADEN_Z, maden.getZ() + 0.5D);
         veri.putInt(DUNYA_CELIK, 0);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.quest_title"));
@@ -995,10 +982,10 @@ public final class TarihiKesifDunyasi {
     private static void sahneBariyerleriniKur(ServerLevel seviye, BlockPos merkez) {
         for (int y = 0; y <= 4; y++) {
             for (int i = -42; i <= 42; i++) {
-                seviye.setBlock(merkez.offset(i, y, -10), Blocks.BARRIER.defaultBlockState(), 3);
-                seviye.setBlock(merkez.offset(i, y, 10), Blocks.BARRIER.defaultBlockState(), 3);
-                seviye.setBlock(merkez.offset(-10, y, i), Blocks.BARRIER.defaultBlockState(), 3);
-                seviye.setBlock(merkez.offset(10, y, i), Blocks.BARRIER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(i, y, -42), Blocks.BARRIER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(i, y, 42), Blocks.BARRIER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(-42, y, i), Blocks.BARRIER.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(42, y, i), Blocks.BARRIER.defaultBlockState(), 3);
             }
         }
         for (int x = -42; x <= 42; x++) {

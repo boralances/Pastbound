@@ -649,5 +649,6 @@
   "screen.pastbound.relic.connect_progress": "Nokta sırası %s/%s",
   "key.pastbound.crafting_table_stick": "Crafting Table on a Stick aç",
   "key.pastbound.furnace_stick": "Furnace on a Stick aç",
-  "message.pastbound.portable.missing": "Workstation itemi envanterinde olmalı."
+  "message.pastbound.portable.missing": "Workstation itemi envanterinde olmalı.",
+  "message.pastbound.world.structure_missing": "Yakında oluşturulmuş köy ve maden bulunamadı. Daha uzağa keşfe çıkıp tekrar dene."
 }

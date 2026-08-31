@@ -649,5 +649,6 @@
   "screen.pastbound.relic.connect_progress": "Point sequence %s/%s",
   "key.pastbound.crafting_table_stick": "Open Crafting Table on a Stick",
   "key.pastbound.furnace_stick": "Open Furnace on a Stick",
-  "message.pastbound.portable.missing": "You need the workstation item in your inventory."
+  "message.pastbound.portable.missing": "You need the workstation item in your inventory.",
+  "message.pastbound.world.structure_missing": "No generated village and mineshaft were found nearby. Explore farther and try again."
 }
