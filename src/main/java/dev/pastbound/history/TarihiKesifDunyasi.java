@@ -712,8 +712,8 @@ public final class TarihiKesifDunyasi {
                 }
             }
         }
-        for (int x = -2; x <= 2; x++) {
-            for (int y = taban + 1; y <= taban + 2; y++) {
+        for (int x = -3; x <= 3; x++) {
+            for (int y = taban + 1; y <= taban + 4; y++) {
                 seviye.setBlock(merkez.offset(x, y, 3), Blocks.AIR.defaultBlockState(), 3);
             }
         }
@@ -1206,8 +1206,8 @@ public final class TarihiKesifDunyasi {
 
 
     private static void sahneAcikGecidiniKur(ServerLevel seviye, BlockPos merkez) {
-        for (int x = -2; x <= 1; x++) {
-            for (int y = 0; y <= 3; y++) {
+        for (int x = -3; x <= 3; x++) {
+            for (int y = 0; y <= 5; y++) {
                 seviye.setBlock(merkez.offset(x, y, -8), Blocks.AIR.defaultBlockState(), 3);
                 seviye.setBlock(merkez.offset(x, y, -9), Blocks.AIR.defaultBlockState(), 3);
             }
@@ -1316,8 +1316,8 @@ public final class TarihiKesifDunyasi {
     }
 
     private static void sahneKapisiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
-        for (int x = -2; x <= 1; x++) {
-            for (int y = 0; y <= 4; y++) {
+        for (int x = -3; x <= 3; x++) {
+            for (int y = 0; y <= 5; y++) {
                 seviye.setBlock(merkez.offset(x, y, -8), Blocks.AIR.defaultBlockState(), 3);
             }
         }

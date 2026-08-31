@@ -55,7 +55,13 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> END_ECHO_ORE = ITEMS.registerSimpleBlockItem("end_echo_ore", ModBlocks.END_ECHO_ORE);
     public static final DeferredItem<BlockItem> VOID_CHRONICLE_ORE = ITEMS.registerSimpleBlockItem("void_chronicle_ore", ModBlocks.VOID_CHRONICLE_ORE);
     public static final DeferredItem<BlockItem> ERVANIUM_ORE = ITEMS.registerSimpleBlockItem("ervanium_ore", ModBlocks.ERVANIUM_ORE);
+    public static final DeferredItem<Item> ERVANIUM_INGOT = ITEMS.register("ervanium_ingot", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64).fireResistant()));
     public static final DeferredItem<Item> ERVANIUM_SMITHING_TEMPLATE = ITEMS.register("ervanium_smithing_template", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
+    public static final DeferredItem<Item> ERVANIUM_HELMET = ITEMS.register("ervanium_helmet", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_CHESTPLATE = ITEMS.register("ervanium_chestplate", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_LEGGINGS = ITEMS.register("ervanium_leggings", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_BOOTS = ITEMS.register("ervanium_boots", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_SWORD = ITEMS.register("ervanium_sword", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).fireResistant()));
 
     public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);
     public static final DeferredItem<BlockItem> URUK_CEDAR_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_stripped_log", ModBlocks.URUK_CEDAR_STRIPPED_LOG);

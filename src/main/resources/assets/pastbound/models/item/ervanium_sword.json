@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "pastbound:item/ervanium_ore"
+    "layer0": "pastbound:item/ervanium_sword"
   }
 }

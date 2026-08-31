@@ -699,5 +699,16 @@
   "config.pastbound.olay_duyurulari": "Tarihî olay duyurularını göster",
   "config.pastbound.ortam_yankilari": "Ortam tarih yankılarını etkinleştir",
   "config.pastbound.sandik_odul_sansi": "Yapı sandığı ödül olasılığı",
-  "config.pastbound.olay_duyuru_araligi": "Olay duyuru aralığı (tick)"
+  "config.pastbound.olay_duyuru_araligi": "Olay duyuru aralığı (tick)",
+  "block.pastbound.ervanium_ore": "Ervanium Cevheri",
+  "item.pastbound.ervanium_ore": "Ervanium Cevheri",
+  "item.pastbound.ervanium_ingot": "Ervanium Külçesi",
+  "item.pastbound.ervanium_smithing_template": "Ervanium Demircilik Şablonu",
+  "item.pastbound.ervanium_helmet": "Ervanium Miğferi",
+  "item.pastbound.ervanium_chestplate": "Ervanium Göğüslüğü",
+  "item.pastbound.ervanium_leggings": "Ervanium Pantolonu",
+  "item.pastbound.ervanium_boots": "Ervanium Botları",
+  "item.pastbound.ervanium_sword": "Ervanium Kılıcı",
+  "screen.pastbound.wiki.archive_label": "TARİH ARŞİVİ // SAHA KAYDI",
+  "screen.pastbound.wiki.page_counter": "Kayıt %s / %s"
 }

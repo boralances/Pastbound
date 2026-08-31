@@ -702,5 +702,16 @@
   "config.pastbound.olay_duyurulari": "Show historical event announcements",
   "config.pastbound.ortam_yankilari": "Enable ambient historical echoes",
   "config.pastbound.sandik_odul_sansi": "Structure chest reward chance",
-  "config.pastbound.olay_duyuru_araligi": "Event announcement interval (ticks)"
+  "config.pastbound.olay_duyuru_araligi": "Event announcement interval (ticks)",
+  "block.pastbound.ervanium_ore": "Ervanium Ore",
+  "item.pastbound.ervanium_ore": "Ervanium Ore",
+  "item.pastbound.ervanium_ingot": "Ervanium Ingot",
+  "item.pastbound.ervanium_smithing_template": "Ervanium Smithing Template",
+  "item.pastbound.ervanium_helmet": "Ervanium Helmet",
+  "item.pastbound.ervanium_chestplate": "Ervanium Chestplate",
+  "item.pastbound.ervanium_leggings": "Ervanium Leggings",
+  "item.pastbound.ervanium_boots": "Ervanium Boots",
+  "item.pastbound.ervanium_sword": "Ervanium Sword",
+  "screen.pastbound.wiki.archive_label": "HISTORICAL ARCHIVE // FIELD RECORD",
+  "screen.pastbound.wiki.page_counter": "Record %s / %s"
 }

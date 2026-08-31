@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "E E",
+    "EEE",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "item": "pastbound:ervanium_ingot"
+    }
+  },
+  "result": {
+    "id": "pastbound:ervanium_chestplate",
+    "count": 1
+  }
+}
