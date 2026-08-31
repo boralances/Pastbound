@@ -134,6 +134,14 @@ public final class TarihYankilari {
         if (oyuncu.level().isClientSide()) {
             return;
         }
+        if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu) && TarihiKesifDunyasi.tarihiResonansEtkilesildi(sunucu, olay.getPos())) {
+            olay.setCanceled(true);
+            return;
+        }
+        if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.dunyaElektrikEtkilesildi(sunucu, olay.getPos())) {
+            olay.setCanceled(true);
+            return;
+        }
         if (oyuncu instanceof ServerPlayer sunucu && olay.getLevel().getBlockEntity(olay.getPos()) instanceof AncientStorageBlockEntity depolama) {
             sunucu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> ChestMenu.sixRows(id, envanter, depolama), Component.translatable("container.pastbound.ancient_storage")));
             olay.setCanceled(true);
@@ -145,10 +153,6 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
-            if (TarihiKesifDunyasi.tarihiResonansEtkilesildi(sunucu, olay.getPos())) {
-                olay.setCanceled(true);
-                return;
-            }
             TarihiKesifDunyasi.donemOzelEylem(sunucu, olay.getPos(), olay.getItemStack());
             if (TarihiKesifDunyasi.uzakAtolyeEtkilesildi(sunucu, olay.getPos())) {
                 olay.setCanceled(true);
@@ -178,10 +182,6 @@ public final class TarihYankilari {
                 TarihiKesifDunyasi.durakAletiEtkilesildi(sunucu, olay.getPos());
                 return;
             }
-            olay.setCanceled(true);
-            return;
-        }
-        if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.dunyaElektrikEtkilesildi(sunucu, olay.getPos())) {
             olay.setCanceled(true);
             return;
         }
