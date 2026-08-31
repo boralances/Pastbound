@@ -4,8 +4,6 @@ import dev.pastbound.ModId;
 import dev.pastbound.network.PastboundPaketi;
 import dev.pastbound.client.ui.RelikDefteriEkrani;
 import dev.pastbound.client.ui.PastboundDilEkrani;
-import dev.pastbound.client.ui.PastboundAyarlarEkrani;
-import dev.pastbound.client.PastboundConfig;
 import dev.pastbound.client.ui.TarihCanlandirmaEkrani;
 import dev.pastbound.client.ui.TarihKoyluKonusmaEkrani;
 import net.minecraft.client.Minecraft;
@@ -18,7 +16,6 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 
 @EventBusSubscriber(modid = ModId.MOD_ID, value = Dist.CLIENT)
 public final class RelikClientOyun {
-    private static boolean ayarlarYuklendi;
     private RelikClientOyun() {
     }
 
@@ -41,16 +38,9 @@ public final class RelikClientOyun {
     @SubscribeEvent
     public static void istemciTik(ClientTickEvent.Post olay) {
         Minecraft minecraft = Minecraft.getInstance();
-        if (!ayarlarYuklendi) {
-            PastboundConfig.yukle();
-            ayarlarYuklendi = true;
-        }
         LocalPlayer oyuncu = minecraft.player;
         if (oyuncu == null || minecraft.level == null) {
             return;
-        }
-        if (RelikClient.AYARLAR_KISAYOLU.consumeClick()) {
-            minecraft.setScreenAndShow(new PastboundAyarlarEkrani(null));
         }
         if (RelikClient.DEFTER_KISAYOLU.consumeClick()) {
             minecraft.setScreenAndShow(new RelikDefteriEkrani());

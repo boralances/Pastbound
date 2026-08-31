@@ -14,7 +14,10 @@ import dev.pastbound.registry.ModLootModifiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 
 @Mod(ModId.MOD_ID)
 public final class ModId {
@@ -29,6 +32,8 @@ public final class ModId {
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, PastboundConfig.SPEC);
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(PastboundAg::kaydet);
         modEventBus.addListener(ModCreativeTabs::addCreativeItems);

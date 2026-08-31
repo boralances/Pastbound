@@ -43,12 +43,14 @@ public final class ZamanMakinesiEkrani extends Screen {
         int sol = (width - genislik) / 2;
         int ust = (height - yukseklik) / 2;
         cizim.fill(0, 0, width, height, 0xB5101118);
-        cizim.fill(sol - 4, ust - 4, sol + genislik + 4, ust + yukseklik + 4, 0xB8111118);
-        cizim.fill(sol, ust, sol + genislik, ust + yukseklik, 0xE51E242D);
-        cizim.outline(sol, ust, genislik, yukseklik, 0xFFD1A55E);
-        cizim.fill(sol + 10, ust + 10, sol + genislik - 10, ust + 44, 0xC63B2D3B);
-        cizim.centeredText(font, title, sol + genislik / 2, ust + 18, 0xFFF4D6A3);
-        cizim.textWithWordWrap(font, Component.translatable("screen.pastbound.time_machine.subtitle"), sol + 18, ust + 52, genislik - 36, 0xFFC7D4D9);
+        cizim.fill(sol - 6, ust - 6, sol + genislik + 6, ust + yukseklik + 6, 0xD0081018);
+        cizim.fill(sol, ust, sol + genislik, ust + yukseklik, 0xEE151D28);
+        cizim.outline(sol, ust, genislik, yukseklik, 0xFFE0B56B);
+        cizim.outline(sol + 3, ust + 3, genislik - 6, yukseklik - 6, 0xFF41666A);
+        cizim.fill(sol + 12, ust + 12, sol + genislik - 12, ust + 48, 0xD52B3B47);
+        cizim.fill(sol + 24, ust + 28, sol + genislik - 24, ust + 30, 0xA7D3A05A);
+        cizim.centeredText(font, title, sol + genislik / 2, ust + 20, 0xFFFFE3AB);
+        cizim.textWithWordWrap(font, Component.translatable("screen.pastbound.time_machine.subtitle"), sol + 20, ust + 56, genislik - 40, 0xFFD0DEE0);
 
         int kartGenislik = kartGenislik();
         int kartYukseklik = kartYukseklik();
@@ -136,11 +138,11 @@ public final class ZamanMakinesiEkrani extends Screen {
     }
 
     private int panelGenislik() {
-        return Math.min(700, Math.max(260, width - 16));
+        return Math.min(920, Math.max(300, width - 20));
     }
 
     private int panelYukseklik() {
-        return Math.min(450, Math.max(220, height - 16));
+        return Math.min(560, Math.max(250, height - 20));
     }
 
     private void satirliMetin(GuiGraphicsExtractor cizim, Component metin, int x, int y, int genislik, int renk, int azamiSatir) {
@@ -171,6 +173,6 @@ public final class ZamanMakinesiEkrani extends Screen {
 
     private int kartYukseklik() {
         int satir = (TarihDonemi.values().length + sutunSayisi() - 1) / sutunSayisi();
-        return Math.max(30, Math.min(70, (panelYukseklik() - 162 - (satir - 1) * 8) / satir));
+        return Math.max(34, Math.min(82, (panelYukseklik() - 172 - (satir - 1) * 8) / satir));
     }
 }

@@ -693,5 +693,11 @@
   "screen.pastbound.settings.on": "AÇIK",
   "screen.pastbound.settings.off": "KAPALI",
   "screen.pastbound.settings.reset": "Varsayılanlara dön",
-  "key.pastbound.settings": "Pastbound Ayarlarını Aç"
+  "key.pastbound.settings": "Pastbound Ayarlarını Aç",
+  "config.pastbound.wiki_giris": "Girişte Saha Wiki’sini aç",
+  "config.pastbound.gorev_isaretleri": "Görev rota işaretlerini göster",
+  "config.pastbound.olay_duyurulari": "Tarihî olay duyurularını göster",
+  "config.pastbound.ortam_yankilari": "Ortam tarih yankılarını etkinleştir",
+  "config.pastbound.sandik_odul_sansi": "Yapı sandığı ödül olasılığı",
+  "config.pastbound.olay_duyuru_araligi": "Olay duyuru aralığı (tick)"
 }

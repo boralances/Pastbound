@@ -229,7 +229,7 @@ def zaman_gui():
     ciz.line([(92, 72), (164, 72)], fill=(228, 196, 120, 220), width=2)
     ciz.polygon([(128, 25), (134, 39), (122, 39)], fill=(226, 191, 112, 255))
     ciz.rectangle((20, 127, 236, 129), fill=(179, 130, 74, 170))
-    return goruntu
+    return goruntu.resize((512, 384), Image.Resampling.LANCZOS)
 
 
 def tarih_esyasi(renk, sira):

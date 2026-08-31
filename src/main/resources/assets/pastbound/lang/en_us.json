@@ -696,5 +696,11 @@
   "screen.pastbound.settings.on": "ON",
   "screen.pastbound.settings.off": "OFF",
   "screen.pastbound.settings.reset": "Reset defaults",
-  "key.pastbound.settings": "Open Pastbound Settings"
+  "key.pastbound.settings": "Open Pastbound Settings",
+  "config.pastbound.wiki_giris": "Open Field Wiki on login",
+  "config.pastbound.gorev_isaretleri": "Show quest route markers",
+  "config.pastbound.olay_duyurulari": "Show historical event announcements",
+  "config.pastbound.ortam_yankilari": "Enable ambient historical echoes",
+  "config.pastbound.sandik_odul_sansi": "Structure chest reward chance",
+  "config.pastbound.olay_duyuru_araligi": "Event announcement interval (ticks)"
 }
