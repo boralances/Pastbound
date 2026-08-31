@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/root",
+  "display": {
+    "icon": {
+      "id": "pastbound:zaman_makinesi"
+    },
+    "title": {
+      "text": "Kronik Ustası"
+    },
+    "description": {
+      "text": "Zaman Makinesi’ni üret ve gelişmiş crafting zincirini başlat."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "time_machine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pastbound:zaman_makinesi"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

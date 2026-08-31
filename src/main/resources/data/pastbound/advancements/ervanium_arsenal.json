@@ -1,0 +1,44 @@
+{
+  "parent": "pastbound:ervanium_template",
+  "display": {
+    "icon": {
+      "id": "pastbound:ervanium_sword"
+    },
+    "title": {
+      "text": "Ervanium Cephaneliği"
+    },
+    "description": {
+      "text": "Bir Ervanium ekipmanı üret."
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ervanium_sword": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pastbound:ervanium_sword"
+            ]
+          }
+        ]
+      }
+    },
+    "ervanium_armor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "pastbound:ervanium_chestplate"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
