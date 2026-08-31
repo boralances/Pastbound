@@ -138,6 +138,10 @@ public final class TarihiKesifDunyasi {
         veri.remove(IZLEME_Z);
         sahneyiKur(hedef, SAHNE_MERKEZI, donem);
         oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
+        if (oyuncu.getInventory().countItem(Items.IRON_PICKAXE) == 0 && oyuncu.getInventory().countItem(Items.DIAMOND_PICKAXE) == 0 && oyuncu.getInventory().countItem(Items.NETHERITE_PICKAXE) == 0) {
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.IRON_PICKAXE));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.mining_tool"));
+        }
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
         oyuncu.sendSystemMessage(Component.translatable(donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "message.pastbound.mission.steel_start" : "message.pastbound.scene.quest_period", Component.translatable("screen.pastbound.scene.task." + donem.kimlik())));
@@ -450,6 +454,22 @@ public final class TarihiKesifDunyasi {
         }
     }
 
+    public static boolean tarihiResonansEtkilesildi(ServerPlayer oyuncu, BlockPos konum) {
+        if (!boyuttaMi(oyuncu) || !oyuncu.level().getBlockState(konum).is(ModBlocks.RESONANCE_PILLAR.get())) {
+            return false;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int asama = veri.getIntOr(CELIK_GOREV_ASAMASI, 0);
+        if (asama < 4) {
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.pillar_locked"));
+            return true;
+        }
+        veri.putInt(SAHNE_GOREV_MASKESI, veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | DONEM_OZEL_BITI);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.pillar_active"));
+        oyuncu.level().playSound(null, konum, net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_CHIME, net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.2F);
+        return true;
+    }
+
     public static boolean dunyaElektrikEtkilesildi(ServerPlayer oyuncu, BlockPos konum) {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         if (veri.getIntOr(DUNYA_GOREVI, 0) != 4 || !oyuncu.level().dimension().equals(Level.OVERWORLD) || !oyuncu.level().getBlockState(konum).is(ModBlocks.RESONANCE_PILLAR.get()) || oyuncu.distanceToSqr(konum.getX() + 0.5D, konum.getY() + 0.5D, konum.getZ() + 0.5D) > 25.0D) {
@@ -507,6 +527,7 @@ public final class TarihiKesifDunyasi {
             seviye.setBlock(merkez.offset(i, 0, 0), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
             seviye.setBlock(merkez.offset(i, 0, 1), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
         }
+        seviye.setBlock(merkez.east(3), ModBlocks.RESONANCE_PILLAR.get().defaultBlockState(), 3);
         for (int y = 0; y <= 2; y++) {
             seviye.setBlock(merkez.offset(-3, y, -3), Blocks.DEEPSLATE_BRICKS.defaultBlockState(), 3);
             seviye.setBlock(merkez.offset(3, y, -3), Blocks.DEEPSLATE_BRICKS.defaultBlockState(), 3);

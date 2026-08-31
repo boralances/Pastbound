@@ -655,5 +655,7 @@
   "message.pastbound.expedition.reward": "%s tamamlandı. Keşif ödülü alındı: 4 Chronicle Scrap, 1 Time Stone ve bonus deneyim. Tamamlanan dünyalar: %s/%s.",
   "message.pastbound.expedition.master_complete": "Tüm tarihî dünyalar tamamlandı. Usta Chronicle Compass ödülü verildi.",
   "message.pastbound.scene.protected_block": "This block preserves the historical scene.",
-  "message.pastbound.world.power_find_pillar": "Find and activate the Resonance Pillar marked by the amethyst route."
+  "message.pastbound.world.power_find_pillar": "Find and activate the Resonance Pillar marked by the amethyst route.",
+  "message.pastbound.scene.pillar_locked": "Mine the required steel ore first, then activate the Resonance Pillar.",
+  "message.pastbound.scene.pillar_active": "The Resonance Pillar is active. Return to the time machine."
 }

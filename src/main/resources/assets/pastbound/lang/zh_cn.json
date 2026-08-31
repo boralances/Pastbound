@@ -655,5 +655,7 @@
   "message.pastbound.expedition.reward": "%s completed. Expedition reward claimed: 4 Chronicle Scraps, 1 Time Stone, and bonus experience. Worlds completed: %s/%s.",
   "message.pastbound.expedition.master_complete": "All historical worlds completed. The Master Chronicle Compass has been awarded.",
   "message.pastbound.scene.protected_block": "This block preserves the historical scene.",
-  "message.pastbound.world.power_find_pillar": "Find and activate the Resonance Pillar marked by the amethyst route."
+  "message.pastbound.world.power_find_pillar": "Find and activate the Resonance Pillar marked by the amethyst route.",
+  "message.pastbound.scene.pillar_locked": "Mine the required steel ore first, then activate the Resonance Pillar.",
+  "message.pastbound.scene.pillar_active": "The Resonance Pillar is active. Return to the time machine."
 }

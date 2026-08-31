@@ -94,7 +94,8 @@ public final class TarihYankilari {
                 TarihiKesifDunyasi.anitKirildi(sunucu);
                 return;
             }
-            if (olay.getState().is(Blocks.BARRIER) || olay.getState().is(ModBlocks.RESONANCE_PILLAR.get())) {
+            boolean gorevHedefi = olay.getState().is(ModBlocks.STEEL_ORE.get()) || olay.getState().is(Blocks.CLAY) || olay.getState().is(Blocks.SAND) || olay.getState().is(Blocks.COPPER_ORE) || olay.getState().is(Blocks.LAPIS_ORE) || olay.getState().is(Blocks.AMETHYST_BLOCK) || olay.getState().is(ModBlocks.ECHO_ARCHIVE.get());
+            if (!gorevHedefi || olay.getState().is(Blocks.BARRIER) || olay.getState().is(ModBlocks.RESONANCE_PILLAR.get())) {
                 olay.setCanceled(true);
                 sunucu.sendSystemMessage(Component.translatable("message.pastbound.scene.protected_block"));
             }
@@ -137,6 +138,10 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
+            if (TarihiKesifDunyasi.tarihiResonansEtkilesildi(sunucu, olay.getPos())) {
+                olay.setCanceled(true);
+                return;
+            }
             TarihiKesifDunyasi.donemOzelEylem(sunucu, olay.getPos(), olay.getItemStack());
             if (TarihiKesifDunyasi.uzakAtolyeEtkilesildi(sunucu, olay.getPos())) {
                 olay.setCanceled(true);
