@@ -967,8 +967,12 @@ public final class TarihiKesifDunyasi {
         }
         long simdi = seviye.getGameTime();
         long bitis = veri.getLongOr(AMETIST_TICK, 0L);
+        boolean yeniKare = eski == null;
         if (eski == null || simdi >= bitis) {
             oyuncu.connection.send(new ClientboundBlockUpdatePacket(alt, Blocks.AMETHYST_BLOCK.defaultBlockState()));
+            if (yeniKare) {
+                seviye.playSound(oyuncu, alt, net.minecraft.sounds.SoundEvents.AMETHYST_BLOCK_BREAK, net.minecraft.sounds.SoundSource.BLOCKS, 0.45F, 1.0F);
+            }
             veri.putInt(AMETIST_X, alt.getX());
             veri.putInt(AMETIST_Y, alt.getY());
             veri.putInt(AMETIST_Z, alt.getZ());

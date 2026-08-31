@@ -8,7 +8,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.ChestBlockEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -31,20 +31,26 @@ public final class TarihSandikGanimeti {
             return;
         }
         Container konteyner = sandikMenusu.getContainer();
-        if (!(konteyner instanceof ChestBlockEntity sandik)) {
+        RandomizableContainerBlockEntity rastgeleSandik = konteyner instanceof RandomizableContainerBlockEntity lootContainer ? lootContainer : null;
+        if (rastgeleSandik == null) {
+            BlockPos merkez = oyuncu.blockPosition();
+            for (BlockPos konum : BlockPos.betweenClosed(merkez.offset(-2, -1, -2), merkez.offset(2, 2, 2))) {
+                if (oyuncu.level().getBlockEntity(konum) instanceof RandomizableContainerBlockEntity aday && aday.getLootTable() != null) {
+                    rastgeleSandik = aday;
+                    break;
+                }
+            }
+        }
+        if (rastgeleSandik == null || !uygunSandikMi(rastgeleSandik)) {
             return;
         }
-        if (!(sandik instanceof RandomizableContainerBlockEntity rastgeleSandik)) {
-            return;
-        }
-        if (!uygunSandikMi(rastgeleSandik)) {
-            return;
-        }
-        CompoundTag veri = ((IBlockEntityExtension) sandik).getPersistentData();
+        CompoundTag veri = ((IBlockEntityExtension) rastgeleSandik).getPersistentData();
         if (veri.getBooleanOr(DAGITILDI, false)) {
             return;
         }
-        if (oyuncu.getRandom().nextFloat() > nadirlik(rastgeleSandik)) {
+        boolean relicCikti = oyuncu.getRandom().nextFloat() < 0.10F;
+        veri.putBoolean(DAGITILDI, true);
+        if (!relicCikti) {
             return;
         }
         for (int i = 0; i < konteyner.getContainerSize(); i++) {
@@ -52,7 +58,6 @@ public final class TarihSandikGanimeti {
                 int sira = oyuncu.getRandom().nextInt(ModItems.RELIKLER.size());
                 konteyner.setItem(i, new ItemStack(ModItems.RELIKLER.get(sira).get()));
                 konteyner.setChanged();
-                veri.putBoolean(DAGITILDI, true);
                 oyuncu.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.pastbound.chest.relic_found"));
                 return;
             }
@@ -60,21 +65,6 @@ public final class TarihSandikGanimeti {
     }
 
     private static boolean uygunSandikMi(RandomizableContainerBlockEntity sandik) {
-        if (sandik.getLootTable() == null) {
-            return false;
-        }
-        String kimlik = sandik.getLootTable().identifier().toString();
-        return kimlik.contains("chests/village/") || kimlik.contains("chests/trial_chambers/") || kimlik.contains("chests/ancient_city");
-    }
-
-    private static float nadirlik(RandomizableContainerBlockEntity sandik) {
-        String kimlik = sandik.getLootTable().identifier().toString();
-        if (kimlik.contains("ancient_city")) {
-            return 0.018F;
-        }
-        if (kimlik.contains("trial_chambers")) {
-            return 0.032F;
-        }
-        return 0.045F;
+        return sandik.getLootTable() != null;
     }
 }
