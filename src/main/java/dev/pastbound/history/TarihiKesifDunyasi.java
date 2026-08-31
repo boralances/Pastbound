@@ -1078,9 +1078,18 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(merkez.east(3), dekor.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(3), dekor.defaultBlockState(), 3);
         tarihiYapiKur(seviye, merkez, donem);
-        sahneKapisiKur(seviye, merkez, donem);
+        sahneAcikGecidiniKur(seviye, merkez);
         gorevVarliklariniKur(seviye, merkez, donem);
         sahneAktorleriniKur(seviye, merkez, donem);
+    }
+
+    private static void sahneAcikGecidiniKur(ServerLevel seviye, BlockPos merkez) {
+        for (int x = -1; x <= 1; x++) {
+            for (int y = 0; y <= 3; y++) {
+                seviye.setBlock(merkez.offset(x, y, -8), Blocks.AIR.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(x, y, -9), Blocks.AIR.defaultBlockState(), 3);
+            }
+        }
     }
 
     private static void sahneBariyerleriniKur(ServerLevel seviye, BlockPos merkez) {

@@ -657,5 +657,6 @@
   "message.pastbound.scene.protected_block": "This block preserves the historical scene.",
   "message.pastbound.world.power_find_pillar": "Find and activate the Resonance Pillar marked by the amethyst route.",
   "message.pastbound.scene.pillar_locked": "Mine the required steel ore first, then activate the Resonance Pillar.",
-  "message.pastbound.scene.pillar_active": "The Resonance Pillar is active. Return to the time machine."
+  "message.pastbound.scene.pillar_active": "The Resonance Pillar is active. Return to the time machine.",
+  "container.pastbound.resonance_pillar": "Resonance Pillar"
 }

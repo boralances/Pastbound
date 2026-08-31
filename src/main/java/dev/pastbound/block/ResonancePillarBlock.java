@@ -9,8 +9,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.EntityBlock;
+import dev.pastbound.block.entity.ResonancePillarBlockEntity;
 
-public final class ResonancePillarBlock extends Block {
+public final class ResonancePillarBlock extends Block implements EntityBlock {
     public static final BooleanProperty CHARGED = BooleanProperty.create("charged");
     public static final int ACTIVE_TICKS = 120;
 
@@ -22,6 +25,11 @@ public final class ResonancePillarBlock extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> kurucu) {
         kurucu.add(CHARGED);
+    }
+
+    @Override
+    public BlockEntity newBlockEntity(BlockPos konum, BlockState durum) {
+        return new ResonancePillarBlockEntity(konum, durum);
     }
 
     @Override

@@ -4,6 +4,8 @@ import dev.pastbound.ModId;
 import dev.pastbound.block.entity.AncientStorageBlockEntity;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ChestMenu;
+import net.minecraft.world.inventory.MenuType;
+import dev.pastbound.block.entity.ResonancePillarBlockEntity;
 import dev.pastbound.registry.ModBlocks;
 import dev.pastbound.registry.ModItems;
 import dev.pastbound.relic.RelikMantigi;
@@ -134,6 +136,11 @@ public final class TarihYankilari {
         }
         if (oyuncu instanceof ServerPlayer sunucu && olay.getLevel().getBlockEntity(olay.getPos()) instanceof AncientStorageBlockEntity depolama) {
             sunucu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> ChestMenu.sixRows(id, envanter, depolama), Component.translatable("container.pastbound.ancient_storage")));
+            olay.setCanceled(true);
+            return;
+        }
+        if (oyuncu instanceof ServerPlayer sunucu && olay.getLevel().getBlockEntity(olay.getPos()) instanceof ResonancePillarBlockEntity pillar) {
+            sunucu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> new ChestMenu(MenuType.GENERIC_9x1, id, envanter, pillar, 1), Component.translatable("container.pastbound.resonance_pillar")));
             olay.setCanceled(true);
             return;
         }
