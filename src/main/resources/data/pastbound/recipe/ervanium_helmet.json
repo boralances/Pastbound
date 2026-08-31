@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "template": "pastbound:ervanium_smithing_template",
-  "base": "minecraft:diamond_helmet",
+  "base": "#pastbound:ervanium_helmet_bases",
   "addition": "#pastbound:ervanium_materials",
   "result": {
     "id": "pastbound:ervanium_helmet"
