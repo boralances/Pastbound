@@ -1,15 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "group": "pastbound_ervanium_template",
-  "key": {
-    "E": "pastbound:ervanium_smithing_template",
-    "N": "minecraft:netherite_block"
-  },
-  "pattern": [
-    "NNN",
-    "NEN",
-    "NNN"
+  "ingredients": [
+    "pastbound:ervanium_smithing_template",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block"
   ],
   "result": {
     "id": "pastbound:ervanium_smithing_template",
