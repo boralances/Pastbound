@@ -10,8 +10,6 @@ import dev.pastbound.registry.ModBlocks;
 import dev.pastbound.registry.ModItems;
 import dev.pastbound.relic.RelikMantigi;
 import net.minecraft.world.entity.npc.villager.Villager;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
@@ -327,18 +325,6 @@ public final class TarihYankilari {
         }
     }
 
-    private static void ervaniumSetDezavantajiniUygula(ServerPlayer oyuncu) {
-        boolean tamSet = oyuncu.getItemBySlot(EquipmentSlot.FEET).is(ModItems.ERVANIUM_BOOTS.get())
-                && oyuncu.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.ERVANIUM_LEGGINGS.get())
-                && oyuncu.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.ERVANIUM_CHESTPLATE.get())
-                && oyuncu.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.ERVANIUM_HELMET.get());
-        if (tamSet) {
-            oyuncu.addEffect(new MobEffectInstance(MobEffects.MINING_FATIGUE, 120, 0, false, true, true));
-        } else {
-            oyuncu.removeEffect(MobEffects.MINING_FATIGUE);
-        }
-    }
-
     private static void pastboundTarifleriniAc(ServerPlayer sunucu) {
         var tarifler = sunucu.level().getServer().getRecipeManager().getRecipes().stream()
                 .filter(tarif -> tarif.id().identifier().getNamespace().equals(ModId.MOD_ID))
@@ -354,7 +340,6 @@ public final class TarihYankilari {
         }
         if (oyuncu instanceof ServerPlayer sunucu && oyuncu.tickCount % 20 == 0) {
             pastboundTarifleriniAc(sunucu);
-            ervaniumSetDezavantajiniUygula(sunucu);
         }
         if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu && TarihiKesifDunyasi.canlandirmaAktifMi(sunucu)) {
             TarihiKesifDunyasi.tik(sunucu);
