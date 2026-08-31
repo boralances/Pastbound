@@ -48,6 +48,7 @@ public final class TarihiKesifDunyasi {
     private static final String SAHNE_CAGI = "pastbound_sahne_cagi";
     private static final String SAHNE_AKTIF = "pastbound_sahne_aktif";
     private static final String SAHNE_SAYACI = "pastbound_sahne_sayaci";
+    private static final String ZAMAN_MAKINESI_CIKISLARI = "pastbound_zaman_makinesi_cikislari";
     private static final String SAHNE_GOREV_MASKESI = "pastbound_sahne_gorev_maskesi";
     private static final String CELIK_GOREV_ASAMASI = "pastbound_celik_gorev_asamasi";
     private static final String CELIK_DAMAR_SAYISI = "pastbound_celik_damar_sayisi";
@@ -856,10 +857,6 @@ public final class TarihiKesifDunyasi {
         if (tamamlanan % 3 == 0) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ECHO_SEAL.get(), 1));
         }
-        if (tamamlanan == 5) {
-            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ERVANIUM_SMITHING_TEMPLATE.get(), 2));
-            oyuncu.sendSystemMessage(Component.literal("Milestone reward: 2 Ervanium Smithing Templates."));
-        }
         if (tamamlanan == TarihDonemi.values().length) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.CHRONICLE_COMPASS.get(), 1));
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.expedition.master_complete"));
@@ -868,6 +865,14 @@ public final class TarihiKesifDunyasi {
     }
 
     public static void don(ServerPlayer oyuncu) {
+        don(oyuncu, false);
+    }
+
+    public static void zamanMakinesiyleDon(ServerPlayer oyuncu) {
+        don(oyuncu, true);
+    }
+
+    private static void don(ServerPlayer oyuncu, boolean zamanMakinesi) {
         if (!boyuttaMi(oyuncu)) {
             return;
         }
@@ -907,6 +912,16 @@ public final class TarihiKesifDunyasi {
         veri.remove(IZLEME_Y);
         veri.remove(IZLEME_Z);
         veri.remove("pastbound_donem_ozel_sayac");
+        if (zamanMakinesi) {
+            int cikisSayisi = veri.getIntOr(ZAMAN_MAKINESI_CIKISLARI, 0) + 1;
+            veri.putInt(ZAMAN_MAKINESI_CIKISLARI, cikisSayisi);
+            if (cikisSayisi == 5) {
+                oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ERVANIUM_SMITHING_TEMPLATE.get(), 2));
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.ervanium.exit_reward"));
+            } else {
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.ervanium.exit_progress", cikisSayisi, 5));
+            }
+        }
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.returned"));
         if (hedef.dimension().equals(Level.OVERWORLD)) {
             dunyaGoreviniBaslat(oyuncu);

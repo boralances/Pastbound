@@ -91,7 +91,7 @@ public record PastboundPaketi(int islem, String birinci, String ikinci) implemen
                 case 4 -> RelikMantigi.slotYukselt(oyuncu);
                 case 5 -> miniEtkinligiAl(oyuncu, paket.birinci(), paket.ikinci());
                 case 6 -> TarihiKesifDunyasi.kontroluAl(oyuncu);
-                case 8 -> TarihiKesifDunyasi.don(oyuncu);
+                case 8 -> TarihiKesifDunyasi.zamanMakinesiyleDon(oyuncu);
                 case 9 -> yuvaIsteğiniAl(oyuncu, paket.birinci());
                 case 11 -> konusmaSeciminiAl(oyuncu, paket.birinci(), paket.ikinci());
                 case 13 -> portableWorkstationAl(oyuncu, paket.birinci());
