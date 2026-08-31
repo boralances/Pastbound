@@ -214,12 +214,15 @@ public final class TarihYankilari {
                     return;
                 }
             }
-            int konusmaci = 0;
+            int konusmaci = -1;
             for (int i = 0; i < 4; i++) {
                 if (villager.entityTags().contains("pastbound_sahne_" + i)) {
                     konusmaci = i;
                     break;
                 }
+            }
+            if (konusmaci < 0) {
+                return;
             }
             String donem = ((net.neoforged.neoforge.common.extensions.IEntityExtension) sunucu).getPersistentData().getStringOr("pastbound_sahne_cagi", "");
             if (!donem.isEmpty()) {

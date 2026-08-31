@@ -377,6 +377,7 @@ public final class TarihiKesifDunyasi {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.structure_missing"));
             return;
         }
+        baslangicUzmaniKur(seviye, oyuncu);
         veri.putInt(DUNYA_GOREVI, 1);
         veri.putDouble(DUNYA_HEDEF_X, koy.getX() + 0.5D);
         veri.putDouble(DUNYA_HEDEF_Y, seviye.getHeight(net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, koy.getX(), koy.getZ()) + 1.0D);
@@ -427,9 +428,27 @@ public final class TarihiKesifDunyasi {
         return dx * dx + dy * dy + dz * dz <= 64.0D;
     }
 
+    private static void baslangicUzmaniKur(ServerLevel seviye, ServerPlayer oyuncu) {
+        for (Entity varlik : seviye.getEntitiesOfClass(Entity.class, oyuncu.getBoundingBox().inflate(12.0D))) {
+            if (varlik.entityTags().contains("pastbound_koy_uzmani")) {
+                varlik.discard();
+            }
+        }
+        Entity varlik = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse("minecraft:villager")).create(seviye, EntitySpawnReason.COMMAND);
+        if (varlik instanceof Villager koylu) {
+            koylu.setPos(oyuncu.getX() + 2.0D, oyuncu.getY(), oyuncu.getZ() + 2.0D);
+            koylu.setNoAi(true);
+            koylu.setInvulnerable(true);
+            koylu.setCustomName(Component.translatable("entity.pastbound.village.archivist"));
+            koylu.setCustomNameVisible(true);
+            koylu.addTag("pastbound_koy_uzmani");
+            seviye.addFreshEntity(koylu);
+        }
+    }
+
     public static void koyUzmaniIleKonusuldu(ServerPlayer oyuncu) {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
-        if (veri.getIntOr(DUNYA_GOREVI, 0) == 1 && hedefeUlastiMi(oyuncu)) {
+        if (veri.getIntOr(DUNYA_GOREVI, 0) == 1) {
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.archivist_spoke"));
             veri.putInt(DUNYA_GOREVI, 2);
             hedefiMadenYap(oyuncu);
