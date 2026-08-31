@@ -309,11 +309,26 @@ public final class TarihYankilari {
         Player oyuncu = olay.getEntity();
         yankiyiBaslat(oyuncu, TarihYankisi.PAPIRUS_SIFRESI);
         if (oyuncu instanceof ServerPlayer sunucu) {
-            var pastboundTarifleri = sunucu.level().getServer().getRecipeManager().getRecipes().stream()
-                    .filter(tarif -> tarif.id().identifier().getNamespace().equals(ModId.MOD_ID))
-                    .toList();
-            sunucu.awardRecipes(pastboundTarifleri);
+            pastboundTarifleriniAc(sunucu);
+            boolean wikiVar = false;
+            for (int i = 0; i < sunucu.getInventory().getContainerSize(); i++) {
+                if (sunucu.getInventory().getItem(i).is(ModItems.TARIH_WIKI.get())) {
+                    wikiVar = true;
+                    break;
+                }
+            }
+            if (!wikiVar) {
+                sunucu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.TARIH_WIKI.get()));
+                sunucu.sendSystemMessage(Component.translatable("message.pastbound.wiki.received"));
+            }
         }
+    }
+
+    private static void pastboundTarifleriniAc(ServerPlayer sunucu) {
+        var tarifler = sunucu.level().getServer().getRecipeManager().getRecipes().stream()
+                .filter(tarif -> tarif.id().identifier().getNamespace().equals(ModId.MOD_ID))
+                .toList();
+        sunucu.awardRecipes(tarifler);
     }
 
     @SubscribeEvent
@@ -333,6 +348,9 @@ public final class TarihYankilari {
             TarihiKesifDunyasi.dunyaGoreviniBaslat(sunucu);
             TarihiKesifDunyasi.dunyaGoreviTik(sunucu);
             TarihiKesifDunyasi.donemOzelEylem(sunucu, sunucu.blockPosition(), ItemStack.EMPTY);
+        }
+        if (oyuncu instanceof ServerPlayer sunucu && oyuncu.tickCount % 40 == 0) {
+            pastboundTarifleriniAc(sunucu);
         }
         if (oyuncu.tickCount % 40 != 0) {
             return;
