@@ -8,15 +8,9 @@
     " G "
   ],
   "key": {
-    "G": {
-      "item": "minecraft:glass_pane"
-    },
-    "A": {
-      "item": "minecraft:amethyst_shard"
-    },
-    "E": {
-      "item": "pastbound:echo_shard"
-    }
+    "G": "minecraft:glass_pane",
+    "A": "minecraft:amethyst_shard",
+    "E": "pastbound:echo_shard"
   },
   "result": {
     "id": "pastbound:memory_lens",

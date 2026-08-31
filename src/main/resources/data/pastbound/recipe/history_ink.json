@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "pastbound:chronicle_scrap"
-    },
-    {
-      "item": "minecraft:ink_sac"
-    },
-    {
-      "item": "minecraft:glass_bottle"
-    }
+    "pastbound:chronicle_scrap",
+    "minecraft:ink_sac",
+    "minecraft:glass_bottle"
   ],
   "result": {
     "id": "pastbound:history_ink",

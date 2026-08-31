@@ -3,9 +3,7 @@
   "category": "building",
   "group": "historical_wood_stairs",
   "key": {
-    "#": {
-      "item": "pastbound:uruk_cedar_planks"
-    }
+    "#": "pastbound:uruk_cedar_planks"
   },
   "pattern": [
     "#  ",

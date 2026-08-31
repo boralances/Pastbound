@@ -3,9 +3,7 @@
   "category": "building",
   "group": "chinampa_cypress_crafting_table",
   "key": {
-    "#": {
-      "item": "pastbound:chinampa_cypress_planks"
-    }
+    "#": "pastbound:chinampa_cypress_planks"
   },
   "pattern": [
     "##",

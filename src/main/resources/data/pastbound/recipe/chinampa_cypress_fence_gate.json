@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "historical_wood_fence_gate",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "pastbound:chinampa_cypress_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "pastbound:chinampa_cypress_planks"
   },
   "pattern": [
     "#W#",

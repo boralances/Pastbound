@@ -8,18 +8,10 @@
     "SCS"
   ],
   "key": {
-    "S": {
-      "item": "minecraft:chest"
-    },
-    "C": {
-      "item": "pastbound:chronicle_scrap"
-    },
-    "E": {
-      "item": "pastbound:echo_shard"
-    },
-    "A": {
-      "item": "minecraft:amethyst_block"
-    }
+    "S": "minecraft:chest",
+    "C": "pastbound:chronicle_scrap",
+    "E": "pastbound:echo_shard",
+    "A": "minecraft:amethyst_block"
   },
   "result": {
     "id": "pastbound:ancient_storage",

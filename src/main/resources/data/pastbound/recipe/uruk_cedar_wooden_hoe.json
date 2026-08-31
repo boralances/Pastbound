@@ -3,12 +3,8 @@
   "category": "tools",
   "group": "wooden_hoe",
   "key": {
-    "#": {
-      "item": "pastbound:uruk_cedar_planks"
-    },
-    "|": {
-      "item": "minecraft:stick"
-    }
+    "#": "pastbound:uruk_cedar_planks",
+    "|": "minecraft:stick"
   },
   "pattern": [
     "##",

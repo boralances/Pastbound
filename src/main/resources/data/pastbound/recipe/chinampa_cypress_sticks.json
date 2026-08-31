@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "chinampa_cypress_sticks",
   "key": {
-    "#": {
-      "item": "pastbound:chinampa_cypress_planks"
-    }
+    "#": "pastbound:chinampa_cypress_planks"
   },
   "pattern": [
     "#",

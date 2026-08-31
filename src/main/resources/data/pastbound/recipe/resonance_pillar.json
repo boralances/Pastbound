@@ -7,12 +7,8 @@
     " Q "
   ],
   "key": {
-    "Q": {
-      "item": "minecraft:quartz_block"
-    },
-    "E": {
-      "item": "pastbound:echo_shard"
-    }
+    "Q": "minecraft:quartz_block",
+    "E": "pastbound:echo_shard"
   },
   "result": {
     "id": "pastbound:resonance_pillar",

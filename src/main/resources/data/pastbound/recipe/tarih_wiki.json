@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "pastbound_wiki",
   "ingredients": [
-    {
-      "item": "minecraft:writable_book"
-    },
-    {
-      "item": "pastbound:echo_shard"
-    }
+    "minecraft:writable_book",
+    "pastbound:echo_shard"
   ],
   "result": {
     "id": "pastbound:tarih_wiki",

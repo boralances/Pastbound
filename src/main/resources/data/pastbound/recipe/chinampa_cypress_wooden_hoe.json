@@ -3,12 +3,8 @@
   "category": "tools",
   "group": "wooden_hoe",
   "key": {
-    "#": {
-      "item": "pastbound:chinampa_cypress_planks"
-    },
-    "|": {
-      "item": "minecraft:stick"
-    }
+    "#": "pastbound:chinampa_cypress_planks",
+    "|": "minecraft:stick"
   },
   "pattern": [
     "##",

@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "historical_wood_trapdoor",
   "key": {
-    "#": {
-      "item": "pastbound:uruk_cedar_planks"
-    }
+    "#": "pastbound:uruk_cedar_planks"
   },
   "pattern": [
     "###",

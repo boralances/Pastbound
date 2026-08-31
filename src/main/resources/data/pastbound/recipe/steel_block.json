@@ -3,9 +3,7 @@
   "category": "building",
   "group": "pastbound_steel",
   "key": {
-    "#": {
-      "item": "pastbound:steel_ingot"
-    }
+    "#": "pastbound:steel_ingot"
   },
   "pattern": [
     "###",

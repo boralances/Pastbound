@@ -7,18 +7,10 @@
     "SSS"
   ],
   "key": {
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "S": {
-      "item": "minecraft:stone"
-    },
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "T": {
-      "item": "pastbound:time_stone"
-    }
+    "D": "minecraft:diamond",
+    "S": "minecraft:stone",
+    "G": "minecraft:gold_ingot",
+    "T": "pastbound:time_stone"
   },
   "result": {
     "id": "pastbound:zaman_makinesi",

@@ -3,15 +3,9 @@
   "category": "misc",
   "group": "pastbound_chronicle_compass",
   "key": {
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "S": {
-      "item": "pastbound:echo_shard"
-    },
-    "T": {
-      "item": "pastbound:time_stone"
-    }
+    "G": "minecraft:gold_ingot",
+    "S": "pastbound:echo_shard",
+    "T": "pastbound:time_stone"
   },
   "pattern": [
     " G ",

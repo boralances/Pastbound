@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "historical_wood_button",
   "ingredients": [
-    {
-      "item": "pastbound:chinampa_cypress_planks"
-    }
+    "pastbound:chinampa_cypress_planks"
   ],
   "result": {
     "id": "pastbound:chinampa_cypress_button"

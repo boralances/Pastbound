@@ -3,9 +3,7 @@
   "category": "building",
   "group": "historical_wood_slab",
   "key": {
-    "#": {
-      "item": "pastbound:chinampa_cypress_planks"
-    }
+    "#": "pastbound:chinampa_cypress_planks"
   },
   "pattern": [
     "###"

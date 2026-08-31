@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "pastbound:echo_shard"
-    },
-    {
-      "item": "minecraft:paper"
-    }
+    "pastbound:echo_shard",
+    "minecraft:paper"
   ],
   "result": {
     "id": "pastbound:chronicle_scrap",

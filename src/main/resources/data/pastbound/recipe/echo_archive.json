@@ -7,15 +7,9 @@
     "OEO"
   ],
   "key": {
-    "O": {
-      "item": "minecraft:crying_obsidian"
-    },
-    "E": {
-      "item": "pastbound:echo_shard"
-    },
-    "A": {
-      "item": "minecraft:amethyst_block"
-    }
+    "O": "minecraft:crying_obsidian",
+    "E": "pastbound:echo_shard",
+    "A": "minecraft:amethyst_block"
   },
   "result": {
     "id": "pastbound:echo_archive",

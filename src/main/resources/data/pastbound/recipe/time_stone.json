@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "pastbound:echo_shard"
-    },
-    {
-      "item": "minecraft:amethyst_shard"
-    },
-    {
-      "item": "minecraft:clock"
-    }
+    "pastbound:echo_shard",
+    "minecraft:amethyst_shard",
+    "minecraft:clock"
   ],
   "result": {
     "id": "pastbound:time_stone",

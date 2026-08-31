@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "historical_wood_pressure_plate",
   "key": {
-    "#": {
-      "item": "pastbound:chinampa_cypress_planks"
-    }
+    "#": "pastbound:chinampa_cypress_planks"
   },
   "pattern": [
     "##"

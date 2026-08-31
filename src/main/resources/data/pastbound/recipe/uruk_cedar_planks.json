@@ -3,9 +3,7 @@
   "category": "building",
   "group": "historical_wood_planks",
   "key": {
-    "#": {
-      "item": "pastbound:uruk_cedar_log"
-    }
+    "#": "pastbound:uruk_cedar_log"
   },
   "pattern": [
     "#"

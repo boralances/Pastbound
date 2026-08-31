@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "nether_wart_trapdoor",
   "key": {
-    "#": {
-      "item": "minecraft:nether_wart_block"
-    }
+    "#": "minecraft:nether_wart_block"
   },
   "pattern": [
     "###",

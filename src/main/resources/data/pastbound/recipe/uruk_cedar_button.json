@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "historical_wood_button",
   "ingredients": [
-    {
-      "item": "pastbound:uruk_cedar_planks"
-    }
+    "pastbound:uruk_cedar_planks"
   ],
   "result": {
     "id": "pastbound:uruk_cedar_button"

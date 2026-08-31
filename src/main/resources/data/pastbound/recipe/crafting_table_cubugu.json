@@ -7,10 +7,10 @@
     " I "
   ],
   "key": {
-    "P": {"item": "minecraft:oak_planks"},
-    "S": {"item": "minecraft:stick"},
-    "C": {"item": "minecraft:crafting_table"},
-    "I": {"item": "minecraft:iron_ingot"}
+    "P": "minecraft:oak_planks",
+    "S": "minecraft:stick",
+    "C": "minecraft:crafting_table",
+    "I": "minecraft:iron_ingot"
   },
   "result": {
     "id": "pastbound:crafting_table_cubugu",
