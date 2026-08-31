@@ -3,7 +3,9 @@
   "category": "redstone",
   "group": "historical_wood_pressure_plate",
   "key": {
-    "#": "pastbound:uruk_cedar_planks"
+    "#": {
+      "item": "pastbound:uruk_cedar_planks"
+    }
   },
   "pattern": [
     "##"

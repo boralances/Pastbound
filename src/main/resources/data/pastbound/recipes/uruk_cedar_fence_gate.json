@@ -3,8 +3,12 @@
   "category": "redstone",
   "group": "historical_wood_fence_gate",
   "key": {
-    "#": "minecraft:stick",
-    "W": "pastbound:uruk_cedar_planks"
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "pastbound:uruk_cedar_planks"
+    }
   },
   "pattern": [
     "#W#",

@@ -3,7 +3,9 @@
   "category": "building",
   "group": "uruk_cedar_crafting_table",
   "key": {
-    "#": "pastbound:uruk_cedar_planks"
+    "#": {
+      "item": "pastbound:uruk_cedar_planks"
+    }
   },
   "pattern": [
     "##",

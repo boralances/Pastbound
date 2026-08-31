@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "group": "historical_wood_fence",
   "key": {
-    "#": "minecraft:stick",
-    "W": "pastbound:uruk_cedar_planks"
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "pastbound:uruk_cedar_planks"
+    }
   },
   "pattern": [
     "W#W",

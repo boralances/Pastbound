@@ -3,7 +3,9 @@
   "category": "building",
   "group": "historical_wood_planks",
   "key": {
-    "#": "pastbound:chinampa_cypress_log"
+    "#": {
+      "item": "pastbound:chinampa_cypress_log"
+    }
   },
   "pattern": [
     "#"

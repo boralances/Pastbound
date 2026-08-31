@@ -3,8 +3,12 @@
   "category": "tools",
   "group": "wooden_axe",
   "key": {
-    "#": "pastbound:uruk_cedar_planks",
-    "|": "minecraft:stick"
+    "#": {
+      "item": "pastbound:uruk_cedar_planks"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    }
   },
   "pattern": [
     "##",

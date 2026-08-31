@@ -3,8 +3,12 @@
   "category": "tools",
   "group": "wooden_pickaxe",
   "key": {
-    "#": "pastbound:chinampa_cypress_planks",
-    "|": "minecraft:stick"
+    "#": {
+      "item": "pastbound:chinampa_cypress_planks"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    }
   },
   "pattern": [
     "###",

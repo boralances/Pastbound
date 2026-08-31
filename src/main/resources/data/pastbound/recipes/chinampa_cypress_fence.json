@@ -2,8 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "group": "historical_wood_fence",
   "key": {
-    "#": "minecraft:stick",
-    "W": "pastbound:chinampa_cypress_planks"
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "W": {
+      "item": "pastbound:chinampa_cypress_planks"
+    }
   },
   "pattern": [
     "W#W",

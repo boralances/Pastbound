@@ -3,7 +3,9 @@
   "category": "misc",
   "group": "uruk_cedar_sticks",
   "key": {
-    "#": "pastbound:uruk_cedar_planks"
+    "#": {
+      "item": "pastbound:uruk_cedar_planks"
+    }
   },
   "pattern": [
     "#",
