@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    " C ",
+    "CTC",
+    " C "
+  ],
+  "key": {
+    "C": {
+      "item": "pastbound:chronicle_scrap"
+    },
+    "T": {
+      "item": "minecraft:compass"
+    }
+  },
+  "result": {
+    "id": "pastbound:chronicle_compass",
+    "count": 1
+  }
+}

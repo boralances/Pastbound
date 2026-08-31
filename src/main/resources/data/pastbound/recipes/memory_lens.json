@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " G ",
+    "SES",
+    " S "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:glass_pane"
+    },
+    "E": {
+      "item": "pastbound:echo_shard"
+    }
+  },
+  "result": {
+    "id": "pastbound:memory_lens",
+    "count": 1
+  }
+}

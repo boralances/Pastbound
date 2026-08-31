@@ -87,6 +87,9 @@ public final class ZamanMakinesiEkrani extends Screen {
             int cerceve = secili ? 0xFFE6C37A : uzerinde ? 0xFFB98B52 : 0xFF68747A;
             cizim.fill(x, y, x + kartGenislik, y + kartYukseklik, arkaPlan);
             cizim.outline(x, y, kartGenislik, kartYukseklik, cerceve);
+            if (secili) {
+                cizim.fill(x, y, x + 3, y + kartYukseklik, 0xFFE6C37A);
+            }
             cizim.text(font, Component.literal(Integer.toString(index + 1)), x + 7, y + 7, 0xFFE0C17C);
             cizim.textWithWordWrap(font, donem.adBileseni(), x + 23, y + 6, kartGenislik - 29, 0xFFF4E5C4);
             if (kartYukseklik >= 58) {
@@ -109,7 +112,8 @@ public final class ZamanMakinesiEkrani extends Screen {
         cizim.text(font, Component.translatable("screen.pastbound.time_machine.selected"), ayrintiSol + 12, ayrintiUst + 10, 0xFF9EC4BD);
         cizim.textWithWordWrap(font, donem.adBileseni(), ayrintiSol + 12, ayrintiUst + 25, ayrintiGenislik - 24, 0xFFF4D6A3);
         cizim.textWithWordWrap(font, donem.odakBileseni(), ayrintiSol + 12, ayrintiUst + 47, ayrintiGenislik - 24, 0xFFE1B56C);
-        cizim.textWithWordWrap(font, donem.aciklamaBileseni(), ayrintiSol + 12, ayrintiUst + 68, ayrintiGenislik - 24, 0xFFC7D4D9);
+        cizim.text(font, Component.translatable("screen.pastbound.time_machine.arrival_route"), ayrintiSol + 12, ayrintiUst + 61, 0xFF9EC4BD);
+        cizim.textWithWordWrap(font, donem.aciklamaBileseni(), ayrintiSol + 12, ayrintiUst + 80, ayrintiGenislik - 24, 0xFFC7D4D9);
         int gorevUst = ayrintiUst + Math.min(124, Math.max(100, ayrintiYukseklik / 2));
         cizim.fill(ayrintiSol + 9, gorevUst - 5, ayrintiSol + ayrintiGenislik - 9, gorevUst - 4, 0xB5B98B52);
         cizim.text(font, Component.translatable("screen.pastbound.time_machine.mission"), ayrintiSol + 12, gorevUst + 5, 0xFFE0C17C);

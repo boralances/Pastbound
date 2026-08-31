@@ -83,6 +83,7 @@ public final class TarihiKesifDunyasi {
     private static final int SAHNE_DURAK_CIHAZ_MASKESI = SAHNE_DURAK_A_CIHAZ_BITI | SAHNE_DURAK_B_CIHAZ_BITI | SAHNE_DURAK_C_CIHAZ_BITI;
     private static final double YURUME_HEDEFI_BLOK = 55.0D;
     private static final BlockPos SAHNE_MERKEZI = new BlockPos(0, 64, 0);
+    private static final BlockPos SAHNE_GIRISI = new BlockPos(0, 64, -8);
     private static final BlockPos[] GOREV_DURAKLARI = {
             SAHNE_MERKEZI.offset(-7, 0, -7),
             SAHNE_MERKEZI.offset(7, 0, -7),
@@ -136,8 +137,9 @@ public final class TarihiKesifDunyasi {
         veri.remove(IZLEME_Y);
         veri.remove(IZLEME_Z);
         sahneyiKur(hedef, SAHNE_MERKEZI, donem);
-        oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
+        oyuncu.teleportTo(hedef, SAHNE_GIRISI.getX() + 0.5D, SAHNE_GIRISI.getY() + 1.0D, SAHNE_GIRISI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.walk_to_site"));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
         oyuncu.sendSystemMessage(Component.translatable(donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "message.pastbound.mission.steel_start" : "message.pastbound.scene.quest_period", Component.translatable("screen.pastbound.scene.task." + donem.kimlik())));
         PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.sahne(donem.kimlik(), 0));

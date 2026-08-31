@@ -9,13 +9,13 @@ The mod is built around a simple idea: every artefact should have a story, and t
 | Item | Current value |
 |---|---|
 | Mod | Pastbound |
-| Release | 2.5.8 |
+| Release | 2.5.9 |
 | Minecraft / NeoForge target | 26.2 / NeoForge 26.2.0.66 |
 | Curios | 16.0.0+26.2 |
 | Java | 25 |
 | Loader | NeoForge |
 | License | MIT |
-| Current release | [Pastbound v2.5.8](https://github.com/boralances/Pastbound/releases/tag/v2.5.8) |
+| Current release | [Pastbound v2.5.9](https://github.com/boralances/Pastbound/releases/tag/v2.5.9) |
 
 The version numbers above are taken from `gradle.properties`, which is the source of truth for the project version and dependency targets.
 
@@ -27,7 +27,7 @@ The second part is the relic hunt. Pastbound currently contains twenty-four hist
 
 The Relic Journal opens with **R**. It records recovered memories, known relics, historical traces, activation status, echo trials, and the progression of the relic slots. The first eight relic positions are available immediately; the final two are unlocked through the journal by exchanging ten Netherite Blocks.
 
-The Time Machine is an interactive historical observatory rather than a simple teleport button. Its paged interface previews each destination and its mission before travel. The twelve destinations cover subjects such as early writing, war and strategy, libraries, translation, mechanical astronomy, trade, ocean navigation, early settlement, and lunar exploration. Each destination has its own dimension-specific expedition objective and echo advancement; the Overworld is not used as a mandatory quest chain.
+The Time Machine is an interactive historical observatory rather than a simple teleport button. Its paged interface previews each destination, highlights the selected route, and explains the arrival gate before travel. After entering a historical dimension, the player starts at the gate and walks to the marked site instead of appearing directly at the central objective. The twelve destinations cover subjects such as early writing, war and strategy, libraries, translation, mechanical astronomy, trade, ocean navigation, early settlement, and lunar exploration. Each destination has its own dimension-specific expedition objective and echo advancement; the Overworld is not used as a mandatory quest chain.
 
 ## Main systems
 
@@ -50,7 +50,7 @@ The portable furnace also has an enhanced tier with faster processing. Ancient S
 
 Each relic has its own texture, model, historical description, restoration activity, knowledge cost, activation cooldown, and ability branch. The common relic logic uses Turkish method and variable names, as required by the project’s coding style. Comments are intentionally not used in the Java source; the code is kept readable through class structure, naming, and small focused methods.
 
-The ten newer relic effects are registered as real NeoForge `MobEffect` instances and have matching textures in `assets/pastbound/textures/mob_effect/`. Their names are generated for both Turkish and English locales. The effects are inspired by the relics rather than presented as arbitrary potion upgrades: Rosetta Knowledge, Gilgamesh Endurance, Anubis Cleansing, Minos Leap, Roman Aureus, Viking Night Sight, Samurai Guard, Maya Calendar, Inca Knots, and Harappan Clay Tablets.
+The ten newer relic effects are registered as real NeoForge `MobEffect` instances and have matching textures in `assets/pastbound/textures/mob_effect/`. Their names are generated for both Turkish and English locales. Status effects are not granted on a random timer: they come from explicit relic activation or a completed, selected witness dialogue. The effects are inspired by the relics rather than presented as arbitrary potion upgrades: Rosetta Knowledge, Gilgamesh Endurance, Anubis Cleansing, Minos Leap, Roman Aureus, Viking Night Sight, Samurai Guard, Maya Calendar, Inca Knots, and Harappan Clay Tablets.
 
 ## Controls
 
@@ -106,7 +106,7 @@ python3 tools/audit_assets.py
 The finished development JAR is written to:
 
 ```text
-build/libs/Pastbound-2.5.8.jar
+build/libs/Pastbound-2.5.9.jar
 ```
 
 The version in that filename changes automatically when `mod_version` in `gradle.properties` changes. Do not rename the file by hand when preparing a release; update the project version, rebuild, and let Gradle produce the matching artifact.
@@ -138,14 +138,14 @@ python3 tools/assemble_release_jar.py
 
 `assemble_release_jar.py` reads `mod_version` from `gradle.properties`, takes compiled classes from `build/classes/java/main`, takes resources from `src/main/resources`, expands the NeoForge metadata placeholders, and writes the result to `build/libs/Pastbound-<version>.jar`. The packager sorts archive entries so repeated builds are stable and easy to compare.
 
-For Pastbound 2.5.8, the fallback output is `build/libs/Pastbound-2.5.8.jar`. Before distributing it, check the archive contents and its version metadata:
+For Pastbound 2.5.9, the fallback output is `build/libs/Pastbound-2.5.9.jar`. Before distributing it, check the archive contents and its version metadata:
 
 ```bash
-unzip -p build/libs/Pastbound-2.5.8.jar META-INF/neoforge.mods.toml | grep -E 'version=|logoFile'
-unzip -l build/libs/Pastbound-2.5.8.jar | grep -E 'textures/mob_effect|pastbound_logo.png|RelikMantigi.class'
+unzip -p build/libs/Pastbound-2.5.9.jar META-INF/neoforge.mods.toml | grep -E 'version=|logoFile'
+unzip -l build/libs/Pastbound-2.5.9.jar | grep -E 'textures/mob_effect|pastbound_logo.png|RelikMantigi.class'
 ```
 
-The current 2.5.8 release contains the deterministic 512×512 logo made from the actual Time Machine texture. It does not use AI-generated logo artwork. Dimension distance hints are sent once per expedition instead of repeatedly filling the chat.
+The current 2.5.9 release contains the deterministic 512×512 logo made from the actual Time Machine texture. It does not use AI-generated logo artwork. Dimension distance hints are sent once per expedition instead of repeatedly filling the chat.
 
 ## Validation checklist
 
