@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pastbound_chronicle_compass",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "pastbound:echo_shard"
+    },
+    "T": {
+      "item": "pastbound:time_stone"
+    }
+  },
+  "pattern": [
+    " G ",
+    "GTG",
+    " S "
+  ],
+  "result": {
+    "id": "pastbound:chronicle_compass",
+    "count": 1
+  }
+}

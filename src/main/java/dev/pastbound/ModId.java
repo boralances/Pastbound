@@ -10,6 +10,7 @@ import dev.pastbound.registry.ModBlocks;
 import dev.pastbound.registry.ModCreativeTabs;
 import dev.pastbound.registry.ModEffects;
 import dev.pastbound.registry.ModItems;
+import dev.pastbound.registry.ModLootModifiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -24,6 +25,7 @@ public final class ModId {
     public ModId(IEventBus modEventBus, ModContainer modContainer) {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModLootModifiers.SERIALIZERS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
