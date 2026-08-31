@@ -1,0 +1,30 @@
+{
+  "parent": "pastbound:ervanium_template",
+  "display": {
+    "icon": {
+      "id": "pastbound:ervanium_ore"
+    },
+    "title": {
+      "text": "Rare End Find"
+    },
+    "description": {
+      "text": "Mine the rare Ervanium Ore in End Midlands."
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mine_ervanium": {
+      "trigger": "minecraft:item_obtained",
+      "conditions": {
+        "item": {
+          "items": [
+            "pastbound:ervanium_ore"
+          ]
+        }
+      }
+    }
+  }
+}

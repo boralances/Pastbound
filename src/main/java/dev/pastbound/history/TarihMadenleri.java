@@ -27,7 +27,7 @@ import net.neoforged.neoforge.event.level.ChunkEvent;
 public final class TarihMadenleri {
     private static final ResourceKey<Biome> URUK_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "uruk_floodplain"));
     private static final ResourceKey<Biome> CHINAMPA_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "tenochtitlan_chinampa"));
-    private static final ResourceKey<Biome> END_ECHO_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "end_echo_gardens"));
+    private static final ResourceKey<Biome> END_MIDLANDS_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath("minecraft", "end_midlands"));
     private static final ResourceKey<Biome> VOID_CHRONICLE_BIYOMU = ResourceKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(ModId.MOD_ID, "void_chronicle_wastes"));
 
     private TarihMadenleri() {
@@ -82,12 +82,15 @@ public final class TarihMadenleri {
 
 
     private static void endBiyomCebi(ServerLevel seviye, LevelChunk chunk, RandomSource rastgele) {
-        ResourceKey<Biome> anahtar = Math.floorMod(chunk.getPos().x() + chunk.getPos().z(), 2) == 0 ? END_ECHO_BIYOMU : VOID_CHRONICLE_BIYOMU;
+        ResourceKey<Biome> anahtar = Math.floorMod(chunk.getPos().x() + chunk.getPos().z(), 2) == 0 ? END_MIDLANDS_BIYOMU : VOID_CHRONICLE_BIYOMU;
         Holder<Biome> biyom = seviye.registryAccess().lookupOrThrow(Registries.BIOME).get(anahtar).orElse(null);
         if (biyom != null) {
             biyomCebiUygula(chunk, biyom);
         }
         endDamar(seviye, chunk, rastgele);
+        if (anahtar.equals(END_MIDLANDS_BIYOMU) && rastgele.nextInt(256) == 0) {
+            damarYerlestir(seviye, chunk, rastgele, ModBlocks.ERVANIUM_ORE.get(), 18 + rastgele.nextInt(36), 1, false, true);
+        }
     }
 
     private static void endDamar(ServerLevel seviye, LevelChunk chunk, RandomSource rastgele) {

@@ -665,5 +665,8 @@
   "block.pastbound.nether_wart_door": "Nether Wart Door",
   "block.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor",
   "item.pastbound.nether_wart_door": "Nether Wart Door",
-  "item.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor"
+  "item.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor",
+  "block.pastbound.ervanium_ore": "Ervanium Ore",
+  "item.pastbound.ervanium_ore": "Ervanium Ore",
+  "item.pastbound.ervanium_smithing_template": "Ervanium Smithing Template"
 }

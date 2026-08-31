@@ -52,6 +52,8 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> ASH_CHRONICLE_ORE = ITEMS.registerSimpleBlockItem("ash_chronicle_ore", ModBlocks.ASH_CHRONICLE_ORE);
     public static final DeferredItem<BlockItem> END_ECHO_ORE = ITEMS.registerSimpleBlockItem("end_echo_ore", ModBlocks.END_ECHO_ORE);
     public static final DeferredItem<BlockItem> VOID_CHRONICLE_ORE = ITEMS.registerSimpleBlockItem("void_chronicle_ore", ModBlocks.VOID_CHRONICLE_ORE);
+    public static final DeferredItem<BlockItem> ERVANIUM_ORE = ITEMS.registerSimpleBlockItem("ervanium_ore", ModBlocks.ERVANIUM_ORE);
+    public static final DeferredItem<Item> ERVANIUM_SMITHING_TEMPLATE = ITEMS.register("ervanium_smithing_template", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
 
     public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);
     public static final DeferredItem<BlockItem> URUK_CEDAR_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_stripped_log", ModBlocks.URUK_CEDAR_STRIPPED_LOG);

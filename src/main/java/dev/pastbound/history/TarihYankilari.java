@@ -308,6 +308,12 @@ public final class TarihYankilari {
     public static void oyunaGirdi(PlayerEvent.PlayerLoggedInEvent olay) {
         Player oyuncu = olay.getEntity();
         yankiyiBaslat(oyuncu, TarihYankisi.PAPIRUS_SIFRESI);
+        if (oyuncu instanceof ServerPlayer sunucu) {
+            var pastboundTarifleri = sunucu.level().getServer().getRecipeManager().getRecipes().stream()
+                    .filter(tarif -> tarif.id().identifier().getNamespace().equals(ModId.MOD_ID))
+                    .toList();
+            sunucu.awardRecipes(pastboundTarifleri);
+        }
     }
 
     @SubscribeEvent

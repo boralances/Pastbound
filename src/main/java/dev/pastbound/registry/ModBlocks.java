@@ -46,6 +46,7 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> ASH_CHRONICLE_ORE = BLOCKS.register("ash_chronicle_ore", kimlik -> new Block(ozellik(Blocks.NETHER_QUARTZ_ORE, kimlik)));
     public static final DeferredBlock<Block> END_ECHO_ORE = BLOCKS.register("end_echo_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik)));
     public static final DeferredBlock<Block> VOID_CHRONICLE_ORE = BLOCKS.register("void_chronicle_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik)));
+    public static final DeferredBlock<Block> ERVANIUM_ORE = BLOCKS.register("ervanium_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik).destroyTime(8.0F).explosionResistance(9.0F).lightLevel(durum -> 3)));
 
     public static final DeferredBlock<Block> URUK_CEDAR_LOG = BLOCKS.register("uruk_cedar_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.OAK_LOG, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_STRIPPED_LOG = BLOCKS.register("uruk_cedar_stripped_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.STRIPPED_OAK_LOG, kimlik)));

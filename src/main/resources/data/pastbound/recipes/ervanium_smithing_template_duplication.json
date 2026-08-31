@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pastbound_ervanium_template",
+  "key": {
+    "E": {
+      "item": "pastbound:ervanium_smithing_template"
+    },
+    "N": {
+      "item": "minecraft:netherite_block"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NEN",
+    "NNN"
+  ],
+  "result": {
+    "id": "pastbound:ervanium_smithing_template",
+    "count": 2
+  }
+}

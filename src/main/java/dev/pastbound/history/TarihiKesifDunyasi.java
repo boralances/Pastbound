@@ -855,14 +855,9 @@ public final class TarihiKesifDunyasi {
         if (tamamlanan % 3 == 0) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ECHO_SEAL.get(), 1));
         }
-        if (tamamlanan % 5 == 0) {
-            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.TIME_STONE_ORE.get(), 8));
-            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_HELMET));
-            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_CHESTPLATE));
-            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_LEGGINGS));
-            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_BOOTS));
-            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_SWORD));
-            oyuncu.sendSystemMessage(Component.literal("Milestone reward: 8 Time Stone Ore and a Netherite armor + sword set."));
+        if (tamamlanan == 5) {
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ERVANIUM_SMITHING_TEMPLATE.get(), 2));
+            oyuncu.sendSystemMessage(Component.literal("Milestone reward: 2 Ervanium Smithing Templates."));
         }
         if (tamamlanan == TarihDonemi.values().length) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.CHRONICLE_COMPASS.get(), 1));
