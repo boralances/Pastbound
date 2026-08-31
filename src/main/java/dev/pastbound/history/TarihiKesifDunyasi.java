@@ -1116,17 +1116,31 @@ public final class TarihiKesifDunyasi {
     }
 
     private static void gorevYolunuAmetistleKur(ServerLevel seviye, BlockPos merkez) {
-        for (BlockPos hedef : GOREV_DURAKLARI) {
-            int baslangicX = merkez.getX();
-            int baslangicZ = merkez.getZ();
-            int bitisX = hedef.getX();
-            int bitisZ = hedef.getZ();
-            int adim = Math.max(Math.abs(bitisX - baslangicX), Math.abs(bitisZ - baslangicZ));
-            for (int i = 0; i <= adim; i++) {
-                double oran = adim == 0 ? 0.0D : (double) i / adim;
-                int x = (int) Math.round(baslangicX + (bitisX - baslangicX) * oran);
-                int z = (int) Math.round(baslangicZ + (bitisZ - baslangicZ) * oran);
-                seviye.setBlock(new BlockPos(x, merkez.getY() + 1, z), Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
+        for (int x = -41; x <= 41; x++) {
+            for (int z = -41; z <= 41; z++) {
+                BlockPos ic = merkez.offset(x, 1, z);
+                if (seviye.getBlockState(ic).is(Blocks.AMETHYST_BLOCK)) {
+                    seviye.setBlock(ic, Blocks.AIR.defaultBlockState(), 3);
+                }
+            }
+        }
+        int yukseklik = merkez.getY() + 5;
+        for (int i = -42; i <= 42; i++) {
+            BlockPos kuzey = merkez.offset(i, 5, -42);
+            BlockPos guney = merkez.offset(i, 5, 42);
+            BlockPos bati = merkez.offset(-42, 5, i);
+            BlockPos dogu = merkez.offset(42, 5, i);
+            if (seviye.getBlockState(kuzey.below()).is(Blocks.BARRIER)) {
+                seviye.setBlock(kuzey, Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
+            }
+            if (seviye.getBlockState(guney.below()).is(Blocks.BARRIER)) {
+                seviye.setBlock(guney, Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
+            }
+            if (seviye.getBlockState(bati.below()).is(Blocks.BARRIER)) {
+                seviye.setBlock(bati, Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
+            }
+            if (seviye.getBlockState(dogu.below()).is(Blocks.BARRIER)) {
+                seviye.setBlock(dogu, Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
             }
         }
     }
@@ -1154,8 +1168,6 @@ public final class TarihiKesifDunyasi {
                 seviye.setBlock(merkez.offset(x, -1, z), Blocks.BARRIER.defaultBlockState(), 3);
             }
         }
-        BlockState gecit = ModBlocks.URUK_CEDAR_FENCE_GATE.get().defaultBlockState().setValue(FenceGateBlock.OPEN, true);
-        seviye.setBlock(merkez.north(9), gecit, 3);
     }
 
     private static void tarihiYapiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
