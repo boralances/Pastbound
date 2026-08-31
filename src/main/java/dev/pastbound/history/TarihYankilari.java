@@ -337,6 +337,9 @@ public final class TarihYankilari {
         if (oyuncu.level().isClientSide()) {
             return;
         }
+        if (oyuncu instanceof ServerPlayer sunucu && oyuncu.tickCount % 20 == 0) {
+            pastboundTarifleriniAc(sunucu);
+        }
         if (oyuncu instanceof net.minecraft.server.level.ServerPlayer sunucu && TarihiKesifDunyasi.canlandirmaAktifMi(sunucu)) {
             TarihiKesifDunyasi.tik(sunucu);
             return;
@@ -348,9 +351,6 @@ public final class TarihYankilari {
             TarihiKesifDunyasi.dunyaGoreviniBaslat(sunucu);
             TarihiKesifDunyasi.dunyaGoreviTik(sunucu);
             TarihiKesifDunyasi.donemOzelEylem(sunucu, sunucu.blockPosition(), ItemStack.EMPTY);
-        }
-        if (oyuncu instanceof ServerPlayer sunucu && oyuncu.tickCount % 40 == 0) {
-            pastboundTarifleriniAc(sunucu);
         }
     }
 }
