@@ -611,7 +611,7 @@ public final class TarihiKesifDunyasi {
         for (int i = 0; i < GOREV_DURAKLARI.length; i++) {
             BlockPos durak = GOREV_DURAKLARI[i];
             seviye.setBlock(durak, durakAletleri[i].defaultBlockState(), 3);
-            seviye.setBlock(durak.above(), Blocks.LANTERN.defaultBlockState(), 3);
+            seviye.setBlock(durak.above(), Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
         }
         tarihLokasyonlariniKur(seviye, merkez, donem);
         if (donem != TarihDonemi.BAGDAT_PILI_ATOLYESI) {
@@ -712,7 +712,7 @@ public final class TarihiKesifDunyasi {
 
     private static void gorevIsaretiKur(ServerLevel seviye, BlockPos merkez, Block blok) {
         seviye.setBlock(merkez.above(), blok.defaultBlockState(), 3);
-        seviye.setBlock(merkez.above(2), Blocks.LANTERN.defaultBlockState(), 3);
+        seviye.setBlock(merkez.above(2), Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
     }
 
     public static void konusmaCevapla(ServerPlayer oyuncu, String donemKimligi, int konusmaci, int secim) {
@@ -1075,6 +1075,9 @@ public final class TarihiKesifDunyasi {
     }
 
     private static void sahneyiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
+        if (seviye.dimension().equals(Level.OVERWORLD)) {
+            return;
+        }
         Block dekor = dekorBlogu(donem);
         BlockState zemin = zeminBlogu(donem).defaultBlockState();
         BlockState kenar = dekor.defaultBlockState();
@@ -1107,8 +1110,25 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(merkez.west(3), dekor.defaultBlockState(), 3);
         tarihiYapiKur(seviye, merkez, donem);
         sahneAcikGecidiniKur(seviye, merkez);
+        gorevYolunuAmetistleKur(seviye, merkez);
         gorevVarliklariniKur(seviye, merkez, donem);
         sahneAktorleriniKur(seviye, merkez, donem);
+    }
+
+    private static void gorevYolunuAmetistleKur(ServerLevel seviye, BlockPos merkez) {
+        for (BlockPos hedef : GOREV_DURAKLARI) {
+            int baslangicX = merkez.getX();
+            int baslangicZ = merkez.getZ();
+            int bitisX = hedef.getX();
+            int bitisZ = hedef.getZ();
+            int adim = Math.max(Math.abs(bitisX - baslangicX), Math.abs(bitisZ - baslangicZ));
+            for (int i = 0; i <= adim; i++) {
+                double oran = adim == 0 ? 0.0D : (double) i / adim;
+                int x = (int) Math.round(baslangicX + (bitisX - baslangicX) * oran);
+                int z = (int) Math.round(baslangicZ + (bitisZ - baslangicZ) * oran);
+                seviye.setBlock(new BlockPos(x, merkez.getY() + 1, z), Blocks.AMETHYST_BLOCK.defaultBlockState(), 3);
+            }
+        }
     }
 
     private static void sahneAcikGecidiniKur(ServerLevel seviye, BlockPos merkez) {
