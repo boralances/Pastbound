@@ -149,6 +149,10 @@ public final class TarihiKesifDunyasi {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.IRON_PICKAXE));
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.mining_tool"));
         }
+        if (oyuncu.getInventory().countItem(Items.COAL) < 16) {
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.COAL, 16));
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.TORCH, 16));
+        }
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
         oyuncu.sendSystemMessage(Component.translatable(donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "message.pastbound.mission.steel_start" : "message.pastbound.scene.quest_period", Component.translatable("screen.pastbound.scene.task." + donem.kimlik())));
@@ -205,7 +209,7 @@ public final class TarihiKesifDunyasi {
             return false;
         }
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
-        return veri.getIntOr(CELIK_GOREV_ASAMASI, 0) == 1 && oyuncu.level().getBlockState(konum).is(ModBlocks.STEEL_ORE.get());
+        return veri.getIntOr(CELIK_GOREV_ASAMASI, 0) <= 1 && oyuncu.level().getBlockState(konum).is(ModBlocks.STEEL_ORE.get());
     }
 
     public static void celiKirilmasi(ServerPlayer oyuncu) {
@@ -672,48 +676,47 @@ public final class TarihiKesifDunyasi {
                 seviye.setBlock(merkez.offset(x, 0, z), zemin.defaultBlockState(), 3);
             }
         }
-        for (int i = -yaricap; i <= yaricap; i++) {
-            seviye.setBlock(merkez.offset(i, 1, -yaricap), Blocks.OAK_FENCE.defaultBlockState(), 3);
-            seviye.setBlock(merkez.offset(i, 1, yaricap), Blocks.OAK_FENCE.defaultBlockState(), 3);
-            seviye.setBlock(merkez.offset(-yaricap, 1, i), Blocks.OAK_FENCE.defaultBlockState(), 3);
-            seviye.setBlock(merkez.offset(yaricap, 1, i), Blocks.OAK_FENCE.defaultBlockState(), 3);
-        }
-        for (BlockPos giris : new BlockPos[]{merkez.north(yaricap), merkez.south(yaricap), merkez.west(yaricap), merkez.east(yaricap)}) {
-            seviye.setBlock(giris, Blocks.AIR.defaultBlockState(), 3);
+        for (int x = -yaricap; x <= yaricap; x++) {
+            for (int z = -yaricap; z <= yaricap; z++) {
+                seviye.setBlock(merkez.offset(x, -2, z), Blocks.DEEPSLATE.defaultBlockState(), 3);
+            }
         }
     }
 
     private static void koyEviKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
         Block duvar = ahsapPlanki(donem);
         Block tema = koyTemaBlogu(donem);
+        int taban = -2;
         for (int x = -3; x <= 3; x++) {
             for (int z = -3; z <= 3; z++) {
-                seviye.setBlock(merkez.offset(x, 0, z), duvar.defaultBlockState(), 3);
+                seviye.setBlock(merkez.offset(x, taban, z), Blocks.DEEPSLATE.defaultBlockState(), 3);
             }
         }
-        for (int y = 1; y <= 3; y++) {
+        for (int y = taban + 1; y <= taban + 3; y++) {
             for (int x = -3; x <= 3; x++) {
-                seviye.setBlock(merkez.offset(x, y, -3), duvar.defaultBlockState(), 3);
-                seviye.setBlock(merkez.offset(x, y, 3), duvar.defaultBlockState(), 3);
+                if (x < -2 || x > 2) {
+                    seviye.setBlock(merkez.offset(x, y, -3), duvar.defaultBlockState(), 3);
+                }
             }
-            for (int z = -2; z <= 2; z++) {
-                seviye.setBlock(merkez.offset(-3, y, z), duvar.defaultBlockState(), 3);
-                seviye.setBlock(merkez.offset(3, y, z), duvar.defaultBlockState(), 3);
+            for (int z = -3; z <= 3; z++) {
+                if (z < -1 || z > 2) {
+                    seviye.setBlock(merkez.offset(-3, y, z), duvar.defaultBlockState(), 3);
+                    seviye.setBlock(merkez.offset(3, y, z), duvar.defaultBlockState(), 3);
+                }
             }
         }
         for (int x = -3; x <= 3; x++) {
             for (int z = -3; z <= 3; z++) {
                 if (Math.abs(x) + Math.abs(z) <= 5) {
-                    seviye.setBlock(merkez.offset(x, 4, z), duvar.defaultBlockState(), 3);
+                    seviye.setBlock(merkez.offset(x, taban + 4, z), duvar.defaultBlockState(), 3);
                 }
             }
         }
-        BlockPos kapi = merkez.south(3);
-        seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
-        seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
-        Block kapı = kapisi(donem);
-        seviye.setBlock(kapi, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, true), 3);
-        seviye.setBlock(kapi.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, true), 3);
+        for (int x = -2; x <= 2; x++) {
+            for (int y = taban + 1; y <= taban + 2; y++) {
+                seviye.setBlock(merkez.offset(x, y, 3), Blocks.AIR.defaultBlockState(), 3);
+            }
+        }
         seviye.setBlock(merkez, tema.defaultBlockState(), 3);
         seviye.setBlock(merkez.east(), Blocks.LECTERN.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(), Blocks.BELL.defaultBlockState(), 3);
@@ -743,9 +746,8 @@ public final class TarihiKesifDunyasi {
         BlockPos kapi = merkez.north(2);
         seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
         seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
-        Block kapı = ModBlocks.NETHER_WART_DOOR.get();
-        seviye.setBlock(kapi, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, true), 3);
-        seviye.setBlock(kapi.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, true), 3);
+        seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
+        seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
         for (int i = -2; i <= 2; i++) {
             seviye.setBlock(merkez.offset(i, 1, 0), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
             seviye.setBlock(merkez.offset(i, 2, 0), ModBlocks.STEEL_ORE.get().defaultBlockState(), 3);
@@ -776,9 +778,8 @@ public final class TarihiKesifDunyasi {
         BlockPos kapi = merkez.south(3);
         seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
         seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
-        Block kapı = kapisi(donem);
-        seviye.setBlock(kapi, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, true), 3);
-        seviye.setBlock(kapi.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, true), 3);
+        seviye.setBlock(kapi, Blocks.AIR.defaultBlockState(), 3);
+        seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
         seviye.setBlock(merkez, ModBlocks.RESONANCE_PILLAR.get().defaultBlockState(), 3);
         seviye.setBlock(merkez.east(2), Blocks.REDSTONE_BLOCK.defaultBlockState(), 3);
         seviye.setBlock(merkez.west(2), Blocks.COPPER_BLOCK.weathering().unaffected().defaultBlockState(), 3);
@@ -853,6 +854,15 @@ public final class TarihiKesifDunyasi {
         oyuncu.giveExperiencePoints(12 + tamamlanan * 2);
         if (tamamlanan % 3 == 0) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ECHO_SEAL.get(), 1));
+        }
+        if (tamamlanan % 5 == 0) {
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.TIME_STONE_ORE.get(), 8));
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_HELMET));
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_CHESTPLATE));
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_LEGGINGS));
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_BOOTS));
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.NETHERITE_SWORD));
+            oyuncu.sendSystemMessage(Component.literal("Milestone reward: 8 Time Stone Ore and a Netherite armor + sword set."));
         }
         if (tamamlanan == TarihDonemi.values().length) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.CHRONICLE_COMPASS.get(), 1));
@@ -1201,7 +1211,7 @@ public final class TarihiKesifDunyasi {
 
 
     private static void sahneAcikGecidiniKur(ServerLevel seviye, BlockPos merkez) {
-        for (int x = -1; x <= 1; x++) {
+        for (int x = -2; x <= 1; x++) {
             for (int y = 0; y <= 3; y++) {
                 seviye.setBlock(merkez.offset(x, y, -8), Blocks.AIR.defaultBlockState(), 3);
                 seviye.setBlock(merkez.offset(x, y, -9), Blocks.AIR.defaultBlockState(), 3);
@@ -1311,10 +1321,11 @@ public final class TarihiKesifDunyasi {
     }
 
     private static void sahneKapisiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
-        Block kapı = chinampaDonemiMi(donem) ? ModBlocks.CHINAMPA_CYPRESS_DOOR.get() : ModBlocks.URUK_CEDAR_DOOR.get();
-        BlockPos alt = merkez.north(8).above();
-        seviye.setBlock(alt, kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER).setValue(DoorBlock.OPEN, false), 3);
-        seviye.setBlock(alt.above(), kapı.defaultBlockState().setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER).setValue(DoorBlock.OPEN, false), 3);
+        for (int x = -2; x <= 1; x++) {
+            for (int y = 0; y <= 4; y++) {
+                seviye.setBlock(merkez.offset(x, y, -8), Blocks.AIR.defaultBlockState(), 3);
+            }
+        }
     }
 
     private static void sahneKapisiAnimasyonla(Level seviye, BlockPos merkez, TarihDonemi donem, boolean acik) {
