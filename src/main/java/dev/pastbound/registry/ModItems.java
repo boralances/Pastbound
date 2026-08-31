@@ -25,6 +25,8 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> ECHO_ARCHIVE = ITEMS.registerSimpleBlockItem("echo_archive", ModBlocks.ECHO_ARCHIVE);
     public static final DeferredItem<BlockItem> ANCIENT_STORAGE = ITEMS.registerSimpleBlockItem("ancient_storage", ModBlocks.ANCIENT_STORAGE);
     public static final DeferredItem<BlockItem> RESONANCE_PILLAR = ITEMS.registerSimpleBlockItem("resonance_pillar", ModBlocks.RESONANCE_PILLAR);
+    public static final DeferredItem<BlockItem> NETHER_WART_DOOR = ITEMS.registerSimpleBlockItem("nether_wart_door", ModBlocks.NETHER_WART_DOOR);
+    public static final DeferredItem<BlockItem> NETHER_WART_TRAPDOOR = ITEMS.registerSimpleBlockItem("nether_wart_trapdoor", ModBlocks.NETHER_WART_TRAPDOOR);
 
     public static final DeferredItem<EchoShardItem> ECHO_SHARD = ITEMS.register("echo_shard", registryName -> new EchoShardItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(16)));
     public static final DeferredItem<MemoryLensItem> MEMORY_LENS = ITEMS.register("memory_lens", registryName -> new MemoryLensItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1).durability(128)));
@@ -84,8 +86,8 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_BUTTON = ITEMS.registerSimpleBlockItem("chinampa_cypress_button", ModBlocks.CHINAMPA_CYPRESS_BUTTON);
 
     public static final List<DeferredItem<BlockItem>> TARIHI_AHSAP_ITEMLERI = List.of(
-            URUK_CEDAR_LOG, URUK_CEDAR_STRIPPED_LOG, URUK_CEDAR_WOOD, URUK_CEDAR_STRIPPED_WOOD, URUK_CEDAR_LEAVES, URUK_CEDAR_SAPLING, URUK_CEDAR_PLANKS, URUK_CEDAR_SLAB, URUK_CEDAR_STAIRS, URUK_CEDAR_DOOR, URUK_CEDAR_TRAPDOOR, URUK_CEDAR_FENCE, URUK_CEDAR_FENCE_GATE, URUK_CEDAR_PRESSURE_PLATE, URUK_CEDAR_BUTTON,
-            CHINAMPA_CYPRESS_LOG, CHINAMPA_CYPRESS_STRIPPED_LOG, CHINAMPA_CYPRESS_WOOD, CHINAMPA_CYPRESS_STRIPPED_WOOD, CHINAMPA_CYPRESS_LEAVES, CHINAMPA_CYPRESS_SAPLING, CHINAMPA_CYPRESS_PLANKS, CHINAMPA_CYPRESS_SLAB, CHINAMPA_CYPRESS_STAIRS, CHINAMPA_CYPRESS_DOOR, CHINAMPA_CYPRESS_TRAPDOOR, CHINAMPA_CYPRESS_FENCE, CHINAMPA_CYPRESS_FENCE_GATE, CHINAMPA_CYPRESS_PRESSURE_PLATE, CHINAMPA_CYPRESS_BUTTON);
+            URUK_CEDAR_LOG, URUK_CEDAR_STRIPPED_LOG, URUK_CEDAR_WOOD, URUK_CEDAR_STRIPPED_WOOD, URUK_CEDAR_LEAVES, URUK_CEDAR_SAPLING, URUK_CEDAR_PLANKS, URUK_CEDAR_SLAB, URUK_CEDAR_STAIRS, URUK_CEDAR_FENCE, URUK_CEDAR_FENCE_GATE, URUK_CEDAR_PRESSURE_PLATE, URUK_CEDAR_BUTTON,
+            CHINAMPA_CYPRESS_LOG, CHINAMPA_CYPRESS_STRIPPED_LOG, CHINAMPA_CYPRESS_WOOD, CHINAMPA_CYPRESS_STRIPPED_WOOD, CHINAMPA_CYPRESS_LEAVES, CHINAMPA_CYPRESS_SAPLING, CHINAMPA_CYPRESS_PLANKS, CHINAMPA_CYPRESS_SLAB, CHINAMPA_CYPRESS_STAIRS, CHINAMPA_CYPRESS_FENCE, CHINAMPA_CYPRESS_FENCE_GATE, CHINAMPA_CYPRESS_PRESSURE_PLATE, CHINAMPA_CYPRESS_BUTTON);
 
     public static final List<DeferredItem<RelikItem>> RELIKLER = new ArrayList<>();
 

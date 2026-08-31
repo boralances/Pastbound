@@ -1,10 +1,10 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
-  "group": "historical_wood_door",
+  "group": "nether_wart_door",
   "key": {
     "#": {
-      "item": "pastbound:uruk_cedar_planks"
+      "item": "minecraft:nether_wart_block"
     }
   },
   "pattern": [
@@ -14,6 +14,6 @@
   ],
   "result": {
     "count": 3,
-    "id": "pastbound:uruk_cedar_door"
+    "id": "pastbound:nether_wart_door"
   }
 }

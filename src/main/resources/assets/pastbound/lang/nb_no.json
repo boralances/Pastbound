@@ -658,5 +658,12 @@
   "message.pastbound.world.power_find_pillar": "Find and activate the Resonance Pillar marked by the amethyst route.",
   "message.pastbound.scene.pillar_locked": "Mine the required steel ore first, then activate the Resonance Pillar.",
   "message.pastbound.scene.pillar_active": "The Resonance Pillar is active. Return to the time machine.",
-  "container.pastbound.resonance_pillar": "Resonance Pillar"
+  "container.pastbound.resonance_pillar": "Resonance Pillar",
+  "entity.pastbound.village.archivist": "Archivist",
+  "entity.pastbound.power.engineer": "Power Engineer",
+  "message.pastbound.mod_menu.summary": "Historical exploration, relics and living echoes.",
+  "block.pastbound.nether_wart_door": "Nether Wart Door",
+  "block.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor",
+  "item.pastbound.nether_wart_door": "Nether Wart Door",
+  "item.pastbound.nether_wart_trapdoor": "Nether Wart Trapdoor"
 }

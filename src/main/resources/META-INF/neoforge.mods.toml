@@ -6,6 +6,8 @@ version="${mod_version}"
 displayName="${mod_name}"
 credits="Created for CurseForge ModJam 2026"
 authors="Pastbound Team"
+displayURL="https://github.com/boralances/Pastbound"
+issueTrackerURL="https://github.com/boralances/Pastbound/issues"
 description='''Pastbound turns history into a playable archaeology loop. Recover relics from lost civilizations, solve the riddles behind them, and let Curios relics bring the past back into the present.'''
 
 [[dependencies.${mod_id}]]

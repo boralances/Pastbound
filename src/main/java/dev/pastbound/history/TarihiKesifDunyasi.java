@@ -704,6 +704,7 @@ public final class TarihiKesifDunyasi {
         if (donem == null) {
             return;
         }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         boolean yakin = false;
         for (Entity varlik : oyuncu.level().getEntitiesOfClass(Entity.class, oyuncu.getBoundingBox().inflate(5.0D))) {
             if (varlik.entityTags().contains("pastbound_sahne_" + konusmaci)) {
@@ -712,13 +713,17 @@ public final class TarihiKesifDunyasi {
             }
         }
         if (!yakin) {
-            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.dialogue.too_far"));
+            long simdi = oyuncu.level().getGameTime();
+            long sonMesaj = veri.getLongOr("pastbound_dialogue_hint_tick", -1000L);
+            if (simdi - sonMesaj >= 60L) {
+                veri.putLong("pastbound_dialogue_hint_tick", simdi);
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.dialogue.too_far"));
+            }
             PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.konusmaCevabi(donem.kimlik(), konusmaci, 0));
             return;
         }
         oyuncu.sendSystemMessage(Component.translatable("history.pastbound.period." + donem.kimlik() + ".response_" + secim));
         PacketDistributor.sendToPlayer(oyuncu, PastboundPaketi.konusmaCevabi(donem.kimlik(), konusmaci, secim));
-        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
         int gorevMaskesi = veri.getIntOr(SAHNE_GOREV_MASKESI, 0) | (1 << konusmaci);
         veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi);
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_talk", konusmaci + 1));
@@ -766,6 +771,10 @@ public final class TarihiKesifDunyasi {
             return;
         }
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        TarihDonemi ayrilanDonem = donemBul(veri.getStringOr(SAHNE_CAGI, ""));
+        if (ayrilanDonem != null && oyuncu.level() instanceof ServerLevel ayrilanSeviye) {
+            sahneyiKur(ayrilanSeviye, SAHNE_MERKEZI, ayrilanDonem);
+        }
         ServerLevel hedef = oyuncu.level().getServer().overworld();
         String boyutKimligi = veri.getStringOr(DONUS_BOYUTU, "");
         if (!boyutKimligi.isEmpty()) {
