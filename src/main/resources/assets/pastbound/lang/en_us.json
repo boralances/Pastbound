@@ -686,5 +686,15 @@
   "screen.pastbound.wiki.page.4.title": "Ervanium",
   "screen.pastbound.wiki.page.4.body": "The first five completed dimensions grant two Ervanium Smithing Templates. Ervanium Ore is extremely rare in newly generated End Midlands chunks. Duplicate the template with eight Netherite Blocks.",
   "screen.pastbound.wiki.page.5.title": "The Quest Board",
-  "screen.pastbound.wiki.page.5.body": "Every dimension has a different signature objective: Uruk clay tablets, Thermopylae shield drills, Alexandria bookshelves, Baghdad steel forging, Antikythera clockwork, Bayt al-Hikma writable books, Timbuktu paper, Tenochtitlan water routes, Polynesian boats, Catalhoyuk terracotta, Apollo altitude, Silk Road emerald trade, and Epidaurum calcite and healing stone."
+  "screen.pastbound.wiki.page.5.body": "Every dimension has a different signature objective: Uruk clay tablets, Thermopylae shield drills, Alexandria bookshelves, Baghdad steel forging, Antikythera clockwork, Bayt al-Hikma writable books, Timbuktu paper, Tenochtitlan water routes, Polynesian boats, Catalhoyuk terracotta, Apollo altitude, Silk Road emerald trade, and Epidaurum calcite and healing stone.",
+  "screen.pastbound.settings": "Pastbound Settings",
+  "screen.pastbound.settings.subtitle": "Field experience and historical signal controls",
+  "screen.pastbound.settings.wiki": "Open Field Wiki on login",
+  "screen.pastbound.settings.markers": "Show quest route markers",
+  "screen.pastbound.settings.events": "Show historical event announcements",
+  "screen.pastbound.settings.echoes": "Enable ambient historical echoes",
+  "screen.pastbound.settings.on": "ON",
+  "screen.pastbound.settings.off": "OFF",
+  "screen.pastbound.settings.reset": "Reset defaults",
+  "key.pastbound.settings": "Open Pastbound Settings"
 }

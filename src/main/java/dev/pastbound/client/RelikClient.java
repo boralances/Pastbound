@@ -21,6 +21,7 @@ public final class RelikClient {
     public static final KeyMapping CRAFTING_TABLE_CUBUGU_KISAYOLU = new KeyMapping("key.pastbound.crafting_table_stick", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, PASTBOUND_KATEGORI);
     public static final KeyMapping FIRIN_CUBUGU_KISAYOLU = new KeyMapping("key.pastbound.furnace_stick", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, PASTBOUND_KATEGORI);
     public static final KeyMapping DIL_KISAYOLU = new KeyMapping("key.pastbound.language", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_L, PASTBOUND_KATEGORI);
+    public static final KeyMapping AYARLAR_KISAYOLU = new KeyMapping("key.pastbound.settings", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_P, PASTBOUND_KATEGORI);
     public static final KeyMapping[] RELIK_YUVA_KISAYOLLARI = {
             new KeyMapping("key.pastbound.relic_slot_1", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_KP_1, PASTBOUND_KATEGORI),
             new KeyMapping("key.pastbound.relic_slot_2", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_KP_2, PASTBOUND_KATEGORI),
@@ -41,6 +42,7 @@ public final class RelikClient {
         olay.register(AKTIFLESTIRME_KISAYOLU);
         olay.register(TARIH_KONTROL_KISAYOLU);
         olay.register(DIL_KISAYOLU);
+        olay.register(AYARLAR_KISAYOLU);
         olay.register(CRAFTING_TABLE_CUBUGU_KISAYOLU);
         olay.register(FIRIN_CUBUGU_KISAYOLU);
         for (KeyMapping kisayol : RELIK_YUVA_KISAYOLLARI) {
