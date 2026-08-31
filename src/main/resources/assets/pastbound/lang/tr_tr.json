@@ -653,5 +653,7 @@
   "message.pastbound.world.structure_missing": "Yakında oluşturulmuş köy ve maden bulunamadı. Daha uzağa keşfe çıkıp tekrar dene.",
   "message.pastbound.expedition.reset": "Keşif başarısız oldu. Bu tarihî dünya sıfırlandı ve keşfin güvenle geri döndü.",
   "message.pastbound.expedition.reward": "%s tamamlandı. Keşif ödülü alındı: 4 Chronicle Scrap, 1 Time Stone ve bonus deneyim. Tamamlanan dünyalar: %s/%s.",
-  "message.pastbound.expedition.master_complete": "Tüm tarihî dünyalar tamamlandı. Usta Chronicle Compass ödülü verildi."
+  "message.pastbound.expedition.master_complete": "Tüm tarihî dünyalar tamamlandı. Usta Chronicle Compass ödülü verildi.",
+  "message.pastbound.scene.protected_block": "This block preserves the historical scene.",
+  "message.pastbound.world.power_find_pillar": "Find and activate the Resonance Pillar marked by the amethyst route."
 }

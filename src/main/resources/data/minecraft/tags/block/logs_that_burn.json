@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "pastbound:uruk_cedar_log",
+    "pastbound:chinampa_cypress_log",
+    "pastbound:uruk_cedar_wood",
+    "pastbound:chinampa_cypress_wood",
+    "pastbound:uruk_cedar_stripped_log",
+    "pastbound:chinampa_cypress_stripped_log",
+    "pastbound:uruk_cedar_stripped_wood",
+    "pastbound:chinampa_cypress_stripped_wood"
+  ]
+}

@@ -22,6 +22,7 @@ import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -451,7 +452,10 @@ public final class TarihiKesifDunyasi {
 
     public static boolean dunyaElektrikEtkilesildi(ServerPlayer oyuncu, BlockPos konum) {
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
-        if (veri.getIntOr(DUNYA_GOREVI, 0) != 4 || !oyuncu.level().dimension().equals(Level.OVERWORLD) || !konum.equals(new BlockPos(0, 64, 0)) || !oyuncu.level().getBlockState(konum).is(ModBlocks.RESONANCE_PILLAR.get())) {
+        if (veri.getIntOr(DUNYA_GOREVI, 0) != 4 || !oyuncu.level().dimension().equals(Level.OVERWORLD) || !oyuncu.level().getBlockState(konum).is(ModBlocks.RESONANCE_PILLAR.get()) || oyuncu.distanceToSqr(konum.getX() + 0.5D, konum.getY() + 0.5D, konum.getZ() + 0.5D) > 25.0D) {
+            if (veri.getIntOr(DUNYA_GOREVI, 0) == 4) {
+                oyuncu.sendSystemMessage(Component.translatable("message.pastbound.world.power_find_pillar"));
+            }
             return false;
         }
         if (oyuncu.getInventory().countItem(Items.COPPER_INGOT) < 2 || oyuncu.getInventory().countItem(Items.REDSTONE) < 4 || oyuncu.getInventory().countItem(ModItems.STEEL_PLATE.get()) < 1) {
@@ -783,6 +787,9 @@ public final class TarihiKesifDunyasi {
             return;
         }
         gercekYurumeyiIzle(oyuncu);
+        if (oyuncu.tickCount % 5 == 0 && oyuncu.level() instanceof ServerLevel seviye) {
+            rotaAmetistleriniGoster(oyuncu, seviye);
+        }
         if (oyuncu.tickCount % 10 != 0) {
             return;
         }
@@ -819,6 +826,44 @@ public final class TarihiKesifDunyasi {
         }
                 uzakLokasyonlariIzle(oyuncu);
         goreviKontrolEt(oyuncu);
+    }
+
+    private static void rotaAmetistleriniGoster(ServerPlayer oyuncu, ServerLevel seviye) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int maske = veri.getIntOr(SAHNE_GOREV_MASKESI, 0);
+        BlockPos hedef = null;
+        int[] durakBitleri = {SAHNE_DURAK_A_BITI, SAHNE_DURAK_B_BITI, SAHNE_DURAK_C_BITI};
+        for (int i = 0; i < GOREV_DURAKLARI.length; i++) {
+            if ((maske & durakBitleri[i]) == 0) {
+                hedef = GOREV_DURAKLARI[i];
+                break;
+            }
+        }
+        if (hedef == null) {
+            BlockPos koy = SAHNE_MERKEZI.west(28).north(18);
+            BlockPos maden = SAHNE_MERKEZI.east(28).north(18);
+            BlockPos atolye = SAHNE_MERKEZI.south(28);
+            hedef = (maske & SAHNE_KOY_BITI) == 0 ? koy : (maske & SAHNE_MADEN_BITI) == 0 ? maden : (maske & SAHNE_ATOLYE_BITI) == 0 ? atolye : SAHNE_MERKEZI;
+        }
+        double basX = oyuncu.getX();
+        double basY = oyuncu.getY() + 0.4D;
+        double basZ = oyuncu.getZ();
+        double hedefX = hedef.getX() + 0.5D;
+        double hedefY = hedef.getY() + 1.1D;
+        double hedefZ = hedef.getZ() + 0.5D;
+        double farkX = hedefX - basX;
+        double farkY = hedefY - basY;
+        double farkZ = hedefZ - basZ;
+        double uzunluk = Math.sqrt(farkX * farkX + farkY * farkY + farkZ * farkZ);
+        if (uzunluk < 1.5D) {
+            return;
+        }
+        DustParticleOptions ametist = new DustParticleOptions(0xB56CFF, 1.15F);
+        for (double ilerleme = 1.0D; ilerleme < uzunluk; ilerleme += 1.5D) {
+            double oran = ilerleme / uzunluk;
+            seviye.sendParticles(ametist, basX + farkX * oran, basY + farkY * oran, basZ + farkZ * oran, 1, 0.04D, 0.04D, 0.04D, 0.0D);
+        }
+        seviye.sendParticles(ParticleTypes.END_ROD, hedefX, hedefY, hedefZ, 2, 0.18D, 0.35D, 0.18D, 0.01D);
     }
 
     private static void uzakLokasyonlariIzle(ServerPlayer oyuncu) {

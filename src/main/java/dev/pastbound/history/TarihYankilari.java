@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
@@ -93,7 +94,10 @@ public final class TarihYankilari {
                 TarihiKesifDunyasi.anitKirildi(sunucu);
                 return;
             }
-            olay.setCanceled(true);
+            if (olay.getState().is(Blocks.BARRIER) || olay.getState().is(ModBlocks.RESONANCE_PILLAR.get())) {
+                olay.setCanceled(true);
+                sunucu.sendSystemMessage(Component.translatable("message.pastbound.scene.protected_block"));
+            }
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && olay.getState().is(ModBlocks.STEEL_ORE.get())) {
