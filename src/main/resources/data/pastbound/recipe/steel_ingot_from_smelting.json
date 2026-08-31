@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.7,
-  "ingredient": {
-    "item": "pastbound:raw_steel"
-  },
+  "ingredient": "pastbound:raw_steel",
   "result": {
     "id": "pastbound:steel_ingot"
   }

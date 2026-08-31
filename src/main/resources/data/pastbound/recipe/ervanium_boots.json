@@ -2,7 +2,7 @@
   "type": "minecraft:smithing_transform",
   "template": "pastbound:ervanium_smithing_template",
   "base": "minecraft:diamond_boots",
-  "addition": "pastbound:ervanium_ingot",
+  "addition": "#pastbound:ervanium_materials",
   "result": {
     "id": "pastbound:ervanium_boots"
   }

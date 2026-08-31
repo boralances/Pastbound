@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "category": "misc",
-  "ingredient": {
-    "item": "pastbound:ervanium_ore"
-  },
+  "ingredient": "pastbound:ervanium_ore",
   "result": {
     "id": "pastbound:ervanium_ingot"
   },

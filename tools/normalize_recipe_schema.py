@@ -18,6 +18,10 @@ for path in sorted(root.glob('*.json')):
             if isinstance(ingredient, dict) and set(ingredient) == {'item'}:
                 ingredients[index] = ingredient['item']
                 dirty = True
+    ingredient = data.get('ingredient')
+    if isinstance(ingredient, dict) and set(ingredient) == {'item'}:
+        data['ingredient'] = ingredient['item']
+        dirty = True
     if dirty:
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
         changed += 1
