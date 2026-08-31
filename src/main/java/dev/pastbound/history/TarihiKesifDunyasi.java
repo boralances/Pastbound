@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.common.extensions.IEntityExtension;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -1030,6 +1031,8 @@ public final class TarihiKesifDunyasi {
                 seviye.setBlock(merkez.offset(x, -1, z), Blocks.BARRIER.defaultBlockState(), 3);
             }
         }
+        BlockState gecit = ModBlocks.URUK_CEDAR_FENCE_GATE.get().defaultBlockState().setValue(FenceGateBlock.OPEN, true);
+        seviye.setBlock(merkez.north(9), gecit, 3);
     }
 
     private static void tarihiYapiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
