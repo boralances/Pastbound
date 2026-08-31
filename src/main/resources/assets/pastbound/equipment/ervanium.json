@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "pastbound:ervanium"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "pastbound:ervanium"
+      }
+    ]
+  }
+}

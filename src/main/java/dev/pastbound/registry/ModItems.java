@@ -18,7 +18,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
-import net.minecraft.world.item.equipment.ArmorMaterials;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -60,10 +59,10 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> ERVANIUM_ORE = ITEMS.registerSimpleBlockItem("ervanium_ore", ModBlocks.ERVANIUM_ORE);
     public static final DeferredItem<Item> ERVANIUM_INGOT = ITEMS.register("ervanium_ingot", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64).fireResistant()));
     public static final DeferredItem<Item> ERVANIUM_SMITHING_TEMPLATE = ITEMS.register("ervanium_smithing_template", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
-    public static final DeferredItem<Item> ERVANIUM_HELMET = ITEMS.register("ervanium_helmet", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ArmorMaterials.NETHERITE, ArmorType.HELMET).fireResistant()));
-    public static final DeferredItem<Item> ERVANIUM_CHESTPLATE = ITEMS.register("ervanium_chestplate", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ArmorMaterials.NETHERITE, ArmorType.CHESTPLATE).fireResistant()));
-    public static final DeferredItem<Item> ERVANIUM_LEGGINGS = ITEMS.register("ervanium_leggings", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ArmorMaterials.NETHERITE, ArmorType.LEGGINGS).fireResistant()));
-    public static final DeferredItem<Item> ERVANIUM_BOOTS = ITEMS.register("ervanium_boots", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ArmorMaterials.NETHERITE, ArmorType.BOOTS).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_HELMET = ITEMS.register("ervanium_helmet", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ModArmorMaterials.ERVANIUM, ArmorType.HELMET).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_CHESTPLATE = ITEMS.register("ervanium_chestplate", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ModArmorMaterials.ERVANIUM, ArmorType.CHESTPLATE).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_LEGGINGS = ITEMS.register("ervanium_leggings", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ModArmorMaterials.ERVANIUM, ArmorType.LEGGINGS).fireResistant()));
+    public static final DeferredItem<Item> ERVANIUM_BOOTS = ITEMS.register("ervanium_boots", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ModArmorMaterials.ERVANIUM, ArmorType.BOOTS).fireResistant()));
     public static final DeferredItem<Item> ERVANIUM_SWORD = ITEMS.register("ervanium_sword", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).sword(ToolMaterial.NETHERITE, 4.0F, -2.2F).fireResistant()));
 
     public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);
