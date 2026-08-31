@@ -181,9 +181,10 @@ public final class TarihYankilari {
     @SubscribeEvent
     public static void varlikEtkilesildi(PlayerInteractEvent.EntityInteract olay) {
         Player oyuncu = olay.getEntity();
-        if (oyuncu.level().isClientSide() || !(olay.getTarget() instanceof Villager villager)) {
+        if (oyuncu.level().isClientSide()) {
             return;
         }
+        Entity villager = olay.getTarget();
         if (oyuncu instanceof ServerPlayer sunucu && !TarihiKesifDunyasi.boyuttaMi(sunucu) && villager.entityTags().contains("pastbound_koy_uzmani")) {
             olay.setCanceled(true);
             TarihiKesifDunyasi.koyUzmaniIleKonusuldu(sunucu);

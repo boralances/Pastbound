@@ -76,23 +76,34 @@ public final class TarihCanlandirmaEkrani extends Screen {
         if (donem != null) {
             cizim.centeredText(font, donem.adBileseni(), sol + genislik / 2, ust + 64, 0xFFF4E5C4);
             cizim.centeredText(font, donem.odakBileseni(), sol + genislik / 2, ust + 83, 0xFFE4B870);
-            cizim.textWithWordWrap(font, donem.aciklamaBileseni(), sol + 34, ust + 110, genislik - 68, 0xFFC7D4D9);
+            satirliMetin(cizim, donem.aciklamaBileseni(), sol + 34, ust + 110, genislik - 68, 0xFFC7D4D9, 3);
         }
         String asama = sayac < 80 ? "screen.pastbound.scene.phase_one" : sayac < 160 ? "screen.pastbound.scene.phase_two" : "screen.pastbound.scene.phase_three";
-        cizim.centeredText(font, Component.translatable(asama), sol + genislik / 2, ust + 180, 0xFF9FC6BE);
+        cizim.centeredText(font, Component.translatable(asama), sol + genislik / 2, ust + 169, 0xFF9FC6BE);
         String hedef = donem == TarihDonemi.BAGDAT_PILI_ATOLYESI ? "screen.pastbound.scene.task_steel" : "screen.pastbound.scene.task." + donem.kimlik();
-        cizim.textWithWordWrap(font, Component.translatable(hedef), sol + 28, ust + 202, genislik - 56, 0xFFE4B870);
+        satirliMetin(cizim, Component.translatable(hedef), sol + 28, ust + 190, genislik - 56, 0xFFE4B870, 3);
         if (donem != null) {
-            cizim.textWithWordWrap(font, Component.translatable("screen.pastbound.scene.ecosystem." + donem.kimlik()), sol + 28, ust + 236, genislik - 56, 0xFF9FC6BE);
+            satirliMetin(cizim, Component.translatable("screen.pastbound.scene.ecosystem." + donem.kimlik()), sol + 28, ust + 235, genislik - 56, 0xFF9FC6BE, 2);
         }
         if (!kontrolAcik && sayac > 0) {
             String kapi = (sayac / 50) % 2 == 1 ? "screen.pastbound.scene.door_open" : "screen.pastbound.scene.door_closed";
-            cizim.centeredText(font, Component.translatable(kapi), sol + genislik / 2, ust + 270, 0xFF9FC6BE);
+            cizim.centeredText(font, Component.translatable(kapi), sol + genislik / 2, ust + 268, 0xFF9FC6BE);
         }
         if (!kontrolAcik) {
             cizim.centeredText(font, Component.translatable("screen.pastbound.scene.press_d"), sol + genislik / 2, ust + yukseklik - 44, 0xFFE0B26B);
         }
         cizim.centeredText(font, Component.translatable("screen.pastbound.scene.escape_hint"), sol + genislik / 2, ust + yukseklik - 24, 0xFF7D8A92);
+    }
+
+    private void satirliMetin(GuiGraphicsExtractor cizim, Component metin, int x, int y, int genislik, int renk, int azamiSatir) {
+        int satir = 0;
+        for (var parca : font.split(metin, genislik)) {
+            if (satir >= azamiSatir) {
+                break;
+            }
+            cizim.text(font, parca, x, y + satir * 9, renk);
+            satir++;
+        }
     }
 
     @Override

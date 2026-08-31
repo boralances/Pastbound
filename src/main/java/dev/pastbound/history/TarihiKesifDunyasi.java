@@ -1126,10 +1126,11 @@ public final class TarihiKesifDunyasi {
         int[][] durakKonumlari = {{-7, -7}, {7, -7}, {0, 7}};
         String[] durakRolleri = {"entity.pastbound.scene.archaeologist", "entity.pastbound.scene.miner", "entity.pastbound.scene.engineer"};
         for (int i = 0; i < durakKonumlari.length; i++) {
-            Entity varlik = tip.create(seviye, EntitySpawnReason.COMMAND);
-            if (varlik instanceof Villager aktor) {
+            EntityType<?> uzmanTipi = BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse("minecraft:armor_stand"));
+            Entity aktor = uzmanTipi == null ? null : uzmanTipi.create(seviye, EntitySpawnReason.COMMAND);
+            if (aktor != null) {
                 aktor.setPos(merkez.getX() + durakKonumlari[i][0] + 0.5D, merkez.getY() + 1.0D, merkez.getZ() + durakKonumlari[i][1] + 0.5D);
-                aktor.setNoAi(true);
+                aktor.setNoGravity(true);
                 aktor.setInvulnerable(true);
                 aktor.setSilent(false);
                 aktor.addTag("pastbound_durak_" + i);
