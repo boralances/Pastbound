@@ -29,6 +29,8 @@ for name, color in items.items():
     image.resize((16, 16), Image.Resampling.LANCZOS).save(ASSETS / "textures/item" / f"{name}.png")
     model = {"parent": "minecraft:item/generated", "textures": {"layer0": f"pastbound:item/{name}"}}
     (ASSETS / "models/item" / f"{name}.json").write_text(json.dumps(model, indent=2) + "\n", encoding="utf-8")
+    definition = {"model": {"type": "minecraft:model", "model": f"pastbound:item/{name}"}}
+    (ASSETS / "items" / f"{name}.json").write_text(json.dumps(definition, indent=2) + "\n", encoding="utf-8")
 
 def shaped(name, pattern, key, count=1):
     data = {"type": "minecraft:crafting_shaped", "category": "equipment", "pattern": pattern, "key": key, "result": {"id": f"pastbound:{name}", "count": count}}

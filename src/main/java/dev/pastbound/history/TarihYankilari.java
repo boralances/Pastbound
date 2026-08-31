@@ -352,21 +352,5 @@ public final class TarihYankilari {
         if (oyuncu instanceof ServerPlayer sunucu && oyuncu.tickCount % 40 == 0) {
             pastboundTarifleriniAc(sunucu);
         }
-        if (oyuncu.tickCount % 40 != 0) {
-            return;
-        }
-        long gunSaati = oyuncu.level().getOverworldClockTime() % 24000L;
-        if (gunSaati > 12500L && gunSaati < 23000L) {
-            yankiyiBaslat(oyuncu, TarihYankisi.KUZEY_GUNESI);
-        }
-        if (oyuncu.isInWater()) {
-            yankiyiBaslat(oyuncu, TarihYankisi.NIL_TORENI);
-        }
-        if (oyuncu.getY() > 120.0D) {
-            yankiyiBaslat(oyuncu, TarihYankisi.RONESANS_ATOLYESI);
-        }
-        if (oyuncu.isCrouching() && oyuncu.onGround()) {
-            yankiyiBaslat(oyuncu, TarihYankisi.BUSHIDO_YEMINI);
-        }
     }
 }

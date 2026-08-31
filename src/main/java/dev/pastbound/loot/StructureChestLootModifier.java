@@ -29,10 +29,13 @@ public final class StructureChestLootModifier extends LootModifier {
         if (!"minecraft".equals(lootTableId.getNamespace()) || !lootTableId.getPath().startsWith("chests/")) {
             return generatedLoot;
         }
-        if (context.getRandom().nextFloat() >= 0.10F) {
+        if (context.getRandom().nextFloat() >= dev.pastbound.PastboundConfig.DEGERLER.sandikOdulSansı.get()) {
             return generatedLoot;
         }
 
+        if (ModItems.RELIKLER.isEmpty()) {
+            return generatedLoot;
+        }
         int rewardCount = ModItems.RELIKLER.size() + 2;
         int reward = context.getRandom().nextInt(rewardCount);
         if (reward < ModItems.RELIKLER.size()) {

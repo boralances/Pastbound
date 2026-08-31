@@ -143,6 +143,7 @@ public final class TarihiKesifDunyasi {
         veri.remove(IZLEME_X);
         veri.remove(IZLEME_Y);
         veri.remove(IZLEME_Z);
+        hedef.getChunkAt(SAHNE_MERKEZI);
         sahneyiKur(hedef, SAHNE_MERKEZI, donem);
         oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
         if (oyuncu.getInventory().countItem(Items.IRON_PICKAXE) == 0 && oyuncu.getInventory().countItem(Items.DIAMOND_PICKAXE) == 0 && oyuncu.getInventory().countItem(Items.NETHERITE_PICKAXE) == 0) {

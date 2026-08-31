@@ -49,10 +49,6 @@ public final class RelikItem extends Item implements ICurioItem {
 
     @Override
     public void curioTick(SlotContext yuva, ItemStack yigin) {
-        LivingEntity varlik = yuva.entity();
-        if (varlik instanceof Player oyuncu && !oyuncu.level().isClientSide() && oyuncu.tickCount % 40 == 0 && RelikMantigi.biliyorMu(oyuncu, tanim)) {
-            RelikMantigi.pasifUygula(oyuncu, tanim);
-        }
     }
 
     @Override
