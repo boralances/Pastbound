@@ -73,6 +73,7 @@ public final class TarihYankilari {
             oyuncu.setHealth(Math.max(1.0F, oyuncu.getHealth()));
             oyuncu.clearFire();
             oyuncu.setDeltaMovement(0.0D, 0.0D, 0.0D);
+            TarihiKesifDunyasi.kesifBasarisiz(oyuncu);
         }
     }
 

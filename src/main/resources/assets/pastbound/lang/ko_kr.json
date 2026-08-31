@@ -650,5 +650,8 @@
   "key.pastbound.crafting_table_stick": "Open Crafting Table on a Stick",
   "key.pastbound.furnace_stick": "Open Furnace on a Stick",
   "message.pastbound.portable.missing": "You need the workstation item in your inventory.",
-  "message.pastbound.world.structure_missing": "No generated village and mineshaft were found nearby. Explore farther and try again."
+  "message.pastbound.world.structure_missing": "No generated village and mineshaft were found nearby. Explore farther and try again.",
+  "message.pastbound.expedition.reset": "Expedition failed. This historical world has been reset and your expedition has returned safely.",
+  "message.pastbound.expedition.reward": "%s completed. Expedition reward claimed: 4 Chronicle Scraps, 1 Time Stone, and bonus experience. Worlds completed: %s/%s.",
+  "message.pastbound.expedition.master_complete": "All historical worlds completed. The Master Chronicle Compass has been awarded."
 }

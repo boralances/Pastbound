@@ -60,6 +60,8 @@ public final class TarihiKesifDunyasi {
     private static final String DUNYA_MADEN_Z = "pastbound_dunya_maden_z";
     private static final String DUNYA_CELIK = "pastbound_dunya_celik";
     private static final String DUNYA_MADEN_GIRILDI = "pastbound_dunya_maden_girildi";
+    private static final String TAMAMLANAN_DUNYALAR = "pastbound_tamamlanan_dunyalar";
+    private static final String BASARISIZ_KESIFLER = "pastbound_basarisiz_kesifler";
     private static final int SAHNE_ANIT_BITI = 256;
     private static final int SAHNE_INCELEME_BITI = 128;
     private static final int SAHNE_DURAK_A_BITI = 16;
@@ -698,6 +700,41 @@ public final class TarihiKesifDunyasi {
         oyuncu.level().playSound(null, oyuncu.blockPosition(), net.minecraft.sounds.SoundEvents.VILLAGER_TRADE, net.minecraft.sounds.SoundSource.NEUTRAL, 0.8F, 1.0F + secim * 0.08F);
     }
 
+    public static void kesifBasarisiz(ServerPlayer oyuncu) {
+        if (!boyuttaMi(oyuncu)) {
+            return;
+        }
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        TarihDonemi donem = donemBul(veri.getStringOr(SAHNE_CAGI, ""));
+        if (donem != null && oyuncu.level() instanceof ServerLevel seviye) {
+            sahneyiKur(seviye, SAHNE_MERKEZI, donem);
+        }
+        veri.putInt(BASARISIZ_KESIFLER, veri.getIntOr(BASARISIZ_KESIFLER, 0) + 1);
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.expedition.reset"));
+        don(oyuncu);
+    }
+
+    public static int tamamlananDunyalar(ServerPlayer oyuncu) {
+        return ((IEntityExtension) oyuncu).getPersistentData().getIntOr(TAMAMLANAN_DUNYALAR, 0);
+    }
+
+    private static void tamamlanmaOdulu(ServerPlayer oyuncu, TarihDonemi donem) {
+        CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
+        int tamamlanan = veri.getIntOr(TAMAMLANAN_DUNYALAR, 0) + 1;
+        veri.putInt(TAMAMLANAN_DUNYALAR, tamamlanan);
+        oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.CHRONICLE_SCRAP.get(), 4));
+        oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.TIME_STONE.get(), 1));
+        oyuncu.giveExperiencePoints(12 + tamamlanan * 2);
+        if (tamamlanan % 3 == 0) {
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.ECHO_SEAL.get(), 1));
+        }
+        if (tamamlanan == TarihDonemi.values().length) {
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(ModItems.CHRONICLE_COMPASS.get(), 1));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.expedition.master_complete"));
+        }
+        oyuncu.sendSystemMessage(Component.translatable("message.pastbound.expedition.reward", donem.adBileseni(), tamamlanan, TarihDonemi.values().length));
+    }
+
     public static void don(ServerPlayer oyuncu) {
         if (!boyuttaMi(oyuncu)) {
             return;
@@ -915,7 +952,7 @@ public final class TarihiKesifDunyasi {
         if (konusmaTamam && hareketTamam && incelemeTamam && anitTamam && donemOzelTamam && (gorevMaskesi & 64) == 0) {
             veri.putInt(SAHNE_GOREV_MASKESI, gorevMaskesi | 64);
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.quest_complete"));
-            oyuncu.getInventory().placeItemBackInInventory(new net.minecraft.world.item.ItemStack(dev.pastbound.registry.ModItems.CHRONICLE_SCRAP.get(), 2));
+            tamamlanmaOdulu(oyuncu, donem);
             oyuncu.level().playSound(null, oyuncu.blockPosition(), net.minecraft.sounds.SoundEvents.PLAYER_LEVELUP, net.minecraft.sounds.SoundSource.PLAYERS, 0.8F, 1.15F);
         }
     }

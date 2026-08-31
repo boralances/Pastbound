@@ -650,5 +650,8 @@
   "key.pastbound.crafting_table_stick": "Crafting Table on a Stick aç",
   "key.pastbound.furnace_stick": "Furnace on a Stick aç",
   "message.pastbound.portable.missing": "Workstation itemi envanterinde olmalı.",
-  "message.pastbound.world.structure_missing": "Yakında oluşturulmuş köy ve maden bulunamadı. Daha uzağa keşfe çıkıp tekrar dene."
+  "message.pastbound.world.structure_missing": "Yakında oluşturulmuş köy ve maden bulunamadı. Daha uzağa keşfe çıkıp tekrar dene.",
+  "message.pastbound.expedition.reset": "Keşif başarısız oldu. Bu tarihî dünya sıfırlandı ve keşfin güvenle geri döndü.",
+  "message.pastbound.expedition.reward": "%s tamamlandı. Keşif ödülü alındı: 4 Chronicle Scrap, 1 Time Stone ve bonus deneyim. Tamamlanan dünyalar: %s/%s.",
+  "message.pastbound.expedition.master_complete": "Tüm tarihî dünyalar tamamlandı. Usta Chronicle Compass ödülü verildi."
 }
