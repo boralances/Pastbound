@@ -623,7 +623,7 @@ public final class TarihiKesifDunyasi {
             case URUK_YAZI_EVI -> Blocks.CLAY;
             case TERMOPIL_SAVASI -> Blocks.STONE;
             case ISKENDERIYE_KUTUPHANESI -> Blocks.BOOKSHELF;
-            case BAGDAT_PILI_ATOLYESI -> Blocks.COPPER_BLOCK.weathering().unaffected();
+            case BAGDAT_PILI_ATOLYESI -> Blocks.DEEPSLATE_BRICKS;
             case ANTIKITHERA_LIMANI -> Blocks.POLISHED_DEEPSLATE;
             case BAGDAT_BILGI_EVI -> Blocks.CHISELED_BOOKSHELF;
             case TIMBUKTU_EL_YAZMALARI -> Blocks.SANDSTONE;
@@ -758,7 +758,7 @@ public final class TarihiKesifDunyasi {
     }
 
     private static void elektrikAtolyesiKur(ServerLevel seviye, BlockPos merkez, TarihDonemi donem) {
-        Block duvar = Blocks.COPPER_BLOCK.weathering().unaffected();
+        Block duvar = Blocks.DEEPSLATE_BRICKS;
         for (int y = 1; y <= 3; y++) {
             for (int x = -4; x <= 4; x++) {
                 seviye.setBlock(merkez.offset(x, y, -3), duvar.defaultBlockState(), 3);
@@ -783,7 +783,7 @@ public final class TarihiKesifDunyasi {
         seviye.setBlock(kapi.above(), Blocks.AIR.defaultBlockState(), 3);
         seviye.setBlock(merkez, ModBlocks.RESONANCE_PILLAR.get().defaultBlockState(), 3);
         seviye.setBlock(merkez.east(2), Blocks.REDSTONE_BLOCK.defaultBlockState(), 3);
-        seviye.setBlock(merkez.west(2), Blocks.COPPER_BLOCK.weathering().unaffected().defaultBlockState(), 3);
+        seviye.setBlock(merkez.west(2), Blocks.DEEPSLATE_BRICKS.defaultBlockState(), 3);
         seviye.setBlock(merkez.north(2), Blocks.CRAFTING_TABLE.defaultBlockState(), 3);
         villagerKur(seviye, merkez.south(2), "entity.pastbound.power.engineer");
     }
@@ -1272,7 +1272,7 @@ public final class TarihiKesifDunyasi {
             case URUK_YAZI_EVI -> Blocks.CLAY;
             case TERMOPIL_SAVASI -> Blocks.STONE_BRICKS;
             case ISKENDERIYE_KUTUPHANESI, BAGDAT_BILGI_EVI -> Blocks.BOOKSHELF;
-            case BAGDAT_PILI_ATOLYESI -> Blocks.COPPER_BLOCK.weathering().unaffected();
+            case BAGDAT_PILI_ATOLYESI -> Blocks.DEEPSLATE_BRICKS;
             case ANTIKITHERA_LIMANI -> Blocks.POLISHED_DEEPSLATE;
             case TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> Blocks.SANDSTONE;
             case TENOKTITLAN_GECIDI -> Blocks.PRISMARINE;

@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "src/main/resources/assets/pastbound"
-RECIPES = ROOT / "src/main/resources/data/pastbound/recipes"
+RECIPES = ROOT / "src/main/resources/data/pastbound/recipe"
 
 items = {
     "ervanium_ore": (69, 174, 166),
