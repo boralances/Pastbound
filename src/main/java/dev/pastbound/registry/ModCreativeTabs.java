@@ -47,7 +47,13 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.END_ECHO_ORE.get());
             olay.accept(ModItems.VOID_CHRONICLE_ORE.get());
             olay.accept(ModItems.ERVANIUM_ORE.get());
+            olay.accept(ModItems.ERVANIUM_INGOT.get());
             olay.accept(ModItems.ERVANIUM_SMITHING_TEMPLATE.get());
+            olay.accept(ModItems.ERVANIUM_HELMET.get());
+            olay.accept(ModItems.ERVANIUM_CHESTPLATE.get());
+            olay.accept(ModItems.ERVANIUM_LEGGINGS.get());
+            olay.accept(ModItems.ERVANIUM_BOOTS.get());
+            olay.accept(ModItems.ERVANIUM_SWORD.get());
             ModItems.RELIKLER.forEach(relik -> olay.accept(relik.get()));
             ModItems.TARIHI_AHSAP_ITEMLERI.forEach(item -> olay.accept(item.get()));
         }
