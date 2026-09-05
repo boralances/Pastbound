@@ -50,6 +50,13 @@ public class EgyptianRuinFeature extends Feature<NoneFeatureConfiguration> {
                 }
             }
         }
+
+        for (int x = -2; x <= 2; x++) {
+            pos.set(surface.getX() + x, surface.getY() + 1, surface.getZ() - 2);
+            level.setBlock(pos, ModBlocks.EGYPTIAN_HIEROGLYPH.get().defaultBlockState(), 2);
+        }
+        pos.set(surface.getX(), surface.getY(), surface.getZ() + 3);
+        level.setBlock(pos, ModBlocks.EGYPTIAN_SPHINX.get().defaultBlockState(), 2);
         return true;
     }
 }

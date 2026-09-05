@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": ["M", "M", "M"],
+  "key": {"M": "pastbound:greek_marble"},
+  "result": {"id": "pastbound:greek_column", "count": 2}
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [" G ", "SSS", " S "],
+  "key": {
+    "S": "pastbound:egyptian_sandstone",
+    "G": "minecraft:gold_ingot"
+  },
+  "result": {"id": "pastbound:egyptian_sphinx", "count": 1}
+}

@@ -623,6 +623,8 @@ public final class TarihiKesifDunyasi {
         return switch (donem) {
             case URUK_YAZI_EVI -> Blocks.CLAY;
             case TERMOPIL_SAVASI -> Blocks.STONE;
+            case OLIMPIA_OLIMPIYATLARI -> ModBlocks.GREEK_MARBLE.get();
+            case GIZA_PIRAMIDI -> ModBlocks.EGYPTIAN_SANDSTONE.get();
             case ISKENDERIYE_KUTUPHANESI -> Blocks.BOOKSHELF;
             case BAGDAT_PILI_ATOLYESI -> Blocks.DEEPSLATE_BRICKS;
             case ANTIKITHERA_LIMANI -> Blocks.POLISHED_DEEPSLATE;
@@ -1100,6 +1102,8 @@ public final class TarihiKesifDunyasi {
         boolean eylem = switch (donem) {
             case URUK_YAZI_EVI -> durum.is(Blocks.CLAY);
             case TERMOPIL_SAVASI -> yigin.is(Items.SHIELD);
+            case OLIMPIA_OLIMPIYATLARI -> yigin.is(Items.GOLDEN_APPLE);
+            case GIZA_PIRAMIDI -> yigin.is(Items.PAPER);
             case ISKENDERIYE_KUTUPHANESI -> durum.is(Blocks.BOOKSHELF);
             case BAGDAT_PILI_ATOLYESI -> celikGorevAsamasi(oyuncu) >= 4;
             case ANTIKITHERA_LIMANI -> yigin.is(Items.CLOCK);
@@ -1115,7 +1119,7 @@ public final class TarihiKesifDunyasi {
         if (eylem) {
             int hedef = switch (donem) {
                 case URUK_YAZI_EVI, ISKENDERIYE_KUTUPHANESI, CATALHOYUK_YERLESKESI, EPIDAURUM_TİYATROSU -> 3;
-                case TERMOPIL_SAVASI, ANTIKITHERA_LIMANI, BAGDAT_BILGI_EVI, TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> 2;
+                case TERMOPIL_SAVASI, OLIMPIA_OLIMPIYATLARI, GIZA_PIRAMIDI, ANTIKITHERA_LIMANI, BAGDAT_BILGI_EVI, TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> 2;
                 default -> 1;
             };
             int sayac = veri.getIntOr("pastbound_donem_ozel_sayac", 0) + 1;
@@ -1286,6 +1290,8 @@ public final class TarihiKesifDunyasi {
         return switch (donem) {
             case URUK_YAZI_EVI -> Blocks.CLAY;
             case TERMOPIL_SAVASI -> Blocks.STONE_BRICKS;
+            case OLIMPIA_OLIMPIYATLARI -> ModBlocks.GREEK_MARBLE.get();
+            case GIZA_PIRAMIDI -> ModBlocks.EGYPTIAN_SANDSTONE.get();
             case ISKENDERIYE_KUTUPHANESI, BAGDAT_BILGI_EVI -> Blocks.BOOKSHELF;
             case BAGDAT_PILI_ATOLYESI -> Blocks.DEEPSLATE_BRICKS;
             case ANTIKITHERA_LIMANI -> Blocks.POLISHED_DEEPSLATE;
@@ -1301,8 +1307,8 @@ public final class TarihiKesifDunyasi {
     private static Block koyMeslekBlogu(TarihDonemi donem) {
         return switch (donem) {
             case URUK_YAZI_EVI, ISKENDERIYE_KUTUPHANESI, BAGDAT_BILGI_EVI -> Blocks.LECTERN;
-            case TERMOPIL_SAVASI, BAGDAT_PILI_ATOLYESI -> Blocks.SMITHING_TABLE;
-            case ANTIKITHERA_LIMANI, APOLLO_AY_ISTIGI, TENOKTITLAN_GECIDI, POLINEZYA_YILDIZ_YOLU -> Blocks.CARTOGRAPHY_TABLE;
+            case TERMOPIL_SAVASI, OLIMPIA_OLIMPIYATLARI, BAGDAT_PILI_ATOLYESI -> Blocks.SMITHING_TABLE;
+            case GIZA_PIRAMIDI, ANTIKITHERA_LIMANI, APOLLO_AY_ISTIGI, TENOKTITLAN_GECIDI, POLINEZYA_YILDIZ_YOLU -> Blocks.CARTOGRAPHY_TABLE;
             case TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> Blocks.LOOM;
             case CATALHOYUK_YERLESKESI -> Blocks.STONECUTTER;
             case EPIDAURUM_TİYATROSU -> Blocks.CRAFTING_TABLE;
@@ -1312,7 +1318,8 @@ public final class TarihiKesifDunyasi {
     private static String koyUzmaniAdi(TarihDonemi donem) {
         return switch (donem) {
             case BAGDAT_PILI_ATOLYESI -> "entity.pastbound.power.engineer";
-            case TERMOPIL_SAVASI, ANTIKITHERA_LIMANI -> "entity.pastbound.scene.engineer";
+            case TERMOPIL_SAVASI, OLIMPIA_OLIMPIYATLARI, ANTIKITHERA_LIMANI -> "entity.pastbound.scene.engineer";
+            case GIZA_PIRAMIDI -> "entity.pastbound.scene.archaeologist";
             case TIMBUKTU_EL_YAZMALARI, IPEK_YOLU_KERVANSARAYI -> "entity.pastbound.scene.scribe";
             case TENOKTITLAN_GECIDI, POLINEZYA_YILDIZ_YOLU -> "entity.pastbound.scene.archaeologist";
             default -> "entity.pastbound.village.archivist";
@@ -1435,6 +1442,8 @@ public final class TarihiKesifDunyasi {
         return switch (donem) {
             case URUK_YAZI_EVI -> Blocks.CLAY;
             case TERMOPIL_SAVASI -> Blocks.STONE;
+            case OLIMPIA_OLIMPIYATLARI -> ModBlocks.GREEK_MARBLE.get();
+            case GIZA_PIRAMIDI -> ModBlocks.EGYPTIAN_SANDSTONE.get();
             case ISKENDERIYE_KUTUPHANESI -> Blocks.BOOKSHELF;
             case BAGDAT_PILI_ATOLYESI -> Blocks.IRON_BLOCK;
             case ANTIKITHERA_LIMANI -> Blocks.IRON_BLOCK;

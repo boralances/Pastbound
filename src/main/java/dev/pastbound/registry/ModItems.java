@@ -61,6 +61,11 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> EGYPTIAN_SANDSTONE = ITEMS.registerSimpleBlockItem("egyptian_sandstone", ModBlocks.EGYPTIAN_SANDSTONE);
     public static final DeferredItem<BlockItem> EGYPTIAN_GOLD_INLAY = ITEMS.registerSimpleBlockItem("egyptian_gold_inlay", ModBlocks.EGYPTIAN_GOLD_INLAY);
     public static final DeferredItem<BlockItem> EGYPTIAN_OBELISK = ITEMS.registerSimpleBlockItem("egyptian_obelisk", ModBlocks.EGYPTIAN_OBELISK);
+    public static final DeferredItem<BlockItem> EGYPTIAN_HIEROGLYPH = ITEMS.registerSimpleBlockItem("egyptian_hieroglyph", ModBlocks.EGYPTIAN_HIEROGLYPH);
+    public static final DeferredItem<BlockItem> EGYPTIAN_SPHINX = ITEMS.registerSimpleBlockItem("egyptian_sphinx", ModBlocks.EGYPTIAN_SPHINX);
+    public static final DeferredItem<BlockItem> GREEK_MARBLE = ITEMS.registerSimpleBlockItem("greek_marble", ModBlocks.GREEK_MARBLE);
+    public static final DeferredItem<BlockItem> GREEK_COLUMN = ITEMS.registerSimpleBlockItem("greek_column", ModBlocks.GREEK_COLUMN);
+    public static final DeferredItem<BlockItem> GREEK_OLIVE_ALTAR = ITEMS.registerSimpleBlockItem("greek_olive_altar", ModBlocks.GREEK_OLIVE_ALTAR);
     public static final DeferredItem<Item> ERVANIUM_INGOT = ITEMS.register("ervanium_ingot", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(64).fireResistant()));
     public static final DeferredItem<Item> ERVANIUM_SMITHING_TEMPLATE = ITEMS.register("ervanium_smithing_template", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
     public static final DeferredItem<Item> ERVANIUM_HELMET = ITEMS.register("ervanium_helmet", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ModArmorMaterials.ERVANIUM, ArmorType.HELMET).fireResistant()));
@@ -70,6 +75,7 @@ public final class ModItems {
     public static final DeferredItem<Item> ERVANIUM_SWORD = ITEMS.register("ervanium_sword", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).sword(ToolMaterial.NETHERITE, 4.0F, -2.2F).fireResistant()));
     public static final DeferredItem<BoatItem> ANCIENT_BOAT = ITEMS.register("ancient_boat", registryName -> new BoatItem(ModEntityTypes.ANCIENT_BOAT.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
     public static final DeferredItem<BoatItem> EGYPTIAN_BOAT = ITEMS.register("egyptian_boat", registryName -> new BoatItem(ModEntityTypes.EGYPTIAN_BOAT.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
+    public static final DeferredItem<BoatItem> GREEK_BOAT = ITEMS.register("greek_boat", registryName -> new BoatItem(ModEntityTypes.GREEK_BOAT.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
     public static final DeferredItem<BoatItem> VIKING_BOAT = ITEMS.register("viking_boat", registryName -> new BoatItem(ModEntityTypes.VIKING_BOAT.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
 
     public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);

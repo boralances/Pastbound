@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": ["L", "M", "M"],
+  "key": {
+    "L": "minecraft:oak_leaves",
+    "M": "pastbound:greek_marble"
+  },
+  "result": {"id": "pastbound:greek_olive_altar", "count": 1}
+}

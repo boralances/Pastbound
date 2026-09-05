@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": ["SS", "SS"],
+  "key": {"S": "minecraft:quartz_block"},
+  "result": {"id": "pastbound:greek_marble", "count": 4}
+}

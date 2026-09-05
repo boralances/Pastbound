@@ -5,6 +5,8 @@ import net.minecraft.network.chat.Component;
 public enum TarihDonemi {
     URUK_YAZI_EVI("uruk_yazi_evi", "Uruk Yazı Evi", "Yazının doğuşu", "Kil tabletlerin ilk kayıtları arasında dolaş."),
     TERMOPIL_SAVASI("termopil_savasi", "Termopil Savaş Geçidi", "Savaş ve strateji", "Bir dar geçidin disiplin ve cesaret hikâyesini izle."),
+    OLIMPIA_OLIMPIYATLARI("olimpia_olimpiyatlari", "Olimpia Oyunları", "Spor ve tanrıların şenliği", "Stadyum, zeytin dalı ve yurttaşlık ritüelleri arasında dolaş."),
+    GIZA_PIRAMIDI("giza_piramidi", "Giza Piramitleri", "Taş, astronomi ve ölümsüzlük", "Nil ufkunda piramit işçiliğinin ve gökyüzü bilgisinin izlerini sür."),
     ISKENDERIYE_KUTUPHANESI("iskenderiye_kutuphanesi", "İskenderiye Kütüphanesi", "Bilginin toplanması", "Kayıp tomarların ve denizcilerin ortak hafızasını araştır."),
     BAGDAT_PILI_ATOLYESI("bagdat_pili_atolyesi", "Bağdat Pili Atölyesi", "Elektrik fikrinin izleri", "Metal, sıvı ve merakın erken elektrik deneyini incele."),
     ANTIKITHERA_LIMANI("antikithera_limani", "Antikythera Limanı", "Mekanik gök hesabı", "Dişli çarklarla göğün ritmini ölçen ustaları takip et."),

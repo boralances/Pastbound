@@ -130,6 +130,16 @@ public final class ZamanMakinesiMantigi {
                 efekt(oyuncu, MobEffects.STRENGTH, 200, 0);
                 yankipar(oyuncu, seviye, ParticleTypes.CRIT);
             }
+            case OLIMPIA_OLIMPIYATLARI -> {
+                efekt(oyuncu, MobEffects.SPEED, 260, 0);
+                efekt(oyuncu, MobEffects.JUMP_BOOST, 260, 1);
+                yankipar(oyuncu, seviye, ParticleTypes.HAPPY_VILLAGER);
+            }
+            case GIZA_PIRAMIDI -> {
+                efekt(oyuncu, MobEffects.NIGHT_VISION, 300, 0);
+                efekt(oyuncu, MobEffects.RESISTANCE, 220, 0);
+                yankipar(oyuncu, seviye, ParticleTypes.END_ROD);
+            }
             case ISKENDERIYE_KUTUPHANESI -> {
                 efekt(oyuncu, MobEffects.HASTE, 220, 0);
                 efekt(oyuncu, MobEffects.LUCK, 220, 0);
@@ -196,6 +206,8 @@ public final class ZamanMakinesiMantigi {
         String kimlik = switch (donem) {
             case URUK_YAZI_EVI -> "uruk_muhru";
             case TERMOPIL_SAVASI -> "bushido_yemini";
+            case OLIMPIA_OLIMPIYATLARI -> "girit_ipi";
+            case GIZA_PIRAMIDI -> "nil_toreni";
             case ISKENDERIYE_KUTUPHANESI -> "abbasi_bilgi_evi";
             case BAGDAT_PILI_ATOLYESI -> "antikithera_gok";
             case ANTIKITHERA_LIMANI -> "antikithera_gok";

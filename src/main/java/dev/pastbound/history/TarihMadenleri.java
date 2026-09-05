@@ -83,10 +83,10 @@ public final class TarihMadenleri {
 
     private static void endBiyomCebi(ServerLevel seviye, LevelChunk chunk, RandomSource rastgele) {
         ResourceKey<Biome> anahtar = Math.floorMod(chunk.getPos().x() + chunk.getPos().z(), 2) == 0 ? END_MIDLANDS_BIYOMU : VOID_CHRONICLE_BIYOMU;
-        Holder<Biome> biyom = seviye.registryAccess().lookupOrThrow(Registries.BIOME).get(anahtar).orElse(null);
-        if (biyom != null) {
-            biyomCebiUygula(chunk, biyom);
-        }
+        // Do not replace LevelChunkSection biome palettes in the End. The End generator
+        // owns its section palettes, and rebuilding them during ChunkEvent.Load can leave
+        // an invalid palette index while the chunk is being attached to the server.
+        // End-specific content remains available through ore veins and observation points.
         endDamar(seviye, chunk, rastgele);
         if (anahtar.equals(END_MIDLANDS_BIYOMU) && rastgele.nextInt(256) == 0) {
             damarYerlestir(seviye, chunk, rastgele, ModBlocks.ERVANIUM_ORE.get(), 18 + rastgele.nextInt(36), 1, false, true);

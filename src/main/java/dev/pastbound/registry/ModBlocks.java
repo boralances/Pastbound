@@ -50,6 +50,11 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> EGYPTIAN_SANDSTONE = BLOCKS.register("egyptian_sandstone", kimlik -> new Block(ozellik(Blocks.SANDSTONE, kimlik).destroyTime(0.8F)));
     public static final DeferredBlock<Block> EGYPTIAN_GOLD_INLAY = BLOCKS.register("egyptian_gold_inlay", kimlik -> new Block(ozellik(Blocks.GOLD_BLOCK, kimlik).destroyTime(3.0F).explosionResistance(6.0F).lightLevel(durum -> 4)));
     public static final DeferredBlock<Block> EGYPTIAN_OBELISK = BLOCKS.register("egyptian_obelisk", kimlik -> new Block(ozellik(Blocks.SMOOTH_SANDSTONE, kimlik).destroyTime(1.0F).explosionResistance(5.0F)));
+    public static final DeferredBlock<Block> EGYPTIAN_HIEROGLYPH = BLOCKS.register("egyptian_hieroglyph", kimlik -> new Block(ozellik(Blocks.CHISELED_SANDSTONE, kimlik).destroyTime(1.1F).explosionResistance(5.0F)));
+    public static final DeferredBlock<Block> EGYPTIAN_SPHINX = BLOCKS.register("egyptian_sphinx", kimlik -> new Block(ozellik(Blocks.CUT_SANDSTONE, kimlik).destroyTime(1.3F).explosionResistance(5.0F)));
+    public static final DeferredBlock<Block> GREEK_MARBLE = BLOCKS.register("greek_marble", kimlik -> new Block(ozellik(Blocks.QUARTZ_BLOCK, kimlik).mapColor(MapColor.QUARTZ).destroyTime(1.2F)));
+    public static final DeferredBlock<Block> GREEK_COLUMN = BLOCKS.register("greek_column", kimlik -> new Block(ozellik(Blocks.QUARTZ_PILLAR, kimlik).mapColor(MapColor.QUARTZ).destroyTime(1.4F)));
+    public static final DeferredBlock<Block> GREEK_OLIVE_ALTAR = BLOCKS.register("greek_olive_altar", kimlik -> new Block(ozellik(Blocks.CHISELED_QUARTZ_BLOCK, kimlik).mapColor(MapColor.QUARTZ).destroyTime(1.5F).lightLevel(durum -> 6)));
 
     public static final DeferredBlock<Block> URUK_CEDAR_LOG = BLOCKS.register("uruk_cedar_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.OAK_LOG, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_STRIPPED_LOG = BLOCKS.register("uruk_cedar_stripped_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.STRIPPED_OAK_LOG, kimlik)));

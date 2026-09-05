@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pastbound_greek_boat",
+  "pattern": [
+    "P P",
+    "PPP",
+    " S "
+  ],
+  "key": {
+    "P": "pastbound:uruk_cedar_planks",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "pastbound:greek_boat",
+    "count": 1
+  }
+}

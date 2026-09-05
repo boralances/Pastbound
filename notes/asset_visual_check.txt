@@ -1,0 +1,3 @@
+Visual asset check, 2026-09-05:
+
+The Greek trireme inventory texture is a 16x16 PNG with a readable boat silhouette, warm cedar/bronze palette, and light sail accent at native size. The Greek marble texture is a 16x16 PNG with a cool white-grey base and visible diagonal veining that remains legible at native size. Both assets are transparent-free opaque pixel-art textures suitable for the existing generated-item and cube-all model conventions.
