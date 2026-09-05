@@ -47,6 +47,9 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> END_ECHO_ORE = BLOCKS.register("end_echo_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik)));
     public static final DeferredBlock<Block> VOID_CHRONICLE_ORE = BLOCKS.register("void_chronicle_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik)));
     public static final DeferredBlock<Block> ERVANIUM_ORE = BLOCKS.register("ervanium_ore", kimlik -> new Block(ozellik(Blocks.END_STONE, kimlik).destroyTime(8.0F).explosionResistance(9.0F).lightLevel(durum -> 3)));
+    public static final DeferredBlock<Block> EGYPTIAN_SANDSTONE = BLOCKS.register("egyptian_sandstone", kimlik -> new Block(ozellik(Blocks.SANDSTONE, kimlik).destroyTime(0.8F)));
+    public static final DeferredBlock<Block> EGYPTIAN_GOLD_INLAY = BLOCKS.register("egyptian_gold_inlay", kimlik -> new Block(ozellik(Blocks.GOLD_BLOCK, kimlik).destroyTime(3.0F).explosionResistance(6.0F).lightLevel(durum -> 4)));
+    public static final DeferredBlock<Block> EGYPTIAN_OBELISK = BLOCKS.register("egyptian_obelisk", kimlik -> new Block(ozellik(Blocks.SMOOTH_SANDSTONE, kimlik).destroyTime(1.0F).explosionResistance(5.0F)));
 
     public static final DeferredBlock<Block> URUK_CEDAR_LOG = BLOCKS.register("uruk_cedar_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.OAK_LOG, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_STRIPPED_LOG = BLOCKS.register("uruk_cedar_stripped_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.STRIPPED_OAK_LOG, kimlik)));

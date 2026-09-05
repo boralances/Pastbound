@@ -9,6 +9,7 @@ import dev.pastbound.registry.ModBlockEntities;
 import dev.pastbound.registry.ModBlocks;
 import dev.pastbound.registry.ModCreativeTabs;
 import dev.pastbound.registry.ModEffects;
+import dev.pastbound.registry.ModFeatures;
 import dev.pastbound.registry.ModEntityTypes;
 import dev.pastbound.registry.ModItems;
 import dev.pastbound.registry.ModLootModifiers;
@@ -34,6 +35,7 @@ public final class ModId {
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModEffects.EFFECTS.register(modEventBus);
+        ModFeatures.FEATURES.register(modEventBus);
         modContainer.registerConfig(ModConfig.Type.CLIENT, PastboundConfig.SPEC);
         modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         modEventBus.addListener(this::commonSetup);

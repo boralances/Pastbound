@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "transportation",
+  "group": "pastbound_egyptian_boat",
+  "key": {
+    "P": "minecraft:acacia_planks",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "P P",
+    "PPP",
+    " S "
+  ],
+  "result": {
+    "id": "pastbound:egyptian_boat",
+    "count": 1
+  }
+}

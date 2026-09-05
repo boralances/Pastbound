@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "transportation",
+  "group": "pastbound_viking_boat",
+  "key": {
+    "P": "pastbound:uruk_cedar_planks",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "P P",
+    "PPP",
+    " S "
+  ],
+  "result": {
+    "id": "pastbound:viking_boat",
+    "count": 1
+  }
+}

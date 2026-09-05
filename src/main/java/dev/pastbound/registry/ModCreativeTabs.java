@@ -47,6 +47,9 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.END_ECHO_ORE.get());
             olay.accept(ModItems.VOID_CHRONICLE_ORE.get());
             olay.accept(ModItems.ERVANIUM_ORE.get());
+            olay.accept(ModItems.EGYPTIAN_SANDSTONE.get());
+            olay.accept(ModItems.EGYPTIAN_GOLD_INLAY.get());
+            olay.accept(ModItems.EGYPTIAN_OBELISK.get());
             olay.accept(ModItems.ERVANIUM_INGOT.get());
             olay.accept(ModItems.ERVANIUM_SMITHING_TEMPLATE.get());
             olay.accept(ModItems.ERVANIUM_HELMET.get());
@@ -55,6 +58,8 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.ERVANIUM_BOOTS.get());
             olay.accept(ModItems.ERVANIUM_SWORD.get());
             olay.accept(ModItems.ANCIENT_BOAT.get());
+            olay.accept(ModItems.EGYPTIAN_BOAT.get());
+            olay.accept(ModItems.VIKING_BOAT.get());
             ModItems.RELIKLER.forEach(relik -> olay.accept(relik.get()));
             ModItems.TARIHI_AHSAP_ITEMLERI.forEach(item -> olay.accept(item.get()));
         }
