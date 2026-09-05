@@ -9,6 +9,7 @@ import dev.pastbound.registry.ModBlockEntities;
 import dev.pastbound.registry.ModBlocks;
 import dev.pastbound.registry.ModCreativeTabs;
 import dev.pastbound.registry.ModEffects;
+import dev.pastbound.registry.ModEntityTypes;
 import dev.pastbound.registry.ModItems;
 import dev.pastbound.registry.ModLootModifiers;
 import net.neoforged.bus.api.IEventBus;
@@ -28,6 +29,7 @@ public final class ModId {
     public ModId(IEventBus modEventBus, ModContainer modContainer) {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModEntityTypes.ENTITY_TYPES.register(modEventBus);
         ModLootModifiers.SERIALIZERS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
@@ -35,6 +37,8 @@ public final class ModId {
         modContainer.registerConfig(ModConfig.Type.CLIENT, PastboundConfig.SPEC);
         modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(dev.pastbound.client.AncientBoatClient::registerLayerDefinitions);
+        modEventBus.addListener(dev.pastbound.client.AncientBoatClient::registerRenderers);
         modEventBus.addListener(PastboundAg::kaydet);
         modEventBus.addListener(ModCreativeTabs::addCreativeItems);
         LOGGER.info("{} is binding the present to the past.", MOD_NAME);

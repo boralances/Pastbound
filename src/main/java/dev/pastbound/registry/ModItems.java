@@ -16,6 +16,7 @@ import dev.pastbound.relic.RelikTanimi;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
@@ -64,6 +65,7 @@ public final class ModItems {
     public static final DeferredItem<Item> ERVANIUM_LEGGINGS = ITEMS.register("ervanium_leggings", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ModArmorMaterials.ERVANIUM, ArmorType.LEGGINGS).fireResistant()));
     public static final DeferredItem<Item> ERVANIUM_BOOTS = ITEMS.register("ervanium_boots", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).humanoidArmor(ModArmorMaterials.ERVANIUM, ArmorType.BOOTS).fireResistant()));
     public static final DeferredItem<Item> ERVANIUM_SWORD = ITEMS.register("ervanium_sword", registryName -> new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).sword(ToolMaterial.NETHERITE, 4.0F, -2.2F).fireResistant()));
+    public static final DeferredItem<BoatItem> ANCIENT_BOAT = ITEMS.register("ancient_boat", registryName -> new BoatItem(ModEntityTypes.ANCIENT_BOAT.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, registryName)).stacksTo(1)));
 
     public static final DeferredItem<BlockItem> URUK_CEDAR_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_log", ModBlocks.URUK_CEDAR_LOG);
     public static final DeferredItem<BlockItem> URUK_CEDAR_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("uruk_cedar_stripped_log", ModBlocks.URUK_CEDAR_STRIPPED_LOG);

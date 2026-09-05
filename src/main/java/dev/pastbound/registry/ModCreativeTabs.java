@@ -54,6 +54,7 @@ public final class ModCreativeTabs {
             olay.accept(ModItems.ERVANIUM_LEGGINGS.get());
             olay.accept(ModItems.ERVANIUM_BOOTS.get());
             olay.accept(ModItems.ERVANIUM_SWORD.get());
+            olay.accept(ModItems.ANCIENT_BOAT.get());
             ModItems.RELIKLER.forEach(relik -> olay.accept(relik.get()));
             ModItems.TARIHI_AHSAP_ITEMLERI.forEach(item -> olay.accept(item.get()));
         }
