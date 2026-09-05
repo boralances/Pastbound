@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_trapdoor_open",
+  "textures": {
+    "texture": "pastbound:block/nether_wart_trapdoor"
+  }
+}

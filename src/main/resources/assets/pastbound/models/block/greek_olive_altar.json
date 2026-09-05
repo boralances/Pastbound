@@ -1,6 +1,43 @@
 {
-  "parent": "minecraft:block/cube_all",
   "textures": {
     "all": "pastbound:block/greek_olive_altar"
-  }
+  },
+  "elements": [
+    {
+      "from": [2, 0, 2],
+      "to": [14, 3, 14],
+      "faces": {
+        "down": {"texture": "#all"},
+        "up": {"texture": "#all"},
+        "north": {"texture": "#all"},
+        "south": {"texture": "#all"},
+        "west": {"texture": "#all"},
+        "east": {"texture": "#all"}
+      }
+    },
+    {
+      "from": [4, 3, 4],
+      "to": [12, 8, 12],
+      "faces": {
+        "down": {"texture": "#all"},
+        "up": {"texture": "#all"},
+        "north": {"texture": "#all"},
+        "south": {"texture": "#all"},
+        "west": {"texture": "#all"},
+        "east": {"texture": "#all"}
+      }
+    },
+    {
+      "from": [5, 8, 5],
+      "to": [11, 11, 11],
+      "faces": {
+        "down": {"texture": "#all"},
+        "up": {"texture": "#all"},
+        "north": {"texture": "#all"},
+        "south": {"texture": "#all"},
+        "west": {"texture": "#all"},
+        "east": {"texture": "#all"}
+      }
+    }
+  ]
 }

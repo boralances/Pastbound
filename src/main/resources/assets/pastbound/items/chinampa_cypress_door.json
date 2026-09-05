@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "pastbound:block/chinampa_cypress_door"
+    "model": "pastbound:item/chinampa_cypress_door"
   }
 }

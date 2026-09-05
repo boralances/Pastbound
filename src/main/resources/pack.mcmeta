@@ -1,6 +1,9 @@
 {
   "pack": {
-    "pack_format": 107,
-    "description": "Pastbound — Echoes of the Past"
+    "min_format": 107,
+    "max_format": 107,
+    "description": {
+      "text": "Pastbound — Echoes of the Past"
+    }
   }
 }

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "pastbound:block/nether_wart_door"
+    "model": "pastbound:item/nether_wart_door"
   }
 }
