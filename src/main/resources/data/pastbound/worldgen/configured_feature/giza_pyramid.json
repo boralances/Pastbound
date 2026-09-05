@@ -1,3 +1,4 @@
 {
-  "type": "pastbound:giza_pyramid"
+  "type": "pastbound:giza_pyramid",
+  "config": {}
 }

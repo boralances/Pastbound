@@ -1,3 +1,4 @@
 {
-  "type": "pastbound:greek_temple"
+  "type": "pastbound:greek_temple",
+  "config": {}
 }
