@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.EntityBlock;
@@ -15,16 +16,21 @@ import dev.pastbound.block.entity.ResonancePillarBlockEntity;
 
 public final class ResonancePillarBlock extends Block implements EntityBlock {
     public static final BooleanProperty CHARGED = BooleanProperty.create("charged");
+    public static final IntegerProperty RESONANCE_LEVEL = IntegerProperty.create("resonance_level", 0, 3);
     public static final int ACTIVE_TICKS = 120;
+
+    public static int activeTicks(BlockState state) {
+        return ACTIVE_TICKS + state.getValue(RESONANCE_LEVEL) * 80;
+    }
 
     public ResonancePillarBlock(BlockBehaviour.Properties ozellikler) {
         super(ozellikler);
-        registerDefaultState(defaultBlockState().setValue(CHARGED, false));
+        registerDefaultState(defaultBlockState().setValue(CHARGED, false).setValue(RESONANCE_LEVEL, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> kurucu) {
-        kurucu.add(CHARGED);
+        kurucu.add(CHARGED, RESONANCE_LEVEL);
     }
 
     @Override

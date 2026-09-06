@@ -1,6 +1,9 @@
 package dev.pastbound.worldgen;
 
 import dev.pastbound.registry.ModBlocks;
+import dev.pastbound.registry.ModItems;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -93,6 +96,14 @@ public class EgyptianDesertTempleFeature extends Feature<NoneFeatureConfiguratio
         }
         set(level, pos, surface, 0, floorY + 1, 0, ModBlocks.EGYPTIAN_GOLD_INLAY.get().defaultBlockState());
         set(level, pos, surface, 0, floorY + 2, 0, ModBlocks.EGYPTIAN_OBELISK.get().defaultBlockState());
+
+        BlockPos chestPos = new BlockPos(surface.getX() + 6, floorY + 1, surface.getZ() + 6);
+        level.setBlock(chestPos, Blocks.CHEST.defaultBlockState(), 2);
+        if (level.getBlockEntity(chestPos) instanceof ChestBlockEntity chest) {
+            chest.setItem(10, new ItemStack(ModItems.OLIVE.get(), 3 + context.random().nextInt(4)));
+            chest.setItem(13, new ItemStack(ModItems.TIME_STONE.get(), 1));
+            chest.setChanged();
+        }
 
         for (int y = 1; y <= 4; y++) {
             set(level, pos, surface, 0, floorY + y, -12, Blocks.AIR.defaultBlockState());

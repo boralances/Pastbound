@@ -1,10 +1,12 @@
 {
   "variants": {
-    "charged=false": {
-      "model": "pastbound:block/resonance_pillar"
-    },
-    "charged=true": {
-      "model": "pastbound:block/resonance_pillar_charged"
-    }
+    "charged=false,resonance_level=0": {"model": "pastbound:block/resonance_pillar"},
+    "charged=false,resonance_level=1": {"model": "pastbound:block/resonance_pillar"},
+    "charged=false,resonance_level=2": {"model": "pastbound:block/resonance_pillar"},
+    "charged=false,resonance_level=3": {"model": "pastbound:block/resonance_pillar"},
+    "charged=true,resonance_level=0": {"model": "pastbound:block/resonance_pillar_charged"},
+    "charged=true,resonance_level=1": {"model": "pastbound:block/resonance_pillar_charged"},
+    "charged=true,resonance_level=2": {"model": "pastbound:block/resonance_pillar_charged"},
+    "charged=true,resonance_level=3": {"model": "pastbound:block/resonance_pillar_charged"}
   }
 }

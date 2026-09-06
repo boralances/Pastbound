@@ -4,6 +4,7 @@ import dev.pastbound.ModId;
 import dev.pastbound.block.EchoArchiveBlock;
 import dev.pastbound.block.AncientStorageBlock;
 import dev.pastbound.block.ResonancePillarBlock;
+import dev.pastbound.block.OliveAltarBlock;
 import dev.pastbound.block.TarihBasincPlakaBlock;
 import dev.pastbound.block.TarihBasamakBlock;
 import dev.pastbound.block.TarihDugmeBlock;
@@ -33,7 +34,7 @@ public final class ModBlocks {
 
     public static final DeferredBlock<EchoArchiveBlock> ECHO_ARCHIVE = BLOCKS.register("echo_archive", kimlik -> new EchoArchiveBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_PURPLE).sound(SoundType.AMETHYST).destroyTime(2.5F).explosionResistance(6.0F).lightLevel(durum -> 5)));
     public static final DeferredBlock<AncientStorageBlock> ANCIENT_STORAGE = BLOCKS.register("ancient_storage", kimlik -> new AncientStorageBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_BROWN).sound(SoundType.WOOD).destroyTime(3.0F).explosionResistance(6.0F)));
-    public static final DeferredBlock<ResonancePillarBlock> RESONANCE_PILLAR = BLOCKS.register("resonance_pillar", kimlik -> new ResonancePillarBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_BLUE).sound(SoundType.COPPER).destroyTime(3.0F).explosionResistance(7.0F).lightLevel(durum -> durum.getValue(ResonancePillarBlock.CHARGED) ? 15 : 4)));
+    public static final DeferredBlock<ResonancePillarBlock> RESONANCE_PILLAR = BLOCKS.register("resonance_pillar", kimlik -> new ResonancePillarBlock(BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, kimlik)).mapColor(MapColor.COLOR_BLUE).sound(SoundType.COPPER).destroyTime(3.0F).explosionResistance(7.0F).lightLevel(durum -> durum.getValue(ResonancePillarBlock.CHARGED) ? 10 + durum.getValue(ResonancePillarBlock.RESONANCE_LEVEL) * 2 : 4)));
     public static final DeferredBlock<Block> NETHER_WART_DOOR = BLOCKS.register("nether_wart_door", kimlik -> new TarihKapiBlock(BlockSetType.CRIMSON, ozellik(Blocks.CRIMSON_DOOR, kimlik)));
     public static final DeferredBlock<Block> NETHER_WART_TRAPDOOR = BLOCKS.register("nether_wart_trapdoor", kimlik -> new TarihKapakBlock(BlockSetType.CRIMSON, ozellik(Blocks.CRIMSON_TRAPDOOR, kimlik)));
     public static final DeferredBlock<Block> STEEL_ORE = BLOCKS.register("steel_ore", kimlik -> new Block(ozellik(Blocks.IRON_ORE, kimlik)));
@@ -54,7 +55,7 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> EGYPTIAN_SPHINX = BLOCKS.register("egyptian_sphinx", kimlik -> new Block(ozellik(Blocks.CUT_SANDSTONE, kimlik).destroyTime(1.3F).explosionResistance(5.0F)));
     public static final DeferredBlock<Block> GREEK_MARBLE = BLOCKS.register("greek_marble", kimlik -> new Block(ozellik(Blocks.QUARTZ_BLOCK, kimlik).mapColor(MapColor.QUARTZ).destroyTime(1.2F)));
     public static final DeferredBlock<Block> GREEK_COLUMN = BLOCKS.register("greek_column", kimlik -> new Block(ozellik(Blocks.QUARTZ_PILLAR, kimlik).mapColor(MapColor.QUARTZ).destroyTime(1.4F)));
-    public static final DeferredBlock<Block> GREEK_OLIVE_ALTAR = BLOCKS.register("greek_olive_altar", kimlik -> new Block(ozellik(Blocks.CHISELED_QUARTZ_BLOCK, kimlik).mapColor(MapColor.QUARTZ).destroyTime(1.5F).lightLevel(durum -> 6)));
+    public static final DeferredBlock<OliveAltarBlock> GREEK_OLIVE_ALTAR = BLOCKS.register("greek_olive_altar", kimlik -> new OliveAltarBlock(ozellik(Blocks.CHISELED_QUARTZ_BLOCK, kimlik).mapColor(MapColor.QUARTZ).destroyTime(1.5F).lightLevel(durum -> 6)));
 
     public static final DeferredBlock<Block> URUK_CEDAR_LOG = BLOCKS.register("uruk_cedar_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.OAK_LOG, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_STRIPPED_LOG = BLOCKS.register("uruk_cedar_stripped_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.STRIPPED_OAK_LOG, kimlik)));

@@ -149,7 +149,7 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && olay.getLevel().getBlockEntity(olay.getPos()) instanceof ResonancePillarBlockEntity pillar) {
-            sunucu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> new ChestMenu(MenuType.GENERIC_9x1, id, envanter, pillar, 1), Component.translatable("container.pastbound.resonance_pillar")));
+            sunucu.openMenu(new SimpleMenuProvider((id, envanter, kullanici) -> new ChestMenu(MenuType.GENERIC_9x3, id, envanter, pillar, 3), Component.translatable("container.pastbound.resonance_pillar")));
             olay.setCanceled(true);
             return;
         }

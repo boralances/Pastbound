@@ -1,7 +1,9 @@
 {
-  "variants": {
-    "": {
-      "model": "pastbound:block/greek_olive_altar"
+  "multipart": [
+    {
+      "apply": {
+        "model": "pastbound:block/greek_olive_altar"
+      }
     }
-  }
+  ]
 }
