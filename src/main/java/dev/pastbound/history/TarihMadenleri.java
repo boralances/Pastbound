@@ -51,10 +51,10 @@ public final class TarihMadenleri {
                 netherDamar(seviye, chunk, rastgele);
             }
         } else if (seviye.dimension().equals(Level.END)) {
+            // Keep End generation active for every new chunk so End Ervanium is not effectively absent.
+            endDamar(seviye, chunk, rastgele);
             if (rastgele.nextInt(8) == 0) {
                 endBiyomCebi(seviye, chunk, rastgele);
-            } else if (rastgele.nextInt(6) == 0) {
-                endDamar(seviye, chunk, rastgele);
             }
         }
     }
@@ -88,14 +88,14 @@ public final class TarihMadenleri {
         // an invalid palette index while the chunk is being attached to the server.
         // End-specific content remains available through ore veins and observation points.
         endDamar(seviye, chunk, rastgele);
-        if (anahtar.equals(END_MIDLANDS_BIYOMU) && rastgele.nextInt(256) == 0) {
-            damarYerlestir(seviye, chunk, rastgele, ModBlocks.ERVANIUM_ORE.get(), 18 + rastgele.nextInt(36), 1, false, true);
-        }
     }
 
     private static void endDamar(ServerLevel seviye, LevelChunk chunk, RandomSource rastgele) {
         damarYerlestir(seviye, chunk, rastgele, ModBlocks.END_ECHO_ORE.get(), 20 + rastgele.nextInt(68), 6, false, true);
         damarYerlestir(seviye, chunk, rastgele, ModBlocks.VOID_CHRONICLE_ORE.get(), 28 + rastgele.nextInt(60), 5, false, true);
+        if (rastgele.nextInt(4) == 0) {
+            damarYerlestir(seviye, chunk, rastgele, ModBlocks.ERVANIUM_ORE.get(), 12 + rastgele.nextInt(48), 3, false, true);
+        }
         endGozlemeNoktasi(seviye, chunk, rastgele);
     }
 

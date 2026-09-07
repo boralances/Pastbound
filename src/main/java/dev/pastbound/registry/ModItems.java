@@ -95,6 +95,10 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> URUK_CEDAR_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem("uruk_cedar_pressure_plate", ModBlocks.URUK_CEDAR_PRESSURE_PLATE);
     public static final DeferredItem<BlockItem> URUK_CEDAR_BUTTON = ITEMS.registerSimpleBlockItem("uruk_cedar_button", ModBlocks.URUK_CEDAR_BUTTON);
 
+    public static final DeferredItem<BlockItem> OLIVE_LOG = ITEMS.registerSimpleBlockItem("olive_log", ModBlocks.OLIVE_LOG);
+    public static final DeferredItem<BlockItem> OLIVE_LEAVES = ITEMS.registerSimpleBlockItem("olive_leaves", ModBlocks.OLIVE_LEAVES);
+    public static final DeferredItem<BlockItem> OLIVE_SAPLING = ITEMS.registerSimpleBlockItem("olive_sapling", ModBlocks.OLIVE_SAPLING);
+
     public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_LOG = ITEMS.registerSimpleBlockItem("chinampa_cypress_log", ModBlocks.CHINAMPA_CYPRESS_LOG);
     public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_STRIPPED_LOG = ITEMS.registerSimpleBlockItem("chinampa_cypress_stripped_log", ModBlocks.CHINAMPA_CYPRESS_STRIPPED_LOG);
     public static final DeferredItem<BlockItem> CHINAMPA_CYPRESS_WOOD = ITEMS.registerSimpleBlockItem("chinampa_cypress_wood", ModBlocks.CHINAMPA_CYPRESS_WOOD);
@@ -113,6 +117,7 @@ public final class ModItems {
 
     public static final List<DeferredItem<BlockItem>> TARIHI_AHSAP_ITEMLERI = List.of(
             URUK_CEDAR_LOG, URUK_CEDAR_STRIPPED_LOG, URUK_CEDAR_WOOD, URUK_CEDAR_STRIPPED_WOOD, URUK_CEDAR_LEAVES, URUK_CEDAR_SAPLING, URUK_CEDAR_PLANKS, URUK_CEDAR_SLAB, URUK_CEDAR_STAIRS, URUK_CEDAR_FENCE, URUK_CEDAR_FENCE_GATE, URUK_CEDAR_PRESSURE_PLATE, URUK_CEDAR_BUTTON,
+            OLIVE_LOG, OLIVE_LEAVES, OLIVE_SAPLING,
             CHINAMPA_CYPRESS_LOG, CHINAMPA_CYPRESS_STRIPPED_LOG, CHINAMPA_CYPRESS_WOOD, CHINAMPA_CYPRESS_STRIPPED_WOOD, CHINAMPA_CYPRESS_LEAVES, CHINAMPA_CYPRESS_SAPLING, CHINAMPA_CYPRESS_PLANKS, CHINAMPA_CYPRESS_SLAB, CHINAMPA_CYPRESS_STAIRS, CHINAMPA_CYPRESS_FENCE, CHINAMPA_CYPRESS_FENCE_GATE, CHINAMPA_CYPRESS_PRESSURE_PLATE, CHINAMPA_CYPRESS_BUTTON);
 
     public static final List<DeferredItem<RelikItem>> RELIKLER = new ArrayList<>();

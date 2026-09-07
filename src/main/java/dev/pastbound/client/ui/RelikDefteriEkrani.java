@@ -80,10 +80,12 @@ public final class RelikDefteriEkrani extends Screen {
             cizim.outline(x, y, kartGenislik, kartYukseklik, biliniyor ? 0xFFB98B52 : 0xFF4A4F58);
             if (biliniyor) {
                 cizim.item(new ItemStack(ModItems.RELIKLER.get(i).get()), x + 5, y + Math.max(3, (kartYukseklik - 16) / 2));
-                cizim.textWithWordWrap(font, tanim.adBileseni(), x + 26, y + 5, kartGenislik - 30, 0xFFF4E5C4);
+                                    cizim.textWithWordWrap(font, tanim.adBileseni(), x + 26, y + 5, kartGenislik - 30, 0xFFF4E5C4);
+                cizim.text(font, Component.literal("✓"), x + kartGenislik - 16, y + 5, 0xFF79C6A2);
                 if (kartYukseklik >= 48) {
-                    cizim.text(font, Component.translatable(yankisi ? "screen.pastbound.echo_found" : "screen.pastbound.ready"), x + 26, y + kartYukseklik - 15, yankisi ? 0xFF79C6A2 : 0xFFE0B26B);
+                    cizim.text(font, Component.translatable(yankisi ? "screen.pastbound.echo_found" : "screen.pastbound.relic.found_marked"), x + 26, y + kartYukseklik - 15, yankisi ? 0xFF79C6A2 : 0xFFE0B26B);
                 }
+
             } else {
                 cizim.fill(x + 7, y + Math.max(4, (kartYukseklik - 14) / 2), x + 20, y + Math.max(4, (kartYukseklik - 14) / 2) + 13, 0xFF555962);
                 cizim.centeredText(font, Component.literal("?"), x + 13, y + Math.max(5, (kartYukseklik - 14) / 2) + 2, 0xFFE2C58C);

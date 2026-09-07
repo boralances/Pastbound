@@ -5,6 +5,8 @@ import dev.pastbound.block.EchoArchiveBlock;
 import dev.pastbound.block.AncientStorageBlock;
 import dev.pastbound.block.ResonancePillarBlock;
 import dev.pastbound.block.OliveAltarBlock;
+import dev.pastbound.block.OliveLeavesBlock;
+import dev.pastbound.block.OliveSaplingBlock;
 import dev.pastbound.block.TarihBasincPlakaBlock;
 import dev.pastbound.block.TarihBasamakBlock;
 import dev.pastbound.block.TarihDugmeBlock;
@@ -72,6 +74,10 @@ public final class ModBlocks {
     public static final DeferredBlock<Block> URUK_CEDAR_FENCE_GATE = BLOCKS.register("uruk_cedar_fence_gate", kimlik -> new FenceGateBlock(WoodType.OAK, ozellik(Blocks.OAK_FENCE_GATE, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_PRESSURE_PLATE = BLOCKS.register("uruk_cedar_pressure_plate", kimlik -> new TarihBasincPlakaBlock(BlockSetType.OAK, ozellik(Blocks.OAK_PRESSURE_PLATE, kimlik)));
     public static final DeferredBlock<Block> URUK_CEDAR_BUTTON = BLOCKS.register("uruk_cedar_button", kimlik -> new TarihDugmeBlock(BlockSetType.OAK, 30, ozellik(Blocks.OAK_BUTTON, kimlik)));
+
+    public static final DeferredBlock<Block> OLIVE_LOG = BLOCKS.register("olive_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.OAK_LOG, kimlik)));
+    public static final DeferredBlock<Block> OLIVE_LEAVES = BLOCKS.register("olive_leaves", kimlik -> new OliveLeavesBlock(ozellik(Blocks.OAK_LEAVES, kimlik).noOcclusion()));
+    public static final DeferredBlock<Block> OLIVE_SAPLING = BLOCKS.register("olive_sapling", kimlik -> new OliveSaplingBlock(ozellik(Blocks.OAK_SAPLING, kimlik).noOcclusion().sound(SoundType.GRASS)));
 
     public static final DeferredBlock<Block> CHINAMPA_CYPRESS_LOG = BLOCKS.register("chinampa_cypress_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.BIRCH_LOG, kimlik)));
     public static final DeferredBlock<Block> CHINAMPA_CYPRESS_STRIPPED_LOG = BLOCKS.register("chinampa_cypress_stripped_log", kimlik -> new RotatedPillarBlock(ozellik(Blocks.STRIPPED_BIRCH_LOG, kimlik)));

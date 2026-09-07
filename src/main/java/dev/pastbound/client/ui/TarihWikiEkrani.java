@@ -10,7 +10,7 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 public final class TarihWikiEkrani extends Screen {
-    private static final int PAGE_COUNT = 8;
+    private static final int PAGE_COUNT = 9;
     private int page;
 
     private TarihWikiEkrani() {
