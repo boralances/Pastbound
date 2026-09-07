@@ -719,6 +719,8 @@
   "screen.pastbound.wiki.page.7.body": "The four themed boats now have distinct rider abilities: Ancient grants Haste and Night Vision, Egyptian grants Water Breathing and Fire Resistance, Greek grants Dolphin's Grace and Jump Boost, and Viking grants Resistance and Strength. Anti-Poison and Anti-Nausea relics suppress their matching effects while equipped. Random global historical buffs have been removed. Invincibility is limited to Pastbound time-machine dimensions; the Overworld, Nether and End remain dangerous. A complete Ervanium armor set grants immortality in every dimension. Egyptian ruins and small pyramid placements are disabled: Egyptian blocks and the reward chest belong inside the rare large Egyptian desert pyramid. The Resonance Pillar accepts a Time Stone, Echo Shard and Steel Plate.",
   "screen.pastbound.wiki.page.8.title": "End Ervanium, Olive Trees and Relic Marks",
   "screen.pastbound.wiki.page.8.body": "Ervanium Ore now generates in regular new End chunks inside End Stone veins, rather than relying on an almost impossible biome-only roll. Search below the End island surface and mine it with a suitable pickaxe; old chunks do not retroactively regenerate ore. Craft Ervanium Ingots and use the Ervanium Smithing Template to upgrade equipment. The complete helmet, chestplate, leggings and boots set grants immortality everywhere. Olive Saplings grow on dirt or grass into small Olive Trees. Their leaves periodically release Olives, and the Olive Log, Leaves and Sapling can be planted or kept as decorative blocks. In the Relic Guide, a relic becomes permanently marked with a green check and FOUND / MARKED after its knowledge is recovered; the mark follows the player because discovery is saved to player data. Click any card to inspect its fragments and restoration progress. If a new texture or ore is missing, use a new chunk, verify the resource pack is enabled, and reload with F3+A.",
+  "screen.pastbound.wiki.page.9.title": "Controls and Field Troubleshooting",
+  "screen.pastbound.wiki.page.9.body": "Open this archive with the Field Wiki item or its keybind, then use A / D or the Left / Right Arrow keys to change pages. Press Escape to close any Pastbound screen. The default relic controls are listed under Options > Controls > Pastbound. If a destination does not appear, confirm that the Time Machine is charged and that the required quest objective is complete. If a new block is invisible, reload resources with F3+A and test in a newly generated chunk; existing terrain will not be rebuilt. For a clean creative test, use a fresh world or the /pastbound test_kit command.",
   "screen.pastbound.settings": "Pastbound Settings",
   "screen.pastbound.settings.subtitle": "Field experience and historical signal controls",
   "screen.pastbound.settings.wiki": "Open Field Wiki on login",
@@ -784,5 +786,9 @@
   "item.pastbound.greek_column": "Greek Column",
   "block.pastbound.greek_olive_altar": "Greek Olive Altar",
   "item.pastbound.greek_olive_altar": "Greek Olive Altar",
-  "item.pastbound.greek_boat": "Greek Trireme Boat"
+  "item.pastbound.greek_boat": "Greek Trireme Boat",
+  "advancements.pastbound.boatwright.title": "Boatwright of the Ages",
+  "advancements.pastbound.boatwright.description": "Craft one of Pastbound's themed boats.",
+  "advancements.pastbound.boat_fleet.title": "Fleet of Memory",
+  "advancements.pastbound.boat_fleet.description": "Collect the Ancient, Egyptian, Greek and Viking boats."
 }

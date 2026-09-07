@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:story/root",
+  "display": {
+    "icon": {
+      "id": "pastbound:ancient_boat"
+    },
+    "title": {
+      "translate": "advancements.pastbound.boatwright.title"
+    },
+    "description": {
+      "translate": "advancements.pastbound.boatwright.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ancient_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:ancient_boat"] }]
+      }
+    },
+    "egyptian_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:egyptian_boat"] }]
+      }
+    },
+    "greek_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:greek_boat"] }]
+      }
+    },
+    "viking_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:viking_boat"] }]
+      }
+    }
+  }
+}

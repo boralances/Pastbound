@@ -103,6 +103,10 @@ public final class RelikMantigi {
         return sayi;
     }
 
+    public static int miniEtkinlikMaskesi(Player oyuncu, RelikTanimi tanim) {
+        return ((IEntityExtension) oyuncu).getPersistentData().getIntOr(MINI_ETKINLIK_PARCALARI + "." + tanim.kimlik(), 0);
+    }
+
     public static RelikTanimi tanimBul(String kimlik) {
         for (RelikTanimi tanim : RelikTanimi.values()) {
             if (tanim.kimlik().equalsIgnoreCase(kimlik)) {

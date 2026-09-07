@@ -4,11 +4,14 @@ import dev.pastbound.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class OliveSaplingBlock extends Block {
+public class OliveSaplingBlock extends Block implements BonemealableBlock {
     public OliveSaplingBlock(BlockBehaviour.Properties properties) {
         super(properties.randomTicks());
     }
@@ -19,6 +22,26 @@ public class OliveSaplingBlock extends Block {
             return;
         }
         growTree(level, pos);
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+        return level.getBlockState(pos.below()).is(net.minecraft.tags.BlockTags.DIRT);
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+        return true;
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+        growTree(level, pos);
+    }
+
+    @Override
+    public Type getType() {
+        return Type.GROWER;
     }
 
     private static void growTree(ServerLevel level, BlockPos pos) {

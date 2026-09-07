@@ -1,0 +1,50 @@
+{
+  "parent": "pastbound:boatwright",
+  "display": {
+    "icon": {
+      "id": "pastbound:viking_boat"
+    },
+    "title": {
+      "translate": "advancements.pastbound.boat_fleet.title"
+    },
+    "description": {
+      "translate": "advancements.pastbound.boat_fleet.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ancient_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:ancient_boat"] }]
+      }
+    },
+    "egyptian_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:egyptian_boat"] }]
+      }
+    },
+    "greek_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:greek_boat"] }]
+      }
+    },
+    "viking_boat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["pastbound:viking_boat"] }]
+      }
+    }
+  },
+  "requirements": [
+    ["ancient_boat"],
+    ["egyptian_boat"],
+    ["greek_boat"],
+    ["viking_boat"]
+  ]
+}

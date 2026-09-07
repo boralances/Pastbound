@@ -31,6 +31,7 @@ public final class RelikDefteriEkrani extends Screen {
         RelikDefteriEkrani ekran = new RelikDefteriEkrani();
         ekran.seciliRelik = tanim.ordinal();
         ekran.sayfa = tanim.ordinal() / SAYFADAKI_RELIK;
+        ekran.parcalariYukle(tanim);
         Minecraft.getInstance().setScreenAndShow(ekran);
     }
 
@@ -157,13 +158,27 @@ public final class RelikDefteriEkrani extends Screen {
     }
 
     private void parcaTikla(int parca) {
-        if (parca < 0 || parca >= parcalar.length || parcalar[parca] || parca != parcaSayisi()) {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (seciliRelik < 0 || (minecraft.player != null && RelikMantigi.biliyorMu(minecraft.player, RelikTanimi.values()[seciliRelik]))
+                || parca < 0 || parca >= parcalar.length || parcalar[parca] || parca != parcaSayisi()) {
             return;
         }
         parcalar[parca] = true;
-        Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.player != null) {
             minecraft.player.connection.send(new ServerboundCustomPayloadPacket(PastboundPaketi.miniEtkinlik(RelikTanimi.values()[seciliRelik].kimlik(), parca + 1)));
+        }
+    }
+
+    private void parcalariYukle(RelikTanimi tanim) {
+        Minecraft minecraft = Minecraft.getInstance();
+        int maske = 0;
+        if (minecraft.player != null) {
+            maske = RelikMantigi.biliyorMu(minecraft.player, tanim)
+                    ? 0b1_1111
+                    : RelikMantigi.miniEtkinlikMaskesi(minecraft.player, tanim);
+        }
+        for (int parca = 0; parca < parcalar.length; parca++) {
+            parcalar[parca] = (maske & (1 << parca)) != 0;
         }
     }
 
@@ -204,9 +219,7 @@ public final class RelikDefteriEkrani extends Screen {
             int y = ust + 78 + yerel / sutunSayisi * (kartYukseklik + 6);
             if (olay.x() >= x && olay.x() <= x + kartGenislik && olay.y() >= y && olay.y() <= y + kartYukseklik) {
                 seciliRelik = i;
-                for (int parca = 0; parca < parcalar.length; parca++) {
-                    parcalar[parca] = false;
-                }
+                parcalariYukle(RelikTanimi.values()[i]);
                 return true;
             }
         }

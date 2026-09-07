@@ -17,7 +17,7 @@ public final class ModCreativeTabs {
     }
 
     public static void addCreativeItems(BuildCreativeModeTabContentsEvent olay) {
-        if (olay.getTabKey().equals(PASTBOUND_TAB.getKey())) {
+        if (olay.getTabKey() != null && olay.getTabKey().equals(PASTBOUND_TAB.getKey())) {
             olay.accept(ModItems.ECHO_SHARD.get());
             olay.accept(ModItems.MEMORY_LENS.get());
             olay.accept(ModItems.ECHO_ARCHIVE.get());
