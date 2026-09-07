@@ -24,5 +24,7 @@ public enum RelikYetisi {
     TICARET,
     DENIZ,
     BEREKET,
-    SESSIZLIK
+    SESSIZLIK,
+    ZEHİR_KORUMASI,
+    BULANTI_KORUMASI
 }

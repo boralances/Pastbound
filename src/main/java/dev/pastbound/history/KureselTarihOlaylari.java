@@ -10,8 +10,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -133,48 +131,40 @@ public final class KureselTarihOlaylari {
 
     private static void yaziHafizasi(ServerPlayer oyuncu) {
         oyuncu.giveExperiencePoints(1);
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 100, 0, false, false, true));
         yankiyiHazirla(oyuncu, KureselTarihOlayi.YAZI_DEVRIMI);
     }
 
     private static void yildizSeferi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 100, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.END_ROD, oyuncu.getX(), oyuncu.getY() + 1.2D, oyuncu.getZ(), 3, 0.2D, 0.2D, 0.2D, 0.01D);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.YILDIZ_SEFERI);
     }
 
     private static void demirciHafizasi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.HASTE, 100, 0, false, false, true));
         seviye.playSound(null, BlockPos.containing(oyuncu.position()), SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 0.25F, 1.7F);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.DEMIRCI_HAFIZASI);
     }
 
     private static void kervanYolu(ServerPlayer oyuncu) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.SPEED, 100, 0, false, false, true));
         oyuncu.giveExperiencePoints(1);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.KERVAN_YOLU);
     }
 
     private static void runeNobeti(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 100, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 4, 0.3D, 0.4D, 0.3D, 0.02D);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.RUNE_NOBETI);
     }
 
     private static void nilKanallari(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 100, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.BUBBLE, oyuncu.getX(), oyuncu.getY(), oyuncu.getZ(), 3, 0.2D, 0.2D, 0.2D, 0.01D);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.NIL_KANALLARI);
     }
 
     private static void ayMisyonu(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.END_ROD, oyuncu.getX(), oyuncu.getY(), oyuncu.getZ(), 2, 0.4D, 0.6D, 0.4D, 0.01D);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.AY_MISYONU);
     }
 
     private static void takvimMeclisi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.LUCK, 120, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 2, 0.25D, 0.35D, 0.25D, 0.02D);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.TAKVIM_MECLISI);
     }
@@ -185,7 +175,6 @@ public final class KureselTarihOlaylari {
     }
 
     private static void ipekDegisimi(ServerPlayer oyuncu) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.SPEED, 100, 0, false, false, true));
         yankiyiHazirla(oyuncu, KureselTarihOlayi.IPEK_DEGISIMI);
     }
 
@@ -195,7 +184,6 @@ public final class KureselTarihOlaylari {
     }
 
     private static void astrolabGogu(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 100, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.END_ROD, oyuncu.getX(), oyuncu.getY() + 1.4D, oyuncu.getZ(), 2, 0.3D, 0.2D, 0.3D, 0.01D);
         yankiyiHazirla(oyuncu, KureselTarihOlayi.ASTROLAB_GOGU);
     }
@@ -207,21 +195,17 @@ public final class KureselTarihOlaylari {
     }
 
     private static void akdenizGemiciligi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 140, 0, false, false, true));
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 140, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.BUBBLE, oyuncu.getX(), oyuncu.getY(), oyuncu.getZ(), 8, 0.5D, 0.5D, 0.5D, 0.02D);
         olayAnlat(oyuncu, KureselTarihOlayi.AKDENIZ_GEMICILIGI);
     }
 
     private static void matbaaYankisi(ServerPlayer oyuncu, ServerLevel seviye) {
         oyuncu.giveExperiencePoints(2);
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.HASTE, 120, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 7, 0.4D, 0.5D, 0.4D, 0.02D);
         olayAnlat(oyuncu, KureselTarihOlayi.MATBAA_YANKISI);
     }
 
     private static void tipBahcesi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.HAPPY_VILLAGER, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 5, 0.3D, 0.4D, 0.3D, 0.02D);
         olayAnlat(oyuncu, KureselTarihOlayi.TIP_BAHCESI);
     }
@@ -233,19 +217,16 @@ public final class KureselTarihOlaylari {
     }
 
     private static void gozlemEvi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 160, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.END_ROD, oyuncu.getX(), oyuncu.getY() + 1.5D, oyuncu.getZ(), 8, 0.5D, 0.4D, 0.5D, 0.02D);
         olayAnlat(oyuncu, KureselTarihOlayi.GOZLEM_EVI);
     }
 
     private static void hukukMeclisi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 140, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.HAPPY_VILLAGER, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 5, 0.3D, 0.4D, 0.3D, 0.02D);
         olayAnlat(oyuncu, KureselTarihOlayi.HUKUK_MECLISI);
     }
 
     private static void arkeolojiKesfi(ServerPlayer oyuncu, ServerLevel seviye) {
-        oyuncu.addEffect(new MobEffectInstance(MobEffects.HASTE, 120, 0, false, false, true));
         seviye.sendParticles(ParticleTypes.ENCHANT, oyuncu.getX(), oyuncu.getY() + 1.0D, oyuncu.getZ(), 8, 0.4D, 0.5D, 0.4D, 0.02D);
         olayAnlat(oyuncu, KureselTarihOlayi.ARKEOLOJI_KESFI);
     }

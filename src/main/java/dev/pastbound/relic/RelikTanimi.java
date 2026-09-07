@@ -27,6 +27,8 @@ public enum RelikTanimi {
     POLINEZYA_YILDIZ_HARITASI("polinezya_yildiz_haritasi", "Polinezya Yıldız Haritası", "Okyanusta yön bulan sözlü harita", 6, 270, 0x416B83, RelikYetisi.DENIZ),
     MALI_TUZ_MUHRU("mali_tuz_muhru", "Mali Tuz Mührü", "Sahra ticaretinin beyaz hazinesi", 4, 160, 0xE7E1C7, RelikYetisi.BEREKET),
     ISKANDINAV_RUNETASI("iskandinav_runetasi", "İskandinav Rune Taşı", "Kuzeyin taşa kazınmış sözü", 5, 200, 0x79807D, RelikYetisi.SESSIZLIK),
+    ZEHIR_KORUYUCUSU("zehir_koruyucusu", "Anti-Poison Relic", "Zehri tarih kayıtlarından silen koruyucu", 5, 240, 0x62A85A, RelikYetisi.ZEHİR_KORUMASI),
+    BULANTI_KORUYUCUSU("bulanti_koruyucusu", "Anti-Nausea Relic", "Bulantının yankısını susturan mühür", 5, 240, 0x8E75B8, RelikYetisi.BULANTI_KORUMASI),
     ;
 
     private final String kimlik;

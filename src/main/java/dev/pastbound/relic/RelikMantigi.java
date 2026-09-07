@@ -316,6 +316,8 @@ public final class RelikMantigi {
             case DENIZ -> efekt(oyuncu, MobEffects.DOLPHINS_GRACE, 360, 1);
             case BEREKET -> efekt(oyuncu, MobEffects.LUCK, 400, 2);
             case SESSIZLIK -> efekt(oyuncu, MobEffects.INVISIBILITY, 180, 0);
+            case ZEHİR_KORUMASI -> oyuncu.removeEffect(MobEffects.POISON);
+            case BULANTI_KORUMASI -> oyuncu.removeEffect(MobEffects.NAUSEA);
         }
         ozelYankiUygula(oyuncu, tanim);
     }
@@ -448,6 +450,8 @@ public final class RelikMantigi {
             case SU, DENIZ -> efekt(oyuncu, MobEffects.WATER_BREATHING, 70, 0);
             case DIRENC, SAVUNMA, ZIRH -> {
             }
+            case ZEHİR_KORUMASI -> oyuncu.removeEffect(MobEffects.POISON);
+            case BULANTI_KORUMASI -> oyuncu.removeEffect(MobEffects.NAUSEA);
             case KALP -> efekt(oyuncu, MobEffects.REGENERATION, 70, 0);
             default -> {
             }
