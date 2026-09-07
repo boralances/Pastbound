@@ -790,5 +790,6 @@
   "advancements.pastbound.boatwright.title": "Boatwright of the Ages",
   "advancements.pastbound.boatwright.description": "Craft one of Pastbound's themed boats.",
   "advancements.pastbound.boat_fleet.title": "Fleet of Memory",
-  "advancements.pastbound.boat_fleet.description": "Collect the Ancient, Egyptian, Greek and Viking boats."
+  "advancements.pastbound.boat_fleet.description": "Collect the Ancient, Egyptian, Greek and Viking boats.",
+  "message.pastbound.scene.expedition_kit": "Expedition kit received: bread and copper for your historical work."
 }

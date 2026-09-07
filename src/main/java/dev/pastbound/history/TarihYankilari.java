@@ -92,7 +92,8 @@ public final class TarihYankilari {
             return;
         }
         if (oyuncu instanceof ServerPlayer sunucu && TarihiKesifDunyasi.boyuttaMi(sunucu)) {
-            if (olay.getState().is(ModBlocks.STEEL_ORE.get()) && TarihiKesifDunyasi.celiKirilabilir(sunucu, olay.getPos())) {
+            if ((olay.getState().is(ModBlocks.STEEL_ORE.get()) || olay.getState().is(ModBlocks.DEEPSLATE_STEEL_ORE.get()))
+                    && TarihiKesifDunyasi.celiKirilabilir(sunucu, olay.getPos())) {
                 TarihiKesifDunyasi.celiKirilmasi(sunucu);
                 return;
             }
@@ -104,7 +105,8 @@ public final class TarihYankilari {
             sunucu.sendSystemMessage(Component.translatable("message.pastbound.scene.protected_block"));
             return;
         }
-        if (oyuncu instanceof ServerPlayer sunucu && olay.getState().is(ModBlocks.STEEL_ORE.get())) {
+        if (oyuncu instanceof ServerPlayer sunucu
+                && (olay.getState().is(ModBlocks.STEEL_ORE.get()) || olay.getState().is(ModBlocks.DEEPSLATE_STEEL_ORE.get()))) {
             TarihiKesifDunyasi.dunyaCelikKirildi(sunucu);
         }
         if (olay.getState().is(ModBlocks.ECHO_ARCHIVE.get())) {

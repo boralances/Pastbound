@@ -66,6 +66,7 @@ public final class TarihiKesifDunyasi {
     private static final String DUNYA_CELIK = "pastbound_dunya_celik";
     private static final String DUNYA_MADEN_GIRILDI = "pastbound_dunya_maden_girildi";
     private static final String TAMAMLANAN_DUNYALAR = "pastbound_tamamlanan_dunyalar";
+    private static final String SEFER_KITI_VERILDI = "pastbound_sefer_kiti_verildi";
     private static final String AMETIST_X = "pastbound_amatist_x";
     private static final String AMETIST_Y = "pastbound_amatist_y";
     private static final String AMETIST_Z = "pastbound_amatist_z";
@@ -147,13 +148,19 @@ public final class TarihiKesifDunyasi {
         hedef.getChunkAt(SAHNE_MERKEZI);
         sahneyiKur(hedef, SAHNE_MERKEZI, donem);
         oyuncu.teleportTo(hedef, SAHNE_MERKEZI.getX() + 0.5D, SAHNE_MERKEZI.getY() + 1.0D, SAHNE_MERKEZI.getZ() + 0.5D, Set.of(), 0.0F, 0.0F, false);
-        if (oyuncu.getInventory().countItem(Items.IRON_PICKAXE) == 0 && oyuncu.getInventory().countItem(Items.DIAMOND_PICKAXE) == 0 && oyuncu.getInventory().countItem(Items.NETHERITE_PICKAXE) == 0) {
+        if (!celikKazmasiVarMi(oyuncu)) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.IRON_PICKAXE));
             oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.mining_tool"));
         }
         if (oyuncu.getInventory().countItem(Items.COAL) < 16) {
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.COAL, 16));
             oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.TORCH, 16));
+        }
+        if (!((IEntityExtension) oyuncu).getPersistentData().getBooleanOr(SEFER_KITI_VERILDI, false)) {
+            ((IEntityExtension) oyuncu).getPersistentData().putBoolean(SEFER_KITI_VERILDI, true);
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.BREAD, 8));
+            oyuncu.getInventory().placeItemBackInInventory(new ItemStack(Items.COPPER_INGOT, 2));
+            oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.expedition_kit"));
         }
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.enter", donem.adBileseni()));
         oyuncu.sendSystemMessage(Component.translatable("message.pastbound.scene.press_d"));
@@ -211,7 +218,26 @@ public final class TarihiKesifDunyasi {
             return false;
         }
         CompoundTag veri = ((IEntityExtension) oyuncu).getPersistentData();
-        return veri.getIntOr(CELIK_GOREV_ASAMASI, 0) <= 1 && oyuncu.level().getBlockState(konum).is(ModBlocks.STEEL_ORE.get());
+        if (veri.getIntOr(CELIK_GOREV_ASAMASI, 0) > 1) {
+            return false;
+        }
+        return celikMadeniMi(oyuncu, konum);
+    }
+
+    public static boolean celikMadeniMi(ServerPlayer oyuncu, BlockPos konum) {
+        return boyuttaMi(oyuncu) && (oyuncu.level().getBlockState(konum).is(ModBlocks.STEEL_ORE.get())
+                || oyuncu.level().getBlockState(konum).is(ModBlocks.DEEPSLATE_STEEL_ORE.get()));
+    }
+
+    private static boolean celikKazmasiVarMi(ServerPlayer oyuncu) {
+        for (int i = 0; i < oyuncu.getInventory().getContainerSize(); i++) {
+            ItemStack kazma = oyuncu.getInventory().getItem(i);
+            if ((kazma.is(Items.IRON_PICKAXE) || kazma.is(Items.DIAMOND_PICKAXE) || kazma.is(Items.NETHERITE_PICKAXE))
+                    && (!kazma.isDamageableItem() || kazma.getDamageValue() < kazma.getMaxDamage())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void celiKirilmasi(ServerPlayer oyuncu) {
